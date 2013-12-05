@@ -1,0 +1,17 @@
+package heterogeneoustree;
+
+public class DemoHeterogeneousTree {
+
+	@SuppressWarnings("unchecked")
+	public static void main(String[] args) {
+
+		HeterogeneousTree<Object> tree = new HeterogeneousTree<Object>(7,
+				new HeterogeneousTree<Object>(19,
+						new HeterogeneousTree<Object>("Emil",
+								new HeterogeneousTree<Object>(2.4))));
+		
+		tree.printDFS();
+		
+	}
+
+}

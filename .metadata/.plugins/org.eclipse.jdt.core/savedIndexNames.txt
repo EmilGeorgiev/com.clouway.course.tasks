@@ -1,0 +1,21 @@
+INDEX VERSION 1.126+D:\Emo\HomeworkClouway\.metadata\.plugins\org.eclipse.jdt.core
+3198605593.index
+1840407994.index
+20454345.index
+3831923523.index
+710365281.index
+3357822389.index
+1208375564.index
+2407343740.index
+2903088146.index
+2990805955.index
+4274890902.index
+560210284.index
+3942747217.index
+845661756.index
+3453010601.index
+3563579007.index
+2959744029.index
+3276523903.index
+826963872.index
+1164017190.index

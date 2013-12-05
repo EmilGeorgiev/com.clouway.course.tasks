@@ -1,0 +1,27 @@
+package listitems;
+
+public class MainClass {
+
+	public static void main(String[] args) {
+		ListItems list = new ListItems(5);
+		list.add(1);
+		list.add(2);
+		list.add(3);
+		for (int i = 0; i < list.lenght; i++) {
+			System.out.println(list.getObject(i));
+		}
+		
+		list.remove();
+		for (int i = 0; i < list.lenght; i++) {
+			System.out.println(list.getObject(i));
+		}
+		
+		list.add(3);
+		
+		for (int i = 0; i < list.lenght; i++) {
+			System.out.println(list.getObject(i));
+		}
+
+	}
+
+}

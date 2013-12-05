@@ -1,0 +1,46 @@
+package heterogeneoustree;
+
+public class HeterogeneousTree {
+
+	private class HeterogeneousNode implements Comparable<HeterogeneousNode>{
+
+		private int valueOfHashCode;
+		private HeterogeneousNode parent;
+		private HeterogeneousNode leftChild;
+		private HeterogeneousNode rightChild;
+		private Object object;
+
+		/**
+		 * Constructor the node.
+		 * 
+		 * @param value
+		 *            - the value of the node.
+		 */
+		public HeterogeneousNode(int valueOfHeshCode, Object object) {
+			super();
+			this.parent = null;
+			this.leftChild = null;
+			this.rightChild = null;
+			this.valueOfHashCode = valueOfHeshCode;
+			this.object = object;
+		}
+
+		@Override
+		public int compareTo(HeterogeneousNode compareTo) {
+			int result = this.valueOfHashCode - compareTo.valueOfHashCode;
+			return result;
+		}
+
+		public void insert(Object object) {
+			
+		}
+		
+		
+	}
+
+	private Object rootOfThree;
+
+	public void insert(Object object) {
+
+	}
+}

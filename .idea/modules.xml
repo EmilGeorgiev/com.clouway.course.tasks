@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/1.IntroductionJavaTasks/1.IntroductionJavaTasks.iml" filepath="$PROJECT_DIR$/1.IntroductionJavaTasks/1.IntroductionJavaTasks.iml" />
+      <module fileurl="file://$PROJECT_DIR$/2.ObjectInJavaTasks/2.ObjectInJavaTasks.iml" filepath="$PROJECT_DIR$/2.ObjectInJavaTasks/2.ObjectInJavaTasks.iml" />
+      <module fileurl="file://$PROJECT_DIR$/4.ExceptionsTasks/4.ExceptionsTasks.iml" filepath="$PROJECT_DIR$/4.ExceptionsTasks/4.ExceptionsTasks.iml" />
+    </modules>
+  </component>
+</project>
+

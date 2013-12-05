@@ -23,9 +23,10 @@ public class ReaderDouble  extends ScannerIn implements Validator {
     @Override
     public boolean validate(String message) {
         try {
-            Integer.parseInt(message);
+            Double.parseDouble(message);
         } catch (NumberFormatException ex) {
-            System.err.println("The argument: " + message + " is not of type Double");
+            System.err.println("The argument: " + "\"" + message + "\"" + " is not of type Double");
+            return false;
         }
         return true;
     }

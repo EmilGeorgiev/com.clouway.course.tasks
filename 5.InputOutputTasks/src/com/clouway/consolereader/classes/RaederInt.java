@@ -26,7 +26,8 @@ public class RaederInt extends ScannerIn implements Validator {
         try {
             Integer.parseInt(message);
         } catch (NumberFormatException ex) {
-            System.err.println("The argument: " + message + " is not of type Integer");
+            System.err.println("The argument: " + "\"" + message + "\"" + " is not of type Integer");
+            return false;
         }
         return true;
     }

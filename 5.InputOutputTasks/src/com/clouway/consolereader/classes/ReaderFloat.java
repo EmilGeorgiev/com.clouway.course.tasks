@@ -18,14 +18,15 @@ public class ReaderFloat extends ScannerIn implements Validator {
     /**
      * Check whether the argument is of type Float
      * @param message contains only numbers of type Float
-     * @return true if message contains only numbers, otherwisereturn false.
+     * @return true if message contains only numbers, otherwise return false.
      */
     @Override
     public boolean validate(String message) {
         try {
             Integer.parseInt(message);
         } catch (NumberFormatException ex) {
-            System.err.println("The argument: " + message + " is not of type Float");
+            System.err.println("The argument: " + "\"" + message + "\"" + " is not of type Float");
+            return false;
         }
         return true;
     }

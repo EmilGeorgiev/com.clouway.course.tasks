@@ -6,6 +6,8 @@ import com.clouway.consolereader.classes.ReaderFloat;
 import com.clouway.consolereader.classes.ReaderString;
 import com.clouway.consolereader.validator.Validator;
 
+import java.io.IOException;
+
 /**
  * Created with IntelliJ IDEA.
  * User: clouway
@@ -20,14 +22,14 @@ public class DemoConsoleReader {
         ReaderDouble inDouble = new ReaderDouble("InputDouble");
         ReaderFloat inFloat = new ReaderFloat("InputFloat");
 
-        //try {
+        try {
             inString.read(inString);
             inInteger.read(inInteger);
             inDouble.read(inDouble);
             inFloat.read(inFloat);
-       // } catch () {
+        } catch (IOException ex) {
 
-       // }
+        }
 
     }
 }

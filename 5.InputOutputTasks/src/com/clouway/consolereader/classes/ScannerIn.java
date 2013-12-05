@@ -28,7 +28,7 @@ public abstract class ScannerIn {
 
     public void read(Validator valid)throws IOException{
         try {
-            while ((line = scann.nextLine()).equals(BREAK_POINT)) {
+            while (!(line = scann.nextLine()).equals(BREAK_POINT)) {
                 if (valid.validate(line)) {
                     buffWriter.write(line);
                 }

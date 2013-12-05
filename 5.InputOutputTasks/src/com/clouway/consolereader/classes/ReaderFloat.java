@@ -23,7 +23,7 @@ public class ReaderFloat extends ScannerIn implements Validator {
     @Override
     public boolean validate(String message) {
         try {
-            Integer.parseInt(message);
+            Float.parseFloat(message);
         } catch (NumberFormatException ex) {
             System.err.println("The argument: " + "\"" + message + "\"" + " is not of type Float");
             return false;

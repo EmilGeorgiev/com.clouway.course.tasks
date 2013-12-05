@@ -7,7 +7,7 @@
     <file path="/Validator.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386256342554" ignored="false" />
     <file path="/ScannerIn.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386258756487" ignored="false" />
     <file path="/RaederInt.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386272661000" ignored="false" />
-    <file path="/ReaderFloat.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386272751547" ignored="false" />
+    <file path="/ReaderFloat.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386273707937" ignored="false" />
     <file path="/ReaderDouble.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386272725095" ignored="false" />
     <file path="/ReaderString.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386258003196" ignored="false" />
     <file path="/DemoConsoleReader.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386258990003" ignored="false" />
@@ -73,10 +73,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DemoConsoleReader.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="DemoConsoleReader.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/demo/DemoConsoleReader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="54" selection-start="256" selection-end="256" vertical-scroll-proportion="0.18987341">
+            <state line="5" column="54" selection-start="256" selection-end="256" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -109,10 +109,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReaderFloat.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ReaderFloat.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/classes/ReaderFloat.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="64" selection-start="576" selection-end="576" vertical-scroll-proportion="0.0">
+            <state line="32" column="69" selection-start="920" selection-end="920" vertical-scroll-proportion="0.8969072">
               <folding />
             </state>
           </provider>
@@ -140,10 +140,10 @@
         <option value="$PROJECT_DIR$/src/com/clouway/consolereader/validator/Validator.java" />
         <option value="$PROJECT_DIR$/src/com/clouway/consolereader/classes/ReaderString.java" />
         <option value="$PROJECT_DIR$/src/com/clouway/consolereader/classes/ScannerIn.java" />
-        <option value="$PROJECT_DIR$/src/com/clouway/consolereader/classes/ReaderDouble.java" />
         <option value="$PROJECT_DIR$/src/com/clouway/consolereader/classes/RaederInt.java" />
-        <option value="$PROJECT_DIR$/src/com/clouway/consolereader/classes/ReaderFloat.java" />
         <option value="$PROJECT_DIR$/src/com/clouway/consolereader/demo/DemoConsoleReader.java" />
+        <option value="$PROJECT_DIR$/src/com/clouway/consolereader/classes/ReaderFloat.java" />
+        <option value="$PROJECT_DIR$/src/com/clouway/consolereader/classes/ReaderDouble.java" />
       </list>
     </option>
   </component>
@@ -443,7 +443,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1664" sideWeight="0.4996016" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3264" sideWeight="0.5003984" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1824" sideWeight="0.5003984" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -451,8 +451,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24940239" sideWeight="0.6736" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3264" sideWeight="0.4996016" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24940239" sideWeight="0.8176" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1824" sideWeight="0.4996016" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -556,30 +556,9 @@
         <state line="13" column="0" selection-start="271" selection-end="271" vertical-scroll-proportion="0.40456432" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/classes/RaederInt.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="70" selection-start="828" selection-end="828" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/classes/ReaderString.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="0" selection-start="618" selection-end="618" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/classes/ReaderFloat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="64" selection-start="576" selection-end="576" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/classes/ReaderDouble.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="68" selection-start="899" selection-end="899" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -593,7 +572,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/demo/DemoConsoleReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="54" selection-start="256" selection-end="256" vertical-scroll-proportion="0.18987341">
+        <state line="5" column="54" selection-start="256" selection-end="256" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/classes/RaederInt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="70" selection-start="828" selection-end="828" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/classes/ReaderDouble.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="68" selection-start="899" selection-end="899" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/classes/ReaderFloat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="69" selection-start="920" selection-end="920" vertical-scroll-proportion="0.8969072">
           <folding />
         </state>
       </provider>

@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d1264b9-1211-46d5-a700-bcc56f45288b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/clouway/serialization/DataClass.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/clouway/serialization/DemoDataClass.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/clouway/serialization/Person.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/clouway/translate/DemoTransferObject.java" afterPath="$PROJECT_DIR$/src/com/clouway/translate/DemoTransferObject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/clouway/directori/DirectoryBrowser.java" afterPath="$PROJECT_DIR$/src/com/clouway/directori/DirectoryBrowser.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Out" afterPath="$PROJECT_DIR$/Out" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/clouway/translate/TransferObject.java" afterPath="$PROJECT_DIR$/src/com/clouway/translate/TransferObject.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -24,10 +20,10 @@
     <file path="/Obversely.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386323314689" ignored="false" />
     <file path="/DemoObversely.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386315403505" ignored="false" />
     <file path="/Reverse" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386317994602" ignored="false" />
-    <file path="/TransferObject.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386343483406" ignored="false" />
+    <file path="/TransferObject.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386345454154" ignored="false" />
     <file path="/DemoTransferObject.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386339832151" ignored="false" />
     <file path="/In" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386322239810" ignored="false" />
-    <file path="/Dummy.txt" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386333328513" ignored="false" />
+    <file path="/Dummy.txt" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386343982920" ignored="false" />
     <file path="/DirectoriBrowser.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386333161617" ignored="false" />
     <file path="/DemoDirectoriBrowser.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386333236961" ignored="false" />
     <file path="/DataClass.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386342649139" ignored="false" />
@@ -95,13 +91,42 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DemoTransferObject.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/clouway/translate/DemoTransferObject.java">
+      <file leaf-file-name="TransferObject.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/clouway/translate/TransferObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="13" selection-start="1210" selection-end="1210" vertical-scroll-proportion="0.5629139">
+            <state line="44" column="28" selection-start="1610" selection-end="1610" vertical-scroll-proportion="0.7152318">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DemoTransferObject.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/clouway/translate/DemoTransferObject.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="37" selection-start="623" selection-end="623" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="In" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/In">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="23" selection-start="23" selection-end="23" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Out" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Out">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -124,7 +149,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/clouway/consolereader/demo/DemoConsoleReader.java" />
         <option value="$PROJECT_DIR$/src/com/clouway/reversefile/Reverse" />
         <option value="$PROJECT_DIR$/src/com/clouway/reversefile/DemoObversely.java" />
         <option value="$PROJECT_DIR$/Reverse" />
@@ -136,10 +160,11 @@
         <option value="$PROJECT_DIR$/src/com/clouway/directori/DemoDirectoryBrowser.java" />
         <option value="$PROJECT_DIR$/src/com/clouway/serialization/Person.java" />
         <option value="$PROJECT_DIR$/src/com/clouway/serialization/DemoDataClass.java" />
+        <option value="$PROJECT_DIR$/src/com/clouway/directori/DirectoryBrowser.java" />
         <option value="$PROJECT_DIR$/src/com/clouway/serialization/DataClass.java" />
+        <option value="$PROJECT_DIR$/Out" />
         <option value="$PROJECT_DIR$/src/com/clouway/translate/DemoTransferObject.java" />
         <option value="$PROJECT_DIR$/src/com/clouway/translate/TransferObject.java" />
-        <option value="$PROJECT_DIR$/src/com/clouway/directori/DirectoryBrowser.java" />
       </list>
     </option>
   </component>
@@ -405,7 +430,7 @@
     <property name="options.searchVisible" value="true" />
     <property name="dynamic.classpath" value="false" />
   </component>
-  <component name="RunManager" selected="Application.DemoDirectoryBrowser">
+  <component name="RunManager" selected="Application.DemoTransferObject">
     <configuration default="false" name="DemoConsoleReader" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.clouway.consolereader.demo.DemoConsoleReader" />
       <option name="VM_PARAMETERS" />
@@ -584,8 +609,8 @@
     </list>
     <recent_temporary>
       <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Application.DemoDirectoryBrowser" />
-        <item index="1" class="java.lang.String" itemvalue="Application.DemoTransferObject" />
+        <item index="0" class="java.lang.String" itemvalue="Application.DemoTransferObject" />
+        <item index="1" class="java.lang.String" itemvalue="Application.DemoDirectoryBrowser" />
         <item index="2" class="java.lang.String" itemvalue="Application.DemoConsoleReader" />
         <item index="3" class="java.lang.String" itemvalue="Application.DemoObversely" />
       </list>
@@ -627,7 +652,11 @@
       <created>1386333338259</created>
       <updated>1386333338259</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="adding task 6 by Input/Output">
+      <created>1386344000423</created>
+      <updated>1386344000423</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -698,7 +727,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding task 5 by Input/Output" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding task 6 by Input/Output" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -714,6 +743,7 @@
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
     <MESSAGE value="adding task 4 by Input/Output" />
     <MESSAGE value="adding task 5 by Input/Output" />
+    <MESSAGE value="adding task 6 by Input/Output" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -767,13 +797,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/In">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="23" selection-start="23" selection-end="23" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/clouway/reversefile/Obversely.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="13" selection-start="222" selection-end="222" vertical-scroll-proportion="0.0">
@@ -795,28 +818,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/clouway/serialization/DataClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="20" selection-start="700" selection-end="700" vertical-scroll-proportion="0.719917">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/clouway/directori/DirectoryBrowser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="7" selection-start="653" selection-end="653" vertical-scroll-proportion="0.37086093">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/clouway/translate/TransferObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="55" selection-start="1531" selection-end="1531" vertical-scroll-proportion="0.6865342">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -827,6 +832,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/serialization/DataClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="0" selection-start="445" selection-end="445" vertical-scroll-proportion="0.40397352">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/In">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="23" selection-start="23" selection-end="23" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/translate/DemoTransferObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="37" selection-start="623" selection-end="623" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Out">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -834,9 +864,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/clouway/translate/DemoTransferObject.java">
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/translate/TransferObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="13" selection-start="1210" selection-end="1210" vertical-scroll-proportion="0.5629139">
+        <state line="44" column="28" selection-start="1610" selection-end="1610" vertical-scroll-proportion="0.7152318">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

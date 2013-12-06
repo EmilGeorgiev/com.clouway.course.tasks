@@ -18,17 +18,18 @@ public class Obversely {
     private String fileName;
 
     public Obversely(String fileName) {
-       input = null;
+        input = null;
         output = null;
         buff = new StringBuffer();
         this.fileName = fileName;
 
     }
 
+
     public void reverse() {
         try {
             input = new BufferedReader(new FileReader(fileName));
-            String  line = input.readLine();
+            String line = input.readLine();
             while (line != null) {
                 buff.append(line);
                 line = input.readLine();
@@ -41,7 +42,7 @@ public class Obversely {
             output.close();
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             if (input != null) {
                 try {
                     input.close();
@@ -51,6 +52,7 @@ public class Obversely {
             }
             if (output != null) {
                 try {
+                    output.flush();
                     output.close();
                 } catch (IOException e) {
                     e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.

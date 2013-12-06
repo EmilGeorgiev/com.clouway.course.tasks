@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4d1264b9-1211-46d5-a700-bcc56f45288b" name="Default" comment="" />
+    <list default="true" id="4d1264b9-1211-46d5-a700-bcc56f45288b" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/clouway/translate/DemoTransferObject.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/In" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Out" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/clouway/translate/TransferObject.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/InputString" afterPath="$PROJECT_DIR$/InputString" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/clouway/reversefile/Obversely.java" afterPath="$PROJECT_DIR$/src/com/clouway/reversefile/Obversely.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="5.InputOutputTasks.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Validator.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386256342554" ignored="false" />
@@ -12,9 +21,13 @@
     <file path="/ReaderString.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386258003196" ignored="false" />
     <file path="/DemoConsoleReader.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386258990003" ignored="false" />
     <file path="/fragment.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386258152756" ignored="false" />
-    <file path="/Obversely.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386317962456" ignored="false" />
+    <file path="/Obversely.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386323314689" ignored="false" />
     <file path="/DemoObversely.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386315403505" ignored="false" />
     <file path="/Reverse" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386317994602" ignored="false" />
+    <file path="/TransferObject.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386328775573" ignored="false" />
+    <file path="/DemoTransferObject.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386327815374" ignored="false" />
+    <file path="/In" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386322239810" ignored="false" />
+    <file path="/Dummy.txt" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386329845438" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,12 +88,72 @@
     <favorites_list name="5.InputOutputTasks" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="TransferObject.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/clouway/translate/TransferObject.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="39" column="20" selection-start="1414" selection-end="1414" vertical-scroll-proportion="0.47204968">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Obversely.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/clouway/reversefile/Obversely.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="0" selection-start="576" selection-end="576" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="In" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/In">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="20" selection-start="20" selection-end="20" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Out" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Out">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DemoTransferObject.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/clouway/translate/DemoTransferObject.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="13" selection-start="540" selection-end="540" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
@@ -94,8 +167,11 @@
         <option value="$PROJECT_DIR$/src/com/clouway/reversefile/Reverse" />
         <option value="$PROJECT_DIR$/src/com/clouway/reversefile/DemoObversely.java" />
         <option value="$PROJECT_DIR$/Reverse" />
-        <option value="$PROJECT_DIR$/src/com/clouway/reversefile/Obversely.java" />
         <option value="$PROJECT_DIR$/src/com/clouway/consolereader/classes/ScannerIn.java" />
+        <option value="$PROJECT_DIR$/src/com/clouway/reversefile/Obversely.java" />
+        <option value="$PROJECT_DIR$/src/com/clouway/translate/DemoTransferObject.java" />
+        <option value="$PROJECT_DIR$/In" />
+        <option value="$PROJECT_DIR$/src/com/clouway/translate/TransferObject.java" />
       </list>
     </option>
   </component>
@@ -105,7 +181,7 @@
     <option name="width" value="1535" />
     <option name="height" value="876" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -162,6 +238,32 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clouway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="translate" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="5.InputOutputTasks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="5.InputOutputTasks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clouway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -187,7 +289,7 @@
     <property name="options.searchVisible" value="true" />
     <property name="dynamic.classpath" value="false" />
   </component>
-  <component name="RunManager" selected="Application.DemoConsoleReader">
+  <component name="RunManager" selected="Application.DemoTransferObject">
     <configuration default="false" name="DemoConsoleReader" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.clouway.consolereader.demo.DemoConsoleReader" />
       <option name="VM_PARAMETERS" />
@@ -212,6 +314,28 @@
     </configuration>
     <configuration default="false" name="DemoObversely" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.clouway.reversefile.DemoObversely" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="5.InputOutputTasks" />
+      <envs />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="DemoTransferObject" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.clouway.translate.DemoTransferObject" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -320,14 +444,16 @@
       <patterns />
       <method />
     </configuration>
-    <list size="2">
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Application.DemoConsoleReader" />
       <item index="1" class="java.lang.String" itemvalue="Application.DemoObversely" />
+      <item index="2" class="java.lang.String" itemvalue="Application.DemoTransferObject" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Application.DemoConsoleReader" />
-        <item index="1" class="java.lang.String" itemvalue="Application.DemoObversely" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Application.DemoTransferObject" />
+        <item index="1" class="java.lang.String" itemvalue="Application.DemoConsoleReader" />
+        <item index="2" class="java.lang.String" itemvalue="Application.DemoObversely" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -336,6 +462,23 @@
     </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="all">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="4d1264b9-1211-46d5-a700-bcc56f45288b" name="Default" comment="" />
@@ -346,7 +489,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1535" height="876" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -362,7 +505,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24983211" sideWeight="0.672391" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24983211" sideWeight="0.672391" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32760897" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -435,22 +578,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/demo/DemoConsoleReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="772" selection-end="772" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/classes/ScannerIn.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="20" selection-start="780" selection-end="780" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/classes/ReaderString.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="0" selection-start="618" selection-end="618" vertical-scroll-proportion="0.0">
@@ -503,21 +630,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/clouway/reversefile/Obversely.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="27" selection-start="908" selection-end="908" vertical-scroll-proportion="0.084886126">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/demo/DemoConsoleReader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="3" selection-start="441" selection-end="441" vertical-scroll-proportion="0.46583852">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/reversefile/DemoObversely.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="0" selection-start="401" selection-end="401" vertical-scroll-proportion="0.49689442">
+          <folding />
         </state>
       </provider>
     </entry>
@@ -528,10 +653,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/clouway/reversefile/DemoObversely.java">
+    <entry file="file://$PROJECT_DIR$/Out">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="401" selection-end="401" vertical-scroll-proportion="0.49689442">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/In">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="20" selection-start="20" selection-end="20" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/translate/DemoTransferObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="13" selection-start="540" selection-end="540" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/reversefile/Obversely.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="0" selection-start="576" selection-end="576" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/translate/TransferObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="20" selection-start="1414" selection-end="1414" vertical-scroll-proportion="0.47204968">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

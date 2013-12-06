@@ -4,7 +4,6 @@ import com.clouway.consolereader.classes.RaederInt;
 import com.clouway.consolereader.classes.ReaderDouble;
 import com.clouway.consolereader.classes.ReaderFloat;
 import com.clouway.consolereader.classes.ReaderString;
-import com.clouway.consolereader.validator.Validator;
 
 import java.io.IOException;
 

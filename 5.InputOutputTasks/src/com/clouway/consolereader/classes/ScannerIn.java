@@ -10,24 +10,22 @@ import java.util.Scanner;
 public abstract class ScannerIn {
 
     private final String BREAK_POINT = ".";
+    private final String fileName;
     private Scanner scann;
     private BufferedWriter buffWriter;
-    private FileWriter fileWriter;
     private String line;
 
-    public ScannerIn(String fileName) {
-        line = null;
-        scann = new Scanner(System.in);
-        try {
-            fileWriter = new FileWriter(fileName);
-        } catch (IOException e) {
 
-        }
-        buffWriter = new BufferedWriter(fileWriter);
+    public ScannerIn(String fileName) {
+        this.fileName = fileName;
+        line = null;
+        scann = null;
     }
 
     public void read(Validator valid)throws IOException{
         try {
+            scann = new Scanner(System.in);
+            buffWriter = new BufferedWriter(new FileWriter(fileName));
             while (!(line = scann.nextLine()).equals(BREAK_POINT)) {
                 if (valid.validate(line)) {
                     buffWriter.write(line);
@@ -39,10 +37,10 @@ public abstract class ScannerIn {
             } else {
                 System.out.println("The writer isn't open.");
             }
-            if (fileWriter != null) {
-                fileWriter.close();
+            if (scann != null) {
+                scann.close();
             } else {
-                System.out.println("The fileWriter isn't open.");
+                System.out.println("The scann isn't open.");
             }
         }
     }

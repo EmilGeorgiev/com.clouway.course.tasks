@@ -15,13 +15,13 @@ import java.io.IOException;
  */
 public class DemoTransferObject {
     public static void main(String[] args) {
-        TransferObject trnsfer = new TransferObject();
+        TransferObject transfer = new TransferObject();
         FileInputStream in = null;
         FileOutputStream out = null;
         try {
             in = new FileInputStream("In");
             out = new FileOutputStream("Out");
-            System.out.println(trnsfer.transfer(in, out, 6, 100));
+            System.out.println(transfer.transfer(in, out, 6, 100));
         } catch (FileNotFoundException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } catch (IOException e) {

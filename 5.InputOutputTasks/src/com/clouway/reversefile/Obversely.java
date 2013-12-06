@@ -1,6 +1,5 @@
 package com.clouway.reversefile;
 
-import com.sun.java_cup.internal.runtime.Scanner;
 
 import java.io.*;
 

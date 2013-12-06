@@ -21,24 +21,26 @@ public class DemoTransferObject {
         try {
             in = new FileInputStream("In");
             out = new FileOutputStream("Out");
-            System.out.println(transfer.transfer(in, out, 6, 100));
+            System.out.println(transfer.transfer(in, out, -1, 4));
         } catch (FileNotFoundException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            System.err.println("The offset isn't negative number and numberOfBytes isn't less -1.");
         } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            e.printStackTrace();
         } finally {
             if (in != null) {
                 try {
                     in.close();
                 } catch (IOException e) {
-                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                    e.printStackTrace();
                 }
             }
             if (out != null) {
                 try {
                     out.close();
                 } catch (IOException e) {
-                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                    e.printStackTrace();
                 }
             }
         }

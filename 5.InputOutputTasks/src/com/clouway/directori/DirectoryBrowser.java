@@ -23,10 +23,14 @@ public class DirectoryBrowser {
         if (file.exists()) {
             if (file.isDirectory()) {
                 for (File child : file.listFiles()) {
-                    System.out.println(child.getName());
+                    if (child.isDirectory()) {
+                        System.out.println("D " + child.getName());
+                    }else {
+                        System.out.println("F " + child.getName());
+                    }
                 }
             } else {
-                System.out.println(file.getName());
+                System.out.println("F " + file.getName());
             }
         }
     }

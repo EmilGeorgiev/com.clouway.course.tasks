@@ -1,40 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4d1264b9-1211-46d5-a700-bcc56f45288b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/clouway/serialization/DataClass.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/clouway/serialization/DemoDataClass.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/clouway/directori/DemoDirectoryBrowser.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/clouway/reversefile/DemoObversely.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/clouway/translate/DemoTransferObject.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/clouway/directori/DirectoryBrowser.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/In" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/clouway/reversefile/Obversely.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Out" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/clouway/serialization/Person.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Reverse" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/clouway/translate/TransferObject.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/clouway.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml.orig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/InputDouble" afterPath="$PROJECT_DIR$/InputDouble" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/InputInteger" afterPath="$PROJECT_DIR$/InputInteger" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/InputString" afterPath="$PROJECT_DIR$/InputString" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/clouway/consolereader/classes/ScannerIn.java" afterPath="$PROJECT_DIR$/src/com/clouway/consolereader/classes/ScannerIn.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="4d1264b9-1211-46d5-a700-bcc56f45288b" name="Default" comment="" />
     <ignored path="5.InputOutputTasks.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Validator.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386256342554" ignored="false" />
-    <file path="/ScannerIn.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386258756487" ignored="false" />
+    <file path="/ScannerIn.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386452823313" ignored="false" />
     <file path="/RaederInt.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386272661000" ignored="false" />
     <file path="/ReaderFloat.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386273707937" ignored="false" />
     <file path="/ReaderDouble.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386272725095" ignored="false" />
     <file path="/ReaderString.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386258003196" ignored="false" />
-    <file path="/DemoConsoleReader.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386258990003" ignored="false" />
+    <file path="/DemoConsoleReader.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386453100384" ignored="false" />
     <file path="/fragment.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386258152756" ignored="false" />
     <file path="/Dummy.txt" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386440120191" ignored="false" />
     <file path="/TransferObject.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386442020424" ignored="false" />
+    <file path="/Ibasi.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386452242451" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,37 +92,39 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="TransferObject.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/clouway/translate/TransferObject.java">
+      <file leaf-file-name="DemoConsoleReader.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/demo/DemoConsoleReader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="37" selection-start="1870" selection-end="1870" vertical-scroll-proportion="1.6252822">
+            <state line="30" column="9" selection-start="948" selection-end="948" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RaederInt.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/classes/RaederInt.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="31" column="0" selection-start="875" selection-end="875" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DemoTransferObject.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/clouway/translate/DemoTransferObject.java">
+      <file leaf-file-name="ScannerIn.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/classes/ScannerIn.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="68" selection-start="354" selection-end="354" vertical-scroll-proportion="0.0">
+            <state line="19" column="84" selection-start="474" selection-end="474" vertical-scroll-proportion="-0.16304348">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Out" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Out">
+      <file leaf-file-name="ReaderDouble.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/classes/ReaderDouble.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="In" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/In">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="24" selection-start="24" selection-end="24" vertical-scroll-proportion="0.0">
+            <state line="11" column="45" selection-start="299" selection-end="299" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -167,15 +149,16 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/src/com/clouway/consolereader/validator/Validator.java" />
-        <option value="$PROJECT_DIR$/src/com/clouway/consolereader/classes/ReaderString.java" />
-        <option value="$PROJECT_DIR$/src/com/clouway/consolereader/classes/ScannerIn.java" />
-        <option value="$PROJECT_DIR$/src/com/clouway/consolereader/classes/RaederInt.java" />
-        <option value="$PROJECT_DIR$/src/com/clouway/consolereader/demo/DemoConsoleReader.java" />
-        <option value="$PROJECT_DIR$/src/com/clouway/consolereader/classes/ReaderFloat.java" />
-        <option value="$PROJECT_DIR$/src/com/clouway/consolereader/classes/ReaderDouble.java" />
         <option value="$PROJECT_DIR$/In" />
         <option value="$PROJECT_DIR$/src/com/clouway/translate/DemoTransferObject.java" />
         <option value="$PROJECT_DIR$/src/com/clouway/translate/TransferObject.java" />
+        <option value="$PROJECT_DIR$/src/com/clouway/consolereader/classes/ReaderString.java" />
+        <option value="$PROJECT_DIR$/src/com/clouway/consolereader/classes/ReaderFloat.java" />
+        <option value="$PROJECT_DIR$/src/com/clouway/consolereader/classes/ReaderDouble.java" />
+        <option value="$PROJECT_DIR$/src/com/clouway/consolereader/classes/RaederInt.java" />
+        <option value="$PROJECT_DIR$/src/com/clouway/consolereader/classes/Ibasi.java" />
+        <option value="$PROJECT_DIR$/src/com/clouway/consolereader/demo/DemoConsoleReader.java" />
+        <option value="$PROJECT_DIR$/src/com/clouway/consolereader/classes/ScannerIn.java" />
       </list>
     </option>
   </component>
@@ -247,8 +230,26 @@
               <option name="myItemId" value="clouway" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="translate" />
+              <option name="myItemId" value="5.InputOutputTasks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="5.InputOutputTasks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clouway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="consolereader" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -267,6 +268,40 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="clouway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="consolereader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="demo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="5.InputOutputTasks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="5.InputOutputTasks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clouway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="consolereader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="classes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -294,7 +329,7 @@
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
   </component>
-  <component name="RunManager" selected="Application.DemoTransferObject">
+  <component name="RunManager" selected="Application.DemoConsoleReader">
     <configuration default="false" name="DemoConsoleReader" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.clouway.consolereader.demo.DemoConsoleReader" />
       <option name="VM_PARAMETERS" />
@@ -330,6 +365,28 @@
       <module name="5.InputOutputTasks" />
       <envs />
       <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Ibasi" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.clouway.consolereader.classes.Ibasi" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="5.InputOutputTasks" />
+      <envs />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
@@ -421,14 +478,16 @@
       <patterns />
       <method />
     </configuration>
-    <list size="2">
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Application.DemoConsoleReader" />
       <item index="1" class="java.lang.String" itemvalue="Application.DemoTransferObject" />
+      <item index="2" class="java.lang.String" itemvalue="Application.Ibasi" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Application.DemoTransferObject" />
-        <item index="1" class="java.lang.String" itemvalue="Application.DemoConsoleReader" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Application.DemoConsoleReader" />
+        <item index="1" class="java.lang.String" itemvalue="Application.Ibasi" />
+        <item index="2" class="java.lang.String" itemvalue="Application.DemoTransferObject" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -470,7 +529,7 @@
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3376" sideWeight="0.4996016" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4912" sideWeight="0.4996016" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4048" sideWeight="0.5003984" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -479,8 +538,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24940239" sideWeight="0.7712" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2288" sideWeight="0.4996016" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24940239" sideWeight="0.6304" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3696" sideWeight="0.4996016" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -553,13 +612,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/classes/ReaderDouble.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="68" selection-start="899" selection-end="899" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/demo/DemoConsoleReader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="22" column="60" selection-start="825" selection-end="825" vertical-scroll-proportion="0.0">
@@ -591,48 +643,6 @@
         <state line="13" column="0" selection-start="271" selection-end="271" vertical-scroll-proportion="0.40456432" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/demo/DemoConsoleReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="54" selection-start="256" selection-end="256" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/classes/RaederInt.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="70" selection-start="828" selection-end="828" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/classes/ReaderDouble.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="68" selection-start="899" selection-end="899" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/classes/ReaderFloat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="69" selection-start="920" selection-end="920" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/classes/ScannerIn.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="0" selection-start="886" selection-end="886" vertical-scroll-proportion="0.2915811">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/classes/ReaderString.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="618" selection-end="618" vertical-scroll-proportion="0.7227926">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/In">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="24" selection-start="24" selection-end="24" vertical-scroll-proportion="0.0">
@@ -654,9 +664,53 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/classes/ReaderFloat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="43" selection-start="297" selection-end="297" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/clouway/translate/TransferObject.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="50" column="37" selection-start="1870" selection-end="1870" vertical-scroll-proportion="1.6252822">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/classes/ReaderString.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="0" selection-start="597" selection-end="597" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/classes/RaederInt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="0" selection-start="875" selection-end="875" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/demo/DemoConsoleReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="9" selection-start="948" selection-end="948" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/classes/ReaderDouble.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="45" selection-start="299" selection-end="299" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/classes/ScannerIn.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="84" selection-start="474" selection-end="474" vertical-scroll-proportion="-0.16304348">
           <folding />
         </state>
       </provider>

@@ -21,10 +21,12 @@ public abstract class ScannerIn implements Validator {
 
     public void read()throws IOException{
         Scanner scann = null;
+        FileWriter file = null;
         BufferedWriter buffWriter = null;
         try {
             scann = new Scanner(System.in);
-            buffWriter = new BufferedWriter(new FileWriter(fileName));
+            file =  new FileWriter(fileName);
+            buffWriter = new BufferedWriter(file);
             line = scann.nextLine();
             while (!line.equals(BREAK_POINT)) {
                 if (this.validate(line)) {
@@ -38,8 +40,8 @@ public abstract class ScannerIn implements Validator {
             } else {
                 System.out.println("The writer isn't open.");
             }
-            if (scann != null) {
-                scann.close();
+            if (file != null) {
+                file.close();
             } else {
                 System.out.println("The scann isn't open.");
             }

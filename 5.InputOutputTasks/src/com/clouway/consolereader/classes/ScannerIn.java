@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public abstract class ScannerIn {
+public abstract class ScannerIn implements Validator {
 
     private final String BREAK_POINT = ".";
     private Scanner scann;
@@ -29,7 +29,7 @@ public abstract class ScannerIn {
     public void read(Validator valid)throws IOException{
         try {
             while (!(line = scann.nextLine()).equals(BREAK_POINT)) {
-                if (valid.validate(line)) {
+                if (this.validate(line)) {
                     buffWriter.write(line);
                 }
             }

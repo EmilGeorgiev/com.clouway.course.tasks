@@ -28,16 +28,15 @@ public class TransferObject {
             throw new IllegalArgumentException();
         }
         in.skip(offset);
-        byte[] buff = new byte[1024];
+        byte[] buff = new byte[15];
         int counter = 0;
         int readBytes;
         if (numberOfBytes != -1) {
             int byteNumber = numberOfBytes;
-            int bytes = in.read();
             while(((readBytes = in.read(buff)) != -1) && (byteNumber > 0)) {
                 if (readBytes < byteNumber) {
-                     out.write(buff, 0, byteNumber);
-                     counter += byteNumber;
+                     out.write(buff, 0, readBytes);
+                     counter += readBytes;
                 } else {
                     out.write(buff, 0, byteNumber);
                     counter += byteNumber;

@@ -21,7 +21,11 @@ public class DemoTransferObject {
         try {
             in = new FileInputStream("In");
             out = new FileOutputStream("Out");
-            System.out.println(transfer.transfer(in, out, 8, 4));
+<<<<<<< HEAD
+            System.out.println(transfer.transfer(in, out, -1, 3));
+=======
+            System.out.println(transfer.transfer(in, out, 19, 3));
+>>>>>>> to fix transfer object buffer
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IllegalArgumentException e) {

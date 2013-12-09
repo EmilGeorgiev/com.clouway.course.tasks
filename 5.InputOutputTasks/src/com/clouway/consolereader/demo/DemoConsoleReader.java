@@ -22,10 +22,10 @@ public class DemoConsoleReader {
         ReaderFloat inFloat = new ReaderFloat("InputFloat");
 
         try {
-            inString.read(inString);
-            inInteger.read(inInteger);
-            inDouble.read(inDouble);
-            inFloat.read(inFloat);
+            inString.read();
+            inInteger.read();
+            inDouble.read();
+            inFloat.read();
         } catch (IOException ex) {
 
         }

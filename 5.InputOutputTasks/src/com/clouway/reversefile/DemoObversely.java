@@ -9,7 +9,7 @@ package com.clouway.reversefile;
  */
 public class DemoObversely {
     public static void main(String[] args) {
-        Obversely rev = new Obversely("/home/clouway/IdeaProjects/workSpace/5.InputOutputTasks/Reverse");
+        Obversely rev = new Obversely("Reverse");
         rev.reverse();
 
     }

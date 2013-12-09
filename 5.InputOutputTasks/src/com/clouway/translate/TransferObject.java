@@ -24,26 +24,31 @@ public class TransferObject {
      * @throws IOException
      */
     public int transfer(InputStream in, OutputStream out, int numberOfBytes, int offset) throws IOException {
-        byte[] buff = new byte[15];
-        int counter = 0;
-        int bytes;
         if ((offset < 0) && numberOfBytes < -1) {
             throw new IllegalArgumentException();
         }
         in.skip(offset);
+        byte[] buff = new byte[1024];
+        int counter = 0;
+        int readBytes;
         if (numberOfBytes != -1) {
             int byteNumber = numberOfBytes;
-            while(((bytes = in.read(buff)) != -1) && (byteNumber > 0)) {
-                out.write(buff, 0, bytes);
+            while(((readBytes = in.read(buff)) != -1) && (byteNumber > 0)) {
+                if (readBytes < byteNumber) {
+                     out.write(buff, 0, readBytes);
+                     counter += readBytes;
+                } else {
+                    out.write(buff, 0, byteNumber);
+                    counter += byteNumber;
+                }
                 out.flush();
-                byteNumber -= bytes;
-                counter += bytes;
+                byteNumber -= readBytes;
             }
         } else {
-            while((bytes = in.read(buff)) != -1) {
-                out.write(buff, 0, bytes);
+            while((readBytes = in.read(buff)) != -1) {
+                out.write(buff, 0, readBytes);
                 out.flush();
-                counter += bytes;
+                counter += readBytes;
             }
         }
         return counter;

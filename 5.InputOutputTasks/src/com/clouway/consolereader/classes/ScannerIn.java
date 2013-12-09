@@ -7,12 +7,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public abstract class ScannerIn {
+public abstract class ScannerIn implements Validator {
 
     private final String BREAK_POINT = ".";
     private final String fileName;
     private Scanner scann;
-    private BufferedWriter buffWriter;
     private String line;
 
 
@@ -22,12 +21,15 @@ public abstract class ScannerIn {
         scann = null;
     }
 
-    public void read(Validator valid)throws IOException{
+    public void read()throws IOException{
+        FileWriter file = null;
+        BufferedWriter buffWriter = null;
         try {
             scann = new Scanner(System.in);
-            buffWriter = new BufferedWriter(new FileWriter(fileName));
+            file = new FileWriter(fileName);
+            buffWriter = new BufferedWriter(file);
             while (!(line = scann.nextLine()).equals(BREAK_POINT)) {
-                if (valid.validate(line)) {
+                if (this.validate(line)) {
                     buffWriter.write(line);
                 }
             }
@@ -37,8 +39,8 @@ public abstract class ScannerIn {
             } else {
                 System.out.println("The writer isn't open.");
             }
-            if (scann != null) {
-                scann.close();
+            if (file != null) {
+                file.close();
             } else {
                 System.out.println("The scann isn't open.");
             }

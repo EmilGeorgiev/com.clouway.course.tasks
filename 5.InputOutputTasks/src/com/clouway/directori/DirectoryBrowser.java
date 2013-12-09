@@ -21,16 +21,12 @@ public class DirectoryBrowser {
     public void listContent(String path) {
         File file = new File(path);
         if (file.exists()) {
-            if (file.isDirectory()) {
-                for (File child : file.listFiles()) {
-                    if (child.isDirectory()) {
-                        System.out.println("D " + child.getName());
-                    }else {
-                        System.out.println("F " + child.getName());
-                    }
+            for (File child : file.listFiles()) {
+                if (child.isDirectory()) {
+                    System.out.println("D " + child.getName());
+                }else {
+                    System.out.println("F " + child.getName());
                 }
-            } else {
-                System.out.println("F " + file.getName());
             }
         }
     }

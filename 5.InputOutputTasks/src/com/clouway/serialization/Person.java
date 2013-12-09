@@ -12,10 +12,10 @@ import java.io.Serializable;
 public class Person implements Serializable {
 
 
-    private final String name;
-    private final int SSH;
-    private  String address;
-    private  int age;
+    public String name;
+    public transient int SSH;
+    public String address;
+    public int age;
 
     public Person(String name, String address, int SSH, int age) {
         this.name = name;

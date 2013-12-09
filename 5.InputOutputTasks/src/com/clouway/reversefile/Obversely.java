@@ -25,6 +25,11 @@ public class Obversely {
     }
 
 
+    /**
+     * Reverses the contents of a text file.
+     * The contents of the text file is read and put in a buffer.
+     * The content of the buffer is reversed and then is recorded as a new content file.
+     */
     public void reverse() {
         try {
             input = new BufferedReader(new FileReader(fileName));
@@ -38,7 +43,6 @@ public class Obversely {
             buff.reverse();
             output = new BufferedWriter(new FileWriter(fileName));
             output.write(buff.toString());
-            output.close();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -46,7 +50,7 @@ public class Obversely {
                 try {
                     input.close();
                 } catch (IOException e) {
-                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                    e.printStackTrace();
                 }
             }
             if (output != null) {
@@ -54,7 +58,7 @@ public class Obversely {
                     output.flush();
                     output.close();
                 } catch (IOException e) {
-                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                    e.printStackTrace();
                 }
             }
 

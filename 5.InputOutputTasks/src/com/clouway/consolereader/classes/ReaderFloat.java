@@ -9,7 +9,7 @@ import com.clouway.consolereader.validator.Validator;
  * Time: 5:10 PM
  * To change this template use File | Settings | File Templates.
  */
-public class ReaderFloat extends ScannerIn implements Validator {
+public class ReaderFloat extends ScannerIn {
 
     public ReaderFloat(String fileName) {
         super(fileName);

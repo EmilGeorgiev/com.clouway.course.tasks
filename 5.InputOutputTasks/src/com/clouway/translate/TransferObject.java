@@ -33,7 +33,7 @@ public class TransferObject {
         int readBytes;
         if (numberOfBytes != -1) {
             int byteNumber = numberOfBytes;
-            while(((readBytes = in.read(buff)) != -1) && (byteNumber > 0)) {
+            while(((readBytes = in.read(buff)) != -1)) {
                 if (readBytes < byteNumber) {
                      out.write(buff, 0, readBytes);
                      counter += readBytes;

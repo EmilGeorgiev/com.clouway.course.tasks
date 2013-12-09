@@ -17,8 +17,6 @@ public abstract class ScannerIn implements Validator {
 
     public ScannerIn(String fileName) {
         this.fileName = fileName;
-        line = null;
-        scann = null;
     }
 
     public void read()throws IOException{
@@ -42,7 +40,7 @@ public abstract class ScannerIn implements Validator {
             if (file != null) {
                 file.close();
             } else {
-                System.out.println("The scann isn't open.");
+                System.out.println("The file isn't open.");
             }
         }
     }

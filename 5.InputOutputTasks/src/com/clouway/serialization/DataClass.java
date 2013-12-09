@@ -22,7 +22,7 @@ public class DataClass {
         try {
             output = new ObjectOutputStream(out);
             output.writeObject(o);
-            System.out.printf("Serialized data is saved in /tmp/employee.ser");
+            System.out.printf("Serialized data is saved in person.ser");
         } catch (IOException i) {
             i.printStackTrace();
         } finally {

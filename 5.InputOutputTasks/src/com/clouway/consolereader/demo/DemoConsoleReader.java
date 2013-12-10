@@ -23,11 +23,17 @@ public class DemoConsoleReader {
 
         try {
             inString.read();
+            System.out.println("Reading of String finished.");
             inInteger.read();
+            System.out.println("Reading of Integer finished.");
             inDouble.read();
+            System.out.println("Reading of Double finished.");
             inFloat.read();
+            System.out.println("Reading of Float finished.");
         } catch (IOException ex) {
-
+            ex.printStackTrace();
+        } finally {
+            inString.close();
         }
 
     }

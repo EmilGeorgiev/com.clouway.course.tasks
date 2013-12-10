@@ -28,6 +28,8 @@ public class DirectoryBrowser {
                     System.out.println("F " + child.getName());
                 }
             }
+        } else {
+            System.out.println("File does not exist.");
         }
     }
 }

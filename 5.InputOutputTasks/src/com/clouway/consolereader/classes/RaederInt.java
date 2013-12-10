@@ -1,7 +1,5 @@
 package com.clouway.consolereader.classes;
 
-import com.clouway.consolereader.validator.Validator;
-
 /**
  * Created with IntelliJ IDEA.
  * User: clouway

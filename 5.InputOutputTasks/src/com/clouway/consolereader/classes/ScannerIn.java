@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public abstract class ScannerIn implements Validator {
+public abstract class ScannerIn implements Validator{
 
     private final String BREAK_POINT = ".";
     private final String fileName;

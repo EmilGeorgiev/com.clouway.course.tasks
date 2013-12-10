@@ -1,8 +1,6 @@
 package com.clouway.pagebean;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,5 +13,6 @@ public class DemoPAgeBean {
     public static void main(String[] args) {
         File fileName = new File("collections");
         PageBean pages = new PageBean(fileName);
+        pages.monitor();
     }
 }

@@ -14,11 +14,7 @@ import java.util.Scanner;
  */
 public class PageBean {
 
-    private final String NEXT = "next";
-    private final String PREVIOUS = "previous";
-    private final String BREAK_POINT = "";
     private final int PAGE_SIZE = 10;
-    private Scanner scann;
     private ArrayList<String[]> listOfPages;
     private int temp;
 
@@ -28,31 +24,13 @@ public class PageBean {
     }
 
     /**
-     * Monitor what's being introduced command console.
-     */
-    public void monitor() {
-        scann = new Scanner(System.in);
-        String line;
-        while ((line = scann.nextLine()) != BREAK_POINT) {
-            if (line.equalsIgnoreCase(NEXT)) {
-                next();
-            } else if(line.equalsIgnoreCase(PREVIOUS)) {
-                previous();
-            }
-        }
-        close();
-    }
-
-    /**
      * Show next page.If there is no next page display error message.
      * If the last page of the list is less than PAGE_SIZE element does not receive an  error.
      */
     public void next() {
-        if (temp < listOfPages.size()){
+        if (temp < (listOfPages.size() - 1)){
             temp++;
             printPage();
-        } else if(temp == listOfPages.size() && (listOfPages.get(temp).length < PAGE_SIZE)) {
-
         } else {
             System.out.println("No next pages.");
         }
@@ -87,6 +65,7 @@ public class PageBean {
      */
     public boolean hasPrevious() {
         if (temp <= 0) {
+            System.out.println("\nNo previous pages.");
             return false;
         }
         return true;
@@ -104,7 +83,7 @@ public class PageBean {
      * Returns the last page and makes it current
      */
     public void lastPage() {
-        temp = listOfPages.size();
+        temp = (listOfPages.size() -1);
         printPage();
     }
 
@@ -144,15 +123,11 @@ public class PageBean {
     }
 
     private void printPage() {
+        System.out.print("\nPage " + (temp + 1) + ":");
         for (String word : listOfPages.get(temp)) {
-            System.out.print(word + " ");
+            if (word != null) {
+                System.out.print(word + " ");
+            }
         }
-    }
-
-    /**
-     * Closed Scanner.
-     */
-    private void close() {
-        scann.close();
     }
 }

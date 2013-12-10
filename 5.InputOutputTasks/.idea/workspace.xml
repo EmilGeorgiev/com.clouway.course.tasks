@@ -2,16 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d1264b9-1211-46d5-a700-bcc56f45288b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../6. Collections/out/production/6. Collections/com/clouway/pagebean/DemoPAgeBean.class" afterPath="$PROJECT_DIR$/../6. Collections/out/production/6. Collections/com/clouway/pagebean/DemoPAgeBean.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/InputDouble" afterPath="$PROJECT_DIR$/InputDouble" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/InputInteger" afterPath="$PROJECT_DIR$/InputInteger" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../6. Collections/out/production/6. Collections/com/clouway/pagebean/PageBean.class" afterPath="$PROJECT_DIR$/../6. Collections/out/production/6. Collections/com/clouway/pagebean/PageBean.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../6. Collections/src/com/clouway/pagebean/DemoPAgeBean.java" afterPath="$PROJECT_DIR$/../6. Collections/src/com/clouway/pagebean/DemoPAgeBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/InputFloat" afterPath="$PROJECT_DIR$/InputFloat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../6. Collections/src/com/clouway/pagebean/PageBean.java" afterPath="$PROJECT_DIR$/../6. Collections/src/com/clouway/pagebean/PageBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/clouway/consolereader/classes/RaederInt.java" afterPath="$PROJECT_DIR$/src/com/clouway/consolereader/classes/RaederInt.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/clouway/consolereader/classes/ScannerIn.java" afterPath="$PROJECT_DIR$/src/com/clouway/consolereader/classes/ScannerIn.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../6. Collections/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../6. Collections/.idea/workspace.xml" />
     </list>
     <ignored path="5.InputOutputTasks.iws" />
@@ -517,7 +507,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24949563" sideWeight="0.8173077" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1826923" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1826923" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />

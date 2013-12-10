@@ -45,7 +45,7 @@ public class PageBean {
 
     /**
      * Show next page.If there is no next page display error message.
-     * If the last page of the list is less than PAGE_SIZE element does not receive an error.
+     * If the last page of the list is less than PAGE_SIZE element does not receive an  error.
      */
     public void next() {
         if (temp < listOfPages.size()){

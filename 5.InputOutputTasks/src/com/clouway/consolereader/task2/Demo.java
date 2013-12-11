@@ -1,7 +1,5 @@
 package com.clouway.consolereader.task2;
 
-import com.clouway.consolereader.task2.ConsoleRaeder;
-
 /**
  * Created with IntelliJ IDEA.
  * User: clouway

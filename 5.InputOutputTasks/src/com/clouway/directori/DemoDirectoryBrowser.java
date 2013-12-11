@@ -1,5 +1,7 @@
 package com.clouway.directori;
 
+import java.util.Scanner;
+
 /**
  * Created with IntelliJ IDEA.
  * User: clouway
@@ -8,8 +10,13 @@ package com.clouway.directori;
  * To change this template use File | Settings | File Templates.
  */
 public class DemoDirectoryBrowser {
+    final String FILE_PATH = "";
     public static void main(String[] args) {
         DirectoryBrowser dir = new DirectoryBrowser();
-        dir.listContent("/home/clouway/IdeaProjects/workSpace/5.InputOutputTasks");
+        Scanner scann = new Scanner(System.in);
+        System.out.println("Enter file path.");
+        String filePath = scann.nextLine();
+
+        dir.listContent(filePath);
     }
 }

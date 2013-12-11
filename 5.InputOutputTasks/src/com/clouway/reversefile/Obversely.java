@@ -17,8 +17,6 @@ public class Obversely {
     private String fileName;
 
     public Obversely(String fileName) {
-        input = null;
-        output = null;
         buff = new StringBuffer();
         this.fileName = fileName;
 

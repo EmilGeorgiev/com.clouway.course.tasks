@@ -10,7 +10,6 @@ import java.util.Scanner;
  * To change this template use File | Settings | File Templates.
  */
 public class DemoDirectoryBrowser {
-    final String FILE_PATH = "";
     public static void main(String[] args) {
         DirectoryBrowser dir = new DirectoryBrowser();
         Scanner scann = new Scanner(System.in);

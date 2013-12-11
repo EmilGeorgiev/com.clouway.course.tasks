@@ -21,7 +21,8 @@ public class DemoTransferObject {
         try {
             in = new FileInputStream("In");
             out = new FileOutputStream("Out");
-            System.out.println(transfer.transfer(in, out, 25, 3));
+            int readBytes = transfer.transfer(in, out, 25, 3);
+            System.out.println(readBytes);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IllegalArgumentException e) {

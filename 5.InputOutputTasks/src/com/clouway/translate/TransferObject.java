@@ -13,6 +13,7 @@ import java.io.OutputStream;
  */
 public class TransferObject {
 
+    final int SIZE_ARRAY = 1024;
 
     /**
      * Transfer the contents of an instance of InputStream in an instance of OutputStream
@@ -28,7 +29,7 @@ public class TransferObject {
             throw new IllegalArgumentException();
         }
         in.skip(offset);
-        byte[] buff = new byte[1024];
+        byte[] buff = new byte[SIZE_ARRAY];
         int counter = 0;
         int readBytes;
         if (numberOfBytes != -1) {

@@ -1,5 +1,6 @@
 package com.clouway.consolereader.task1;
 
+import java.io.InputStream;
 import java.util.Scanner;
 
 /**
@@ -11,11 +12,11 @@ import java.util.Scanner;
  */
 public class Reader {
 
-    private Scanner scann;
+    private Scanner scanner;
     private String message;
 
-    public Reader() {
-        scann = new Scanner(System.in);
+    public Reader(InputStream inputStream) {
+        scanner = new Scanner(inputStream);
     }
 
     /**
@@ -80,7 +81,7 @@ public class Reader {
      * Closed Scanner.
      */
     public void close() {
-        scann.close();
+        scanner.close();
     }
 
     /**
@@ -88,7 +89,7 @@ public class Reader {
      * @return
      */
     private String read() {
-        message = scann.nextLine();
+        message = scanner.nextLine();
         return message;
     }
 }

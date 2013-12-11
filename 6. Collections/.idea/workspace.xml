@@ -1,14 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e1358a8f-28d6-4c65-9741-0909ab01a9cb" name="Default" comment="" />
+    <list default="true" id="e1358a8f-28d6-4c65-9741-0909ab01a9cb" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/clouway/pagebean/Command.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/out/production/5.InputOutputTasks/com/clouway/consolereader/classes/task2/ConsoleRaeder.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/out/production/5.InputOutputTasks/com/clouway/consolereader/classes/task2/Demo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/out/production/5.InputOutputTasks/com/clouway/directori/DirectoryBrowser.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/out/production/5.InputOutputTasks/com/clouway/directori/DemoDirectoryBrowser.class" afterPath="$PROJECT_DIR$/../5.InputOutputTasks/out/production/5.InputOutputTasks/com/clouway/directori/DemoDirectoryBrowser.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/out/production/5.InputOutputTasks/com/clouway/consolereader/task1/DemoTask1.class" afterPath="$PROJECT_DIR$/../5.InputOutputTasks/out/production/5.InputOutputTasks/com/clouway/consolereader/task1/DemoTask1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/out/production/5.InputOutputTasks/com/clouway/translate/DemoTransferObject.class" afterPath="$PROJECT_DIR$/../5.InputOutputTasks/out/production/5.InputOutputTasks/com/clouway/translate/DemoTransferObject.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/out/production/5.InputOutputTasks/com/clouway/reversefile/Obversely.class" afterPath="$PROJECT_DIR$/../5.InputOutputTasks/out/production/5.InputOutputTasks/com/clouway/reversefile/Obversely.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/out/production/5.InputOutputTasks/com/clouway/serialization/Person.class" afterPath="$PROJECT_DIR$/../5.InputOutputTasks/out/production/5.InputOutputTasks/com/clouway/serialization/Person.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/out/production/5.InputOutputTasks/com/clouway/consolereader/task1/Reader.class" afterPath="$PROJECT_DIR$/../5.InputOutputTasks/out/production/5.InputOutputTasks/com/clouway/consolereader/task1/Reader.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/out/production/5.InputOutputTasks/com/clouway/translate/TransferObject.class" afterPath="$PROJECT_DIR$/../5.InputOutputTasks/out/production/5.InputOutputTasks/com/clouway/translate/TransferObject.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/src/com/clouway/consolereader/task2/Demo.java" afterPath="$PROJECT_DIR$/../5.InputOutputTasks/src/com/clouway/consolereader/task2/Demo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/clouway/pagebean/DemoPAgeBean.java" afterPath="$PROJECT_DIR$/src/com/clouway/pagebean/DemoPAgeBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/src/com/clouway/consolereader/task1/DemoTask1.java" afterPath="$PROJECT_DIR$/../5.InputOutputTasks/src/com/clouway/consolereader/task1/DemoTask1.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/src/com/clouway/translate/DemoTransferObject.java" afterPath="$PROJECT_DIR$/../5.InputOutputTasks/src/com/clouway/translate/DemoTransferObject.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/src/com/clouway/directori/DirectoryBrowser.java" afterPath="$PROJECT_DIR$/../5.InputOutputTasks/src/com/clouway/directori/DirectoryBrowser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/In" afterPath="$PROJECT_DIR$/../5.InputOutputTasks/In" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/Out" afterPath="$PROJECT_DIR$/../5.InputOutputTasks/Out" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/clouway/pagebean/PageBean.java" afterPath="$PROJECT_DIR$/src/com/clouway/pagebean/PageBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/src/com/clouway/serialization/Person.java" afterPath="$PROJECT_DIR$/../5.InputOutputTasks/src/com/clouway/serialization/Person.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/src/com/clouway/consolereader/task1/Reader.java" afterPath="$PROJECT_DIR$/../5.InputOutputTasks/src/com/clouway/consolereader/task1/Reader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/src/com/clouway/translate/TransferObject.java" afterPath="$PROJECT_DIR$/../5.InputOutputTasks/src/com/clouway/translate/TransferObject.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="6. Collections.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/PageBean.java" changelist="e1358a8f-28d6-4c65-9741-0909ab01a9cb" time="1386686091169" ignored="false" />
-    <file path="/Dummy.txt" changelist="e1358a8f-28d6-4c65-9741-0909ab01a9cb" time="1386682927156" ignored="false" />
-    <file path="/DemoPAgeBean.java" changelist="e1358a8f-28d6-4c65-9741-0909ab01a9cb" time="1386686643127" ignored="false" />
+    <file path="/PageBean.java" changelist="e1358a8f-28d6-4c65-9741-0909ab01a9cb" time="1386756069226" ignored="false" />
+    <file path="/Dummy.txt" changelist="e1358a8f-28d6-4c65-9741-0909ab01a9cb" time="1386776640809" ignored="false" />
+    <file path="/DemoPAgeBean.java" changelist="e1358a8f-28d6-4c65-9741-0909ab01a9cb" time="1386756168698" ignored="false" />
     <file path="/ScannerIn.java" changelist="e1358a8f-28d6-4c65-9741-0909ab01a9cb" time="1386678392337" ignored="false" />
     <file path="/ReaderDouble.java" changelist="e1358a8f-28d6-4c65-9741-0909ab01a9cb" time="1386678293035" ignored="false" />
+    <file path="/Command.java" changelist="e1358a8f-28d6-4c65-9741-0909ab01a9cb" time="1386755481488" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +49,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -59,7 +86,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -69,21 +95,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="PageBean.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="PageBean.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/clouway/pagebean/PageBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="10" selection-start="835" selection-end="835" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="126" column="0" selection-start="3092" selection-end="3092" vertical-scroll-proportion="2.6207387">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DemoPAgeBean.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="DemoPAgeBean.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/clouway/pagebean/DemoPAgeBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="0" selection-start="895" selection-end="895" vertical-scroll-proportion="0.8228347">
+            <state line="19" column="8" selection-start="448" selection-end="448" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -110,14 +134,15 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/collections" />
+        <option value="$PROJECT_DIR$/src/com/clouway/pagebean/Command.java" />
         <option value="$PROJECT_DIR$/src/com/clouway/pagebean/PageBean.java" />
         <option value="$PROJECT_DIR$/src/com/clouway/pagebean/DemoPAgeBean.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="66" />
-    <option name="y" value="80" />
+    <option name="x" value="67" />
+    <option name="y" value="108" />
     <option name="width" value="1533" />
     <option name="height" value="847" />
   </component>
@@ -148,6 +173,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -208,7 +234,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -379,28 +404,28 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="66" y="80" width="1533" height="847" extended-state="0" />
-    <editor active="false" />
+    <frame x="67" y="108" width="1533" height="847" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3997253" sideWeight="0.49966374" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36263737" sideWeight="0.49966374" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5003362" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24949563" sideWeight="0.73351645" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26648352" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="170" y="292" width="1335" height="648" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24949563" sideWeight="0.87637365" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.12362637" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="171" y="320" width="1335" height="648" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -470,35 +495,68 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/collections">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="496" selection-start="496" selection-end="496" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/clouway/aaa">
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/pagebean/PageBean.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/clouway/pagebean/PageBean.java">
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/pagebean/DemoPAgeBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="10" selection-start="835" selection-end="835" vertical-scroll-proportion="0.0">
+        <state line="19" column="8" selection-start="448" selection-end="448" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/pagebean/PageBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/clouway/pagebean/DemoPAgeBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="0" selection-start="895" selection-end="895" vertical-scroll-proportion="0.8228347">
+        <state line="33" column="0" selection-start="895" selection-end="895" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/collections">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="496" selection-start="496" selection-end="496" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/aaa">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/pagebean/Command.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="33" selection-start="673" selection-end="673" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/pagebean/DemoPAgeBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="8" selection-start="448" selection-end="448" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/pagebean/PageBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="126" column="0" selection-start="3092" selection-end="3092" vertical-scroll-proportion="2.6207387">
+          <folding />
         </state>
       </provider>
     </entry>

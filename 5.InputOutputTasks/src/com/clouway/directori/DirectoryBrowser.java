@@ -18,7 +18,7 @@ public class DirectoryBrowser {
      *
      * @param path the name of the directory or file with the full path before him.
      */
-    public void listContent(String path) {
+    public List<FileObject> listContent(String path) {
         File file = new File(path);
         if (file.exists()) {
             for (File child : file.listFiles()) {

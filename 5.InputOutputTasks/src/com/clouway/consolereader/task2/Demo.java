@@ -9,7 +9,7 @@ package com.clouway.consolereader.task2;
  */
 public class Demo {
     public static void main(String[] args) {
-        ConsoleRaeder con = new ConsoleRaeder();
-        con.read();
+        ConsoleRaeder reader = new ConsoleRaeder();
+        reader.read();
     }
 }

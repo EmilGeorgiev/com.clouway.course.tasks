@@ -53,7 +53,8 @@ public class PageBean {
      * @return Returns true if the following elements, or false if there is no.
      */
     public boolean hasNext() {
-        if (temp >= listOfPages.size()) {
+        if (temp >= (listOfPages.size() -1)) {
+            System.out.println("No next pages.");
             return false;
         }
         return true;
@@ -107,18 +108,20 @@ public class PageBean {
         listOfPages = new ArrayList<String[]>();
         try {
             scann = new Scanner(fileName);
+            while (scann.hasNext()) {
+                page = new String[PAGE_SIZE];
+                for (int i = 0; i < PAGE_SIZE; i++) {
+                    if (!scann.hasNext()) {
+                        break;
+                    }
+                    page[i] = scann.next();
+                }
+                listOfPages.add(page);
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }
-        while (scann.hasNext()) {
-            page = new String[PAGE_SIZE];
-            for (int i = 0; i < PAGE_SIZE; i++) {
-                if (!scann.hasNext()) {
-                    break;
-                }
-                page[i] = scann.next();
-            }
-            listOfPages.add(page);
+        } finally {
+            scann.close();
         }
     }
 

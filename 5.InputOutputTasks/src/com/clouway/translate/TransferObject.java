@@ -17,41 +17,41 @@ public class TransferObject {
 
     /**
      * Transfer the contents of an instance of InputStream in an instance of OutputStream
-     * @param in ins InputStream.
-     * @param out is OutputStream.
+     *
+     * @param in            ins InputStream.
+     * @param out           is OutputStream.
      * @param numberOfBytes determines how many bytes to be transferred. If the parameter is -1, then the method must read all bytes.
-     * @param offset determines how many bytes from the beginning of the input stream to be skipped before starting the transfer output to.
+     * @param offset        determines how many bytes from the beginning of the input stream to be skipped before starting the transfer output to.
      * @return returns the number of bytes transferred
      * @throws IOException
      */
-    public int transfer(InputStream in, OutputStream out, int numberOfBytes, int offset) throws IOException {
-        if ((offset < 0) && numberOfBytes < -1) {
+    public int transfer(InputStream in, OutputStream out, int numberOfBytes, int offset) {
+        byte[] buff = new byte[SIZE_ARRAY];
+        int bytesCount = 0;
+        if ((offset < 0) || numberOfBytes < -1) {
             throw new IllegalArgumentException();
         }
-        in.skip(offset);
-        byte[] buff = new byte[SIZE_ARRAY];
-        int counter = 0;
-        int readBytes;
-        if (numberOfBytes != -1) {
-            int byteNumber = numberOfBytes;
-            while(((readBytes = in.read(buff)) != -1)) {
-                if (readBytes < byteNumber) {
-                     out.write(buff, 0, readBytes);
-                     counter += readBytes;
-                } else {
-                    out.write(buff, 0, byteNumber);
-                    counter += byteNumber;
-                }
-                out.flush();
-                byteNumber -= readBytes;
-            }
-        } else {
-            while((readBytes = in.read(buff)) != -1) {
-                out.write(buff, 0, readBytes);
-                out.flush();
-                counter += readBytes;
-            }
+        if (offset > buff.length) {
+
         }
-        return counter;
+        try {
+           // in.skip(offset);
+            int readBytes;
+            while (((readBytes = in.read(buff)) != -1)) {
+                if (readBytes < numberOfBytes || numberOfBytes == -1) {
+                    out.write(buff, offset, readBytes);
+                    bytesCount += readBytes;
+                    offset = 0;
+                } else {
+                    out.write(buff, offset, numberOfBytes);
+                    bytesCount += numberOfBytes;
+                    offset = 0;
+                }
+            }
+            out.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bytesCount;
     }
 }

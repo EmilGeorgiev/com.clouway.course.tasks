@@ -9,7 +9,8 @@ package com.clouway.consolereader.task1;
  */
 public class DemoTask1 {
     public static void main(String[] args) {
-        Reader reader = new Reader();
+        Reader reader = new Reader(System.in);
+
         reader.readInt();
         reader.readDouble();
         reader.readFloat();

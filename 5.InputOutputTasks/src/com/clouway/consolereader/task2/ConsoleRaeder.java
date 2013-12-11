@@ -1,4 +1,4 @@
-package com.clouway.consolereader.classes.task2;
+package com.clouway.consolereader.task2;
 
 import java.io.FileWriter;
 import java.io.IOException;

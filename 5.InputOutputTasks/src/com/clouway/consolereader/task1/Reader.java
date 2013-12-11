@@ -23,7 +23,9 @@ public class Reader {
      * @return String.
      */
     public String readString() {
-        return scann.nextLine();
+        System.out.println("enter same message.");
+        String result = read();
+        return result;
     }
 
     /**
@@ -31,7 +33,8 @@ public class Reader {
      * @return int if message contains only Integer, otherwise print error.
      */
     public int readInt() {
-        message = scann.nextLine();
+        System.out.println("enter number of type Integer.");
+        read();
         int result = 0;
         try {
             result = Integer.parseInt(message);
@@ -46,7 +49,8 @@ public class Reader {
      * @return double if message contains only numbers, otherwise print error.
      */
     public Double readDouble() {
-        message = scann.nextLine();
+        System.out.println("enter number of type Double.");
+        read();
         double result = 0;
         try {
             result = Double.parseDouble(message);
@@ -61,7 +65,8 @@ public class Reader {
      * @return float if message contains only numbers, otherwise print error.
      */
     public Float readFloat() {
-        message = scann.nextLine();
+        System.out.println("enter number of type Float.");
+        read();
         float result = 0;
         try {
             result = Float.parseFloat(message);
@@ -69,5 +74,21 @@ public class Reader {
             System.err.println("The argument: " + "\"" + message + "\"" + " is not of type Float");
         }
         return result;
+    }
+
+    /**
+     * Closed Scanner.
+     */
+    public void close() {
+        scann.close();
+    }
+
+    /**
+     * Read from console.
+     * @return
+     */
+    private String read() {
+        message = scann.nextLine();
+        return message;
     }
 }

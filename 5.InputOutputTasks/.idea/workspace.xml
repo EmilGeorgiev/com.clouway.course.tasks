@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d1264b9-1211-46d5-a700-bcc56f45288b" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/clouway/consolereader/classes/task2/ConsoleRaeder.java" afterPath="$PROJECT_DIR$/src/com/clouway/consolereader/task2/ConsoleRaeder.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/clouway/consolereader/classes/task2/Demo.java" afterPath="$PROJECT_DIR$/src/com/clouway/consolereader/task2/Demo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/clouway/consolereader/task1/DemoTask1.java" afterPath="$PROJECT_DIR$/src/com/clouway/consolereader/task1/DemoTask1.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/clouway/consolereader/task1/Reader.java" afterPath="$PROJECT_DIR$/src/com/clouway/consolereader/task1/Reader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/clouway/consolereader/task2/ConsoleRaeder.java" afterPath="$PROJECT_DIR$/src/com/clouway/consolereader/task2/ConsoleRaeder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ofconsole" afterPath="$PROJECT_DIR$/ofconsole" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="5.InputOutputTasks.iws" />
@@ -24,7 +22,7 @@
     <file path="/TransferObject.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386343483406" ignored="false" />
     <file path="/DemoTransferObject.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386339832151" ignored="false" />
     <file path="/In" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386322239810" ignored="false" />
-    <file path="/Dummy.txt" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386745407358" ignored="false" />
+    <file path="/Dummy.txt" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386746945169" ignored="false" />
     <file path="/DirectoriBrowser.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386333161617" ignored="false" />
     <file path="/DemoDirectoriBrowser.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386333236961" ignored="false" />
     <file path="/DataClass.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386578471855" ignored="false" />
@@ -34,7 +32,7 @@
     <file path="/PageBean.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386682200983" ignored="false" />
     <file path="/DemoPAgeBean.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386682286158" ignored="false" />
     <file path="/Reader.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386746678776" ignored="false" />
-    <file path="/ConsoleRaeder.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386689710641" ignored="false" />
+    <file path="/ConsoleRaeder.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386747450284" ignored="false" />
     <file path="/Demo.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386689207256" ignored="false" />
     <file path="/DemoTask1.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386746336461" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -88,23 +86,7 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/src/com/clouway/consolereader/task2/ConsoleRaeder.java" line="17" class="com.clouway.consolereader.classes.task2.ConsoleRaeder" package="com.clouway.consolereader.classes.task2">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-    </line_breakpoints>
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -115,7 +97,35 @@
     </favorites_list>
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="ConsoleRaeder.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/task2/ConsoleRaeder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="23" column="60" selection-start="658" selection-end="658" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ofconsole" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ofconsole">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Demo.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/task2/Demo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="0" selection-start="395" selection-end="395" vertical-scroll-proportion="0.5334728">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -133,7 +143,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/clouway/serialization/Person.java" />
         <option value="$PROJECT_DIR$/src/com/clouway/serialization/DemoDataClass.java" />
         <option value="$PROJECT_DIR$/src/com/clouway/consolereader/classes/ReaderString.java" />
         <option value="$PROJECT_DIR$/src/com/clouway/serialization/DataClass.java" />
@@ -149,6 +158,7 @@
         <option value="$PROJECT_DIR$/src/com/clouway/consolereader/classes/task2/ConsoleRaeder.java" />
         <option value="$PROJECT_DIR$/src/com/clouway/consolereader/task1/DemoTask1.java" />
         <option value="$PROJECT_DIR$/src/com/clouway/consolereader/task1/Reader.java" />
+        <option value="$PROJECT_DIR$/src/com/clouway/consolereader/task2/ConsoleRaeder.java" />
       </list>
     </option>
   </component>
@@ -244,6 +254,32 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="5.InputOutputTasks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="5.InputOutputTasks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clouway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="consolereader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="task2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -266,7 +302,7 @@
     <property name="options.searchVisible" value="true" />
     <property name="dynamic.classpath" value="false" />
   </component>
-  <component name="RunManager" selected="Application.DemoTask1">
+  <component name="RunManager" selected="Application.Demo">
     <configuration default="false" name="DemoConsoleReader" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.clouway.consolereader.demo.DemoConsoleReader" />
       <option name="VM_PARAMETERS" />
@@ -462,8 +498,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.DemoTask1" />
-        <item index="1" class="java.lang.String" itemvalue="Application.Demo" />
+        <item index="0" class="java.lang.String" itemvalue="Application.Demo" />
+        <item index="1" class="java.lang.String" itemvalue="Application.DemoTask1" />
         <item index="2" class="java.lang.String" itemvalue="Application.DemoConsoleReader" />
         <item index="3" class="java.lang.String" itemvalue="Application.DemoTransferObject" />
         <item index="4" class="java.lang.String" itemvalue="Application.DemoDataClass" />
@@ -506,7 +542,11 @@
       <created>1386333338259</created>
       <updated>1386333338259</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="writing first task og Input/Output&#10;">
+      <created>1386746955955</created>
+      <updated>1386746955955</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -526,7 +566,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24949563" sideWeight="0.6923077" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24949563" sideWeight="0.6923077" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30769232" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -577,7 +617,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="completion of tasks by Input/Output&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="writing first task og Input/Output&#10;" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -594,6 +634,7 @@
     <MESSAGE value="adding task 4 by Input/Output" />
     <MESSAGE value="adding task 5 by Input/Output" />
     <MESSAGE value="completion of tasks by Input/Output&#10;" />
+    <MESSAGE value="writing first task og Input/Output&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -603,15 +644,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/clouway/translate/DemoTransferObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="43" selection-start="585" selection-end="585" vertical-scroll-proportion="0.64285713">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/validator/Validator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="17" selection-start="218" selection-end="218" vertical-scroll-proportion="0.23725834">
@@ -685,20 +717,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/task2/ConsoleRaeder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="20" selection-start="484" selection-end="484" vertical-scroll-proportion="0.38352272">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/task2/Demo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="17" selection-start="119" selection-end="119" vertical-scroll-proportion="0.10653409">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/task1/Reader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="46" selection-start="522" selection-end="522" vertical-scroll-proportion="0.0">
@@ -709,6 +727,27 @@
     <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/task1/DemoTask1.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="44" selection-start="267" selection-end="267" vertical-scroll-proportion="0.31380752">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/task2/ConsoleRaeder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="60" selection-start="658" selection-end="658" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ofconsole">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/task2/Demo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="0" selection-start="395" selection-end="395" vertical-scroll-proportion="0.5334728">
           <folding />
         </state>
       </provider>

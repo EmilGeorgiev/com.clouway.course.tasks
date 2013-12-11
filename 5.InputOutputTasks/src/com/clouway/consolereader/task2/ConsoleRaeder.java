@@ -12,20 +12,24 @@ import java.util.Scanner;
  */
 public class ConsoleRaeder {
     final String BREAK_POINT = ".";
-    final String FINISH = "finish";
+    final String FILE_NAME = "ofconsole";
+    final boolean ADDING = true;
 
-    public String read() {
+    public void read() {
         Scanner scann = new Scanner(System.in);
         String line;
-        while (!(line = scann.nextLine()).equals(BREAK_POINT)) {
-            try {
-                FileWriter writer = new FileWriter("ofconsole");
+
+        try {
+            while (!(line = scann.nextLine()).equals(BREAK_POINT)) {
+                FileWriter writer = new FileWriter(FILE_NAME, true);
                 writer.write(line);
                 writer.flush();
-            } catch (IOException e) {
-                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            scann.close();
         }
-        return FINISH;
+
     }
 }

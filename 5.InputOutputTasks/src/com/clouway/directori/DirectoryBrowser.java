@@ -1,6 +1,8 @@
 package com.clouway.directori;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,16 +22,19 @@ public class DirectoryBrowser {
      */
     public List<FileObject> listContent(String path) {
         File file = new File(path);
+        List<FileObject> listOfObjects = new ArrayList<FileObject>();
         if (file.exists()) {
+
             for (File child : file.listFiles()) {
                 if (child.isDirectory()) {
-                    System.out.println("D " + child.getName());
-                }else {
-                    System.out.println("F " + child.getName());
+                    listOfObjects.add(new FileObject("D", child.getName()));
+                } else {
+                    listOfObjects.add(new FileObject("F", child.getName()));
                 }
             }
         } else {
             System.out.println("File does not exist.");
         }
+        return listOfObjects;
     }
 }

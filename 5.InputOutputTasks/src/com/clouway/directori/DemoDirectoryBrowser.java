@@ -1,6 +1,6 @@
 package com.clouway.directori;
 
-import java.util.Scanner;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,10 +12,9 @@ import java.util.Scanner;
 public class DemoDirectoryBrowser {
     public static void main(String[] args) {
         DirectoryBrowser dir = new DirectoryBrowser();
-        Scanner scann = new Scanner(System.in);
-        System.out.println("Enter file path.");
-        String filePath = scann.nextLine();
-
-        dir.listContent(filePath);
+        List<FileObject> listOfOBjects = dir.listContent("/home/clouway/IdeaProjects/workSpace/5.InputOutputTasks");
+        for (FileObject object : listOfOBjects) {
+            object.printInfo();
+        }
     }
 }

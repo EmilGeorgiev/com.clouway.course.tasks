@@ -24,7 +24,6 @@ public class Reader {
      * @return String.
      */
     public String readString() {
-        System.out.println("enter same message.");
         String result = read();
         return result;
     }
@@ -34,7 +33,6 @@ public class Reader {
      * @return int if message contains only Integer, otherwise print error.
      */
     public int readInt() {
-        System.out.println("enter number of type Integer.");
         read();
         int result = 0;
         try {
@@ -50,7 +48,6 @@ public class Reader {
      * @return double if message contains only numbers, otherwise print error.
      */
     public Double readDouble() {
-        System.out.println("enter number of type Double.");
         read();
         double result = 0;
         try {
@@ -66,7 +63,6 @@ public class Reader {
      * @return float if message contains only numbers, otherwise print error.
      */
     public Float readFloat() {
-        System.out.println("enter number of type Float.");
         read();
         float result = 0;
         try {

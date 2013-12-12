@@ -13,7 +13,7 @@ import java.io.OutputStream;
  */
 public class TransferObject {
 
-    final int SIZE_ARRAY = 1024;
+    final int SIZE_ARRAY = 34;
 
     /**
      * Transfer the contents of an instance of InputStream in an instance of OutputStream
@@ -32,20 +32,19 @@ public class TransferObject {
             throw new IllegalArgumentException();
         }
         if (offset > buff.length) {
-
+            System.out.println("Offset is larger than the size of the buffer.");
+            return 0;
         }
         try {
-           // in.skip(offset);
             int readBytes;
+            in.skip(offset);
             while (((readBytes = in.read(buff)) != -1)) {
                 if (readBytes < numberOfBytes || numberOfBytes == -1) {
-                    out.write(buff, offset, readBytes);
+                    out.write(buff, 0, readBytes);
                     bytesCount += readBytes;
-                    offset = 0;
                 } else {
-                    out.write(buff, offset, numberOfBytes);
+                    out.write(buff, 0, numberOfBytes);
                     bytesCount += numberOfBytes;
-                    offset = 0;
                 }
             }
             out.flush();

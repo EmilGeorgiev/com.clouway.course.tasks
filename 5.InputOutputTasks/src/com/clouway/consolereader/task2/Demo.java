@@ -1,5 +1,7 @@
 package com.clouway.consolereader.task2;
 
+import java.util.Scanner;
+
 /**
  * Created with IntelliJ IDEA.
  * User: clouway
@@ -9,7 +11,11 @@ package com.clouway.consolereader.task2;
  */
 public class Demo {
     public static void main(String[] args) {
-        ConsoleRaeder reader = new ConsoleRaeder();
+        Scanner scanner = new Scanner(System.in);
+        String breakPoint;
+        System.out.println("Please enter symbol in the program complete");
+        breakPoint = scanner.nextLine();
+        ConsoleRaeder reader = new ConsoleRaeder(scanner, breakPoint);
         reader.read();
     }
 }

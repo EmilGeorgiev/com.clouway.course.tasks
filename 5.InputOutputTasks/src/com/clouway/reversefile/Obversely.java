@@ -22,7 +22,6 @@ public class Obversely {
 
     }
 
-
     /**
      * Reverses the contents of a text file.
      * The contents of the text file is read and put in a buffer.
@@ -37,27 +36,18 @@ public class Obversely {
                 line = input.readLine();
             }
             input.close();
-
             buff.reverse();
             output = new BufferedWriter(new FileWriter(fileName));
             output.write(buff.toString());
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if (input != null) {
-                try {
-                    input.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (output != null) {
-                try {
-                    output.flush();
-                    output.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            try {
+                output.flush();
+                input.close();
+                output.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
 
         }

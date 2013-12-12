@@ -21,7 +21,7 @@ public class DemoTransferObject {
         try {
             in = new FileInputStream("In");
             out = new FileOutputStream("Out");
-            int readBytes = transfer.transfer(in, out, 7, 70);
+            int readBytes = transfer.transfer(in, out, 7, 8);
             System.out.println("Read bytes: " + readBytes);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -29,13 +29,15 @@ public class DemoTransferObject {
             System.err.println("The offset isn't negative number and numberOfBytes isn't less -1.");
         } finally {
             try {
-                in.close();
-                out.close();
+                if (in != null) {
+                    in.close();
+                }
+                if (out != null) {
+                    out.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-
-
     }
 }

@@ -2,7 +2,6 @@ package com.clouway.consolereader.task2;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Scanner;
 /**
  * Created with IntelliJ IDEA.
@@ -12,13 +11,14 @@ import java.util.Scanner;
  * To change this template use File | Settings | File Templates.
  */
 public class ConsoleRaeder {
-    final String FILE_NAME = "ofconsole";
+    private String fileName;
     private String breakPoint;
     private Scanner scanner;
 
-    public ConsoleRaeder(Scanner scanner ,String breakPoint) {
+    public ConsoleRaeder(Scanner scanner ,String breakPoint, String fileName) {
         this.scanner = scanner;
         this.breakPoint = breakPoint;
+        this.fileName = fileName;
     }
 
     /**
@@ -28,16 +28,18 @@ public class ConsoleRaeder {
         String line;
         FileWriter writer = null;
         try {
+            writer = new FileWriter(fileName, true);
             while (!(line = scanner.nextLine()).equals(breakPoint)) {
-                writer = new FileWriter(FILE_NAME, true);
                 writer.write(line);
             }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             try {
-                writer.flush();
-                writer.close();
+                if (writer != null) {
+                    writer.flush();
+                    writer.close();
+                }
                 scanner.close();
             } catch (IOException e) {
                 e.printStackTrace();

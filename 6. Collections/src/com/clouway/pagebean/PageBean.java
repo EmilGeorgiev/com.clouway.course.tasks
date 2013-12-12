@@ -1,9 +1,6 @@
 package com.clouway.pagebean;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,123 +11,103 @@ import java.util.Scanner;
  */
 public class PageBean {
 
-    private final int PAGE_SIZE = 10;
-    private ArrayList<String[]> listOfPages;
-    private int temp;
+  private final int PAGE_SIZE = 3;
+  private List<String> listOfPages;
+  private List<String> page;
+  private int fromIndex = 0;
+  private int toIndex = 0;
+  private int numberOfPage = 0;
 
-    public PageBean(File fileNAme) {
-        dividedPages(fileNAme);
-        temp = -1;
+  public PageBean(List<String> listOfPages) {
+    this.listOfPages = listOfPages;
+    this.fromIndex -= PAGE_SIZE;
+  }
+
+  /**
+   * Go to the next page.If there is no next page display error message.
+   */
+  public Page next() {
+    if (toIndex < listOfPages.size()) {
+      fromIndex += PAGE_SIZE;
+      toIndex += PAGE_SIZE;
+      numberOfPage++;
+      page = listOfPages.subList(fromIndex, maxSize());
+    } else {
+      throw new IllegalStateException("No next page");
     }
+    return new Page(page, numberOfPage);
+  }
 
-    /**
-     * Show next page.If there is no next page display error message.
-     * If the last page of the list is less than PAGE_SIZE element does not receive an  error.
-     */
-    public void next() {
-        if (temp < (listOfPages.size() - 1)){
-            temp++;
-            printPage();
-        } else {
-            System.out.println("No next pages.");
-        }
+  /**
+   * Go to the previous page.If there is no previous page display message.
+   */
+  public Page previous() {
+    if (toIndex != PAGE_SIZE) {
+      fromIndex -= PAGE_SIZE;
+      toIndex -= PAGE_SIZE;
+      numberOfPage--;
+      page = listOfPages.subList(fromIndex, maxSize());
+    } else {
+      throw new IllegalStateException("No previous page");
     }
+    return new Page(page, numberOfPage);
+  }
 
-    /**
-     * Show previous page.If there is no previous page display message.
-     */
-    public void previous() {
-        if (temp == 0) {
-            System.out.println("No previous pages.");
-        } else {
-            temp--;
-            printPage();
-        }
-    }
+  /**
+   * Check whether the following elements.
+   *
+   * @return Returns true if the following elements, or false if there is no.
+   */
+  public boolean hasNext() {
+    return (toIndex == listOfPages.size()) ? false : true;
+  }
 
-    /**
-     * Check whether the following elements.
-     * @return Returns true if the following elements, or false if there is no.
-     */
-    public boolean hasNext() {
-        if (temp >= (listOfPages.size() -1)) {
-            System.out.println("No next pages.");
-            return false;
-        }
-        return true;
-    }
+  /**
+   * Check previous pages have.
+   *
+   * @return Returns true if the previous pages, or false if there is no.
+   */
+  public boolean hasPrevious() {
+    return toIndex == PAGE_SIZE ? false : true;
+  }
 
-    /**
-     * Check previous pages have.
-     * @return Returns true if the previous pages, or false if there is no.
-     */
-    public boolean hasPrevious() {
-        if (temp <= 0) {
-            System.out.println("\nNo previous pages.");
-            return false;
-        }
-        return true;
-    }
+  /**
+   * Go to the the first page and make it current.
+   */
+  public Page firstPage() {
+    fromIndex = 0;
+    toIndex = PAGE_SIZE;
+    numberOfPage = 1;
+    page = listOfPages.subList(fromIndex, toIndex);
+    return new Page(page, numberOfPage);
+  }
 
-    /**
-     * Returns the first page and make it current.
-     */
-    public void firstPage() {
-        temp = 0;
-        printPage();
-    }
+  /**
+   * Returns the last page and makes it current
+   */
+  public Page lastPage() {
+    fromIndex = listOfPages.size() - PAGE_SIZE;
+    toIndex = listOfPages.size();
+    numberOfPage = (listOfPages.size() / PAGE_SIZE);
+    page = listOfPages.subList(fromIndex, toIndex);
+    return new Page(page, numberOfPage);
+  }
 
-    /**
-     * Returns the last page and makes it current
-     */
-    public void lastPage() {
-        temp = (listOfPages.size() -1);
-        printPage();
-    }
+  /**
+   * Show number of the current page.
+   *
+   * @return the current page numbers.
+   */
+  public int getCurrentPageNumber() {
+    return numberOfPage;
+  }
 
-    /**
-     * Show number of the current page.
-     * @return the current page numbers.
-     */
-    public int getCurrentPageNumber() {
-        return temp;
-    }
-
-
-
-    /**
-     * Dividing the text pages
-     * @param fileName file which contains the text.
-     */
-    private void dividedPages(File fileName) {
-        String[] page;
-        Scanner scann = null;
-        listOfPages = new ArrayList<String[]>();
-        try {
-            scann = new Scanner(fileName);
-            while (scann.hasNext()) {
-                page = new String[PAGE_SIZE];
-                for (int i = 0; i < PAGE_SIZE; i++) {
-                    if (!scann.hasNext()) {
-                        break;
-                    }
-                    page[i] = scann.next();
-                }
-                listOfPages.add(page);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } finally {
-            scann.close();
-        }
-    }
-
-    private void printPage() {
-        System.out.print("\nPage " + (temp + 1) + ":");
-        for (String word : listOfPages.get(temp)) {
-            if (word != null) {
-                System.out.print(word + " ");
-            }
-        }
-    }
+  /**
+   * Checked whether toIndex is greater than the size of the list
+   *
+   * @return toIndex if it less than size og the list or return size of the list.
+   */
+  private int maxSize() {
+    return toIndex > listOfPages.size() ? listOfPages.size() : toIndex;
+  }
 }

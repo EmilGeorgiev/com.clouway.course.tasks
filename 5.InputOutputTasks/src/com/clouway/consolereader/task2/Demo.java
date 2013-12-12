@@ -15,7 +15,9 @@ public class Demo {
         String breakPoint;
         System.out.println("Please enter symbol in the program complete");
         breakPoint = scanner.nextLine();
-        ConsoleRaeder reader = new ConsoleRaeder(scanner, breakPoint);
+        System.out.println("Please enter file in which to introduce reading.");
+        String filePath = scanner.nextLine();
+        ConsoleRaeder reader = new ConsoleRaeder(scanner, breakPoint, filePath);
         reader.read();
     }
 }

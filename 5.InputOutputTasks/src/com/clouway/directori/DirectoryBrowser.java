@@ -33,7 +33,7 @@ public class DirectoryBrowser {
                 }
             }
         } else {
-            System.out.println("File does not exist.");
+            throw new IllegalArgumentException("No exist");
         }
         return listOfObjects;
     }

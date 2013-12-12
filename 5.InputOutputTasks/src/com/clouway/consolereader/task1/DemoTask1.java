@@ -20,15 +20,15 @@ public class DemoTask1 {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        Reader reader = new Reader(input);
+        Reader reader = new Reader(System.in);
         System.out.println("enter number of type Integer.");
-        reader.readInt();
+        System.out.println(reader.readInt());
         System.out.println("enter number of type Double.");
-        reader.readDouble();
+        System.out.println(reader.readDouble());
         System.out.println("enter number of type Float.");
-        reader.readFloat();
+        System.out.println(reader.readFloat());
         System.out.println("enter same message.");
-        reader.readString();
+        System.out.println(reader.readString());
 
         reader.close();
     }

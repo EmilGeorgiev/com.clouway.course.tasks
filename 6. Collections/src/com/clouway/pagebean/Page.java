@@ -22,7 +22,7 @@ public class Page {
    * Print content of page of the console.
    */
   public void printPage() {
-    System.out.println("page: " + numberOfPage + ": ");
+    System.out.print("page: " + numberOfPage + ": ");
     for (String word : page) {
       System.out.print(word + " ");
     }

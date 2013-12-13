@@ -2,22 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d1264b9-1211-46d5-a700-bcc56f45288b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../6. Collections/out/production/6. Collections/com/clouway/pagebean/Command.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../6. Collections/src/com/clouway/pagebean/Command.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../6. Collections/out/production/6. Collections/com/clouway/pagebean/DemoPAgeBean.class" afterPath="$PROJECT_DIR$/../6. Collections/out/production/6. Collections/com/clouway/pagebean/DemoPAgeBean.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../6. Collections/out/production/6. Collections/com/clouway/pagebean/PageBean.class" afterPath="$PROJECT_DIR$/../6. Collections/out/production/6. Collections/com/clouway/pagebean/PageBean.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/clouway/consolereader/task2/ConsoleRaeder.java" afterPath="$PROJECT_DIR$/src/com/clouway/consolereader/task2/ConsoleRaeder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/clouway/consolereader/task2/Demo.java" afterPath="$PROJECT_DIR$/src/com/clouway/consolereader/task2/Demo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../6. Collections/src/com/clouway/pagebean/DemoPAgeBean.java" afterPath="$PROJECT_DIR$/../6. Collections/src/com/clouway/pagebean/DemoPAgeBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/clouway/consolereader/task1/DemoTask1.java" afterPath="$PROJECT_DIR$/src/com/clouway/consolereader/task1/DemoTask1.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/clouway/translate/DemoTransferObject.java" afterPath="$PROJECT_DIR$/src/com/clouway/translate/DemoTransferObject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/clouway/directori/DirectoryBrowser.java" afterPath="$PROJECT_DIR$/src/com/clouway/directori/DirectoryBrowser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/In" afterPath="$PROJECT_DIR$/In" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Out" afterPath="$PROJECT_DIR$/Out" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../6. Collections/src/com/clouway/pagebean/PageBean.java" afterPath="$PROJECT_DIR$/../6. Collections/src/com/clouway/pagebean/PageBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/clouway/translate/TransferObject.java" afterPath="$PROJECT_DIR$/src/com/clouway/translate/TransferObject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ofconsole" afterPath="$PROJECT_DIR$/ofconsole" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../6. Collections/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../6. Collections/.idea/workspace.xml" />
     </list>
@@ -37,7 +25,7 @@
     <file path="/TransferObject.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386858666410" ignored="false" />
     <file path="/DemoTransferObject.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386858371757" ignored="false" />
     <file path="/In" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386854135467" ignored="false" />
-    <file path="/Dummy.txt" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386860104981" ignored="false" />
+    <file path="/Dummy.txt" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386918458990" ignored="false" />
     <file path="/DirectoriBrowser.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386333161617" ignored="false" />
     <file path="/DemoDirectoriBrowser.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386333236961" ignored="false" />
     <file path="/DataClass.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386578471855" ignored="false" />
@@ -134,7 +122,7 @@
       <file leaf-file-name="TransferObject.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/clouway/translate/TransferObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="5" selection-start="342" selection-end="342" vertical-scroll-proportion="0.17777778">
+            <state line="17" column="5" selection-start="342" selection-end="342" vertical-scroll-proportion="0.021306818">
               <folding />
             </state>
           </provider>
@@ -178,8 +166,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="66" />
-    <option name="y" value="70" />
+    <option name="x" value="67" />
+    <option name="y" value="98" />
     <option name="width" value="1533" />
     <option name="height" value="847" />
   </component>
@@ -209,6 +197,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -218,181 +207,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="5.InputOutputTasks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="5.InputOutputTasks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="5.InputOutputTasks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="5.InputOutputTasks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="clouway" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="translate" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="5.InputOutputTasks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="5.InputOutputTasks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="clouway" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="serialization" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="5.InputOutputTasks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="5.InputOutputTasks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="clouway" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="reversefile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="5.InputOutputTasks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="5.InputOutputTasks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="clouway" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="directori" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="5.InputOutputTasks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="5.InputOutputTasks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="clouway" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="consolereader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="5.InputOutputTasks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="5.InputOutputTasks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="clouway" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="consolereader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="task2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="5.InputOutputTasks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="5.InputOutputTasks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="clouway" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="consolereader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="task1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -678,7 +494,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="66" y="70" width="1533" height="847" extended-state="0" />
+    <frame x="67" y="98" width="1533" height="847" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -693,7 +509,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24915825" sideWeight="0.89285713" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24882314" sideWeight="0.89285713" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31593406" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -778,37 +594,27 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/com/clouway/serialization/DemoDataClass.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="13" selection-start="223" selection-end="223" vertical-scroll-proportion="-0.051282052">
-          <folding />
-        </state>
+        <state line="11" column="13" selection-start="223" selection-end="223" vertical-scroll-proportion="-0.051282052" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/clouway/serialization/Person.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="16" selection-start="384" selection-end="384" vertical-scroll-proportion="0.36324787">
-          <folding />
-        </state>
+        <state line="17" column="16" selection-start="384" selection-end="384" vertical-scroll-proportion="0.36324787" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/clouway/reversefile/Obversely.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="480" selection-end="480" vertical-scroll-proportion="0.18803419">
-          <folding />
-        </state>
+        <state line="23" column="0" selection-start="480" selection-end="480" vertical-scroll-proportion="0.18803419" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/task1/Reader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="13" selection-start="482" selection-end="482" vertical-scroll-proportion="0.34957626">
-          <folding />
-        </state>
+        <state line="23" column="13" selection-start="482" selection-end="482" vertical-scroll-proportion="0.34957626" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/task1/DemoTask1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="46" selection-start="628" selection-end="628" vertical-scroll-proportion="0.4279661">
-          <folding />
-        </state>
+        <state line="22" column="46" selection-start="628" selection-end="628" vertical-scroll-proportion="0.4279661" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ofconsole">
@@ -840,47 +646,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/task2/ConsoleRaeder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="0" selection-start="1284" selection-end="1284" vertical-scroll-proportion="0.95726496">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
+        <state line="49" column="0" selection-start="1284" selection-end="1284" vertical-scroll-proportion="0.95726496" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/clouway/consolereader/task2/Demo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="22" selection-start="712" selection-end="712" vertical-scroll-proportion="0.42735043">
-          <folding />
-        </state>
+        <state line="20" column="22" selection-start="712" selection-end="712" vertical-scroll-proportion="0.42735043" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/clouway/directori/DirectoryBrowser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="52" selection-start="1041" selection-end="1041" vertical-scroll-proportion="0.69711536">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#850#862#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="29" column="52" selection-start="1041" selection-end="1041" vertical-scroll-proportion="0.69711536" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/clouway/directori/DemoDirectoryBrowser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="45" selection-start="392" selection-end="392" vertical-scroll-proportion="0.33653846">
-          <folding />
-        </state>
+        <state line="14" column="45" selection-start="392" selection-end="392" vertical-scroll-proportion="0.33653846" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/clouway/directori/FileObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="13" selection-start="202" selection-end="202" vertical-scroll-proportion="0.21634616">
-          <folding />
-        </state>
+        <state line="9" column="13" selection-start="202" selection-end="202" vertical-scroll-proportion="0.21634616" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/clouway/translate/TransferObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="5" selection-start="342" selection-end="342" vertical-scroll-proportion="0.17777778">
+        <state line="17" column="5" selection-start="342" selection-end="342" vertical-scroll-proportion="0.021306818">
           <folding />
         </state>
       </provider>

@@ -11,16 +11,17 @@ import java.util.List;
  */
 public class PageBean {
 
-  private final int PAGE_SIZE = 3;
+  private int pageSize;
   private List<String> listOfPages;
   private List<String> page;
   private int fromIndex = 0;
   private int toIndex = 0;
   private int numberOfPage = 0;
 
-  public PageBean(List<String> listOfPages) {
+  public PageBean(List<String> listOfPages, int pageSize) {
     this.listOfPages = listOfPages;
-    this.fromIndex -= PAGE_SIZE;
+    this.pageSize = pageSize;
+    this.fromIndex -= pageSize;
   }
 
   /**
@@ -28,12 +29,12 @@ public class PageBean {
    */
   public Page next() {
     if (toIndex < listOfPages.size()) {
-      fromIndex += PAGE_SIZE;
-      toIndex += PAGE_SIZE;
+      fromIndex += pageSize;
+      toIndex += pageSize;
       numberOfPage++;
       page = listOfPages.subList(fromIndex, maxSize());
     } else {
-      throw new IllegalStateException("No next page");
+      throw new RuntimeException("No next page");
     }
     return new Page(page, numberOfPage);
   }
@@ -42,13 +43,13 @@ public class PageBean {
    * Go to the previous page.If there is no previous page display message.
    */
   public Page previous() {
-    if (toIndex != PAGE_SIZE) {
-      fromIndex -= PAGE_SIZE;
-      toIndex -= PAGE_SIZE;
+    if (toIndex != pageSize) {
+      fromIndex -= pageSize;
+      toIndex -= pageSize;
       numberOfPage--;
       page = listOfPages.subList(fromIndex, maxSize());
     } else {
-      throw new IllegalStateException("No previous page");
+      throw new RuntimeException("No previous page");
     }
     return new Page(page, numberOfPage);
   }
@@ -59,7 +60,7 @@ public class PageBean {
    * @return Returns true if the following elements, or false if there is no.
    */
   public boolean hasNext() {
-    return (toIndex == listOfPages.size()) ? false : true;
+    return (toIndex != listOfPages.size()) ? true : false;
   }
 
   /**
@@ -68,7 +69,7 @@ public class PageBean {
    * @return Returns true if the previous pages, or false if there is no.
    */
   public boolean hasPrevious() {
-    return toIndex == PAGE_SIZE ? false : true;
+    return toIndex != pageSize ? true : false;
   }
 
   /**
@@ -76,7 +77,7 @@ public class PageBean {
    */
   public Page firstPage() {
     fromIndex = 0;
-    toIndex = PAGE_SIZE;
+    toIndex = pageSize;
     numberOfPage = 1;
     page = listOfPages.subList(fromIndex, toIndex);
     return new Page(page, numberOfPage);
@@ -86,9 +87,9 @@ public class PageBean {
    * Returns the last page and makes it current
    */
   public Page lastPage() {
-    fromIndex = listOfPages.size() - PAGE_SIZE;
+    fromIndex = listOfPages.size() - (listOfPages.size() % pageSize);
     toIndex = listOfPages.size();
-    numberOfPage = (listOfPages.size() / PAGE_SIZE);
+    numberOfPage = (fromIndex / pageSize) + 1;
     page = listOfPages.subList(fromIndex, toIndex);
     return new Page(page, numberOfPage);
   }

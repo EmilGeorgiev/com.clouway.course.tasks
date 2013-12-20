@@ -11,18 +11,18 @@ import java.util.List;
  */
 public class Page {
   private final List<String> page;
-  private final int numberOfPage;
+  private final int pageNumber;
 
   public Page(List<String> page, int numberOfPage) {
     this.page = page;
-    this.numberOfPage = numberOfPage;
+    this.pageNumber = numberOfPage;
   }
 
   /**
    * Print content of page of the console.
    */
   public void printPage() {
-    System.out.print("page: " + numberOfPage + ": ");
+    System.out.print("page: " + pageNumber + ": ");
     for (String word : page) {
       System.out.print(word + " ");
     }

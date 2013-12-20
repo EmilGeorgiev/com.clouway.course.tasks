@@ -5,8 +5,6 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/../6. Collections/out/production/6. Collections/com/clouway/pagebean/Command.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../6. Collections/out/production/6. Collections/com/clouway/pagebean/DemoPAgeBean.class" afterPath="$PROJECT_DIR$/../6. Collections/out/production/6. Collections/com/clouway/pagebean/DemoPAgeBean.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../6. Collections/out/production/6. Collections/com/clouway/pagebean/PageBean.class" afterPath="$PROJECT_DIR$/../6. Collections/out/production/6. Collections/com/clouway/pagebean/PageBean.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../6. Collections/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../6. Collections/.idea/workspace.xml" />
     </list>
     <ignored path="5.InputOutputTasks.iws" />
@@ -25,7 +23,7 @@
     <file path="/TransferObject.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386858666410" ignored="false" />
     <file path="/DemoTransferObject.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386858371757" ignored="false" />
     <file path="/In" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386854135467" ignored="false" />
-    <file path="/Dummy.txt" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386918458990" ignored="false" />
+    <file path="/Dummy.txt" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386929214916" ignored="false" />
     <file path="/DirectoriBrowser.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386333161617" ignored="false" />
     <file path="/DemoDirectoriBrowser.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386333236961" ignored="false" />
     <file path="/DataClass.java" changelist="4d1264b9-1211-46d5-a700-bcc56f45288b" time="1386578471855" ignored="false" />
@@ -122,7 +120,7 @@
       <file leaf-file-name="TransferObject.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/clouway/translate/TransferObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="5" selection-start="342" selection-end="342" vertical-scroll-proportion="0.021306818">
+            <state line="17" column="5" selection-start="342" selection-end="342" vertical-scroll-proportion="0.14914773">
               <folding />
             </state>
           </provider>
@@ -166,8 +164,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="67" />
-    <option name="y" value="98" />
+    <option name="x" value="68" />
+    <option name="y" value="126" />
     <option name="width" value="1533" />
     <option name="height" value="847" />
   </component>
@@ -197,8 +195,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -226,9 +224,9 @@
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="options.searchVisible" value="true" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RunManager" selected="Application.DemoTransferObject">
     <configuration default="false" name="DemoConsoleReader" type="Application" factoryName="Application" temporary="true">
@@ -343,19 +341,6 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method />
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -381,6 +366,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -494,7 +492,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="98" width="1533" height="847" extended-state="0" />
+    <frame x="68" y="126" width="1533" height="847" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -671,7 +669,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/clouway/translate/TransferObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="5" selection-start="342" selection-end="342" vertical-scroll-proportion="0.021306818">
+        <state line="17" column="5" selection-start="342" selection-end="342" vertical-scroll-proportion="0.14914773">
           <folding />
         </state>
       </provider>

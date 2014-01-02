@@ -12,18 +12,29 @@ public class Service {
     this.connect = connect;
   }
 
-  public void saveAge(String name, String age) {
+  /**
+   * Save the years in the database if they are between 10 and 100
+   * @param recipient is recipient of the message.
+   * @param age year of the beneficiary
+   */
+  public void saveAge(String recipient, String age) {
     if (!validator.validateAge(age)) {
       throw new IllegalArgumentException("Years should be 10 to 100!");
     }
-    connect.save(name, age);
+    connect.save(recipient, age);
   }
 
-  public boolean getAge(String name, String age) {
+  /**
+   * Take years from the database if they are valid
+   * @param recipient
+   * @param age
+   * @return years of the recipient.
+   */
+  public int getAge(String recipient, String age) {
     if(!validator.validateGetAge(age)) {
-      return false;
+      throw new IllegalArgumentException("Years may be from 18 to 100");
     }
-    connect.receive(name, age);
-    return true;
+
+    return connect.receive(recipient, age);
   }
 }

@@ -18,8 +18,9 @@ public class Store {
 
   /**
    * Adding products in the store.
+   *
    * @param product the type of products that are added.
-   * @param amount a quantity that is added
+   * @param amount  a quantity that is added
    * @return how products are available in the store.
    */
   public int add(Product product, int amount) {
@@ -32,8 +33,9 @@ public class Store {
 
   /**
    * Sell products from store.
+   *
    * @param product the type of products that are sold.
-   * @param value a quantity that is sold.
+   * @param value   a quantity that is sold.
    * @return how products are still available in the store.
    */
   public int sell(Product product, int value) {
@@ -45,15 +47,16 @@ public class Store {
 
   /**
    * Check whether you add new products.
+   *
    * @param product type of the products that will add.
-   * @param amount a quantity that will add.
+   * @param amount  a quantity that will add.
    * @return true if there is space in the store, and false if you do not.
    */
   private boolean isAddNewProducts(Product product, int amount) {
     int temValueAfterAdded = product.getTempValue() + amount;
     if (temValueAfterAdded <= product.getMaxValue()) {
       product.setTempValue(temValueAfterAdded);
-      return  true;
+      return true;
     } else {
       return false;
     }
@@ -61,6 +64,7 @@ public class Store {
 
   /**
    * Calculate how much empty space there is in the warehouse
+   *
    * @param product the type of products you wont to store in.
    * @return empty space in the store
    */
@@ -70,16 +74,16 @@ public class Store {
 
   /**
    * Adding new products of the store if this product still does not yet exist.
+   *
    * @param product the new product that add.
    */
   private void addProductInStore(Product product) {
-    if (!listOfProducts.contains(product)) {
-      listOfProducts.add(product);
-    }
+    listOfProducts.add(product);
   }
 
   /**
    * Sort products by price.
+   *
    * @return
    */
   public List<Product> sortProductsByPrace() {

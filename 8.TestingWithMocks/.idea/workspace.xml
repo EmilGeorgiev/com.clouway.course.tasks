@@ -2,79 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b4a70bc-f002-4352-81f9-84c99d85a6f7" name="Default" comment="repair task 2.2 of the Testing whit mocks after inspection&#10;">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/clouway/service/AgeValidator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/clouway/service/Main.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../1.IntroductionJavaTasks/.idea/.name" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../1.IntroductionJavaTasks/.idea/compiler.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../1.IntroductionJavaTasks/.idea/copyright/profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../1.IntroductionJavaTasks/.idea/encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../1.IntroductionJavaTasks/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../1.IntroductionJavaTasks/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../1.IntroductionJavaTasks/.idea/scopes/scope_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../1.IntroductionJavaTasks/.idea/uiDesigner.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../1.IntroductionJavaTasks/.idea/vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../1.IntroductionJavaTasks/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../2.ObjectInJavaTasks/.idea/.name" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../2.ObjectInJavaTasks/.idea/compiler.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../2.ObjectInJavaTasks/.idea/copyright/profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../2.ObjectInJavaTasks/.idea/encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../2.ObjectInJavaTasks/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../2.ObjectInJavaTasks/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../2.ObjectInJavaTasks/.idea/scopes/scope_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../2.ObjectInJavaTasks/.idea/uiDesigner.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../2.ObjectInJavaTasks/.idea/vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../2.ObjectInJavaTasks/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/.name" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/codeStyleSettings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/compiler.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/copyright/profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/dictionaries/clouway.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/inspectionProfiles/Project_Default.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/inspectionProfiles/profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/scopes/scope_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/uiDesigner.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/workspace.xml.orig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../6. Collections/.idea/.name" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../6. Collections/.idea/compiler.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../6. Collections/.idea/copyright/profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../6. Collections/.idea/encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../6. Collections/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../6. Collections/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../6. Collections/.idea/scopes/scope_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../6. Collections/.idea/uiDesigner.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../6. Collections/.idea/vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../6. Collections/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../7.TestingTasks/.idea/.name" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../7.TestingTasks/.idea/compiler.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../7.TestingTasks/.idea/copyright/profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../7.TestingTasks/.idea/encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../7.TestingTasks/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../7.TestingTasks/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../7.TestingTasks/.idea/scopes/scope_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../7.TestingTasks/.idea/uiDesigner.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../7.TestingTasks/.idea/vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/clouway/service/ConnectionDatabase.java" afterPath="$PROJECT_DIR$/src/com/clouway/service/Database.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../7.TestingTasks/out/production/7.TestingTasks/com/clouway/store/Product.class" afterPath="$PROJECT_DIR$/../7.TestingTasks/out/production/7.TestingTasks/com/clouway/store/Product.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../7.TestingTasks/out/production/7.TestingTasks/com/clouway/store/Store.class" afterPath="$PROJECT_DIR$/../7.TestingTasks/out/production/7.TestingTasks/com/clouway/store/Store.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../7.TestingTasks/out/test/7.TestingTasks/com/clouway/store/StoreTest.class" afterPath="$PROJECT_DIR$/../7.TestingTasks/out/test/7.TestingTasks/com/clouway/store/StoreTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/clouway/service/Service.java" afterPath="$PROJECT_DIR$/src/com/clouway/service/Service.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/com/clouway/service/TestService.java" afterPath="$PROJECT_DIR$/test/com/clouway/service/TestService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/clouway/service/Validator.java" afterPath="$PROJECT_DIR$/src/com/clouway/service/Validator.java" />
     </list>
     <ignored path="8.TestingWithMocks.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -141,7 +70,7 @@
       <file leaf-file-name="TestService.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/com/clouway/service/TestService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="78" column="50" selection-start="1776" selection-end="1776" vertical-scroll-proportion="0.42675158" vertical-offset="1203" max-vertical-offset="1728">
+            <state line="76" column="4" selection-start="1725" selection-end="1725" vertical-scroll-proportion="0.38853502" vertical-offset="1185" max-vertical-offset="1746">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -661,6 +590,11 @@
       <created>1388128957115</created>
       <updated>1388128957115</updated>
     </task>
+    <task id="LOCAL-00001" summary="repair task 2.2 of the Testing whit mocks after inspection&#10;">
+      <created>1389095556597</created>
+      <updated>1389095556597</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -704,6 +638,8 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
+    <MESSAGE value="repair task 2.2 of the Testing whit mocks after inspection&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="repair task 2.2 of the Testing whit mocks after inspection&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -975,7 +911,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/com/clouway/service/TestService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="50" selection-start="1776" selection-end="1776" vertical-scroll-proportion="0.42675158" vertical-offset="1203" max-vertical-offset="1728">
+        <state line="76" column="4" selection-start="1725" selection-end="1725" vertical-scroll-proportion="0.38853502" vertical-offset="1185" max-vertical-offset="1746">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

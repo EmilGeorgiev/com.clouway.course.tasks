@@ -33,59 +33,59 @@ public class TestService {
 
   @Test
   public void saveCorrectAgeInDatabase() throws Exception {
-    final String age = "25";
+    final Person person = new Person("Emil", 25);
 
     context.checking(new Expectations() {
       {
-        oneOf(validator).validatesTheYearsByAdding(age);
-        oneOf(database).save(age);
+        oneOf(validator).validatesTheYearsByAdding(25);
+        oneOf(database).save(person);
       }
     });
 
-    service.saveAge(age);
+    service.savePersonInDataBase(person);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void saveOldPeopleInTheDatebase() throws Exception {
-    final String age = "150";
+    final Person person = new Person("Ivan", 150);
     context.checking(new Expectations() {
       {
-        oneOf(validator).validatesTheYearsByAdding(age);
+        oneOf(validator).validatesTheYearsByAdding(150);
         will(throwException(new IllegalArgumentException()));
       }
     });
 
-    service.saveAge(age);
+    service.savePersonInDataBase(person);
   }
 
   @Test
-  public void getAgeOnDatabase() throws Exception {
-    final String age = "25";
+  public void getYearsOfAnAdultPersonFromTheDatabase() throws Exception {
+    final Person person = new Person("Emil", 25);
     context.checking(new Expectations() {
       {
-        oneOf(validator).validatesTheYearsByAdding(age);
-        oneOf(database).save(age);
-        oneOf(validator).validatesTheYearsByGetting(age);
-        oneOf(database).receive(age);
+        oneOf(validator).validatesTheYearsByAdding(25);
+        oneOf(database).save(person);
+        oneOf(validator).validatesTheYearsByGetting(25);
+        oneOf(database).receive(25);
         will(returnValue(25));
       }
     });
 
-    service.saveAge(age);
+    service.savePersonInDataBase(person);
 
-    assertThat(service.getAge(age), is(25));
+    assertThat(service.getYearsOfPersonFromDatabase(person), is(25));
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void getUnderAgeFromDatabase() throws Exception {
-    final String age = "16";
+  public void getUnderagePersonFromDatabase() throws Exception {
+    final Person person = new  Person("Petar", 16);
     context.checking(new Expectations() {
       {
-        oneOf(validator).validatesTheYearsByGetting(age);
+        oneOf(validator).validatesTheYearsByGetting(16);
         will(throwException(new IllegalArgumentException()));
       }
     });
 
-    service.getAge(age);
+    service.getYearsOfPersonFromDatabase(person);
   }
 }

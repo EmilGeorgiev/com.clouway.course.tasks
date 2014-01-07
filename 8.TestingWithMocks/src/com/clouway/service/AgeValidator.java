@@ -19,7 +19,7 @@ public class AgeValidator implements Validator {
    * @param age year to check.
    */
   @Override
-  public void validatesTheYearsByAdding(String age) {
+  public void validatesTheYearsByAdding(int age) {
     if (!isValidAge(age, minAge)) {
       throw new IllegalArgumentException("Years should be " + minAge + " to " + maxAge + " !");
     }
@@ -30,7 +30,7 @@ public class AgeValidator implements Validator {
    * @param age that will take years.
    */
   @Override
-  public void validatesTheYearsByGetting(String age) {
+  public void validatesTheYearsByGetting(int age) {
     if (!isValidAge(age, lawfulAge)) {
       throw new IllegalArgumentException("Years may be from " + lawfulAge + " to " + maxAge + ".");
     }
@@ -42,9 +42,8 @@ public class AgeValidator implements Validator {
    * @param minimumPossibleValue minimum allowable value of the years.
    * @return true if years is valid.
    */
-  private boolean isValidAge(String age, int minimumPossibleValue) {
-    int currentAge = Integer.parseInt(age);
-    if (currentAge >= minimumPossibleValue && currentAge <= maxAge) {
+  private boolean isValidAge(int age, int minimumPossibleValue) {
+    if (age >= minimumPossibleValue && age <= maxAge) {
       return true;
     }
     return false;

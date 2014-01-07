@@ -8,20 +8,22 @@ public class Main {
     AgeValidator validator = new AgeValidator(10, 100, 18);
     Database database = new Database() {
       @Override
-      public void save(String age) {
+      public void save(Person person) {
 
       }
 
       @Override
-      public int receive(String age) {
-        int result = Integer.parseInt(age);
-        return result;
+      public int receive(int age) {
+        return age;
       }
     };
+    Person person = new Person("Emil", 15);
+    Person person2 = new Person("Petyr", 5);
+
     Service service = new Service(validator, database);
-    service.saveAge("15");
-    service.saveAge("5");
-    service.getAge("15");
+    service.savePersonInDataBase(person);
+    service.savePersonInDataBase(person2);
+    service.getYearsOfPersonFromDatabase(person);
 
   }
 }

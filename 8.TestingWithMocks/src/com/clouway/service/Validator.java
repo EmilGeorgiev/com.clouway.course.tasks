@@ -5,7 +5,7 @@ package com.clouway.service;
  */
 public interface Validator {
 
-  void validatesTheYearsByAdding(String age);
+  void validatesTheYearsByAdding(int age);
 
-  void validatesTheYearsByGetting(String age);
+  void validatesTheYearsByGetting(int age);
 }

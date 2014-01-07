@@ -14,20 +14,20 @@ public class Service {
 
   /**
    * Save the years in the database if they are between 10 and 100
-   * @param age year of the beneficiary
+   * @param person person that will adding.
    */
-  public void saveAge(String age) {
-    validator.validatesTheYearsByAdding(age);
-    connect.save(age);
+  public void savePersonInDataBase(Person person) {
+    validator.validatesTheYearsByAdding(person.getAge());
+    connect.save(person);
   }
 
   /**
    * Take years from the database if they are valid
-   * @param age years it will take from the database if they are valid.
+   * @param person person it will take years from the database if they are valid.
    * @return years of the recipient.
    */
-  public int getAge(String age) {
-    validator.validatesTheYearsByGetting(age);
-    return connect.receive(age);
+  public int getYearsOfPersonFromDatabase(Person person) {
+    validator.validatesTheYearsByGetting(person.getAge());
+    return connect.receive(person.getAge());
   }
 }

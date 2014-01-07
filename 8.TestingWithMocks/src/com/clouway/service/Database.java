@@ -4,7 +4,7 @@ package com.clouway.service;
  * Created by clouway on 12/27/13.
  */
 public interface Database {
-  void save(String age);
+  void save(Person person);
 
-  int receive(String age);
+  int receive(int age);
 }

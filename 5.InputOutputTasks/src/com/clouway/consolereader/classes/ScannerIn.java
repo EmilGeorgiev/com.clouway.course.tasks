@@ -7,42 +7,68 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public abstract class ScannerIn implements Validator {
+public abstract class ScannerIn implements Validator{
 
     private final String BREAK_POINT = ".";
     private final String fileName;
-    private Scanner scann;
-    private String line;
-
+    private static Scanner scann;
 
     public ScannerIn(String fileName) {
         this.fileName = fileName;
-        line = null;
-        scann = null;
+        scann = new Scanner(System.in);
     }
 
+    /**
+     * Read from the console until introduce BREAK_POINT.
+     * @throws IOException
+     */
     public void read()throws IOException{
-        FileWriter file = null;
+        String line;
+        while (!(line = scann.nextLine()).equals(BREAK_POINT)) {
+            if (this.validate(line)) {
+                save(line);
+            }
+        }
+    }
+
+    /**
+     * Closed Scanner.
+     */
+    public void close() {
+        scann.close();
+    }
+
+    /**
+     * Saved reading from the console to a file.
+     * @param message what written to a file.
+     */
+    private void save(String message) {
         BufferedWriter buffWriter = null;
+        FileWriter file = null;
         try {
-            scann = new Scanner(System.in);
             file = new FileWriter(fileName);
             buffWriter = new BufferedWriter(file);
-            while (!(line = scann.nextLine()).equals(BREAK_POINT)) {
-                if (this.validate(line)) {
-                    buffWriter.write(line);
-                }
-            }
-        } finally {
+            buffWriter.write(message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }  finally {
             if (buffWriter != null) {
-               buffWriter.close();
+                try {
+                    buffWriter.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             } else {
                 System.out.println("The writer isn't open.");
             }
             if (file != null) {
-                file.close();
+                try {
+                    file.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             } else {
-                System.out.println("The scann isn't open.");
+                System.out.println("The file isn't open.");
             }
         }
     }

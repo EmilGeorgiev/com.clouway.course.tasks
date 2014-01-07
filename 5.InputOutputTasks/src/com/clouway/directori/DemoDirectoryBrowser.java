@@ -1,5 +1,7 @@
 package com.clouway.directori;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: clouway
@@ -10,6 +12,9 @@ package com.clouway.directori;
 public class DemoDirectoryBrowser {
     public static void main(String[] args) {
         DirectoryBrowser dir = new DirectoryBrowser();
-        dir.listContent("/home/clouway/IdeaProjects/workSpace/5.InputOutputTasks");
+        List<FileObject> listOfOBjects = dir.listContent("/home/clouway/IdeaProjects/workSpace/5.InputOutputTasks");
+        for (FileObject object : listOfOBjects) {
+            object.printInfo();
+        }
     }
 }

@@ -9,6 +9,9 @@ package com.clouway.sumator;
  */
 public class Demo {
     public static void main(String[] args) {
+      Sumator sum = new Sumator();
+      int a = sum.sum("a", "2");
+      System.out.println(a);
 
     }
 }

@@ -15,19 +15,19 @@ public class SumatorTest {
   }
 
   @Test
-  public void testReturnsCorrectResultWithNormalData() throws Exception {
+  public void passTheCorectData() throws Exception {
     int actual = sumator.sum("3", "5");
 
     assertThat(actual, is(8));
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void suppliedIncorrectData() {
+  public void passAnArgumentThatNotContainsOnlyNumbers() {
     sumator.sum("abc", "5");
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void submissionNullAgrument() throws Exception {
+  public void passAnArgumentThatIsNUll() throws Exception {
       sumator.sum("5", null);
   }
 }

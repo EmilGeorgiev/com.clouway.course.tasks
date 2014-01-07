@@ -7,88 +7,85 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+
 
 /**
  * Created by clouway on 12/27/13.
  */
 public class TestService {
 
-  private String recipient;
   private Service service;
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
 
   @Mock
-  Validator mockValidator;
+  Validator validator;
   @Mock
-  ConnectionDatabase mockConnectionDatabase;
+  Database database;
 
   @Before
   public void setUp() {
-    recipient = "11223456";
-    service = new Service(mockValidator, mockConnectionDatabase);
+    service = new Service(validator, database);
   }
 
   @Test
-  public void testSaveCorrectAgeInDatabase() throws Exception {
+  public void saveCorrectAgeInDatabase() throws Exception {
     final String age = "25";
 
     context.checking(new Expectations() {
       {
-        oneOf(mockValidator).validateAge(age);
-        will(returnValue(true));
-        oneOf(mockConnectionDatabase).save(recipient, age);
+        oneOf(validator).validatesTheYearsByAdding(age);
+        oneOf(database).save(age);
       }
     });
 
-    service.saveAge(recipient, age);
+    service.saveAge(age);
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testSaveInvalidAgeInDatabase() throws Exception {
+  public void saveOldPeopleInTheDatebase() throws Exception {
     final String age = "150";
     context.checking(new Expectations() {
       {
-        oneOf(mockValidator).validateAge(age);
-        will(returnValue(false));
+        oneOf(validator).validatesTheYearsByAdding(age);
+        will(throwException(new IllegalArgumentException()));
       }
     });
 
-    service.saveAge(recipient, age);
+    service.saveAge(age);
   }
 
   @Test
-  public void testGetAgeOnDatabase() throws Exception {
+  public void getAgeOnDatabase() throws Exception {
     final String age = "25";
     context.checking(new Expectations() {
       {
-        oneOf(mockValidator).validateAge(age);
-        will(returnValue(true));
-        oneOf(mockConnectionDatabase).save(recipient, age);
-        oneOf(mockValidator).validateGetAge(age);
-        will(returnValue(true));
-        oneOf(mockConnectionDatabase).receive(recipient, age);
+        oneOf(validator).validatesTheYearsByAdding(age);
+        oneOf(database).save(age);
+        oneOf(validator).validatesTheYearsByGetting(age);
+        oneOf(database).receive(age);
         will(returnValue(25));
       }
     });
 
-    service.saveAge(recipient, age);
-    service.getAge(recipient, age);
+    service.saveAge(age);
+
+    assertThat(service.getAge(age), is(25));
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testGetInvalidAgeOnDatabase() throws Exception {
+  public void getUnderAgeFromDatabase() throws Exception {
     final String age = "16";
     context.checking(new Expectations() {
       {
-        oneOf(mockValidator).validateGetAge(age);
-        will(returnValue(false));
+        oneOf(validator).validatesTheYearsByGetting(age);
+        will(throwException(new IllegalArgumentException()));
       }
     });
 
-    service.getAge(recipient, age);
+    service.getAge(age);
   }
 }

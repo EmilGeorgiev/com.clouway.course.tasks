@@ -1,18 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4b4a70bc-f002-4352-81f9-84c99d85a6f7" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/junit/junit-4.11.jar" afterPath="" />
+    <list default="true" id="4b4a70bc-f002-4352-81f9-84c99d85a6f7" name="Default" comment="repair task 2.2 of the Testing whit mocks after inspection&#10;">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/clouway/service/AgeValidator.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/clouway/service/Main.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../1.IntroductionJavaTasks/.idea/.name" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../1.IntroductionJavaTasks/.idea/compiler.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../1.IntroductionJavaTasks/.idea/copyright/profiles_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../1.IntroductionJavaTasks/.idea/encodings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../1.IntroductionJavaTasks/.idea/misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../1.IntroductionJavaTasks/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../1.IntroductionJavaTasks/.idea/scopes/scope_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../1.IntroductionJavaTasks/.idea/uiDesigner.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../1.IntroductionJavaTasks/.idea/vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../1.IntroductionJavaTasks/.idea/workspace.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../2.ObjectInJavaTasks/.idea/.name" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../2.ObjectInJavaTasks/.idea/compiler.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../2.ObjectInJavaTasks/.idea/copyright/profiles_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../2.ObjectInJavaTasks/.idea/encodings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../2.ObjectInJavaTasks/.idea/misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../2.ObjectInJavaTasks/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../2.ObjectInJavaTasks/.idea/scopes/scope_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../2.ObjectInJavaTasks/.idea/uiDesigner.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../2.ObjectInJavaTasks/.idea/vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../2.ObjectInJavaTasks/.idea/workspace.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/.name" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/codeStyleSettings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/compiler.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/copyright/profiles_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/dictionaries/clouway.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/encodings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/inspectionProfiles/Project_Default.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/inspectionProfiles/profiles_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/scopes/scope_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/uiDesigner.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/workspace.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../5.InputOutputTasks/.idea/workspace.xml.orig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../6. Collections/.idea/.name" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../6. Collections/.idea/compiler.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../6. Collections/.idea/copyright/profiles_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../6. Collections/.idea/encodings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../6. Collections/.idea/misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../6. Collections/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../6. Collections/.idea/scopes/scope_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../6. Collections/.idea/uiDesigner.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../6. Collections/.idea/vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../6. Collections/.idea/workspace.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../7.TestingTasks/.idea/.name" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../7.TestingTasks/.idea/compiler.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../7.TestingTasks/.idea/copyright/profiles_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../7.TestingTasks/.idea/encodings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../7.TestingTasks/.idea/misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../7.TestingTasks/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../7.TestingTasks/.idea/scopes/scope_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../7.TestingTasks/.idea/uiDesigner.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../7.TestingTasks/.idea/vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/clouway/service/ConnectionDatabase.java" afterPath="$PROJECT_DIR$/src/com/clouway/service/Database.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../7.TestingTasks/out/production/7.TestingTasks/com/clouway/store/Product.class" afterPath="$PROJECT_DIR$/../7.TestingTasks/out/production/7.TestingTasks/com/clouway/store/Product.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../7.TestingTasks/out/production/7.TestingTasks/com/clouway/store/Store.class" afterPath="$PROJECT_DIR$/../7.TestingTasks/out/production/7.TestingTasks/com/clouway/store/Store.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../7.TestingTasks/out/test/7.TestingTasks/com/clouway/store/StoreTest.class" afterPath="$PROJECT_DIR$/../7.TestingTasks/out/test/7.TestingTasks/com/clouway/store/StoreTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/8.TestingWithMocks.iml" afterPath="$PROJECT_DIR$/8.TestingWithMocks.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/clouway/service/ConnectionDatabase.java" afterPath="$PROJECT_DIR$/src/com/clouway/service/ConnectionDatabase.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/clouway/service/Service.java" afterPath="$PROJECT_DIR$/src/com/clouway/service/Service.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/com/clouway/service/TestService.java" afterPath="$PROJECT_DIR$/test/com/clouway/service/TestService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../7.TestingTasks/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../7.TestingTasks/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/clouway/service/Validator.java" afterPath="$PROJECT_DIR$/src/com/clouway/service/Validator.java" />
     </list>
     <ignored path="8.TestingWithMocks.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -79,7 +141,7 @@
       <file leaf-file-name="TestService.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/com/clouway/service/TestService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="78" column="35" selection-start="1956" selection-end="1956" vertical-scroll-proportion="2.2323651" vertical-offset="328" max-vertical-offset="1782">
+            <state line="78" column="50" selection-start="1776" selection-end="1776" vertical-scroll-proportion="0.42675158" vertical-offset="1203" max-vertical-offset="1728">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -87,19 +149,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Validator.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/clouway/service/Validator.java">
+      <file leaf-file-name="Database.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/clouway/service/Database.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="25" selection-start="163" selection-end="163" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="288">
+            <state line="8" column="14" selection-start="141" selection-end="141" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="288">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConnectionDatabase.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/clouway/service/ConnectionDatabase.java">
+      <file leaf-file-name="AgeValidator.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/clouway/service/AgeValidator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="37" selection-start="110" selection-end="110" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="288">
+            <state line="19" column="0" selection-start="462" selection-end="462" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="792">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/clouway/service/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="0" selection-start="518" selection-end="518" vertical-scroll-proportion="0.0" vertical-offset="123" max-vertical-offset="594">
               <folding />
             </state>
           </provider>
@@ -108,7 +179,7 @@
       <file leaf-file-name="Service.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/clouway/service/Service.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="36" selection-start="823" selection-end="823" vertical-scroll-proportion="0.0" vertical-offset="346" max-vertical-offset="828">
+            <state line="19" column="0" selection-start="446" selection-end="446" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="702">
               <folding />
             </state>
           </provider>
@@ -134,18 +205,21 @@
         <option value="$PROJECT_DIR$/test/com/clouway/systemsms/MessageTest.java" />
         <option value="$PROJECT_DIR$/src/com/clouway/systemsms/SenderSystem.java" />
         <option value="$PROJECT_DIR$/src/com/clouway/systemsms/ValidatorSystem.java" />
-        <option value="$PROJECT_DIR$/src/com/clouway/service/Validator.java" />
         <option value="$PROJECT_DIR$/src/com/clouway/service/ConnectionDatabase.java" />
+        <option value="$PROJECT_DIR$/src/com/clouway/service/Database.java" />
+        <option value="$PROJECT_DIR$/src/com/clouway/service/Validator.java" />
         <option value="$PROJECT_DIR$/src/com/clouway/service/Service.java" />
+        <option value="$PROJECT_DIR$/src/com/clouway/service/AgeValidator.java" />
+        <option value="$PROJECT_DIR$/src/com/clouway/service/Main.java" />
         <option value="$PROJECT_DIR$/test/com/clouway/service/TestService.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="64" />
-    <option name="y" value="-4" />
-    <option name="width" value="1537" />
-    <option name="height" value="905" />
+    <option name="x" value="65" />
+    <option name="y" value="24" />
+    <option name="width" value="1535" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -173,8 +247,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -275,6 +347,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -294,6 +368,8 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/junit" />
     <property name="recentsLimit" value="5" />
     <property name="dynamic.classpath" value="false" />
+    <property name="OverrideImplement.combined" value="true" />
+    <property name="OverrideImplement.overriding.sorted" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -308,101 +384,7 @@
       <recent name="$PROJECT_DIR$/lib/jmock" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestService.testGetAgeOnDatabase">
-    <configuration default="false" name="TestService.testSaveCorrectAgeInDatabase" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="8.TestingWithMocks" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.clouway.service" />
-      <option name="MAIN_CLASS_NAME" value="com.clouway.service.TestService" />
-      <option name="METHOD_NAME" value="testSaveCorrectAgeInDatabase" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="TestService.testSaveInvalidAgeInDatabase" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="8.TestingWithMocks" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.clouway.service" />
-      <option name="MAIN_CLASS_NAME" value="com.clouway.service.TestService" />
-      <option name="METHOD_NAME" value="testSaveInvalidAgeInDatabase" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="TestService.testGetAgeOnDatabase" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="8.TestingWithMocks" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.clouway.service" />
-      <option name="MAIN_CLASS_NAME" value="com.clouway.service.TestService" />
-      <option name="METHOD_NAME" value="testGetAgeOnDatabase" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="" />
-        <option name="TRANSPORT" value="0" />
-        <option name="LOCAL" value="true" />
-      </RunnerSettings>
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Debug" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="TestService.testGetInvalidAgeOnDatabase" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="8.TestingWithMocks" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.clouway.service" />
-      <option name="MAIN_CLASS_NAME" value="com.clouway.service.TestService" />
-      <option name="METHOD_NAME" value="testGetInvalidAgeOnDatabase" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="JUnit.TestService">
     <configuration default="false" name="TestService" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="8.TestingWithMocks" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -411,6 +393,88 @@
       <option name="MAIN_CLASS_NAME" value="com.clouway.service.TestService" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="TestService.getAgeOnDatabase" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="8.TestingWithMocks" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.clouway.service" />
+      <option name="MAIN_CLASS_NAME" value="com.clouway.service.TestService" />
+      <option name="METHOD_NAME" value="getAgeOnDatabase" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="TestService.getUnderAgeFromDatabase" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="8.TestingWithMocks" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.clouway.service" />
+      <option name="MAIN_CLASS_NAME" value="com.clouway.service.TestService" />
+      <option name="METHOD_NAME" value="getUnderAgeFromDatabase" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.clouway.service.Main" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="8.TestingWithMocks" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="TestService.saveOldPeopleInTheDatebase" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="8.TestingWithMocks" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.clouway.service" />
+      <option name="MAIN_CLASS_NAME" value="com.clouway.service.TestService" />
+      <option name="METHOD_NAME" value="saveOldPeopleInTheDatebase" />
+      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -459,6 +523,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -484,19 +561,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -553,19 +617,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.TestService.testSaveCorrectAgeInDatabase" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.TestService.testSaveInvalidAgeInDatabase" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.TestService.testGetAgeOnDatabase" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.TestService.testGetInvalidAgeOnDatabase" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.TestService" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.TestService" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.TestService.getAgeOnDatabase" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.TestService.getUnderAgeFromDatabase" />
+      <item index="3" class="java.lang.String" itemvalue="Application.Main" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.TestService.saveOldPeopleInTheDatebase" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.TestService.testGetAgeOnDatabase" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.TestService" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.TestService.testGetInvalidAgeOnDatabase" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.TestService.testSaveInvalidAgeInDatabase" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.TestService.testSaveCorrectAgeInDatabase" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.TestService" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.TestService.saveOldPeopleInTheDatebase" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.TestService.getUnderAgeFromDatabase" />
+        <item index="3" class="java.lang.String" itemvalue="Application.Main" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.TestService.getAgeOnDatabase" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -600,27 +664,27 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="-4" width="1537" height="905" extended-state="6" />
+    <frame x="65" y="24" width="1535" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13589744" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27307692" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32948717" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32948717" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24983211" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34358975" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3576923" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -649,6 +713,36 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/test/com/clouway/service/TestService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="78" column="35" selection-start="1956" selection-end="1956" vertical-scroll-proportion="0.0" vertical-offset="472" max-vertical-offset="1782">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/service/Validator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="25" selection-start="163" selection-end="163" vertical-scroll-proportion="0.0" vertical-offset="144" max-vertical-offset="288">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/service/Database.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="37" selection-start="110" selection-end="110" vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="288">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/service/Service.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="36" selection-start="823" selection-end="823" vertical-scroll-proportion="0.0" vertical-offset="346" max-vertical-offset="828">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test/com/clouway/service/TestService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="66" column="0" selection-start="1973" selection-end="1973" vertical-scroll-proportion="0.0" vertical-offset="859" max-vertical-offset="1656">
@@ -720,16 +814,12 @@
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/jmock/jmock-2.6.0.jar!/org/jmock/internal/matcher/MockObjectMatcher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="289" selection-end="289" vertical-scroll-proportion="0.0" vertical-offset="25" max-vertical-offset="450">
-          <folding />
-        </state>
+        <state line="10" column="0" selection-start="289" selection-end="289" vertical-scroll-proportion="0.0" vertical-offset="25" max-vertical-offset="450" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/jmock/jmock-2.6.0.jar!/org/jmock/internal/ObjectMethodExpectationBouncer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="215" selection-end="215" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="702">
-          <folding />
-        </state>
+        <state line="7" column="0" selection-start="215" selection-end="215" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="702" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/jmock/jmock-2.6.0.jar!/org/jmock/Mockery.java">
@@ -741,112 +831,77 @@
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/jmock/jmock-2.6.0.jar!/org/jmock/internal/InvocationDiverter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="688" selection-end="688" vertical-scroll-proportion="0.0" vertical-offset="242" max-vertical-offset="630">
-          <folding />
-        </state>
+        <state line="23" column="0" selection-start="688" selection-end="688" vertical-scroll-proportion="0.0" vertical-offset="242" max-vertical-offset="630" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/jmock/jmock-2.6.0.jar!/org/jmock/internal/SingleThreadedPolicy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="651" selection-end="651" vertical-scroll-proportion="0.0" vertical-offset="115" max-vertical-offset="648">
-          <folding />
-        </state>
+        <state line="20" column="0" selection-start="651" selection-end="651" vertical-scroll-proportion="0.0" vertical-offset="115" max-vertical-offset="648" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/jmock/hamcrest-core-1.3-sources.jar!/org/hamcrest/TypeSafeMatcher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="0" selection-start="1009" selection-end="1009" vertical-scroll-proportion="0.0" vertical-offset="429" max-vertical-offset="1638">
-          <folding />
-        </state>
+        <state line="31" column="0" selection-start="1009" selection-end="1009" vertical-scroll-proportion="0.0" vertical-offset="429" max-vertical-offset="1638" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/jmock/jmock-2.6.0.jar!/org/jmock/internal/matcher/MethodMatcher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="368" selection-end="368" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="594">
-          <folding />
-        </state>
+        <state line="13" column="0" selection-start="368" selection-end="368" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="594" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/jmock/hamcrest-core-1.3-sources.jar!/org/hamcrest/internal/ReflectiveTypeFinder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="0" selection-start="2368" selection-end="2368" vertical-scroll-proportion="0.0" vertical-offset="239" max-vertical-offset="918">
-          <folding />
-        </state>
+        <state line="44" column="0" selection-start="2368" selection-end="2368" vertical-scroll-proportion="0.0" vertical-offset="239" max-vertical-offset="918" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/jmock/hamcrest-core-1.3-sources.jar!/org/hamcrest/TypeSafeDiagnosingMatcher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="0" selection-start="1769" selection-end="1769" vertical-scroll-proportion="0.0" vertical-offset="761" max-vertical-offset="1350">
-          <folding />
-        </state>
+        <state line="49" column="0" selection-start="1769" selection-end="1769" vertical-scroll-proportion="0.0" vertical-offset="761" max-vertical-offset="1350" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/jmock/hamcrest-core-1.3-sources.jar!/org/hamcrest/core/IsEqual.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="0" selection-start="504" selection-end="504" vertical-scroll-proportion="0.0" vertical-offset="141" max-vertical-offset="1692">
-          <folding />
-        </state>
+        <state line="21" column="0" selection-start="504" selection-end="504" vertical-scroll-proportion="0.0" vertical-offset="141" max-vertical-offset="1692" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/jmock/jmock-2.6.0.jar!/org/jmock/internal/matcher/AllParametersMatcher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="579" selection-end="579" vertical-scroll-proportion="0.0" vertical-offset="33" max-vertical-offset="1386">
-          <folding />
-        </state>
+        <state line="17" column="0" selection-start="579" selection-end="579" vertical-scroll-proportion="0.0" vertical-offset="33" max-vertical-offset="1386" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/jmock/jmock-2.6.0.jar!/org/jmock/api/Invocation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="0" selection-start="2607" selection-end="2607" vertical-scroll-proportion="0.0" vertical-offset="1167" max-vertical-offset="2664">
-          <folding>
-            <element signature="e#2641#2642#0" expanded="false" />
-          </folding>
-        </state>
+        <state line="83" column="0" selection-start="2607" selection-end="2607" vertical-scroll-proportion="0.0" vertical-offset="1167" max-vertical-offset="2664" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/jmock/jmock-2.6.0.jar!/org/jmock/internal/ReturnDefaultValueAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="0" selection-start="2392" selection-end="2392" vertical-scroll-proportion="0.0" vertical-offset="933" max-vertical-offset="2196">
-          <folding />
-        </state>
+        <state line="70" column="0" selection-start="2392" selection-end="2392" vertical-scroll-proportion="0.0" vertical-offset="933" max-vertical-offset="2196" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/jmock/jmock-2.6.0.jar!/org/jmock/internal/InvocationToExpectationTranslator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="631" selection-end="631" vertical-scroll-proportion="0.0" vertical-offset="80" max-vertical-offset="468">
-          <folding />
-        </state>
+        <state line="19" column="0" selection-start="631" selection-end="631" vertical-scroll-proportion="0.0" vertical-offset="80" max-vertical-offset="468" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/jmock/jmock-2.6.0.jar!/org/jmock/internal/FakeObjectMethods.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="0" selection-start="1149" selection-end="1149" vertical-scroll-proportion="0.2929782" vertical-offset="473" max-vertical-offset="1044">
-          <folding />
-        </state>
+        <state line="37" column="0" selection-start="1149" selection-end="1149" vertical-scroll-proportion="0.2929782" vertical-offset="473" max-vertical-offset="1044" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/jmock/jmock-2.6.0.jar!/org/jmock/lib/JavaReflectionImposteriser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="0" selection-start="1210" selection-end="1210" vertical-scroll-proportion="0.29452056" vertical-offset="321" max-vertical-offset="810">
-          <folding>
-            <element signature="e#1088#1312#0" expanded="false" />
-            <element signature="e#1301#1302#0" expanded="false" />
-          </folding>
-        </state>
+        <state line="32" column="0" selection-start="1210" selection-end="1210" vertical-scroll-proportion="0.29452056" vertical-offset="321" max-vertical-offset="810" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/jmock/jmock-2.6.0.jar!/org/jmock/lib/action/ReturnValueAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="374" selection-end="374" vertical-scroll-proportion="0.0" vertical-offset="159" max-vertical-offset="594">
-          <folding />
-        </state>
+        <state line="19" column="0" selection-start="374" selection-end="374" vertical-scroll-proportion="0.0" vertical-offset="159" max-vertical-offset="594" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/jmock/jmock-2.6.0.jar!/org/jmock/internal/Cardinality.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="583" selection-end="583" vertical-scroll-proportion="0.0" vertical-offset="250" max-vertical-offset="1512">
-          <folding />
-        </state>
+        <state line="23" column="0" selection-start="583" selection-end="583" vertical-scroll-proportion="0.0" vertical-offset="250" max-vertical-offset="1512" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/jmock/jmock-2.6.0.jar!/org/jmock/Expectations.java">
@@ -860,74 +915,67 @@
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/jmock/hamcrest-core-1.3-sources.jar!/org/hamcrest/BaseMatcher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="141" selection-end="141" vertical-scroll-proportion="0.29452056" vertical-offset="15" max-vertical-offset="630">
-          <folding />
-        </state>
+        <state line="9" column="0" selection-start="141" selection-end="141" vertical-scroll-proportion="0.29452056" vertical-offset="15" max-vertical-offset="630" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/jmock/hamcrest-core-1.3-sources.jar!/org/hamcrest/core/IsAnything.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="0" selection-start="1225" selection-end="1225" vertical-scroll-proportion="0.63013697" vertical-offset="588" max-vertical-offset="1026">
-          <folding />
-        </state>
+        <state line="52" column="0" selection-start="1225" selection-end="1225" vertical-scroll-proportion="0.63013697" vertical-offset="588" max-vertical-offset="1026" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/jmock/jmock-2.6.0.jar!/org/jmock/lib/action/VoidAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="216" selection-end="216" vertical-scroll-proportion="0.3127854" vertical-offset="7" max-vertical-offset="450">
-          <folding />
-        </state>
+        <state line="11" column="0" selection-start="216" selection-end="216" vertical-scroll-proportion="0.3127854" vertical-offset="7" max-vertical-offset="450" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/jmock/jmock-2.6.0.jar!/org/jmock/internal/InvocationExpectation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="0" selection-start="502" selection-end="502" vertical-scroll-proportion="0.3127854" vertical-offset="43" max-vertical-offset="3258">
-          <folding>
-            <element signature="e#1122#1142#0" expanded="true" />
-            <element signature="e#1202#1214#0" expanded="true" />
-            <element signature="e#1315#1316#0" expanded="true" />
-            <element signature="e#1361#1362#0" expanded="true" />
-            <element signature="e#1421#1422#0" expanded="true" />
-            <element signature="e#1462#1463#0" expanded="true" />
-            <element signature="e#1847#1848#0" expanded="true" />
-            <element signature="e#1896#1897#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="21" column="0" selection-start="502" selection-end="502" vertical-scroll-proportion="0.3127854" vertical-offset="43" max-vertical-offset="3258" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/jmock/jmock-2.6.0.jar!/org/jmock/internal/InvocationExpectationBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="717" selection-end="717" vertical-scroll-proportion="0.3325" vertical-offset="11" max-vertical-offset="2322">
-          <folding>
-            <element signature="e#968#980#0" expanded="false" />
-          </folding>
+        <state line="23" column="0" selection-start="717" selection-end="717" vertical-scroll-proportion="0.3325" vertical-offset="11" max-vertical-offset="2322" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/service/Validator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="17" selection-start="90" selection-end="90" vertical-scroll-proportion="0.1863354" vertical-offset="0" max-vertical-offset="483">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/clouway/service/Service.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="36" selection-start="823" selection-end="823" vertical-scroll-proportion="0.0" vertical-offset="346" max-vertical-offset="828">
+        <state line="19" column="0" selection-start="446" selection-end="446" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="702">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/clouway/service/Validator.java">
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/service/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="25" selection-start="163" selection-end="163" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="288">
+        <state line="22" column="0" selection-start="518" selection-end="518" vertical-scroll-proportion="0.0" vertical-offset="129" max-vertical-offset="594">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/clouway/service/ConnectionDatabase.java">
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/service/AgeValidator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="37" selection-start="110" selection-end="110" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="288">
+        <state line="19" column="0" selection-start="462" selection-end="462" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="792">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clouway/service/Database.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="14" selection-start="141" selection-end="141" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="288">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/com/clouway/service/TestService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="35" selection-start="1956" selection-end="1956" vertical-scroll-proportion="2.2323651" vertical-offset="328" max-vertical-offset="1782">
+        <state line="78" column="50" selection-start="1776" selection-end="1776" vertical-scroll-proportion="0.42675158" vertical-offset="1203" max-vertical-offset="1728">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

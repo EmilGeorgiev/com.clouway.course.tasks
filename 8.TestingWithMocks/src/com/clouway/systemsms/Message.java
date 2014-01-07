@@ -7,7 +7,6 @@ public class Message {
   private final String recipient;
   private final String title;
   private final String text;
-  private final String SEND_MESSAGE = "Message is send";
 
   public Message(String recipient, String title, String text) {
 
@@ -16,13 +15,15 @@ public class Message {
     this.text = text;
   }
 
-  public String send(ValidatorSystem system) {
-    if (!system.validateText(this.text)) {
-      throw new InvalidTextMessageException("Text of the message must contain between 1 and 120 characters!");
-    }
-    if (!system.validateMessage(this.title, this.recipient)) {
-      throw new MissingArgumentException("Title and/or recipient can not be \"null\"!");
-    }
-    return SEND_MESSAGE;
+  public String getText() {
+    return text;
+  }
+
+  public String getTitle() {
+    return title;
+  }
+
+  public String getRecipient() {
+    return recipient;
   }
 }

@@ -14,6 +14,10 @@ public class AgeValidator implements Validator {
     this.lawfulAge = lawfulAge;
   }
 
+  /**
+   * Verify that the years can be added to the database if can't throw exception.
+   * @param age year to check.
+   */
   @Override
   public void validatesTheYearsByAdding(String age) {
     if (!isValidAge(age, minAge)) {
@@ -21,6 +25,10 @@ public class AgeValidator implements Validator {
     }
   }
 
+  /**
+   * Verify that the years cen be getting from the database, if can't throw exception.
+   * @param age that will take years.
+   */
   @Override
   public void validatesTheYearsByGetting(String age) {
     if (!isValidAge(age, lawfulAge)) {
@@ -28,6 +36,12 @@ public class AgeValidator implements Validator {
     }
   }
 
+  /**
+   * Verify that the years have limits, if not throw exception.
+   * @param age years to check
+   * @param minimumPossibleValue minimum allowable value of the years.
+   * @return true if years is valid.
+   */
   private boolean isValidAge(String age, int minimumPossibleValue) {
     int currentAge = Integer.parseInt(age);
     if (currentAge >= minimumPossibleValue && currentAge <= maxAge) {

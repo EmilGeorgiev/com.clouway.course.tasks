@@ -30,4 +30,19 @@ public class Product implements Comparable<Product>{
   public int compareTo(Product o) {
     return this.price.compareTo(o.price);
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    Product product = (Product) o;
+
+    if (maxValue != product.maxValue) return false;
+    if (price != null ? !price.equals(product.price) : product.price != null) return false;
+
+    return true;
+  }
+
+
 }

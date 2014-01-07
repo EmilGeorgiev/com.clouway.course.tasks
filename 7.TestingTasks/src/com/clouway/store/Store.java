@@ -40,7 +40,7 @@ public class Store {
    */
   public int sell(Product product, int value) {
     if (value > product.getTempValue()) {
-      throw new NotSoAvailableException("Can be sold total: " + product.getTempValue());
+      throw new NotEnoughProductsException("Can be sold total: " + product.getTempValue());
     }
     return product.getTempValue() - value;
   }

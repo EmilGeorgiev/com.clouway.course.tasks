@@ -22,41 +22,30 @@ public class StoreTest {
   public void setUp() {
     store = new Store();
     apple = new Product(20, 2.4);
-  }
-
-  @Test
-  public void testAddProducts() throws Exception {
-    int actual = addApple();
-    int expected = 15;
-
-    assertThat(expected, is(actual));
+    store.add(apple, 15);
   }
 
   @Test(expected = FullStoreException.class)
-  public void testOverfullStore() {
+  public void addMoreProductsThanCanFitStore() {
     store.add(apple, 45);
   }
 
   @Test
-  public void testSellProducts() throws Exception {
-    addApple();
+  public void sellProducts() throws Exception {
     int actual = store.sell(apple, 10);
-    int expected = 5;
 
-    assertThat(expected, is(actual));
+    assertThat(actual, is(5));
   }
 
-  @Test(expected = NotSoAvailableException.class)
-  public void testSellMoreProductThanThereAreAvailable() throws Exception {
-    addApple();
+  @Test(expected = NotEnoughProductsException.class)
+  public void sellMoreProductThanThereIsInTheStore() throws Exception {
     store.sell(apple, 20);
   }
 
   @Test
-  public void testSortProductsByPrace() throws Exception {
+  public void sortProductsByPrice() throws Exception {
     Product pear = new Product(30, 1.2);
     Product orange = new Product(35, 3.2);
-    addApple();
     store.add(pear, 5);
     store.add(orange, 23);
 
@@ -64,12 +53,8 @@ public class StoreTest {
     List<Product> expected = new ArrayList<Product>();
     expected.add(pear);
     expected.add(apple);
-    expected.add(orange);
+    expected.add(new Product(35, 3.2));
 
     assertThat(expected, is(actual));
-  }
-
-  private int addApple() {
-    return store.add(apple, 15);
   }
 }

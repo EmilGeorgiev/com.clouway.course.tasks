@@ -5,6 +5,9 @@ public class Array {
     private int[] array;
 
     public Array(int[] array) {
+      if (array == null) {
+        throw new IllegalArgumentException("Array is empty.");
+      }
         this.array = array;
     }
 
@@ -15,9 +18,6 @@ public class Array {
      * @return the smallest number
      */
     public int getMinElement() {
-        if (array == null) {
-            throw new NullPointerException("Array is empty.");
-        }
         int result = array[0];
         for (int i = 1; i < array.length; i++) {
             if (result > array[i]) {
@@ -34,9 +34,6 @@ public class Array {
      * @return sum of all elements
      */
     public int getSum() {
-        if (array == null) {
-            throw new NullPointerException("Array is empty");
-        }
         int sumOfElements = 0;
         for (int i = 0; i < array.length; i++) {
             sumOfElements += array[i];

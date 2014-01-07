@@ -2,8 +2,8 @@ import com.clouway.sumator.Sumator;
 import org.junit.Before;
 import org.junit.Test;
 
-import static junit.framework.Assert.assertEquals;
-//import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 /**
  * Created by clouway on 12/20/13.
  */
@@ -17,13 +17,12 @@ public class SumatorTest {
   @Test
   public void testReturnsCorrectResultWithNormalData() throws Exception {
     int actual = sumator.sum("3", "5");
-    int expected = 8;
 
-    assertEquals(expected, actual);
+    assertThat(actual, is(8));
   }
 
-  @Test(expected = NumberFormatException.class)
-  public void submissionOfInvalidData() {
+  @Test(expected = IllegalArgumentException.class)
+  public void suppliedIncorrectData() {
     sumator.sum("abc", "5");
   }
 

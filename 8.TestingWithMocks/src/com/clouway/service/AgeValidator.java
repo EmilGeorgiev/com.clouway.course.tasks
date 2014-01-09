@@ -5,45 +5,31 @@ package com.clouway.service;
  */
 public class AgeValidator implements Validator {
   private final int maxAge;
-  private final int lawfulAge;
-  private final int minAge;
 
-  public AgeValidator(int minAge, int maxAge, int lawfulAge) {
-    this.minAge = minAge;
+  public AgeValidator(int maxAge) {
     this.maxAge = maxAge;
-    this.lawfulAge = lawfulAge;
   }
 
   /**
    * Verify that the years can be added to the database if can't throw exception.
    * @param age year to check.
+   * @param ageLimit
    */
   @Override
-  public void validatesTheYearsByAdding(int age) {
-    if (!isValidAge(age, minAge)) {
-      throw new IllegalArgumentException("Years should be " + minAge + " to " + maxAge + " !");
-    }
-  }
-
-  /**
-   * Verify that the years cen be getting from the database, if can't throw exception.
-   * @param age that will take years.
-   */
-  @Override
-  public void validatesTheYearsByGetting(int age) {
-    if (!isValidAge(age, lawfulAge)) {
-      throw new IllegalArgumentException("Years may be from " + lawfulAge + " to " + maxAge + ".");
+  public void validateYears(int age, int ageLimit) {
+    if (!isValidAge(age, ageLimit)) {
+      throw new IllegalArgumentException("Years should be " + ageLimit + " to " + maxAge + " !");
     }
   }
 
   /**
    * Verify that the years have limits, if not throw exception.
    * @param age years to check
-   * @param minimumPossibleValue minimum allowable value of the years.
+   * @param ageLimit minimum allowable value of the years.
    * @return true if years is valid.
    */
-  private boolean isValidAge(int age, int minimumPossibleValue) {
-    if (age >= minimumPossibleValue && age <= maxAge) {
+  private boolean isValidAge(int age, int ageLimit) {
+    if (age >= ageLimit && age <= maxAge) {
       return true;
     }
     return false;

@@ -4,22 +4,24 @@ package com.clouway.systemsms;
  * Created by clouway on 1/7/14.
  */
 public class Sender {
-  private SystemSms systemSms;
+  private SmsSystem smsSystem;
   private Validator validator;
-  private final String SEND_MESSAGE = "Message is send";
+  private final String sendMessage;
 
-  public Sender(SystemSms systemSms, Validator validator) {
+  public Sender(SmsSystem smsSystem, Validator validator, String sendMessage) {
 
-    this.systemSms = systemSms;
+    this.smsSystem = smsSystem;
     this.validator = validator;
+    this.sendMessage = sendMessage;
   }
 
   public String sendMessage(Message message) {
-    validator.validateText(message.getText());
-    validator.validateTitle(message.getTitle());
-    validator.validateRecipient(message.getRecipient());
+    validator.validateMessage(message);
+    smsSystem.send(message);
+    return sendMessage;
+  }
 
-    systemSms.send(message);
-    return SEND_MESSAGE;
+  public String getInfoForSend() {
+    return sendMessage;
   }
 }

@@ -20,6 +20,7 @@ public class SenderTest {
   private String title;
   private String text;
   private Sender sender;
+  private String sendMessage;
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
@@ -28,11 +29,12 @@ public class SenderTest {
   Validator validator;
 
   @Mock
-  SystemSms systemSms;
+  SmsSystem smsSystem;
 
   @Before
   public void setUp() {
-    sender = new Sender(systemSms, validator);
+    sendMessage = "Message is send";
+    sender = new Sender(smsSystem, validator, sendMessage);
     recipient = "Emil Georgiev";
     title = "Work";
     text = "24, 25, and 26 will not work";
@@ -43,25 +45,23 @@ public class SenderTest {
     final Message message = new Message(recipient, title, text);
     context.checking(new Expectations() {
       {
-        oneOf(validator).validateText(text);
-        oneOf(validator).validateTitle(title);
-        oneOf(validator).validateRecipient(recipient);
-        oneOf(systemSms).send(message);
+        oneOf(validator).validateMessage(message);
+        oneOf(smsSystem).send(message);
       }
     });
 
-    assertThat(sender.sendMessage(message), is("Message is send"));
+    assertThat(sender.sendMessage(message), is(sender.getInfoForSend()));
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void sendMessageWithIncorrectText() throws Exception {
+  public void sendMessageWithLongText() throws Exception {
     final String text = "111111111111111111111111111111" +
             "111111111111111111111111111111" +
             "111111111111111111111111111111" +
             "1111111111111111111111111111111";
     final Message message = new Message(recipient, title, text);
     context.checking(new Expectations() {{
-      oneOf(validator).validateText(text);
+      oneOf(validator).validateMessage(message);
       will(throwException(new IllegalArgumentException()));
     }});
 
@@ -71,11 +71,10 @@ public class SenderTest {
   @Test(expected = IllegalArgumentException.class)
   public void sendAMessageWhitMissingTitle() throws Exception {
     final String title = null;
-    Message message = new Message(recipient, title, text);
+    final Message message = new Message(recipient, title, text);
     context.checking(new Expectations() {
       {
-        oneOf(validator).validateText(text);
-        oneOf(validator).validateTitle(title);
+        oneOf(validator).validateMessage(message);
         will(throwException(new IllegalArgumentException()));
       }
     });
@@ -86,12 +85,10 @@ public class SenderTest {
   @Test(expected = IllegalArgumentException.class)
   public void sendMessageWhitMissingRecipient() throws Exception {
     final String recipient = null;
-    Message message = new Message(recipient, title, text);
+    final Message message = new Message(recipient, title, text);
     context.checking(new Expectations() {
       {
-        oneOf(validator).validateText(text);
-        oneOf(validator).validateTitle(title);
-        oneOf(validator).validateRecipient(recipient);
+        oneOf(validator).validateMessage(message);
         will(throwException(new IllegalArgumentException()));
       }
     });

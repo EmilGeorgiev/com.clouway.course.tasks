@@ -13,22 +13,14 @@ public class MessageValidator implements Validator {
   }
 
   @Override
-  public void validateText(String text) {
-    if (text.length() > textSize) {
-      throw new IllegalArgumentException("Message must contain less than " + textSize + " characters");
-    }
-  }
-
-  @Override
-  public void validateTitle(String title) {
-    if (title == null) {
+  public void validateMessage(Message message) {
+    if (message.getTitle() == null) {
       throw new IllegalArgumentException("You need to add a title!");
     }
-  }
-
-  @Override
-  public void validateRecipient(String recipient) {
-    if (recipient == null) {
+    if (message.getText().length() > textSize) {
+      throw new IllegalArgumentException("Message must contain less than " + textSize + " characters");
+    }
+    if (message.getRecipient() == null) {
       throw new IllegalArgumentException("You need to add an recipient!");
     }
   }

@@ -14,9 +14,10 @@ import static org.hamcrest.Matchers.is;
 /**
  * Created by clouway on 12/27/13.
  */
-public class TestService {
+public class ServiceTest {
 
   private Service service;
+  private AgeRestriction ageRestriction;
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
@@ -28,7 +29,8 @@ public class TestService {
 
   @Before
   public void setUp() {
-    service = new Service(validator, database);
+    ageRestriction = new AgeRestriction(10, 18);
+    service = new Service(validator, database, ageRestriction);
   }
 
   @Test
@@ -37,7 +39,7 @@ public class TestService {
 
     context.checking(new Expectations() {
       {
-        oneOf(validator).validatesTheYearsByAdding(25);
+        oneOf(validator).validateYears(25, ageRestriction.getMinAge());
         oneOf(database).save(person);
       }
     });
@@ -46,11 +48,11 @@ public class TestService {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void saveOldPeopleInTheDatebase() throws Exception {
+  public void saveOldPeopleInTheDatabase() throws Exception {
     final Person person = new Person("Ivan", 150);
     context.checking(new Expectations() {
       {
-        oneOf(validator).validatesTheYearsByAdding(150);
+        oneOf(validator).validateYears(150, ageRestriction.getMinAge());
         will(throwException(new IllegalArgumentException()));
       }
     });
@@ -63,9 +65,9 @@ public class TestService {
     final Person person = new Person("Emil", 25);
     context.checking(new Expectations() {
       {
-        oneOf(validator).validatesTheYearsByAdding(25);
+        oneOf(validator).validateYears(25, ageRestriction.getMinAge());
         oneOf(database).save(person);
-        oneOf(validator).validatesTheYearsByGetting(25);
+        oneOf(validator).validateYears(25, ageRestriction.getLawfulAge());
         oneOf(database).receive(25);
         will(returnValue(25));
       }
@@ -81,7 +83,7 @@ public class TestService {
     final Person person = new  Person("Petar", 16);
     context.checking(new Expectations() {
       {
-        oneOf(validator).validatesTheYearsByGetting(16);
+        oneOf(validator).validateYears(16, ageRestriction.getLawfulAge());
         will(throwException(new IllegalArgumentException()));
       }
     });

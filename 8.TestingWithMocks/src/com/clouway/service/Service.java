@@ -5,11 +5,15 @@ package com.clouway.service;
  */
 public class Service {
   private final Validator validator;
-  private final Database connect;
+  private final Database database;
+  private final int minAge;
+  private final int lawfulAge;
 
-  public Service(Validator validator, Database connect) {
+  public Service(Validator validator, Database database, AgeRestriction ageRestriction) {
     this.validator = validator;
-    this.connect = connect;
+    this.database = database;
+    this.minAge = ageRestriction.getMinAge();
+    this.lawfulAge = ageRestriction.getLawfulAge();
   }
 
   /**
@@ -17,8 +21,8 @@ public class Service {
    * @param person person that will adding.
    */
   public void savePersonInDataBase(Person person) {
-    validator.validatesTheYearsByAdding(person.getAge());
-    connect.save(person);
+    validator.validateYears(person.getAge(), minAge);
+    database.save(person);
   }
 
   /**
@@ -27,7 +31,7 @@ public class Service {
    * @return years of the recipient.
    */
   public int getYearsOfPersonFromDatabase(Person person) {
-    validator.validatesTheYearsByGetting(person.getAge());
-    return connect.receive(person.getAge());
+    validator.validateYears(person.getAge(), lawfulAge);
+    return database.receive(person.getAge());
   }
 }

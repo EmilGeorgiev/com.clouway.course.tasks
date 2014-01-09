@@ -1,7 +1,6 @@
 package com.clouway.store;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -19,47 +18,44 @@ public class Store {
   /**
    * Adding products in the store.
    *
-   * @param product the type of products that are added.
-   * @param amount  a quantity that is added
+   * @param product  the type of products that are added.
+   * @param quantity a quantity that is added
    * @return how products are available in the store.
    */
-  public int add(Product product, int amount) {
-    if (!isAddNewProducts(product, amount)) {
-      throw new FullStoreException("Store " + amount + "may hold only " + calculateEmptySpaceInStore(product));
-    }
+  public int add(Product product, int quantity) {
+    areAddNewProducts(product, quantity);
     addProductInStore(product);
-    return product.getTempValue();
+    return product.getCurrentValue();
   }
 
   /**
    * Sell products from store.
    *
-   * @param product the type of products that are sold.
-   * @param value   a quantity that is sold.
+   * @param product  the type of products that are sold.
+   * @param quantity a quantity that is sold.
    * @return how products are still available in the store.
    */
-  public int sell(Product product, int value) {
-    if (value > product.getTempValue()) {
-      throw new NotEnoughProductsException("Can be sold total: " + product.getTempValue());
+  public int sell(Product product, int quantity) {
+    if (quantity > product.getCurrentValue()) {
+      throw new NotEnoughProductsException(String.format("Can be sold total: %d" + product.getCurrentValue()));
     }
-    return product.getTempValue() - value;
+    return product.getCurrentValue() - quantity;
   }
 
   /**
    * Check whether you add new products.
    *
-   * @param product type of the products that will add.
-   * @param amount  a quantity that will add.
+   * @param product  type of the products that will add.
+   * @param quantity a quantity that will add.
    * @return true if there is space in the store, and false if you do not.
    */
-  private boolean isAddNewProducts(Product product, int amount) {
-    int temValueAfterAdded = product.getTempValue() + amount;
-    if (temValueAfterAdded <= product.getMaxValue()) {
-      product.setTempValue(temValueAfterAdded);
-      return true;
-    } else {
-      return false;
+  private void areAddNewProducts(Product product, int quantity) {
+    int temValueAfterAdded = product.getCurrentValue() + quantity;
+    if (temValueAfterAdded > product.getMaxValue()) {
+      throw new FullStoreException(String.format("Can't add %d items in the store only %d available space",
+              quantity, calculateEmptySpaceInStore(product)));
     }
+    product.setCurrentValue(temValueAfterAdded);
   }
 
   /**
@@ -69,7 +65,7 @@ public class Store {
    * @return empty space in the store
    */
   private int calculateEmptySpaceInStore(Product product) {
-    return (product.getMaxValue() - product.getTempValue());
+    return (product.getMaxValue() - product.getCurrentValue());
   }
 
   /**
@@ -86,7 +82,7 @@ public class Store {
    *
    * @return
    */
-  public List<Product> sortProductsByPrace() {
+  public List<Product> sortProductsByPrice() {
     Collections.sort(listOfProducts);
     return listOfProducts;
   }

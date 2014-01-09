@@ -5,9 +5,6 @@ package com.clouway.systemsms;
  */
 public interface Validator {
 
-  void validateText(String text);
+  void validateMessage(Message message);
 
-  void validateTitle(String title);
-
-  void validateRecipient(String recipient);
 }

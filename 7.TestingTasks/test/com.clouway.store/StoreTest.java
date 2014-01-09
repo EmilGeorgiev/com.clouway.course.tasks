@@ -49,12 +49,12 @@ public class StoreTest {
     store.add(pear, 5);
     store.add(orange, 23);
 
-    List<Product> actual = store.sortProductsByPrace();
+    List<Product> actual = store.sortProductsByPrice();
     List<Product> expected = new ArrayList<Product>();
     expected.add(pear);
     expected.add(apple);
     expected.add(new Product(35, 3.2));
 
-    assertThat(expected, is(actual));
+    assertThat(actual, is(expected));
   }
 }

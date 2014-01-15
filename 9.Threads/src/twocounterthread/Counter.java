@@ -4,12 +4,13 @@ package twocounterthread;
  * Created by clouway on 1/15/14.
  */
 public class Counter {
+  private boolean finishCount = false;
 
   public synchronized void count(CounterThread counter) {
-   while (!counter.finishCount) {
+   while (!finishCount) {
      System.out.println(counter.getName() + " count to " + ++counter.count);
      if (counter.count == counter.limit) {
-       counter.finishCount = true;
+       finishCount = true;
        notify();
        return;
      }

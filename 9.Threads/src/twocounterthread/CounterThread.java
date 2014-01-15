@@ -7,7 +7,6 @@ public class CounterThread extends Thread {
   private final Counter counter;
   final int limit;
   int count = 0;
-  static boolean finishCount = false;
 
   public CounterThread(Counter counter, int limit) {
     this.counter = counter;

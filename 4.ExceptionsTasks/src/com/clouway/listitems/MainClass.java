@@ -1,35 +1,21 @@
 package com.clouway.listitems;
 
-import java.util.ListResourceBundle;
-
 public class MainClass {
 
-	public static void main(String[] args) {
-		ListItems list = new ListItems(5);
+  public static void main(String[] args) {
+    ListOperation list = new ListItems(3);
+    ProducerThread producer = new ProducerThread(list, "a");
+    producer.start();
+    ConsumerThread consumer = new ConsumerThread(list);
+    consumer.start();
 
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.printAllElements();
-        System.out.println();
-
-        list.remove();
-        list.printAllElements();
-        System.out.println();
-
-        list.add(3);
-        list.printAllElements();
-        System.out.println();
-        list.remove();
-        list.remove();
-        list.remove();
-        list.remove();
-        list.remove();
-        list.remove();
-        list.remove();
-        list.printAllElements();
-
-
-	}
+    try {
+      consumer.join();
+      producer.join();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    list.printAllElements();
+  }
 
 }

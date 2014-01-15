@@ -1,7 +1,5 @@
 package counter;
 
-import com.sun.media.sound.SF2Modulator;
-
 import java.util.Scanner;
 
 /**
@@ -19,7 +17,7 @@ public class CounterThreadDemo {
     System.out.println("Starting CounterThread.");
 
     while (!breakPoint.equals(breakSymbol)) {
-      breakPoint = scanner.nextLine();
+     breakPoint = scanner.nextLine();
     }
     counter.interrupt();
     scanner.close();

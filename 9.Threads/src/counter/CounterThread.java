@@ -13,18 +13,20 @@ public class CounterThread extends Thread {
     this.limit = limit;
   }
 
+  /**
+   * Increment count while reached limit or it interrupted thread.
+   */
   @Override
   public void run() {
-    for (int i = 0; i < limit; i++) {
-      if (!isInterrupted()) {
-        count++;
-        try {
-          Thread.sleep(10);
-        } catch (InterruptedException e) {
-          System.out.println("counter has reached: " + count);
-          interrupt();
-        }
+    while (count != limit) {
+      count++;
+      try {
+        Thread.sleep(10);
+      } catch (InterruptedException e) {
+        System.out.println("counter has reached: " + count);
+        break;
       }
     }
+    System.out.println("CounterThread finish.");
   }
 }

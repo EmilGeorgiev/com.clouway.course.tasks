@@ -1,15 +1,27 @@
 package counter;
 
+import com.sun.media.sound.SF2Modulator;
+
+import java.util.Scanner;
+
 /**
  * Created by clouway on 1/14/14.
  */
 public class CounterThreadDemo {
   public static void main(String[] args) {
-    String breakSymbol = "q";
-    CounterThread counter = new CounterThread(2000000);
+    String breakPoint = "";
+    Scanner scanner = new Scanner(System.in);
+    System.out.println("Please enter break symbol");
+    String breakSymbol = scanner.nextLine();
+
+    CounterThread counter = new CounterThread(10000);
     counter.start();
-    ConsoleReader reader = new ConsoleReader(breakSymbol, System.in, counter);
-    reader.start();
-    System.out.println("count is: " + counter.count);
+    System.out.println("Starting CounterThread.");
+
+    while (!breakPoint.equals(breakSymbol)) {
+      breakPoint = scanner.nextLine();
+    }
+    counter.interrupt();
+    scanner.close();
   }
 }

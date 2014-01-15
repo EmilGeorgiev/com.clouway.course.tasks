@@ -9,13 +9,13 @@ import javax.print.attribute.standard.MediaSize.Other;
 public class HeterogeneousTree<Object> {
 
 	public static class TreeNode<Object> {
-		// Contains the value of the node
+		// /home/clouway/IdeaProjects/workSpace/9.Threads the value of the node
 		private Object value;
 
 		// Shows whether the current node has parent
 		private boolean hasParent;
 
-		// Contains the children of the node
+		// /home/clouway/IdeaProjects/workSpace/9.Threads the children of the node
 		private ArrayList<TreeNode<Object>> children;
 
 		/**

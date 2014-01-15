@@ -18,10 +18,12 @@ public class CounterThread extends Thread {
     for (int i = 0; i < limit; i++) {
       if (!isInterrupted()) {
         count++;
-      } else {
-        System.out.println("count is: " + count);
-        //interrupt();
-        return;
+        try {
+          Thread.sleep(10);
+        } catch (InterruptedException e) {
+          System.out.println("counter has reached: " + count);
+          interrupt();
+        }
       }
     }
   }

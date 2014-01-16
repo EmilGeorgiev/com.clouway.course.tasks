@@ -4,18 +4,35 @@ package twocounterthread;
  * Created by clouway on 1/15/14.
  */
 public class CounterThread extends Thread {
-  private final Counter counter;
-  final int limit;
-  int count = 0;
 
-  public CounterThread(Counter counter, int limit) {
-    this.counter = counter;
+  final int limit;
+  private final Object objectSynchronized;
+  int count = 0;
+  private CounterThread thread;
+
+  public CounterThread(Object objectSynchronized, int limit) {
+    this.objectSynchronized = objectSynchronized;
     this.limit = limit;
   }
 
   @Override
   public void run() {
-    counter.count(this);
-    interrupt();
+    synchronized (objectSynchronized) {
+      while (count != limit) {
+        count++;
+        System.out.println(getName() + " count: " + count);
+        objectSynchronized.notify();
+        try {
+          objectSynchronized.wait();
+        } catch (InterruptedException e) {
+          break;
+        }
+      }
+      thread.interrupt();
+    }
+  }
+
+  public void setThread(CounterThread thread) {
+    this.thread = thread;
   }
 }

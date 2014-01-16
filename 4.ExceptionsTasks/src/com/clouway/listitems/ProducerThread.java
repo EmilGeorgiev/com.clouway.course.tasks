@@ -15,10 +15,7 @@ public class ProducerThread extends Thread {
 
   @Override
   public void run() {
-    int count = 0;
-    while (count != 6) {
-      list.add(symbol);
-      count++;
-    }
+    list.add(symbol);
+    System.out.println(getName() + " finished.");
   }
 }

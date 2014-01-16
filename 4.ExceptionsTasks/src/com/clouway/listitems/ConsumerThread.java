@@ -13,10 +13,7 @@ public class ConsumerThread extends Thread {
 
   @Override
   public void run() {
-    int count = 0;
-    while (count != 5) {
-      list.remove();
-      count++;
-    }
+    list.remove();
+    System.out.println(getName() + " finished");
   }
 }

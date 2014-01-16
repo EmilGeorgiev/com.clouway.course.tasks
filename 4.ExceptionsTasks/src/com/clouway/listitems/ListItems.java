@@ -32,8 +32,9 @@ public class ListItems implements ListOperation {
   @Override
   public void printAllElements() {
     for (int i = 0; i <= index; i++) {
-      System.out.println(arrayList[i] + " ");
+      System.out.print(arrayList[i] + " ");
     }
+    System.out.println();
   }
 
   /**
@@ -53,6 +54,7 @@ public class ListItems implements ListOperation {
     }
     index++;
     arrayList[index] = value;
+    printAllElements();
     notify();
   }
 
@@ -72,6 +74,7 @@ public class ListItems implements ListOperation {
     }
     arrayList[index] = null;
     index--;
+    printAllElements();
     notify();
   }
 

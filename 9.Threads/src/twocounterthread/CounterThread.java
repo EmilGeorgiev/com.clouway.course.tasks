@@ -6,24 +6,24 @@ package twocounterthread;
 public class CounterThread extends Thread {
 
   final int limit;
-  private final Object objectSynchronized;
+  private final Object lock;
   int count = 0;
   private CounterThread thread;
 
-  public CounterThread(Object objectSynchronized, int limit) {
-    this.objectSynchronized = objectSynchronized;
+  public CounterThread(Object lock, int limit) {
+    this.lock = lock;
     this.limit = limit;
   }
 
   @Override
   public void run() {
-    synchronized (objectSynchronized) {
+    synchronized (lock) {
       while (count != limit) {
         count++;
         System.out.println(getName() + " count: " + count);
-        objectSynchronized.notify();
+        lock.notify();
         try {
-          objectSynchronized.wait();
+          lock.wait();
         } catch (InterruptedException e) {
           break;
         }

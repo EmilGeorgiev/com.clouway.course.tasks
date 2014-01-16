@@ -6,26 +6,46 @@ import java.util.Map;
 /**
  * Created by clouway on 1/15/14.
  */
-public class TimeoutHashTable {
-  private Map<String, TimeoutThread> timeout = new Hashtable<String, TimeoutThread>();
+public class TimeoutHashTable<K, V> {
+  private final int limit;
+  private Map<K, TimeoutThread<K, V>> containerTable = new Hashtable<K, TimeoutThread<K, V>>();
 
-  public void put(String key, TimeoutThread thread) {
-    timeout.put(key, thread);
+  public TimeoutHashTable(int limit) {
+
+    this.limit = limit;
+  }
+
+  /**
+   * Put new threads in Hashtable and start thread which adding as value.
+   *
+   * @param key
+   * @param value
+   */
+  public void put(K key, V value) {
+    TimeoutThread<K, V> thread = new TimeoutThread<K, V>(this.containerTable, limit, value, key);
+    containerTable.put(key, thread);
     thread.start();
   }
 
-  public TimeoutThread get(String key) {
-    if (timeout.containsKey(key)) {
-      timeout.get(key).interrupt();
-      return timeout.get(key);
+  /**
+   * Get thread whit this key or return "null" if not contains this key.
+   * Interrupt thread and restart timer.
+   *
+   * @param key
+   * @return
+   */
+  public V get(String key) {
+    if (!containerTable.containsKey(key)) {
+      return null;
     }
-    return null;
+    containerTable.get(key).interrupt();
+    return containerTable.get(key).getData();
   }
 
-  public TimeoutThread remove(String key) {
-    if (timeout.containsKey(key)) {
-      return timeout.remove(key);
+  public V remove(K key) {
+    if (!containerTable.containsKey(key)) {
+      return null;
     }
-    return null;
+    return containerTable.remove(key).getData();
   }
 }

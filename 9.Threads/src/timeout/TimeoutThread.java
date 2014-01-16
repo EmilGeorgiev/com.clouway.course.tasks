@@ -5,30 +5,37 @@ import java.util.Map;
 /**
  * Created by clouway on 1/15/14.
  */
-public class TimeoutThread extends Thread{
+public class TimeoutThread<K, T> extends Thread{
 
   private final int limitTime;
-  private TimeoutHashTable timeoutHashTable;
-  private boolean clearValue = false;
+  private Map<K, TimeoutThread<K, T>> containerTable;
+  private T data;
+  private K key;
 
-  public TimeoutThread(int limitTime, TimeoutHashTable timeoutHashTable) {
 
-    this.timeoutHashTable = timeoutHashTable;
+  public TimeoutThread(Map<K, TimeoutThread<K, T>> containerTable, int limitTime, T data, K key) {
+    this.containerTable = containerTable;
     this.limitTime = limitTime;
+    this.data = data;
+    this.key = key;
   }
 
   @Override
   public void run() {
-    while (!clearValue) {
+    while (true) {
       try {
         Thread.sleep(limitTime);
-        clearValue = true;
+        break;
       } catch (InterruptedException e) {
         System.out.println("Renew timer for: " + getName());
-        clearValue = false;
       }
     }
-    timeoutHashTable.remove(getName());
+    if (containerTable.containsValue(this)) {
+      containerTable.remove(key);
+    }
+  }
 
+  public T getData() {
+    return data;
   }
 }

@@ -12,9 +12,9 @@ import java.util.List;
 public class DemoDirectoryBrowser {
     public static void main(String[] args) {
         DirectoryBrowser dir = new DirectoryBrowser();
-        List<FileObject> listOfOBjects = dir.listContent("/home/clouway/IdeaProjects/workSpace/5.InputOutputTasks");
-        for (FileObject object : listOfOBjects) {
-            object.printInfo();
-        }
+        //List<FileObject> listOfOBjects = dir.listContent("/home/clouway/IdeaProjects/workSpace/5.InputOutputTasks");
+//        for (FileObject object : listOfOBjects) {
+//            object.printInfo();
+//        }
     }
 }

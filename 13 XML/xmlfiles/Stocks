@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stocks type="plodove">
+  <stock type1="qbylka">
+    <symbol type2="em">Citibank</symbol>
+    <price type3="3">100</price>
+    <quantity>1000</quantity>
+  </stock>
+  <!--<stock>-->
+    <!--<symbol>Axis bank</symbol>-->
+    <!--<price>90</price>-->
+    <!--<quantity>2000</quantity>-->
+  <!--</stock>-->
+</stocks>

@@ -1,0 +1,19 @@
+<!DOCTYPE Employees
+[
+<!ELEMENT Employee (first_name, last_name, age, position, Employer, Address)>
+  <!ELEMENT first_name (#PCDATA)>
+  <!ELEMENT last_name (#PCDATA)>
+  <!ELEMENT age (#PCDATA)>
+  <!ELEMENT position (#PCDATA)>
+  <!ELEMENT Employer (name, start_date, end_date)>
+    <!ELEMENT name (#PCDATA)>
+    <!ELEMENT start_date (#PCDATA)>
+    <!ELEMENT end_date (#PCDATA)>
+  <!ELEMENT Address (street, street_number, section, city)>
+    <!ELEMENT street (#PCDATA)>
+    <!ELEMENT street_number (#PCDATA)>
+    <!ELEMENT section (#PCDATA)>
+  <!ELEMENT city (#PCDATA)>
+]>
+
+

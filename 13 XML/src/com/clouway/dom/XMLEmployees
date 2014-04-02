@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Employees>
+
+    <Employee>
+      <Name>Petar</Name>
+      <Age>25</Age>
+
+      <Address>
+        <Street>Ivan Vazov</Street>
+        <Number>23</Number>
+      </Address>
+
+      <Employer>
+        <Name>Stoqn Stoqnov</Name>
+        <StartDate>2010-10-10</StartDate>
+        <EndDate>2013-10-10</EndDate>
+      </Employer>
+
+    </Employee>
+
+    <Employee>
+      <Name>Ivan</Name>
+      <Age>26</Age>
+
+      <Address>
+        <Street>vasil levski</Street>
+        <Number>34</Number>
+      </Address>
+
+      <Employer>
+        <Name>Mihail Mishov</Name>
+        <StartDate>2010-10-10</StartDate>
+        <EndDate>2013-10-10</EndDate>
+      </Employer>
+
+    </Employee>
+
+</Employees>

@@ -8,35 +8,41 @@ elementFormDefault="qualified">
     <xs:complexType>
       <xs:sequence>
 
-        <xs:element name="Employee" maxOccurs="10">
+        <xs:element name="listEmployee">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="first_name" type="xs:string"/>
-              <xs:element name="last_name" type="xs:string"/>
-              <xs:element name="age" type="xs:int"/>
-              <xs:element name="position" type="xs:string"/>
-
-              <xs:element name="Employer" maxOccurs="10">
+              <xs:element name="Employee" maxOccurs="10">
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="name" type="xs:string"/>
-                    <xs:element name="start_date" type="xs:date"/>
-                    <xs:element name="end_date" type="xs:date"/>
+                    <xs:element name="first_name" type="xs:string"/>
+                    <xs:element name="last_name" type="xs:string"/>
+                    <xs:element name="age" type="xs:int"/>
+                    <xs:element name="position" type="xs:string"/>
+
+                    <xs:element name="Employer" maxOccurs="10">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="name" type="xs:string"/>
+                          <xs:element name="start_date" type="xs:date"/>
+                          <xs:element name="end_date" type="xs:date"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+
+                    <xs:element name="Address">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="street" type="xs:string"/>
+                          <xs:element name="street_number" type="xs:int"/>
+                          <xs:element name="section" type="xs:string"/>
+                          <xs:element name="city" type="xs:string"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
-
-              <xs:element name="Address">
-                <xs:complexType>
-                  <xs:sequence>
-                    <xs:element name="street" type="xs:string"/>
-                    <xs:element name="street_number" type="xs:int"/>
-                    <xs:element name="section" type="xs:string"/>
-                    <xs:element name="city" type="xs:string"/>
-                  </xs:sequence>
-                </xs:complexType>
-              </xs:element>
-
             </xs:sequence>
           </xs:complexType>
         </xs:element>

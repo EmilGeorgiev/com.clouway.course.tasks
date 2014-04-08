@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<project name="MyCompany" default="compile">
+  <property name="src.dir" value="src"/>
+  <property name="build.dir" value="build/classes"/>
+  <property name="lib.dir" value="lib"/>
+  <property name="target.dir" value="target"/>
+
+  <path id="master-path">
+    <fileset dir="${lib.dir}"/>
+    <pathelement path="${build.dir}"/>
+  </path>
+
+  <target name="compile" description="Compile .java files">
+    <mkdir dir="${build.dir}"/>
+    <copy file="src/log4j.properties" todir="${build.dir}"/>
+    <javac destdir="${build.dir}" includeantruntime="false">
+      <src path="${src.dir}"/>
+      <classpath refid="master-path"/>
+    </javac>
+  </target>
+
+  <target name="jar" depends="compile">
+    <taskdef name="jarjar" classname="com.tonicsystems.jarjar.JarJarTask"
+             classpath="${lib.dir}/jarjar-1.4.jar"/>
+    <jarjar jarfile="${target.dir}/MyJarJar.jar">
+      <fileset dir="${build.dir}"/>
+      <zipfileset src="${lib.dir}/log4j.jar"/>
+      <manifest>
+        <attribute name="Main-Class" value="com.mypcompany.MyClass"/>
+      </manifest>
+    </jarjar>
+  </target>
+
+
+  <target name="clean">
+    <delete>
+      <fileset dir="${build.dir}"/>
+      <fileset dir="${target.dir}"/>
+    </delete>
+  </target>
+
+</project>

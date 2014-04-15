@@ -25,12 +25,12 @@
     <jarjar jarfile="${target.dir}/MyJarJar.jar">
       <fileset dir="${build.dir}"/>
       <zipfileset src="${lib.dir}/log4j.jar"/>
+      <zipfileset src="${lib.dir}/mysql-connector-java.jar"/>
       <manifest>
         <attribute name="Main-Class" value="com.mypcompany.MyClass"/>
       </manifest>
     </jarjar>
   </target>
-
 
   <target name="clean">
     <delete>

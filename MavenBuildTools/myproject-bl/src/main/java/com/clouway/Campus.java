@@ -34,8 +34,9 @@ public class Campus {
   }
 
   public void releaseStudent(Student  student) {
-    listOfFreeWaitingRooms.offer(studentDAO.getRoomNumberOnStudent(student));
-    studentDAO.unregistered(student, studentDAO.getRoomNumberOnStudent(student));
+    int roomNumber = studentDAO.getRoomNumberOnStudent(student);
+    listOfFreeWaitingRooms.offer(roomNumber);
+    studentDAO.unregistered(student, roomNumber);
     takenRooms--;
   }
 

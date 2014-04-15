@@ -1,5 +1,6 @@
 package com.clouway;
 
+import org.jmock.Expectations;
 import org.jmock.auto.Mock;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Before;
@@ -43,8 +44,23 @@ public class CampusTest {
 
   @Test
   public void registeredStudentsInCampus() throws Exception {
-    try {
 
+    context.checking(new Expectations() {{
+      oneOf(studentDAO).registered(ivan, 1);
+      oneOf(studentDAO).registered(petar, 2);
+      oneOf(studentDAO).registered(stoqn, 3);
+
+      oneOf(studentDAO).getRoomNumberOnStudent(petar);
+      will(returnValue(2));
+      oneOf(studentDAO).unregistered(petar, 2);
+
+      oneOf(studentDAO).registered(misho, 2);
+
+      oneOf(studentDAO).findAllRegisteredStudents();
+      will(returnValue(Arrays.asList(ivan, stoqn, misho)));
+    }
+    });
+    try {
 
       campus.registeredStudent(ivan);
       campus.registeredStudent(petar);

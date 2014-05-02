@@ -4,6 +4,8 @@ import org.apache.commons.dbcp.BasicDataSource;
 
 import java.sql.SQLException;
 
+import static com.clouway.StudentBuilder.newStudent;
+
 /**
  * Created by clouway on 4/14/14.
  */
@@ -22,13 +24,13 @@ public class CampusMain {
       e.printStackTrace();
     }
 
-    Student ivan = StudentBuilder.instanceStudentBuilder().firstName("Ivan").idNumber(1).lastName("Ivanov")
+    Student ivan = newStudent().firstName("Ivan").idNumber(1).lastName("Ivanov")
             .age(23).build();
-    Student petar = StudentBuilder.instanceStudentBuilder().firstName("Petar").idNumber(20).lastName("Petrov")
+    Student petar = newStudent().firstName("Petar").idNumber(20).lastName("Petrov")
             .age(24).build();
-    Student stoqn = StudentBuilder.instanceStudentBuilder().firstName("Stoqn").idNumber(3).lastName("Stoqnov")
+    Student stoqn = newStudent().firstName("Stoqn").idNumber(3).lastName("Stoqnov")
             .age(25).build();
-    Student misho = StudentBuilder.instanceStudentBuilder().firstName("Misho").idNumber(4).lastName("Mihov")
+    Student misho = newStudent().firstName("Misho").idNumber(4).lastName("Mihov")
             .age(26).build();
     Campus campus = new Campus(persistentStudentDAO, 20);
 

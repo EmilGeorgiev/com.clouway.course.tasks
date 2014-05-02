@@ -1,0 +1,41 @@
+html,body {
+    margin:0;
+    width:100%;
+    height:100%;
+}
+
+.calculator{
+    border-style:solid;
+}
+
+body
+{
+    margin: 20% 30%;
+    background-color: tan;
+}
+
+.calculator {
+    width: 30%;
+    height: 40%;
+    background-color: paleturquoise;
+
+}
+
+.allButtons{
+    width: 100%;
+    height: 100%;
+    background-color: burlywood;
+    vertical-align: middle;
+}
+
+.row{height: 20%; width: 100%;}
+
+.button{float: left; position: relative;}
+
+.button, .endButton{width: 20%; height: 100%; background-color: aquamarine}
+
+#display{background-color: white;}
+
+#expression{height: 98%; width: 98%;}
+
+#point, #equals{width: 40%;}

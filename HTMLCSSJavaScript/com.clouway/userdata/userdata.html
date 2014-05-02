@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" href="formValidation.css">
+    <script type="text/javascript" src="formValidation.js"></script>
+<body>
+<div id="wrapper">
+    <form id="theForm"
+          autocomplete="on"
+          method="post"
+          action="./userdata.html"
+          name="theForm">
+
+        <div class="row">
+            <label for="firstName" class="dataUser">First Name</label>
+            <div>
+                <input id="firstName"
+                       class="textField"
+                       type="text"
+                       data-desc="Can only contain Latin letters (az)."
+                       patt="^[a-zA-z]{1,15}$"
+                       name="firstName"
+                       onmousedown="onClickTextField(this, 'firstNameMessage')"/>
+            </div>
+            <div id="firstNameMessage" class="message">Least 3 symbols</div>
+        </div>
+
+        <div class="row">
+            <label for="lastName" class="dataUser">Last Name</label>
+            <div>
+                <input id="lastName"
+                       class="textField"
+                       type="text"
+                       patt="^[a-zA-z]{1,15}$"
+                       data-desc="Can only contain Latin letters (az)."
+                       name="lastName"
+                       onmousedown="onClickTextField(this, 'lastNameMessage')"/>
+            </div>
+            <div id="lastNameMessage"  class="message" >Least 3 symbols</div>
+        </div>
+
+        <div class="row">
+            <label for="EGN" class="dataUser">EGN:</label>
+            <div>
+                <input id="EGN"
+                       class="textField" type="text" value=""
+                       data-desc="This field must contains 10 numbers."
+                       patt="^[0-9]{10}$"
+                       name="EGN"
+                       onmousedown="onClickTextField(this, 'EGNMessage')"/>
+            </div>
+            <div id="EGNMessage" class="message">This input your EGN</div>
+        </div>
+
+        <div class="row">
+            <label for="age" class="dataUser">Age:</label>
+            <div>
+                <input id="age"
+                       class="textField" type="text" value=""
+                       data-desc="This field will contain large and small Latin letters, numbers, symbols.Must contain at least 6 characters"
+                       name="age"
+                       patt="^1[8-9]$|^[2-9][0-9]$|^10[0-9]$|^11[1-8]$"
+                       onmousedown="onClickTextField(this, 'ageMessage')"/>
+            </div>
+            <div id="ageMessage" class="message">The number is 18 < age < 118</div>
+        </div>
+
+        <div class="row">
+            <label for="address" class="dataUser">Address:</label>
+            <div>
+                <input id="address"
+                       class="textField" type="text" value=""
+                       data-desc="This field contains your street."
+                       name="address"
+                       patt="^[\W\w]{1,100}$"
+                       onmousedown="onClickTextField(this, 'addressMessage')"/>
+            </div>
+            <div id="addressMessage" class="message">From 1 to 100 characters</div>
+        </div>
+
+        <div class="row">
+            <label for="password" class="dataUser">Password:</label>
+            <div>
+                <input id="password"
+                       class="textField" type="password"
+                       data-desc="Can only contain Latin letters or/and numbers 0-9. Length 6 to 18 characters."
+                       name="password"
+                       patt="^[a-zA-z0-9]{6,15}$"
+                       onmousedown="onClickTextField(this, 'passwordMessage')"/>
+            </div>
+            <div id="passwordMessage" class="message">Can only contain Latin letters or/and numbers 0-9. Length 6 to 18 characters.</div>
+        </div>
+
+        <div class="row">
+            <label for="confirmPassword" class="dataUser">Confirm Password:</label>
+            <div>
+                <input id="confirmPassword"
+                       class="textField" type="password"
+                       data-desc="Repeat your password"
+                       name="confirmPassword"
+                       onmousedown="onClickTextField(this, 'confirmPasswordMessage')"/>
+            </div>
+            <div id="confirmPasswordMessage" class="message">Repeated password</div>
+        </div>
+
+        <div>
+            <input type="button" value="SEND" id="send"/>
+            <input type="reset" value="Clear" id="reset"/>
+        </div>
+
+    </form>
+</div>
+</body>
+</head>
+</html>

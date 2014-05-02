@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" href="pageStyle.css"/>
+    <style type="text/css">
+        #frameLinks {
+            position: absolute;
+            top: 11%;
+            bottom: 0;
+            left: 0;
+            width: 10%;
+            height: 80%;
+            background: navajowhite;
+            border: double;
+            color: white;
+        }
+        #showW3schools {
+            border: double;
+            position: absolute;
+            top: 11%;
+            bottom: 0;
+            left: 11%;
+            width: 50%;
+            height: 80%;
+            background: navy;
+            color: white;
+        }
+        #showABV {
+            border: double;
+            position: absolute;
+            top: 11%;
+            bottom: 0;
+            left: 62%;
+            width: 50%;
+            height: 80%;
+            background: lawngreen;
+            color: brown;
+        }
+        #w3schools{
+            top: 0;
+            width: 100%;
+            height: 80%;
+            bottom: 0;
+        }
+        #abv{
+            top: 0;
+            width: 100%;
+            height: 80%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+<a href="./localdirectory" target="_blank">open local directory</a>
+<br/>
+<a href="./localdirectory/text.txt" target="_blank">open text file</a>
+<br/>
+<a href="./localdirectory/newpage.html" target="_blank">new html page</a>
+<br/>
+<a href="http://www.w3schools.com" target="_blank">Website</a>
+
+<div id="frameLinks" class="framelinks">
+    <h2>Links from internet page</h2>
+    <br/>
+    <a href="http://www.w3schools.com" target="w3schools" >w3schools.com</a>
+    <br/>
+    <a href="http://www.abv.bg" target="abv" >abv.bg</a>
+</div>
+<div id="showW3schools" class="showw3schools">
+    <h1>Show internet page www.w3schools.com</h1>
+    <iframe id="w3schools" name="w3schools"></iframe>
+</div>
+<div id="showABV" class="showabv">
+    <h1>Show internet page www.abv.bg</h1>
+    <iframe id="abv" name="abv"></iframe>
+</div>
+</body>
+</html>

@@ -10,7 +10,7 @@ public class StudentBuilder {
   private int age;
   private int idNumber;
 
-  public static StudentBuilder instanceStudentBuilder() {
+  public static StudentBuilder newStudent() {
     return new StudentBuilder();
   }
 

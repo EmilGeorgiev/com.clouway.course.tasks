@@ -1,0 +1,45 @@
+#frameLinks {
+    position: absolute;
+    top: 11%;
+    bottom: 0;
+    left: 0;
+    width: 10%;
+    height: 80%;
+    background: navajowhite;
+    border: double;
+    color: white;
+}
+#showW3schools {
+    border: double;
+    position: absolute;
+    top: 11%;
+    bottom: 0;
+    left: 11%;
+    width: 50%;
+    height: 80%;
+    background: navy;
+    color: white;
+}
+#showABV {
+    border: double;
+    position: absolute;
+    top: 11%;
+    bottom: 0;
+    left: 62%;
+    width: 50%;
+    height: 80%;
+    background: lawngreen;
+    color: brown;
+}
+#w3schools{
+    top: 0;
+    width: 100%;
+    height: 80%;
+    bottom: 0;
+}
+#abv{
+    top: 0;
+    width: 100%;
+    height: 80%;
+    bottom: 0;
+}

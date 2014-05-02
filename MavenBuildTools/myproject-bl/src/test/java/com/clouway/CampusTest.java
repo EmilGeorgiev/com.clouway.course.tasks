@@ -18,13 +18,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class CampusTest {
   private Campus campus;
-  private Student ivan = StudentBuilder.instanceStudentBuilder().firstName("Ivan").idNumber(1).lastName("Ivanov")
+  private Student ivan = StudentBuilder.newStudent().firstName("Ivan").idNumber(1).lastName("Ivanov")
           .age(23).build();
-  private com.clouway.Student petar = StudentBuilder.instanceStudentBuilder().firstName("Petar").idNumber(2).lastName("Petrov")
+  private com.clouway.Student petar = StudentBuilder.newStudent().firstName("Petar").idNumber(2).lastName("Petrov")
           .age(24).build();
-  private Student stoqn = StudentBuilder.instanceStudentBuilder().firstName("Stoqn").idNumber(3).lastName("Stoqnov")
+  private Student stoqn = StudentBuilder.newStudent().firstName("Stoqn").idNumber(3).lastName("Stoqnov")
           .age(25).build();
-  private Student misho = StudentBuilder.instanceStudentBuilder().firstName("Misho").idNumber(1).lastName("Mihov")
+  private Student misho = StudentBuilder.newStudent().firstName("Misho").idNumber(1).lastName("Mihov")
           .age(26).build();
   @Rule
   public DataStoreRule dataStoreRule = new DataStoreRule();

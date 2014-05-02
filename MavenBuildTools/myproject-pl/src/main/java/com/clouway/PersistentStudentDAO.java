@@ -109,7 +109,7 @@ public class PersistentStudentDAO implements StudentDAO {
         String firstNAme = resultSet.getString("firstName");
         String lastName = resultSet.getString("lastName");
         int age = resultSet.getInt("age");
-        return StudentBuilder.instanceStudentBuilder().firstName(firstNAme).lastName(lastName)
+        return StudentBuilder.newStudent().firstName(firstNAme).lastName(lastName)
                 .age(age).idNumber(idStudentNumber).build();
       }
     } catch (SQLException e) {
@@ -141,7 +141,7 @@ public class PersistentStudentDAO implements StudentDAO {
         String firstName = resultSet.getString("firstName");
         String lastName = resultSet.getString("lastName");
         int age = resultSet.getInt("age");
-        studentList.add(StudentBuilder.instanceStudentBuilder().firstName(firstName).lastName(lastName)
+        studentList.add(StudentBuilder.newStudent().firstName(firstName).lastName(lastName)
                 .age(age).idNumber(idNumber).build());
       }
       return studentList;

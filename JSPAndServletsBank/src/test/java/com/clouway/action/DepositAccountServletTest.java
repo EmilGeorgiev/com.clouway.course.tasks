@@ -1,7 +1,7 @@
 package com.clouway.action;
 
 import com.clouway.constants.BankAccountMessages;
-import com.clouway.objects.DepositAccountDAO;
+import com.clouway.objects.AccountBankDAO;
 import com.clouway.objects.User;
 import com.google.inject.Provider;
 import org.jmock.Expectations;
@@ -39,7 +39,7 @@ public class DepositAccountServletTest {
   private HttpServletResponse response;
 
   @Mock
-  private DepositAccountDAO depositAccountDAO;
+  private AccountBankDAO accountBankDAO;
 
   @Mock
   private Provider<CurrentUser> currentUserProvider;
@@ -57,7 +57,7 @@ public class DepositAccountServletTest {
 
     currentUser = new CurrentUser(user);
 
-    depositAccountServlet = new DepositAccountServlet(depositAccountDAO, bankAccountMessages, currentUserProvider);
+    depositAccountServlet = new DepositAccountServlet(accountBankDAO, bankAccountMessages, currentUserProvider);
   }
 
   @After
@@ -76,7 +76,7 @@ public class DepositAccountServletTest {
       oneOf(currentUserProvider).get();
       will(returnValue(currentUser));
 
-      oneOf(depositAccountDAO).deposit(100, 1);
+      oneOf(accountBankDAO).deposit(100, 1);
 
       oneOf(bankAccountMessages).mainPage();
       will(returnValue("main.jsp"));

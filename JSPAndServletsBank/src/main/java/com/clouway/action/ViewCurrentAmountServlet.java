@@ -1,7 +1,7 @@
 package com.clouway.action;
 
 import com.clouway.constants.BankAccountMessages;
-import com.clouway.objects.DepositAccountDAO;
+import com.clouway.objects.AccountBankDAO;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
@@ -13,13 +13,13 @@ import javax.servlet.http.HttpServlet;
 @Singleton
 public class ViewCurrentAmountServlet extends HttpServlet{
 
-  private final DepositAccountDAO depositAccountDAO;
+  private final AccountBankDAO accountBankDAO;
 
   private final BankAccountMessages bankAccountMessages;
 
   @Inject
-  public ViewCurrentAmountServlet(DepositAccountDAO depositAccountDAO, BankAccountMessages bankAccountMessages) {
-    this.depositAccountDAO = depositAccountDAO;
+  public ViewCurrentAmountServlet(AccountBankDAO accountBankDAO, BankAccountMessages bankAccountMessages) {
+    this.accountBankDAO = accountBankDAO;
     this.bankAccountMessages = bankAccountMessages;
   }
 

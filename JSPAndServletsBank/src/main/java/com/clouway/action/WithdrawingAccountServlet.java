@@ -1,14 +1,13 @@
 package com.clouway.action;
 
 import com.clouway.constants.BankAccountMessages;
-import com.clouway.objects.DepositAccountDAO;
+import com.clouway.objects.AccountBankDAO;
 import com.clouway.objects.User;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,16 +19,16 @@ import java.io.IOException;
 @Singleton
 public class WithdrawingAccountServlet extends HttpServlet{
 
-  private final DepositAccountDAO depositAccountDAO;
+  private final AccountBankDAO accountBankDAO;
   private final BankAccountMessages bankAccountMessages;
   private final Provider<CurrentUser> currentUserProvider;
 
   @Inject
-  public WithdrawingAccountServlet(DepositAccountDAO depositAccountDAO,
+  public WithdrawingAccountServlet(AccountBankDAO accountBankDAO,
                                    BankAccountMessages bankAccountMessages,
                                    Provider<CurrentUser> currentUserProvider) {
 
-    this.depositAccountDAO = depositAccountDAO;
+    this.accountBankDAO = accountBankDAO;
     this.bankAccountMessages = bankAccountMessages;
     this.currentUserProvider = currentUserProvider;
   }
@@ -38,29 +37,32 @@ public class WithdrawingAccountServlet extends HttpServlet{
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     String withdrawing = req.getParameter(bankAccountMessages.withdrawingAmount());
 
-    Integer drawingAmount = Integer.parseInt(withdrawing);
-
-    Cookie[] cookies = req.getCookies();
-
-    String UUID = null;
-
-    for (Cookie cookie : cookies) {
-      if (cookie.getName().equals(bankAccountMessages.cookieName())) {
-        UUID = cookie.getValue();
-      }
-    }
+    Integer drawingAmount;
 
     User user = currentUserProvider.get().get();
 
-    int retrieveValue = depositAccountDAO.withdrawing(drawingAmount, user.getUserID());
+    try {
 
-    if (retrieveValue != 0) {
+      drawingAmount = Integer.parseInt(withdrawing);
 
-      resp.sendRedirect(bankAccountMessages.mainPage());
+    } catch (NumberFormatException ex) {
+
+      req.setAttribute("error", bankAccountMessages.error());
+
+      resp.sendRedirect(bankAccountMessages.withdrawingPage());
+
       return;
     }
 
-    resp.sendRedirect(bankAccountMessages.withdrawingPage());
+//    if (retrieveValue != 0) {
+//
+//      resp.sendRedirect(bankAccountMessages.mainPage());
+//      return;
+//    }
+
+    accountBankDAO.withdrawing(drawingAmount, user.getUserID());
+
+    resp.sendRedirect(bankAccountMessages.mainPage());
 
   }
 }

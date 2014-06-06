@@ -1,7 +1,7 @@
 package com.clouway.persistents;
 
 import com.clouway.action.calendarutils.CalendarUtil;
-import com.clouway.objects.DepositAccountDAO;
+import com.clouway.objects.AccountBankDAO;
 import com.clouway.objects.Transaction;
 import com.clouway.objects.TransactionHistory;
 import com.clouway.persistents.fake.InMemoryTransactionHistory;
@@ -26,7 +26,7 @@ public class PersistentBankDAOTest {
   public JUnitRuleMockery context = new JUnitRuleMockery();
 
   @Mock
-  private DepositAccountDAO depositAccountDAO;
+  private AccountBankDAO accountBankDAO;
 
   @Before
   public void setUp() {

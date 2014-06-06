@@ -1,7 +1,7 @@
 package com.clouway.action;
 
 import com.clouway.constants.BankAccountMessages;
-import com.clouway.objects.DepositAccountDAO;
+import com.clouway.objects.AccountBankDAO;
 import com.clouway.objects.User;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
@@ -19,15 +19,15 @@ import java.io.IOException;
 @Singleton
 public class DepositAccountServlet extends HttpServlet{
 
-  private final DepositAccountDAO depositAccountDAO;
+  private final AccountBankDAO accountBankDAO;
   private final BankAccountMessages bankAccountMessages;
   private final Provider<CurrentUser> currentUserProvider;
 
   @Inject
-  public DepositAccountServlet(DepositAccountDAO depositAccountDAO,
+  public DepositAccountServlet(AccountBankDAO accountBankDAO,
                                BankAccountMessages bankAccountMessages,
                                Provider<CurrentUser> currentUserProvider) {
-    this.depositAccountDAO = depositAccountDAO;
+    this.accountBankDAO = accountBankDAO;
     this.bankAccountMessages = bankAccountMessages;
     this.currentUserProvider = currentUserProvider;
   }
@@ -53,7 +53,7 @@ public class DepositAccountServlet extends HttpServlet{
     User user = currentUserProvider.get().get();
 
     //Deposit some value <parameter>depositAmount<parameter> in account of user with <parameter>userID<parameter>
-    depositAccountDAO.deposit(depositAmount, user.getUserID());
+    accountBankDAO.deposit(depositAmount, user.getUserID());
 
     //Return back to main page.
     resp.sendRedirect(bankAccountMessages.mainPage());

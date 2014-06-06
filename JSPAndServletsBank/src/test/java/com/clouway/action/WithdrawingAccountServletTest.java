@@ -1,19 +1,21 @@
 package com.clouway.action;
 
-import com.clouway.action.calendarutils.CalendarUtil;
 import com.clouway.constants.BankAccountMessages;
-import com.clouway.objects.Clock;
-import com.clouway.objects.DepositAccountDAO;
+import com.clouway.objects.AccountBankDAO;
+import com.clouway.objects.User;
 import com.google.inject.Provider;
 import org.jmock.Expectations;
 import org.jmock.auto.Mock;
 import org.jmock.integration.junit4.JUnitRuleMockery;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 
 /**
@@ -23,12 +25,14 @@ public class WithdrawingAccountServletTest {
 
   private WithdrawingAccountServlet withdrawing;
 
-  Clock clock = new Clock() {
-    @Override
-    public String now() {
-      return CalendarUtil.may(2014, 5, 30).toString();
-    }
-  };
+  private CurrentUser currentUser;
+
+//  Clock clock = new Clock() {
+//    @Override
+//    public String now() {
+//      return CalendarUtil.may(2014, 5, 30).toString();
+//    }
+//  };
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
@@ -43,32 +47,48 @@ public class WithdrawingAccountServletTest {
   private BankAccountMessages bankAccountMessages;
 
   @Mock
-  private UserSessionsRepository userSessionsRepository;
-
-  @Mock
   private Provider<CurrentUser> currentUserProvider;
 
   @Mock
-  private DepositAccountDAO depositAccountDAO;
+  private AccountBankDAO accountBankDAO;
 
   @Before
   public void setUp() {
 
+    context.checking(new Expectations() {{
+      oneOf(accountBankDAO).deposit(100, 1);
 
-    depositAccountDAO.deposit(100, 1);
+      oneOf(bankAccountMessages).withdrawingAmount();
+      will(returnValue("withdrawingAmount"));
+    }
+    });
 
-    withdrawing = new WithdrawingAccountServlet(depositAccountDAO, bankAccountMessages, currentUserProvider);
+    User user = new User("emil", "emil", 1);
+
+    currentUser = new CurrentUser(user);
+
+    accountBankDAO.deposit(100, 1);
+
+    withdrawing = new WithdrawingAccountServlet(accountBankDAO, bankAccountMessages, currentUserProvider);
+  }
+
+  @After
+  public void after() throws ServletException, IOException {
+    withdrawing.doPost(request, response);
   }
 
   @Test
   public void whenWithdrawingSameValueThanCurrentAmountDecrementWithThisValue() throws Exception {
 
     context.checking(new Expectations() {{
-      oneOf(bankAccountMessages).withdrawingAmount();
-      will(returnValue("withdrawingAmount"));
 
       oneOf(request).getParameter("withdrawingAmount");
       will(returnValue("30"));
+
+      oneOf(currentUserProvider).get();
+      will(returnValue(currentUser));
+
+      oneOf(accountBankDAO).withdrawing(30, 1);
 
       oneOf(bankAccountMessages).mainPage();
       will(returnValue("mainPage.jsp"));
@@ -77,29 +97,52 @@ public class WithdrawingAccountServletTest {
     }
     });
 
-    withdrawing.doPost(request, response);
   }
 
   @Test
-  public void whenWithdrawingValueIsLargerThenTheCurrentAmountThanReturnErrorMessage() throws Exception {
+  public void whenTryingWithdrawingInvalidValueThanTransactionIsFailed() throws Exception {
+
     context.checking(new Expectations() {{
-      oneOf(bankAccountMessages).withdrawingAmount();
-      will(returnValue("withdrawingAmount"));
 
       oneOf(request).getParameter("withdrawingAmount");
-      will(returnValue("150"));
+      will(returnValue("30LX"));
+
+      oneOf(currentUserProvider).get();
+      will(returnValue(currentUser));
 
       oneOf(bankAccountMessages).error();
       will(returnValue("Transaction is failed"));
+
+      oneOf(request).setAttribute("error", "Transaction is failed");
 
       oneOf(bankAccountMessages).withdrawingPage();
       will(returnValue("withdrawingPage.jsp"));
 
       oneOf(response).sendRedirect("withdrawingPage.jsp");
-    }
-    });
-
-    withdrawing.doPost(request, response);
+    }});
 
   }
+
+//  @Test
+//  public void whenWithdrawingValueIsLargerThenTheCurrentAmountThanReturnErrorMessage() throws Exception {
+//    context.checking(new Expectations() {{
+//      oneOf(bankAccountMessages).withdrawingAmount();
+//      will(returnValue("withdrawingAmount"));
+//
+//      oneOf(request).getParameter("withdrawingAmount");
+//      will(returnValue("150"));
+//
+//      oneOf(bankAccountMessages).error();
+//      will(returnValue("Transaction is failed"));
+//
+//      oneOf(bankAccountMessages).withdrawingPage();
+//      will(returnValue("withdrawingPage.jsp"));
+//
+//      oneOf(response).sendRedirect("withdrawingPage.jsp");
+//    }
+//    });
+//
+//    withdrawing.doPost(request, response);
+//
+//  }
 }

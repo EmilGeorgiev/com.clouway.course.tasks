@@ -3,7 +3,7 @@ package com.clouway.objects;
 /**
  * Created by clouway on 5/28/14.
  */
-public interface DepositAccountDAO {
+public interface AccountBankDAO {
 
   void deposit(int amount, int userID);
 

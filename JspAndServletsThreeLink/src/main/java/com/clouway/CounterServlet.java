@@ -28,6 +28,14 @@ public class CounterServlet extends HttpServlet{
     }
 
     session.setAttribute(link, count);
+
+//    ServletContext context = session.getServletContext();
+//    RequestDispatcher requestDispatcher2 = context.getRequestDispatcher("/threelinks.jsp");
+//    requestDispatcher2.forward(req, resp);
+
+//    RequestDispatcher requestDispatcher = req.getRequestDispatcher("threelinks.jsp");
+//    requestDispatcher.forward(req, resp);
+
     resp.sendRedirect("/threelinks.jsp");
   }
 

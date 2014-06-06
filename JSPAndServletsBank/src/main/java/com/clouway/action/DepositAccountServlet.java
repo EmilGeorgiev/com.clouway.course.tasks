@@ -38,13 +38,22 @@ public class DepositAccountServlet extends HttpServlet{
     //Get constant for deposit and than get parameter from request.
     String amount = req.getParameter(bankAccountMessages.depositAmount());
 
-    Integer depositAmount = Integer.parseInt(amount);
+    Integer depositAmount;
 
+    try {
 
-    User user = currentUser
+      depositAmount = Integer.parseInt(amount);
 
-    //Deposit some value in account of user with session <parameter>uuid<parameter>
-    depositAccountDAO.deposit(depositAmount, uuid);
+    } catch (NumberFormatException ex) {
+      req.setAttribute("error", bankAccountMessages.error());
+      resp.sendRedirect(bankAccountMessages.login());
+      return;
+    }
+
+    User user = currentUserProvider.get().get();
+
+    //Deposit some value <parameter>depositAmount<parameter> in account of user with <parameter>userID<parameter>
+    depositAccountDAO.deposit(depositAmount, user.getUserID());
 
     //Return back to main page.
     resp.sendRedirect(bankAccountMessages.mainPage());

@@ -5,10 +5,10 @@ package com.clouway.objects;
  */
 public interface DepositAccountDAO {
 
-  void deposit(int amount, String UUIDSession);
+  void deposit(int amount, int userID);
 
   int getCurrentUserBankAmount();
 
-  int withdrawing(int withdrawingAmount, String UUIDSession);
+  int withdrawing(int withdrawingAmount, int userID);
 
 }

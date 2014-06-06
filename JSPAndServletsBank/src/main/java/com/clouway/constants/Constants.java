@@ -10,7 +10,7 @@ public class Constants {
   public static final String DEPOSIT_AMOUNT = "depositAmount";
 
 
-  public static final String ERROR_MESSAGE = "Transaction is failed";
+  public static final String ERROR_MESSAGE = "Invalid value";
   public static final String SUCCESS_MESSAGE = "Transaction is success";
   public static final String CURRENT_AMOUNT = "Current amount is: ";
   public static final String USER_NAME = "user_name";

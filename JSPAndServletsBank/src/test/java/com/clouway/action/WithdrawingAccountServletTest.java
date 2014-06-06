@@ -1,9 +1,10 @@
 package com.clouway.action;
 
 import com.clouway.action.calendarutils.CalendarUtil;
-import com.clouway.action.memory.InMemoryBankDAO;
 import com.clouway.constants.BankAccountMessages;
 import com.clouway.objects.Clock;
+import com.clouway.objects.DepositAccountDAO;
+import com.google.inject.Provider;
 import org.jmock.Expectations;
 import org.jmock.auto.Mock;
 import org.jmock.integration.junit4.JUnitRuleMockery;
@@ -14,9 +15,6 @@ import org.junit.Test;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-
 
 /**
  * Created by clouway on 5/29/14.
@@ -24,8 +22,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class WithdrawingAccountServletTest {
 
   private WithdrawingAccountServlet withdrawing;
-
-  private InMemoryBankDAO inMemoryBankDAO;
 
   Clock clock = new Clock() {
     @Override
@@ -49,13 +45,19 @@ public class WithdrawingAccountServletTest {
   @Mock
   private UserSessionsRepository userSessionsRepository;
 
+  @Mock
+  private Provider<CurrentUser> currentUserProvider;
+
+  @Mock
+  private DepositAccountDAO depositAccountDAO;
+
   @Before
   public void setUp() {
-    inMemoryBankDAO = new InMemoryBankDAO(clock, userSessionsRepository);
 
-    inMemoryBankDAO.deposit(100, "X45CL");
 
-    withdrawing = new WithdrawingAccountServlet(inMemoryBankDAO, bankAccountMessages);
+    depositAccountDAO.deposit(100, 1);
+
+    withdrawing = new WithdrawingAccountServlet(depositAccountDAO, bankAccountMessages, currentUserProvider);
   }
 
   @Test
@@ -76,10 +78,6 @@ public class WithdrawingAccountServletTest {
     });
 
     withdrawing.doPost(request, response);
-
-    int result = inMemoryBankDAO.getCurrentUserBankAmount();
-
-    assertThat(result, is(70));
   }
 
   @Test

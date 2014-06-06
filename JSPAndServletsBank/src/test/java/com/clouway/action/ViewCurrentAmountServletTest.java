@@ -1,7 +1,6 @@
 package com.clouway.action;
 
 import com.clouway.action.calendarutils.CalendarUtil;
-import com.clouway.action.memory.InMemoryBankDAO;
 import com.clouway.constants.BankAccountMessages;
 import com.clouway.objects.Clock;
 import org.jmock.auto.Mock;
@@ -17,8 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 public class ViewCurrentAmountServletTest {
 
   private ViewCurrentAmountServlet viewCurrentAmount;
-
-  private InMemoryBankDAO inMemoryBankDAO;
 
   Clock clock = new Clock() {
     @Override

@@ -39,7 +39,7 @@ public class WithdrawingAccountServlet extends HttpServlet{
 
     Integer drawingAmount;
 
-    User user = currentUserProvider.get().get();
+
 
     try {
 
@@ -54,13 +54,17 @@ public class WithdrawingAccountServlet extends HttpServlet{
       return;
     }
 
-//    if (retrieveValue != 0) {
-//
-//      resp.sendRedirect(bankAccountMessages.mainPage());
-//      return;
-//    }
+    User user = currentUserProvider.get().get();
 
-    accountBankDAO.withdrawing(drawingAmount, user.getUserID());
+    int retrievedAmount = accountBankDAO.withdrawing(drawingAmount, user.getUserID());
+
+    if (retrievedAmount == -1) {
+
+      req.setAttribute("error", bankAccountMessages.error());
+
+      resp.sendRedirect(bankAccountMessages.withdrawingPage());
+      return;
+    }
 
     resp.sendRedirect(bankAccountMessages.mainPage());
 

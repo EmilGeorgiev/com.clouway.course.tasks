@@ -1,54 +1,35 @@
 package com.clouway.persistents;
 
-import com.clouway.action.calendarutils.CalendarUtil;
-import com.clouway.objects.AccountBankDAO;
-import com.clouway.objects.Transaction;
-import com.clouway.objects.TransactionHistory;
-import com.clouway.persistents.fake.InMemoryTransactionHistory;
+import com.clouway.core.AccountBankDAO;
+import com.clouway.core.TransactionHistory;
+import com.google.inject.Provider;
 import org.jmock.auto.Mock;
-import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Before;
 import org.junit.Rule;
-import org.junit.Test;
+
+import java.sql.Connection;
 
 /**
  * Created by clouway on 6/3/14.
  */
 public class PersistentBankDAOTest {
 
- // private PersistentBankDAO persistentBankDAO;
-
-  private TransactionHistory transactionHistory;
-
-  private Transaction transaction;
+  private PersistentBankDAO persistentBankDAO;
 
   @Rule
-  public JUnitRuleMockery context = new JUnitRuleMockery();
+  public DataStoreRule dataStoreRule = new DataStoreRule();
 
   @Mock
   private AccountBankDAO accountBankDAO;
 
+  @Mock
+  private TransactionHistory transactionHistory;
+
+  @Mock
+  private Provider<Connection> connectionProvider;
+
   @Before
   public void setUp() {
-    transactionHistory = new InMemoryTransactionHistory();
-
-   // persistentBankDAO = new PersistentBankDAO();
-
-    transaction = new Transaction("deposit", 1500, CalendarUtil.may(2014, 05, 30).toString(), 1);
-  }
-
-  @Test
-  public void whenMakeDepositsThenCreateTransactions() throws Exception {
-//    context.checking(new Expectations() {{
-//      oneOf(depositAccountDAO).deposit(1500, "X45LC45");
-//    }
-//    });
-//
-//
-//
-//    List<Transaction> transactionList = transactionHistory.getAllTransactions();
-//
-//    assertThat(transactionList, is(Arrays.asList(transaction)));
-//
+    persistentBankDAO = new PersistentBankDAO(connectionProvider);
   }
 }

@@ -1,8 +1,6 @@
-package com.clouway.action;
+package com.clouway.core;
 
-import com.clouway.constants.BankAccountMessages;
-import com.clouway.objects.AccountBankDAO;
-import com.clouway.objects.User;
+import com.clouway.http.DepositAccountServlet;
 import com.google.inject.Provider;
 import org.jmock.Expectations;
 import org.jmock.auto.Mock;

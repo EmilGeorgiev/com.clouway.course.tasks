@@ -1,4 +1,4 @@
-package com.clouway.constants;
+package com.clouway.core;
 
 /**
  * Created by clouway on 5/26/14.

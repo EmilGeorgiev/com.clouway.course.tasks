@@ -1,4 +1,6 @@
-package com.clouway.objects;
+package com.clouway.core;
+
+import com.clouway.core.User;
 
 /**
  * Created by clouway on 5/26/14.

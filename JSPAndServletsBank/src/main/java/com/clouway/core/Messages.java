@@ -1,9 +1,9 @@
-package com.clouway.constants;
+package com.clouway.core;
 
 /**
  * Created by clouway on 5/29/14.
  */
-public class Foo implements BankAccountMessages {
+public class Messages implements BankAccountMessages {
   @Override
   public String connections() {
     return null;

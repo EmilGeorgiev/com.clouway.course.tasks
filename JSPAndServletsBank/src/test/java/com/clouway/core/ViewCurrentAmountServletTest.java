@@ -1,7 +1,7 @@
-package com.clouway.action;
+package com.clouway.core;
 
-import com.clouway.action.calendarutils.CalendarUtil;
-import com.clouway.constants.BankAccountMessages;
+import com.clouway.core.calendarutils.CalendarUtil;
+import com.clouway.http.ViewCurrentAmountServlet;
 import com.clouway.objects.Clock;
 import org.jmock.auto.Mock;
 import org.jmock.integration.junit4.JUnitRuleMockery;

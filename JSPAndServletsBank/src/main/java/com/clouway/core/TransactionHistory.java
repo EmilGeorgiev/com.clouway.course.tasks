@@ -1,4 +1,6 @@
-package com.clouway.objects;
+package com.clouway.core;
+
+import com.clouway.core.Transaction;
 
 import java.util.List;
 

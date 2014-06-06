@@ -1,6 +1,6 @@
-package com.clouway.action;
+package com.clouway.core;
 
-import com.clouway.constants.BankAccountMessages;
+import com.clouway.http.LoginServlet;
 import org.jmock.auto.Mock;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Before;

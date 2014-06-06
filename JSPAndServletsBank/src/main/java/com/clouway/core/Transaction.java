@@ -1,4 +1,4 @@
-package com.clouway.objects;
+package com.clouway.core;
 
 /**
  * Created by clouway on 5/29/14.

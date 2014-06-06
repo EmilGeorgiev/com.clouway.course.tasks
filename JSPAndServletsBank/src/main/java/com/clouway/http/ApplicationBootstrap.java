@@ -1,6 +1,8 @@
-package com.clouway.action;
+package com.clouway.http;
 
-import com.clouway.objects.User;
+import com.clouway.core.CurrentUser;
+import com.clouway.core.UserSessionsRepository;
+import com.clouway.core.User;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provider;
 import com.google.inject.Provides;

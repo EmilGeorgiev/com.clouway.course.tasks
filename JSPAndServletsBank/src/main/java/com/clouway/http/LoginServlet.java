@@ -1,8 +1,8 @@
-package com.clouway.action;
+package com.clouway.http;
 
-import com.clouway.constants.BankAccountMessages;
-import com.clouway.constants.Constants;
-import com.clouway.objects.UserDAO;
+import com.clouway.core.BankAccountMessages;
+import com.clouway.core.Constants;
+import com.clouway.core.UserDAO;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 

@@ -1,8 +1,6 @@
-package com.clouway.core;
+package com.clouway.http;
 
-import com.clouway.core.calendarutils.CalendarUtil;
-import com.clouway.http.ViewCurrentAmountServlet;
-import com.clouway.objects.Clock;
+import com.clouway.core.BankAccountMessages;
 import org.jmock.auto.Mock;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Rule;
@@ -16,13 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 public class ViewCurrentAmountServletTest {
 
   private ViewCurrentAmountServlet viewCurrentAmount;
-
-  Clock clock = new Clock() {
-    @Override
-    public String now() {
-      return CalendarUtil.may(2014, 5, 30).toString();
-    }
-  };
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();

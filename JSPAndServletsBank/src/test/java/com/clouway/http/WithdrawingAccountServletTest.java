@@ -1,7 +1,11 @@
-package com.clouway.core;
+package com.clouway.http;
 
-import com.clouway.http.WithdrawingAccountServlet;
-import com.google.inject.Provider;
+import com.clouway.core.AccountBankDAO;
+import com.clouway.core.BankAccountMessages;
+import com.clouway.core.CurrentUser;
+import com.clouway.core.PageMessages;
+import com.clouway.core.User;
+import com.google.inject.util.Providers;
 import org.jmock.Expectations;
 import org.jmock.auto.Mock;
 import org.jmock.integration.junit4.JUnitRuleMockery;
@@ -22,15 +26,9 @@ import java.io.IOException;
 public class WithdrawingAccountServletTest {
 
   private WithdrawingAccountServlet withdrawing;
-
   private CurrentUser currentUser;
-
-//  Clock clock = new Clock() {
-//    @Override
-//    public String now() {
-//      return CalendarUtil.may(2014, 5, 30).toString();
-//    }
-//  };
+  private BankAccountMessages bankAccountMessages;
+  private PageMessages pageMessages;
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
@@ -40,12 +38,6 @@ public class WithdrawingAccountServletTest {
 
   @Mock
   private HttpServletResponse response;
-
-  @Mock
-  private BankAccountMessages bankAccountMessages;
-
-  @Mock
-  private Provider<CurrentUser> currentUserProvider;
 
   @Mock
   private AccountBankDAO accountBankDAO;
@@ -67,7 +59,10 @@ public class WithdrawingAccountServletTest {
 
     accountBankDAO.deposit(100, 1);
 
-    withdrawing = new WithdrawingAccountServlet(accountBankDAO, bankAccountMessages, currentUserProvider);
+    withdrawing = new WithdrawingAccountServlet(accountBankDAO,
+            Providers.of(bankAccountMessages),
+            Providers.of(currentUser),
+            Providers.of(pageMessages));
   }
 
   @After
@@ -83,14 +78,7 @@ public class WithdrawingAccountServletTest {
       oneOf(request).getParameter("withdrawingAmount");
       will(returnValue("30"));
 
-      oneOf(currentUserProvider).get();
-      will(returnValue(currentUser));
-
       oneOf(accountBankDAO).withdrawing(30, 1);
-
-      oneOf(bankAccountMessages).mainPage();
-      will(returnValue("mainPage.jsp"));
-
       oneOf(response).sendRedirect("mainPage.jsp");
     }
     });
@@ -105,13 +93,7 @@ public class WithdrawingAccountServletTest {
       oneOf(request).getParameter("withdrawingAmount");
       will(returnValue("30LX"));
 
-      oneOf(bankAccountMessages).error();
-      will(returnValue("Transaction is failed"));
-
       oneOf(request).setAttribute("error", "Transaction is failed");
-
-      oneOf(bankAccountMessages).withdrawingPage();
-      will(returnValue("withdrawingPage.jsp"));
 
       oneOf(response).sendRedirect("withdrawingPage.jsp");
     }});
@@ -125,19 +107,8 @@ public class WithdrawingAccountServletTest {
       oneOf(request).getParameter("withdrawingAmount");
       will(returnValue("150"));
 
-      oneOf(currentUserProvider).get();
-      will(returnValue(currentUser));
-
       oneOf(accountBankDAO).withdrawing(150, 1);
       will(returnValue(-1));
-
-      oneOf(bankAccountMessages).error();
-      will(returnValue("Transaction is failed"));
-
-      oneOf(request).setAttribute("error", "Transaction is failed");
-
-      oneOf(bankAccountMessages).withdrawingPage();
-      will(returnValue("withdrawingPage.jsp"));
 
       oneOf(response).sendRedirect("withdrawingPage.jsp");
     }

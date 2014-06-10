@@ -11,7 +11,7 @@ public class CurrentUser {
     this.user = user;
   }
 
-  public User get() {
+  public User getUser() {
     return user;
   }
 }

@@ -1,9 +1,9 @@
 package com.clouway.alltest;
 
-import com.clouway.core.DepositAccountServletTest;
-import com.clouway.core.LoginServletTest;
-import com.clouway.core.ViewCurrentAmountServletTest;
-import com.clouway.core.WithdrawingAccountServletTest;
+import com.clouway.http.DepositAccountServletTest;
+import com.clouway.http.LoginServletTest;
+import com.clouway.http.ViewCurrentAmountServletTest;
+import com.clouway.http.WithdrawingAccountServletTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 

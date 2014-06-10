@@ -5,5 +5,7 @@ package com.clouway.core;
  */
 public interface UserMessages {
 
+  String userName();
 
+  String userPassword();
 }

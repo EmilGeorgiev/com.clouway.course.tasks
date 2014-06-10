@@ -1,19 +1,20 @@
-package com.clouway.core;
+package com.clouway.http;
 
-import com.clouway.http.DepositAccountServlet;
-import com.google.inject.Provider;
+import com.clouway.core.AccountBankDAO;
+import com.clouway.core.BankAccountMessages;
+import com.clouway.core.CurrentUser;
+import com.clouway.core.PageMessages;
+import com.clouway.core.User;
+import com.google.inject.util.Providers;
 import org.jmock.Expectations;
 import org.jmock.auto.Mock;
 import org.jmock.integration.junit4.JUnitRuleMockery;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 /**
  * Created by clouway on 5/28/14.
@@ -22,7 +23,7 @@ public class DepositAccountServletTest {
 
   private DepositAccountServlet depositAccountServlet;
 
-  private CurrentUser currentUser;
+  private CurrentUser currentUser = null;
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
@@ -31,57 +32,54 @@ public class DepositAccountServletTest {
   private HttpServletRequest request;
 
   @Mock
+  private HttpServletResponse response;
+
+  @Mock
   private BankAccountMessages bankAccountMessages;
 
   @Mock
-  private HttpServletResponse response;
+  private PageMessages pageMessages;
 
   @Mock
   private AccountBankDAO accountBankDAO;
 
-  @Mock
-  private Provider<CurrentUser> currentUserProvider;
+
 
   @Before
   public void setUp() {
-
-    context.checking(new Expectations() {{
-      oneOf(bankAccountMessages).depositAmount();
-      will(returnValue("depositAmount"));
-    }
-    });
 
     User user = new User("emil", "emil", 1);
 
     currentUser = new CurrentUser(user);
 
-    depositAccountServlet = new DepositAccountServlet(accountBankDAO, bankAccountMessages, currentUserProvider);
-  }
-
-  @After
-  public void after() throws ServletException, IOException {
-    depositAccountServlet.doPost(request, response);
+    depositAccountServlet = new DepositAccountServlet(accountBankDAO,
+                                          bankAccountMessages,
+                                          Providers.of(currentUser),
+                                          pageMessages);
   }
 
   @Test
-  public void whenDepositSomeValueThenCurrentAmountIncreaseWithThisValue() throws Exception {
+  public void depositToAccount() throws Exception {
 
     context.checking(new Expectations() {{
+
+      oneOf(bankAccountMessages).depositAmount();
+      will(returnValue("depositAmount"));
 
       oneOf(request).getParameter("depositAmount");
       will(returnValue("100"));
 
-      oneOf(currentUserProvider).get();
-      will(returnValue(currentUser));
-
       oneOf(accountBankDAO).deposit(100, 1);
 
-      oneOf(bankAccountMessages).mainPage();
-      will(returnValue("main.jsp"));
+      oneOf(pageMessages).mainPage();
+      will(returnValue("mainPage.jsp"));
 
-      oneOf(response).sendRedirect("main.jsp");
+      oneOf(response).sendRedirect("mainPage.jsp");
+
     }
     });
+
+    depositAccountServlet.doPost(request, response);
 
   }
 
@@ -90,20 +88,20 @@ public class DepositAccountServletTest {
 
     context.checking(new Expectations() {{
 
+      oneOf(bankAccountMessages).depositAmount();
+      will(returnValue("depositAmount"));
+
       oneOf(request).getParameter("depositAmount");
       will(returnValue("12XV5"));
 
-      oneOf(bankAccountMessages).error();
-      will(returnValue("Invalid value"));
-
-      oneOf(request).setAttribute("error", "Invalid value");
-
-      oneOf(bankAccountMessages).login();
+      oneOf(pageMessages).login();
       will(returnValue("loginPage.jsp"));
 
       oneOf(response).sendRedirect("loginPage.jsp");
 
     }
     });
+
+    depositAccountServlet.doPost(request, response);
   }
 }

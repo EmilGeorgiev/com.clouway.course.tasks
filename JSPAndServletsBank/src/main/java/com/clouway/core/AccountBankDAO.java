@@ -7,8 +7,6 @@ public interface AccountBankDAO {
 
   void deposit(int amount, int userID);
 
-  int getCurrentUserBankAmount();
-
   int withdrawing(int withdrawingAmount, int userID);
 
 }

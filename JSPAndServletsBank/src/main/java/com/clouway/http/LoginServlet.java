@@ -1,9 +1,11 @@
 package com.clouway.http;
 
 import com.clouway.core.BankAccountMessages;
-import com.clouway.core.Constants;
+import com.clouway.core.PageMessages;
 import com.clouway.core.UserDAO;
+import com.clouway.core.UserMessages;
 import com.google.inject.Inject;
+import com.google.inject.Provider;
 import com.google.inject.Singleton;
 
 import javax.servlet.ServletException;
@@ -19,25 +21,34 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
 
   private final UserDAO userDAO;
-  private final BankAccountMessages bankAccountMessages;
+  private final Provider<BankAccountMessages> bankAccountMessages;
+  private final Provider<UserMessages> userMessagesProvider;
+  private final Provider<PageMessages> pageMessagesProvider;
+
 
   @Inject
-  public LoginServlet(UserDAO userDAO, BankAccountMessages bankAccountMessages) {
+  public LoginServlet(UserDAO userDAO,
+                      Provider<BankAccountMessages> bankAccountMessages,
+                      Provider<UserMessages> userMessagesProvider,
+                      Provider<PageMessages> pageMessagesProvider) {
 
     this.userDAO = userDAO;
-    this.bankAccountMessages = bankAccountMessages;
 
+
+    this.bankAccountMessages = bankAccountMessages;
+    this.userMessagesProvider = userMessagesProvider;
+    this.pageMessagesProvider = pageMessagesProvider;
   }
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    String userName = req.getParameter(bankAccountMessages.userName());
+    String userName = req.getParameter(bankAccountMessages.get().depositAmount());
 
-    String userPassword = req.getParameter(bankAccountMessages.userPassword());
+    String userPassword = req.getParameter(userMessagesProvider.get().userPassword());
 
     if (userDAO.isUserExist(userName, userPassword)) {
 
-      resp.sendRedirect(Constants.MAIN_PAGE);
+      resp.sendRedirect(pageMessagesProvider.get().mainPage());
 
     }
   }

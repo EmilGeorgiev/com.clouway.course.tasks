@@ -1,4 +1,4 @@
-package com.clouway.http;
+package com.clouway.http.down;
 
 import com.clouway.core.AccountBankDAO;
 import com.clouway.core.BankAccountMessages;
@@ -94,7 +94,7 @@ public class DepositAccountServletTest {
       oneOf(request).getParameter("depositAmount");
       will(returnValue("12XV5"));
 
-      oneOf(pageMessages).login();
+      oneOf(pageMessages).loginPage();
       will(returnValue("loginPage.jsp"));
 
       oneOf(response).sendRedirect("loginPage.jsp");

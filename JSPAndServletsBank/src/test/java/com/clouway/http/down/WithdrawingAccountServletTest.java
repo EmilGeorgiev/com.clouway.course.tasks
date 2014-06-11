@@ -1,4 +1,4 @@
-package com.clouway.http;
+package com.clouway.http.down;
 
 import com.clouway.core.AccountBankDAO;
 import com.clouway.core.BankAccountMessages;
@@ -27,8 +27,6 @@ public class WithdrawingAccountServletTest {
 
   private WithdrawingAccountServlet withdrawing;
   private CurrentUser currentUser;
-  private BankAccountMessages bankAccountMessages;
-  private PageMessages pageMessages;
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
@@ -42,27 +40,23 @@ public class WithdrawingAccountServletTest {
   @Mock
   private AccountBankDAO accountBankDAO;
 
+  @Mock
+  private BankAccountMessages bankAccountMessages;
+
+  @Mock
+  private PageMessages pageMessages;
+
   @Before
   public void setUp() {
-
-    context.checking(new Expectations() {{
-      oneOf(accountBankDAO).deposit(100, 1);
-
-      oneOf(bankAccountMessages).withdrawingAmount();
-      will(returnValue("withdrawingAmount"));
-    }
-    });
 
     User user = new User("emil", "emil", 1);
 
     currentUser = new CurrentUser(user);
 
-    accountBankDAO.deposit(100, 1);
-
     withdrawing = new WithdrawingAccountServlet(accountBankDAO,
-            Providers.of(bankAccountMessages),
+            bankAccountMessages,
             Providers.of(currentUser),
-            Providers.of(pageMessages));
+            pageMessages);
   }
 
   @After
@@ -75,10 +69,17 @@ public class WithdrawingAccountServletTest {
 
     context.checking(new Expectations() {{
 
+      oneOf(bankAccountMessages).withdrawingAmount();
+      will(returnValue("withdrawingAmount"));
+
       oneOf(request).getParameter("withdrawingAmount");
       will(returnValue("30"));
 
       oneOf(accountBankDAO).withdrawing(30, 1);
+
+      oneOf(pageMessages).mainPage();
+      will(returnValue("mainPage.jsp"));
+
       oneOf(response).sendRedirect("mainPage.jsp");
     }
     });
@@ -90,12 +91,16 @@ public class WithdrawingAccountServletTest {
 
     context.checking(new Expectations() {{
 
+      oneOf(bankAccountMessages).withdrawingAmount();
+      will(returnValue("withdrawingAmount"));
+
       oneOf(request).getParameter("withdrawingAmount");
       will(returnValue("30LX"));
 
-      oneOf(request).setAttribute("error", "Transaction is failed");
+      oneOf(pageMessages).loginPage();
+      will(returnValue("loginPage.jsp"));
 
-      oneOf(response).sendRedirect("withdrawingPage.jsp");
+      oneOf(response).sendRedirect("loginPage.jsp");
     }});
 
   }
@@ -104,11 +109,18 @@ public class WithdrawingAccountServletTest {
   public void whenWithdrawingValueIsLargerThenTheCurrentAmountThanTransactionIsFailed() throws Exception {
     context.checking(new Expectations() {{
 
+      oneOf(bankAccountMessages).withdrawingAmount();
+      will(returnValue("withdrawingAmount"));
+
       oneOf(request).getParameter("withdrawingAmount");
       will(returnValue("150"));
 
       oneOf(accountBankDAO).withdrawing(150, 1);
       will(returnValue(-1));
+
+
+      oneOf(pageMessages).withdrawingPage();
+      will(returnValue("withdrawingPage.jsp"));
 
       oneOf(response).sendRedirect("withdrawingPage.jsp");
     }

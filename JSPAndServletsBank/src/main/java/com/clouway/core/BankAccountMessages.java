@@ -9,7 +9,5 @@ public interface BankAccountMessages {
 
   String depositAmount();
 
-
-
-  String error();
+  String transactionAmount();
 }

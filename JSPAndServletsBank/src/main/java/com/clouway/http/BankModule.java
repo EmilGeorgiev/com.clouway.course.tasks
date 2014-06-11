@@ -42,8 +42,8 @@ public class BankModule extends AbstractModule {
 
 
       @Override
-      public String error() {
-        return null;
+      public String transactionAmount() {
+        return "transactionAmount";
       }
 
     };
@@ -75,7 +75,7 @@ public class BankModule extends AbstractModule {
       }
 
       @Override
-      public String login() {
+      public String loginPage() {
         return "loginPAge.jsp";
       }
 
@@ -87,6 +87,11 @@ public class BankModule extends AbstractModule {
       @Override
       public String withdrawingPage() {
         return "withdrawingPage.jsp";
+      }
+
+      @Override
+      public String depositPage() {
+        return "depositPage.jsp";
       }
     };
   }

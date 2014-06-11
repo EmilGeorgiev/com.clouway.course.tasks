@@ -5,8 +5,8 @@ package com.clouway.core;
  */
 public interface AccountBankDAO {
 
-  void deposit(int amount, int userID);
+  void deposit(float amount, int userID);
 
-  int withdrawing(int withdrawingAmount, int userID);
+  int withdrawing(float withdrawingAmount, int userID);
 
 }

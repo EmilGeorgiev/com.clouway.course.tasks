@@ -7,9 +7,11 @@ public interface PageMessages {
 
   String mainPage();
 
-  String login();
+  String loginPage();
 
   String register();
 
   String withdrawingPage();
+
+  String depositPage();
 }

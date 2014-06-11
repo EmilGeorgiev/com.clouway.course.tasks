@@ -1,4 +1,4 @@
-package com.clouway.http;
+package com.clouway.http.down;
 
 import com.clouway.core.BankAccountMessages;
 import com.clouway.core.CurrentUser;
@@ -16,22 +16,22 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by clouway on 5/29/14.
+ * Created by clouway on 5/28/14.
  */
 @Singleton
-public class WithdrawingAccountServlet extends HttpServlet{
+public class DepositAccountServlet extends HttpServlet{
 
   private final AccountBankDAO accountBankDAO;
 
-  private final Provider<BankAccountMessages> bankAccountMessages;
+  private final BankAccountMessages bankAccountMessages;
   private final Provider<CurrentUser> currentUserProvider;
-  private final Provider<PageMessages> pageMessagesProvider;
+  private final PageMessages pageMessagesProvider;
 
   @Inject
-  public WithdrawingAccountServlet(AccountBankDAO accountBankDAO,
-                                   Provider<BankAccountMessages> bankAccountMessages,
-                                   Provider<CurrentUser> currentUserProvider,
-                                   Provider<PageMessages> pageMessagesProvider) {
+  public DepositAccountServlet(AccountBankDAO accountBankDAO,
+                               BankAccountMessages bankAccountMessages,
+                               Provider<CurrentUser> currentUserProvider,
+                               PageMessages pageMessagesProvider) {
 
     this.accountBankDAO = accountBankDAO;
     this.bankAccountMessages = bankAccountMessages;
@@ -41,32 +41,28 @@ public class WithdrawingAccountServlet extends HttpServlet{
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    String withdrawing = req.getParameter(bankAccountMessages.get().withdrawingAmount());
 
-    Integer drawingAmount;
+    //Get constant for deposit and than getUser parameter from request.
+    String amount = req.getParameter(bankAccountMessages.depositAmount());
+
+    Integer depositAmount;
 
     try {
 
-      drawingAmount = Integer.parseInt(withdrawing);
+      depositAmount = Integer.parseInt(amount);
 
     } catch (NumberFormatException ex) {
 
-      resp.sendRedirect(pageMessagesProvider.get().login());
-
+      resp.sendRedirect(pageMessagesProvider.loginPage());
       return;
     }
 
     User user = currentUserProvider.get().getUser();
 
-    int retrievedAmount = accountBankDAO.withdrawing(drawingAmount, user.getUserID());
+    //Deposit some value <parameter>depositAmount<parameter> in account of user with <parameter>userID<parameter>
+    accountBankDAO.deposit(depositAmount, user.getUserID());
 
-    if (retrievedAmount == -1) {
-
-      resp.sendRedirect(pageMessagesProvider.get().withdrawingPage());
-      return;
-    }
-
-    resp.sendRedirect(pageMessagesProvider.get().mainPage());
-
+    //Return back to main page.
+    resp.sendRedirect(pageMessagesProvider.mainPage());
   }
 }

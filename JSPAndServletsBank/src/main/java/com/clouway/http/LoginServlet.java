@@ -1,11 +1,10 @@
 package com.clouway.http;
 
-import com.clouway.core.BankAccountMessages;
 import com.clouway.core.PageMessages;
 import com.clouway.core.UserDAO;
 import com.clouway.core.UserMessages;
+import com.clouway.core.UserSessionsRepository;
 import com.google.inject.Inject;
-import com.google.inject.Provider;
 import com.google.inject.Singleton;
 
 import javax.servlet.ServletException;
@@ -20,36 +19,33 @@ import java.io.IOException;
 @Singleton
 public class LoginServlet extends HttpServlet {
 
-  private final UserDAO userDAO;
-  private final Provider<BankAccountMessages> bankAccountMessages;
-  private final Provider<UserMessages> userMessagesProvider;
-  private final Provider<PageMessages> pageMessagesProvider;
 
+  private final UserDAO userDAO;
+  private final UserMessages userMessages;
+  private final PageMessages pageMessages;
+  private final UserSessionsRepository userSessionsRepository;
 
   @Inject
-  public LoginServlet(UserDAO userDAO,
-                      Provider<BankAccountMessages> bankAccountMessages,
-                      Provider<UserMessages> userMessagesProvider,
-                      Provider<PageMessages> pageMessagesProvider) {
+  public LoginServlet(UserDAO userDAO, UserMessages userMessages, PageMessages pageMessages, UserSessionsRepository userSessionsRepository) {
 
     this.userDAO = userDAO;
-
-
-    this.bankAccountMessages = bankAccountMessages;
-    this.userMessagesProvider = userMessagesProvider;
-    this.pageMessagesProvider = pageMessagesProvider;
+    this.userMessages = userMessages;
+    this.pageMessages = pageMessages;
+    this.userSessionsRepository = userSessionsRepository;
   }
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    String userName = req.getParameter(bankAccountMessages.get().depositAmount());
+    String userName = req.getParameter(userMessages.userName());
 
-    String userPassword = req.getParameter(userMessagesProvider.get().userPassword());
+    String userPassword = req.getParameter(userMessages.userPassword());
 
     if (userDAO.isUserExist(userName, userPassword)) {
 
-      resp.sendRedirect(pageMessagesProvider.get().mainPage());
+      resp.sendRedirect(pageMessages.mainPage());
 
+    } else {
+      resp.sendRedirect(pageMessages.loginPage());
     }
   }
 }

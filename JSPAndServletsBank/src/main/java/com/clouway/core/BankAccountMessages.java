@@ -10,4 +10,8 @@ public interface BankAccountMessages {
   String depositAmount();
 
   String transactionAmount();
+
+  String transaction();
+
+  String deposit();
 }

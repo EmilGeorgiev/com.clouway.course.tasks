@@ -4,7 +4,7 @@ import com.clouway.core.AccountBankDAO;
 import com.clouway.core.BankAccountMessages;
 import com.clouway.core.CurrentAmountRepository;
 import com.clouway.core.CurrentUser;
-import com.clouway.core.PageMessages;
+import com.clouway.core.PageSiteMap;
 import com.clouway.core.User;
 import com.google.inject.util.Providers;
 import org.jmock.Expectations;
@@ -26,6 +26,8 @@ public class TransactionServletTest {
 
   private CurrentUser currentUser;
 
+  private User user = new User("emil", "emil", 1);
+
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
 
@@ -39,7 +41,7 @@ public class TransactionServletTest {
   private BankAccountMessages bankAccountMessages;
 
   @Mock
-  private PageMessages pageMessages;
+  private PageSiteMap pageSiteMap;
 
   @Mock
   private AccountBankDAO accountBankDAO;
@@ -57,15 +59,15 @@ public class TransactionServletTest {
     }
     });
 
+
     accountBankDAO.deposit(100, 1);
 
-    User user = new User("emil", "emil", 1);
 
     currentUser = new CurrentUser(user);
 
     transactionServlet = new TransactionServlet(accountBankDAO,
                                                 bankAccountMessages,
-                                                pageMessages,
+            pageSiteMap,
                                                 Providers.of(currentUser));
 
   }
@@ -111,7 +113,7 @@ public class TransactionServletTest {
       oneOf(servletRequest).getParameter("transactionAmount");
       will(returnValue("50XL"));
 
-      oneOf(pageMessages).mainPage();
+      oneOf(pageSiteMap).mainPage();
       will(returnValue("mainPage.jsp"));
 
       oneOf(servletResponse).sendRedirect("mainPage.jsp");
@@ -123,7 +125,7 @@ public class TransactionServletTest {
   }
 
   @Test
-  public void whenWithdrawingSomeValueThanCurrentAmountDecrementWithThisValue() throws Exception {
+  public void withdrawingAmount() throws Exception {
 
     context.checking(new Expectations() {{
       oneOf(bankAccountMessages).transactionAmount();
@@ -132,15 +134,18 @@ public class TransactionServletTest {
       oneOf(servletRequest).getParameter("transactionAmount");
       will(returnValue("50"));
 
-      oneOf(pageMessages).depositPage();
-      will(returnValue("depositPage.jsp"));
+      oneOf(bankAccountMessages).transaction();
+      will(returnValue("transaction"));
 
-      oneOf(servletRequest).getHeader("Referer");
+      oneOf(servletRequest).getParameter("transaction");
       will(returnValue("withdrawingPage.jsp"));
 
-      oneOf(accountBankDAO).withdrawing(50, 1);
+      oneOf(bankAccountMessages).deposit();
+      will(returnValue("deposit"));
 
-      oneOf(pageMessages).mainPage();
+      oneOf(accountBankDAO).withdrawing(50, user.getUserID());
+
+      oneOf(pageSiteMap).mainPage();
       will(returnValue("mainPage.jsp"));
 
       oneOf(servletResponse).sendRedirect("mainPage.jsp");

@@ -3,7 +3,7 @@ package com.clouway.core;
 /**
  * Created by clouway on 6/9/14.
  */
-public interface PageMessages {
+public interface PageSiteMap {
 
   String mainPage();
 

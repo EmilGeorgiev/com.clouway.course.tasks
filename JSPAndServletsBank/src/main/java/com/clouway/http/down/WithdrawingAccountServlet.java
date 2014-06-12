@@ -3,7 +3,7 @@ package com.clouway.http.down;
 import com.clouway.core.BankAccountMessages;
 import com.clouway.core.CurrentUser;
 import com.clouway.core.AccountBankDAO;
-import com.clouway.core.PageMessages;
+import com.clouway.core.PageSiteMap;
 import com.clouway.core.User;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
@@ -25,18 +25,18 @@ public class WithdrawingAccountServlet extends HttpServlet{
 
   private final BankAccountMessages bankAccountMessages;
   private final Provider<CurrentUser> currentUserProvider;
-  private final PageMessages pageMessagesProvider;
+  private final PageSiteMap pageSiteMapProvider;
 
   @Inject
   public WithdrawingAccountServlet(AccountBankDAO accountBankDAO,
                                    BankAccountMessages bankAccountMessages,
                                    Provider<CurrentUser> currentUserProvider,
-                                   PageMessages pageMessagesProvider) {
+                                   PageSiteMap pageSiteMapProvider) {
 
     this.accountBankDAO = accountBankDAO;
     this.bankAccountMessages = bankAccountMessages;
     this.currentUserProvider = currentUserProvider;
-    this.pageMessagesProvider = pageMessagesProvider;
+    this.pageSiteMapProvider = pageSiteMapProvider;
   }
 
   @Override
@@ -51,7 +51,7 @@ public class WithdrawingAccountServlet extends HttpServlet{
 
     } catch (NumberFormatException ex) {
 
-      resp.sendRedirect(pageMessagesProvider.loginPage());
+      resp.sendRedirect(pageSiteMapProvider.loginPage());
 
       return;
     }
@@ -62,11 +62,11 @@ public class WithdrawingAccountServlet extends HttpServlet{
 
     if (retrievedAmount == -1) {
 
-      resp.sendRedirect(pageMessagesProvider.withdrawingPage());
+      resp.sendRedirect(pageSiteMapProvider.withdrawingPage());
       return;
     }
 
-    resp.sendRedirect(pageMessagesProvider.mainPage());
+    resp.sendRedirect(pageSiteMapProvider.mainPage());
 
   }
 }

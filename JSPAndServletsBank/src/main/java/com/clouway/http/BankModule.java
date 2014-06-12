@@ -2,7 +2,7 @@ package com.clouway.http;
 
 import com.clouway.core.BankAccountMessages;
 import com.clouway.core.CurrentUser;
-import com.clouway.core.PageMessages;
+import com.clouway.core.PageSiteMap;
 import com.clouway.core.UserMessages;
 import com.clouway.core.UserSessionsRepository;
 import com.clouway.core.User;
@@ -46,6 +46,16 @@ public class BankModule extends AbstractModule {
         return "transactionAmount";
       }
 
+      @Override
+      public String transaction() {
+        return "transaction";
+      }
+
+      @Override
+      public String deposit() {
+        return "deposit";
+      }
+
     };
   }
 
@@ -67,8 +77,8 @@ public class BankModule extends AbstractModule {
 
   @Provides
   @RequestScoped
-  public PageMessages getPageMessages() {
-    return new PageMessages() {
+  public PageSiteMap getPageMessages() {
+    return new PageSiteMap() {
       @Override
       public String mainPage() {
         return "mainPage.jsp";
@@ -120,7 +130,7 @@ public class BankModule extends AbstractModule {
       // session id
       if ("sid".equalsIgnoreCase(cookie.getName())) {
 
-        User user = userSessionsRepository.findUserAssociatedWithSession(cookie.getValue());
+        User user = userSessionsRepository.isUserExistBySession(cookie.getValue());
         return new CurrentUser(user);
       }
     }

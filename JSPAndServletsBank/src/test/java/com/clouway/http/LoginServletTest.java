@@ -1,10 +1,10 @@
 package com.clouway.http;
 
 import com.clouway.core.BankAccountMessages;
-import com.clouway.core.PageMessages;
+import com.clouway.core.PageSiteMap;
+import com.clouway.core.SessionID;
 import com.clouway.core.UserDAO;
 import com.clouway.core.UserMessages;
-import com.clouway.core.UserSessionsRepository;
 import org.jmock.Expectations;
 import org.jmock.auto.Mock;
 import org.jmock.integration.junit4.JUnitRuleMockery;
@@ -21,8 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginServletTest {
 
   private LoginServlet loginServlet;
-
-  //private InMemoryUserDAO inMemoryUserDAO;
+  private SessionID sessionID;
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
@@ -40,18 +39,68 @@ public class LoginServletTest {
   private UserMessages userMessages;
 
   @Mock
-  private PageMessages pageMessages;
+  private PageSiteMap pageSiteMap;
 
   @Mock
   private UserDAO userDAO;
 
-  @Mock
-  private UserSessionsRepository userSessionsRepository;
 
   @Before
   public void setUp() {
 
+    loginServlet = new LoginServlet(userDAO, userMessages, pageSiteMap);
+
+    sessionID = new SessionID("XL4562GD");
+
+  }
+
+  @Test
+  public void loginWithExistingUser() throws Exception {
     context.checking(new Expectations() {{
+
+      expectAssertion();
+
+      oneOf(userDAO).authenticate("emil", "emil");
+      will(returnValue(sessionID));
+
+      oneOf(response).addCookie(sessionID.getCookie());
+
+      oneOf(pageSiteMap).mainPage();
+      will(returnValue("mainPage.jsp"));
+
+      oneOf(response).sendRedirect("mainPage.jsp");
+    }
+    });
+
+    loginServlet.doPost(request, response);
+  }
+
+
+
+  @Test
+  public void loginWithNotExistingUser() throws Exception {
+
+    context.checking(new Expectations() {{
+
+      expectAssertion();
+
+      oneOf(userDAO).authenticate("emil", "emil");
+      will(returnValue(null));
+
+      oneOf(pageSiteMap).loginPage();
+      will(returnValue("loginPage.jsp"));
+
+      oneOf(response).sendRedirect("loginPage.jsp");
+    }
+    });
+
+    loginServlet.doPost(request, response);
+
+  }
+
+  private void expectAssertion() {
+    context.checking(new Expectations() {{
+
       oneOf(userMessages).userName();
       will(returnValue("user_name"));
 
@@ -65,46 +114,5 @@ public class LoginServletTest {
       will(returnValue("emil"));
     }
     });
-
-    loginServlet = new LoginServlet(userDAO,
-                                    userMessages,
-                                    pageMessages,
-                                    userSessionsRepository);
-  }
-
-  @Test
-  public void whenUserWhoExistIsLoggedThenLoginIsSuccess() throws Exception {
-    context.checking(new Expectations() {{
-
-      oneOf(userDAO).isUserExist("emil", "emil");
-      will(returnValue(true));
-
-      oneOf(pageMessages).mainPage();
-      will(returnValue("mainPage.jsp"));
-
-      oneOf(response).sendRedirect("mainPage.jsp");
-    }
-    });
-
-    loginServlet.doPost(request, response);
-  }
-
-  @Test
-  public void whenUserWhoDoesNotExistIsTryingToLoggedThenLoginIsFailed() throws Exception {
-
-    context.checking(new Expectations() {{
-
-      oneOf(userDAO).isUserExist("emil", "emil");
-      will(returnValue(false));
-
-      oneOf(pageMessages).loginPage();
-      will(returnValue("loginPage.jsp"));
-
-      oneOf(response).sendRedirect("loginPage.jsp");
-    }
-    });
-
-    loginServlet.doPost(request, response);
-
   }
 }

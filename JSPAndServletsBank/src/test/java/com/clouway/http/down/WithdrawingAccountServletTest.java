@@ -3,7 +3,7 @@ package com.clouway.http.down;
 import com.clouway.core.AccountBankDAO;
 import com.clouway.core.BankAccountMessages;
 import com.clouway.core.CurrentUser;
-import com.clouway.core.PageMessages;
+import com.clouway.core.PageSiteMap;
 import com.clouway.core.User;
 import com.google.inject.util.Providers;
 import org.jmock.Expectations;
@@ -44,7 +44,7 @@ public class WithdrawingAccountServletTest {
   private BankAccountMessages bankAccountMessages;
 
   @Mock
-  private PageMessages pageMessages;
+  private PageSiteMap pageSiteMap;
 
   @Before
   public void setUp() {
@@ -56,7 +56,7 @@ public class WithdrawingAccountServletTest {
     withdrawing = new WithdrawingAccountServlet(accountBankDAO,
             bankAccountMessages,
             Providers.of(currentUser),
-            pageMessages);
+            pageSiteMap);
   }
 
   @After
@@ -77,7 +77,7 @@ public class WithdrawingAccountServletTest {
 
       oneOf(accountBankDAO).withdrawing(30, 1);
 
-      oneOf(pageMessages).mainPage();
+      oneOf(pageSiteMap).mainPage();
       will(returnValue("mainPage.jsp"));
 
       oneOf(response).sendRedirect("mainPage.jsp");
@@ -97,7 +97,7 @@ public class WithdrawingAccountServletTest {
       oneOf(request).getParameter("withdrawingAmount");
       will(returnValue("30LX"));
 
-      oneOf(pageMessages).loginPage();
+      oneOf(pageSiteMap).loginPage();
       will(returnValue("loginPage.jsp"));
 
       oneOf(response).sendRedirect("loginPage.jsp");
@@ -119,7 +119,7 @@ public class WithdrawingAccountServletTest {
       will(returnValue(-1));
 
 
-      oneOf(pageMessages).withdrawingPage();
+      oneOf(pageSiteMap).withdrawingPage();
       will(returnValue("withdrawingPage.jsp"));
 
       oneOf(response).sendRedirect("withdrawingPage.jsp");

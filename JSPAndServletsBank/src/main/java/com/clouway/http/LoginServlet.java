@@ -1,9 +1,9 @@
 package com.clouway.http;
 
-import com.clouway.core.PageMessages;
+import com.clouway.core.PageSiteMap;
+import com.clouway.core.SessionID;
 import com.clouway.core.UserDAO;
 import com.clouway.core.UserMessages;
-import com.clouway.core.UserSessionsRepository;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
@@ -22,16 +22,15 @@ public class LoginServlet extends HttpServlet {
 
   private final UserDAO userDAO;
   private final UserMessages userMessages;
-  private final PageMessages pageMessages;
-  private final UserSessionsRepository userSessionsRepository;
+  private final PageSiteMap pageSiteMap;
 
   @Inject
-  public LoginServlet(UserDAO userDAO, UserMessages userMessages, PageMessages pageMessages, UserSessionsRepository userSessionsRepository) {
+  public LoginServlet(UserDAO userDAO, UserMessages userMessages, PageSiteMap pageSiteMap) {
 
     this.userDAO = userDAO;
     this.userMessages = userMessages;
-    this.pageMessages = pageMessages;
-    this.userSessionsRepository = userSessionsRepository;
+    this.pageSiteMap = pageSiteMap;
+
   }
 
   @Override
@@ -40,12 +39,16 @@ public class LoginServlet extends HttpServlet {
 
     String userPassword = req.getParameter(userMessages.userPassword());
 
-    if (userDAO.isUserExist(userName, userPassword)) {
+    SessionID sessionID = userDAO.authenticate(userName, userPassword);
 
-      resp.sendRedirect(pageMessages.mainPage());
+    if (sessionID != null) {
+
+      resp.addCookie(sessionID.getCookie());
+
+      resp.sendRedirect(pageSiteMap.mainPage());
 
     } else {
-      resp.sendRedirect(pageMessages.loginPage());
+      resp.sendRedirect(pageSiteMap.loginPage());
     }
   }
 }

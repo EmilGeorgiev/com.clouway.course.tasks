@@ -9,5 +9,7 @@ public interface UserSessionsRepository {
    * @param sessionId the session id of the user
    * @return the User that is associated with the provided session id.
    */
-  User findUserAssociatedWithSession(String sessionId);
+  User isUserExistBySession(String sessionId);
+
+  void deleteSession(int userID);
 }

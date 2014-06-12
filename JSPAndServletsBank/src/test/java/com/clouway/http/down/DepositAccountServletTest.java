@@ -3,7 +3,7 @@ package com.clouway.http.down;
 import com.clouway.core.AccountBankDAO;
 import com.clouway.core.BankAccountMessages;
 import com.clouway.core.CurrentUser;
-import com.clouway.core.PageMessages;
+import com.clouway.core.PageSiteMap;
 import com.clouway.core.User;
 import com.google.inject.util.Providers;
 import org.jmock.Expectations;
@@ -38,7 +38,7 @@ public class DepositAccountServletTest {
   private BankAccountMessages bankAccountMessages;
 
   @Mock
-  private PageMessages pageMessages;
+  private PageSiteMap pageSiteMap;
 
   @Mock
   private AccountBankDAO accountBankDAO;
@@ -55,7 +55,7 @@ public class DepositAccountServletTest {
     depositAccountServlet = new DepositAccountServlet(accountBankDAO,
                                           bankAccountMessages,
                                           Providers.of(currentUser),
-                                          pageMessages);
+            pageSiteMap);
   }
 
   @Test
@@ -71,7 +71,7 @@ public class DepositAccountServletTest {
 
       oneOf(accountBankDAO).deposit(100, 1);
 
-      oneOf(pageMessages).mainPage();
+      oneOf(pageSiteMap).mainPage();
       will(returnValue("mainPage.jsp"));
 
       oneOf(response).sendRedirect("mainPage.jsp");
@@ -94,7 +94,7 @@ public class DepositAccountServletTest {
       oneOf(request).getParameter("depositAmount");
       will(returnValue("12XV5"));
 
-      oneOf(pageMessages).loginPage();
+      oneOf(pageSiteMap).loginPage();
       will(returnValue("loginPage.jsp"));
 
       oneOf(response).sendRedirect("loginPage.jsp");

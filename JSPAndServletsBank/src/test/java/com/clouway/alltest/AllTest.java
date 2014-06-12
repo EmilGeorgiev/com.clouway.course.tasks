@@ -4,6 +4,7 @@ import com.clouway.http.LoginServletTest;
 import com.clouway.http.LogoutServletTest;
 import com.clouway.http.SessionValidatorFilterTest;
 import com.clouway.http.TransactionServletTest;
+import com.clouway.persistents.PersistentBankDAOTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -12,6 +13,6 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({LoginServletTest.class, TransactionServletTest.class, LogoutServletTest.class,
-                    SessionValidatorFilterTest.class})
+                    SessionValidatorFilterTest.class, PersistentBankDAOTest.class})
 public class AllTest {
 }

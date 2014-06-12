@@ -5,5 +5,5 @@ package com.clouway.core;
  */
 public interface CurrentAmountRepository {
 
-  int getCurrentUserBankAmount();
+  float getCurrentUserBankAmount(int userID);
 }

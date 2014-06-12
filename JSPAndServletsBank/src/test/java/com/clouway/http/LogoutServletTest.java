@@ -15,35 +15,32 @@ import org.junit.Test;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Created by clouway on 6/11/14.
- */
+
 public class LogoutServletTest {
 
   private LogoutServlet logoutServlet;
-  private CurrentUser currentUser;
-  private User user = new User("emil", "emil", 1);
+  private User user = new User("emil", "emil", 1, "SSJ765");
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
 
   @Mock
-  private HttpServletRequest servletRequest;
+  private HttpServletRequest servletRequest = null;
 
   @Mock
-  private HttpServletResponse servletResponse;
+  private HttpServletResponse servletResponse = null;
 
   @Mock
-  private UserSessionsRepository userSessionsRepository;
+  private UserSessionsRepository userSessionsRepository = null;
 
   @Mock
-  private PageSiteMap pageSiteMap;
+  private PageSiteMap pageSiteMap = null;
 
   @Before
   public void setUp() {
 
 
-    currentUser = new CurrentUser(user);
+    CurrentUser currentUser = new CurrentUser(user);
 
     logoutServlet = new LogoutServlet(userSessionsRepository, pageSiteMap, Providers.of(currentUser));
   }

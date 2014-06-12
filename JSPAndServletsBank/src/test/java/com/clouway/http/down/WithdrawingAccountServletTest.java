@@ -49,7 +49,7 @@ public class WithdrawingAccountServletTest {
   @Before
   public void setUp() {
 
-    User user = new User("emil", "emil", 1);
+    User user = new User("emil", "emil", 1, "HGS567");
 
     currentUser = new CurrentUser(user);
 

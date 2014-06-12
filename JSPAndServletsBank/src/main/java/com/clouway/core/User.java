@@ -9,11 +9,13 @@ public class User {
   private String password;
 
   private int userID;
+  private SessionID sessionID;
 
-  public User(String userName, String password, int userID) {
+  public User(String userName, String password, int userID, String session) {
     this.userName = userName;
     this.password = password;
     this.userID = userID;
+    sessionID = new SessionID(session);
   }
 
 
@@ -28,5 +30,9 @@ public class User {
 
   public int getUserID() {
     return this.userID;
+  }
+
+  public SessionID getSessionID() {
+    return sessionID;
   }
 }

@@ -13,56 +13,50 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import javax.servlet.FilterChain;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Created by clouway on 6/11/14.
- */
 public class SessionValidatorFilterTest {
 
   private SessionValidatorFilter validatorFilter;
 
-  private CurrentUser currentUser;
-  private Cookie[] cookies;
+  private  User user = new User("emil", "emil", 1, "XLK3452");
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
 
   @Mock
-  private HttpServletResponse response;
+  private HttpServletResponse response = null;
 
   @Mock
-  private HttpServletRequest request;
+  private HttpServletRequest request = null;
 
   @Mock
-  private PageSiteMap pageSiteMap;
-  @Mock
-  private UserSessionsRepository userSessionsRepository;
+  private PageSiteMap pageSiteMap = null;
 
   @Mock
-  private FilterChain filterChain;
+  private UserSessionsRepository userSessionsRepository = null;
+
+  @Mock
+  private FilterChain filterChain = null;
 
   @Before
   public void setUp() {
-    User user = new User("emil", "emil", 1);
-    currentUser = new CurrentUser(user);
 
-    cookies = new Cookie[]{new Cookie("sessionID", "XCN67890")};
+    CurrentUser currentUser = new CurrentUser(user);
 
     validatorFilter = new SessionValidatorFilter(pageSiteMap, userSessionsRepository, Providers.of(currentUser));
   }
 
   @Test
-  public void whenUserSessionDoesExistThanRequestIsAllowed() throws Exception {
+  public void userRequestIsAllowed() throws Exception {
 
     context.checking(new Expectations() {{
-      oneOf(request).getCookies();
-      will(returnValue(cookies));
 
-      oneOf(userSessionsRepository).isUserExistBySession(cookies[1].getValue());
+      oneOf(userSessionsRepository).isValidUserSession(user.getSessionID().getSessionID());
       will(returnValue(true));
+
+      oneOf(filterChain).doFilter(request, response);
 
     }
     });
@@ -70,4 +64,14 @@ public class SessionValidatorFilterTest {
     validatorFilter.doFilter(request, response, filterChain);
 
   }
+
+//  @Test
+//  public void userSessionIsExpiredAndHeRedirectToLoginPage() throws Exception {
+//
+//    context.checking(new Expectations() {{
+//
+//    }
+//    });
+//
+//  }
 }

@@ -26,7 +26,7 @@ public class TransactionServletTest {
 
   private CurrentUser currentUser;
 
-  private User user = new User("emil", "emil", 1);
+  private User user = new User("emil", "emil", 1, "CKJI3456");
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();

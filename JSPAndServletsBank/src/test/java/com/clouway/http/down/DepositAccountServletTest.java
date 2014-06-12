@@ -48,7 +48,7 @@ public class DepositAccountServletTest {
   @Before
   public void setUp() {
 
-    User user = new User("emil", "emil", 1);
+    User user = new User("emil", "emil", 1, "HNK6765");
 
     currentUser = new CurrentUser(user);
 

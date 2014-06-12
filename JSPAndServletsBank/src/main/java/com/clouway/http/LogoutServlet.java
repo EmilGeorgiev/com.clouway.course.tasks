@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by clouway on 6/11/14.
+ * When user is logout then hes session and <code>Cookie</code> is deleted from database.
  */
 public class LogoutServlet extends HttpServlet {
 

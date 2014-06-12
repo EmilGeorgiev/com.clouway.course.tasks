@@ -1,8 +1,10 @@
 package com.clouway.persistents;
 
 import com.clouway.core.AccountBankDAO;
+import com.clouway.core.Clock;
 import com.clouway.core.CurrentAmountRepository;
 import com.clouway.core.CurrentUser;
+import com.clouway.core.DepositListener;
 import com.clouway.core.Transaction;
 import com.clouway.core.TransactionHistory;
 import com.google.inject.Inject;
@@ -13,22 +15,30 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by clouway on 6/6/14.
  */
 @Singleton
-public class PersistentBankDAO implements AccountBankDAO, TransactionHistory, CurrentAmountRepository{
+public class PersistentBankDAO implements AccountBankDAO, TransactionHistory, CurrentAmountRepository, DepositListener{
 
   private final Provider<Connection> connectionProvider;
   private final Provider<CurrentUser> currentUser;
+  private final DepositListener depositListener;
+  private final Clock clock;
 
   @Inject
-  public PersistentBankDAO(Provider<Connection> connectionProvider, Provider<CurrentUser> currentUser) {
+  public PersistentBankDAO(Provider<Connection> connectionProvider,
+                           Provider<CurrentUser> currentUser,
+                           DepositListener depositListener,
+                           Clock clock) {
 
     this.connectionProvider = connectionProvider;
     this.currentUser = currentUser;
+    this.depositListener = depositListener;
+    this.clock = clock;
   }
 
   @Override
@@ -38,7 +48,7 @@ public class PersistentBankDAO implements AccountBankDAO, TransactionHistory, Cu
     Connection connection = connectionProvider.get();
     try {
 
-      updateAmount = connection.prepareStatement("update Accounts SET amount = amount + ? WHERE user_id = ?");
+      updateAmount = connection.prepareStatement("UPDATE Accounts SET amount = amount + ? WHERE user_id = ?");
 
 
       updateAmount.setFloat(1, amount);
@@ -58,7 +68,7 @@ public class PersistentBankDAO implements AccountBankDAO, TransactionHistory, Cu
       }
     }
 
-
+    onTransaction(amount, userID, "deposit");
   }
 
   @Override
@@ -117,6 +127,44 @@ public class PersistentBankDAO implements AccountBankDAO, TransactionHistory, Cu
 
   @Override
   public List<Transaction> getAllTransactions() {
-    return null;
+    List<Transaction> transactions = new ArrayList<Transaction>();
+
+    transactions.add(new Transaction("deposit", 100, clock.now().toString(), 1));
+    transactions.add(new Transaction("deposit", 150, clock.now().toString(), 1));
+
+    return transactions;
+  }
+
+  @Override
+  public void onTransaction(float amount, int userID, String transaction) {
+    PreparedStatement prepareStatement = null;
+
+   Connection connection = connectionProvider.get();
+
+    try {
+      prepareStatement = connection.prepareStatement("INSERT INTO TransferHistory (tranfer, date, amount, user_id) " +
+              "VALUES (?, ?, ?, ?) ");
+
+      prepareStatement.setString(1, transaction);
+
+      prepareStatement.setTimestamp(2, clock.now());
+
+      prepareStatement.setFloat(3, amount);
+
+      prepareStatement.setInt(4, userID);
+
+      prepareStatement.executeUpdate();
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if (prepareStatement != null) {
+          prepareStatement.close();
+        }
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+    }
   }
 }

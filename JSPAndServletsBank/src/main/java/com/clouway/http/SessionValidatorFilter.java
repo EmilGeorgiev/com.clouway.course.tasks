@@ -50,6 +50,7 @@ public class SessionValidatorFilter implements Filter{
 
     if (!userSessionsRepository.isValidUserSession(sessionID.getSessionID())) {
       response.sendRedirect(pageSiteMap.loginPage());
+      return;
     }
 
     filterChain.doFilter(request, response);

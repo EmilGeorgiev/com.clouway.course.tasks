@@ -65,13 +65,21 @@ public class SessionValidatorFilterTest {
 
   }
 
-//  @Test
-//  public void userSessionIsExpiredAndHeRedirectToLoginPage() throws Exception {
-//
-//    context.checking(new Expectations() {{
-//
-//    }
-//    });
-//
-//  }
+  @Test
+  public void userSessionIsExpiredAndHeRedirectToLoginPage() throws Exception {
+
+    context.checking(new Expectations() {{
+      oneOf(userSessionsRepository).isValidUserSession(user.getSessionID().getSessionID());
+      will(returnValue(false));
+
+      oneOf(pageSiteMap).loginPage();
+      will(returnValue("loginPage.jsp"));
+
+      oneOf(response).sendRedirect("loginPage.jsp");
+    }
+    });
+
+    validatorFilter.doFilter(request, response, filterChain);
+
+  }
 }

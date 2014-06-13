@@ -7,6 +7,6 @@ public interface AccountBankDAO {
 
   void deposit(float amount, int userID);
 
-  int withdrawing(float withdrawingAmount, int userID);
+  float withdrawing(float withdrawingAmount, int userID);
 
 }

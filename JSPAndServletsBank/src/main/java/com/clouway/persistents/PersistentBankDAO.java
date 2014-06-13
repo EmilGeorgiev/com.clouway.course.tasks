@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,8 +73,24 @@ public class PersistentBankDAO implements AccountBankDAO, TransactionHistory, Cu
   }
 
   @Override
-  public int withdrawing(float withdrawingAmount, int userID) {
-    return 0;
+  public float withdrawing(float withdrawingAmount, int userID) {
+    PreparedStatement preparedStatement = null;
+
+    Connection connection = connectionProvider.get();
+
+    try {
+      preparedStatement = connection.prepareStatement("UPDATE Accounts SET amount = amount - ? WHERE user_id = ?");
+
+      preparedStatement.setFloat(1, withdrawingAmount);
+      preparedStatement.setInt(2, userID);
+
+      preparedStatement.executeUpdate();
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    return withdrawingAmount;
   }
 
   @Override
@@ -90,15 +107,9 @@ public class PersistentBankDAO implements AccountBankDAO, TransactionHistory, Cu
 
       ResultSet resultSet = preparedStatement.executeQuery();
 
-      int currentAmount = 0;
+      resultSet.next();
 
-      while (resultSet.next()) {
-        int amount = resultSet.getInt("amount");
-
-        currentAmount += amount;
-      }
-
-      return currentAmount;
+      return resultSet.getInt("amount");
 
     } catch (SQLException e) {
       e.printStackTrace();
@@ -117,22 +128,73 @@ public class PersistentBankDAO implements AccountBankDAO, TransactionHistory, Cu
 
   @Override
   public List<Transaction> getUserHistory(int userID) {
+    PreparedStatement preparedStatement = null;
+
+    Connection connection = connectionProvider.get();
+
+    try {
+      preparedStatement = connection.prepareStatement("SELECT tranfer, date, amount, user_id FROM TransferHistory " +
+              "WHERE user_id = ?");
+
+      preparedStatement.setInt(1, userID);
+
+      ResultSet resultSet = preparedStatement.executeQuery();
+
+      List<Transaction> transactions = new ArrayList<Transaction>();
+
+      while (resultSet.next()) {
+        String transfer = resultSet.getString("tranfer");
+        Timestamp date = resultSet.getTimestamp("date");
+        float amount = resultSet.getFloat("amount");
+        int id = resultSet.getInt("user_id");
+
+        transactions.add(new Transaction(transfer, amount, date, id));
+      }
+
+      return transactions;
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if (preparedStatement != null) {
+          preparedStatement.close();
+        }
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+    }
+
     return null;
   }
 
   @Override
-  public void addTransaction(Transaction transaction) {
-
-  }
-
-  @Override
   public List<Transaction> getAllTransactions() {
-    List<Transaction> transactions = new ArrayList<Transaction>();
 
-    transactions.add(new Transaction("deposit", 100, clock.now().toString(), 1));
-    transactions.add(new Transaction("deposit", 150, clock.now().toString(), 1));
+    PreparedStatement preparedStatement = null;
 
-    return transactions;
+    Connection connection = connectionProvider.get();
+
+    try {
+      preparedStatement = connection.prepareStatement("SELECT tranfer, date, amount, user_id FROM TransferHistory");
+
+      ResultSet resultSet = preparedStatement.executeQuery();
+
+      List<Transaction> transactions = new ArrayList<Transaction>();
+      while (resultSet.next()) {
+        String transfer = resultSet.getString("tranfer");
+        Timestamp date = resultSet.getTimestamp("date");
+        float amount = resultSet.getFloat("amount");
+        int id = resultSet.getInt("user_id");
+
+        transactions.add(new Transaction(transfer, amount, date, id));
+      }
+
+      return transactions;
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    return null;
   }
 
   @Override

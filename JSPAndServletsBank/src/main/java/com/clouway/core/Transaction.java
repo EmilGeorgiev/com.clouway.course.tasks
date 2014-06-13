@@ -1,16 +1,18 @@
 package com.clouway.core;
 
+import java.sql.Timestamp;
+
 /**
  * Created by clouway on 5/29/14.
  */
 public class Transaction {
 
   private final String transfer;
-  private final String dateTransaction;
-  private final int amountTransaction;
+  private final Timestamp dateTransaction;
+  private final float amountTransaction;
   private final int userID;
 
-  public Transaction(String transfer, int amountTransaction, String dateTransaction, int userID) {
+  public Transaction(String transfer, float amountTransaction, Timestamp dateTransaction, int userID) {
     this.transfer = transfer;
 
     this.dateTransaction = dateTransaction;
@@ -28,11 +30,11 @@ public class Transaction {
     return transfer;
   }
 
-  public String getDateTransaction() {
+  public Timestamp getDateTransaction() {
     return dateTransaction;
   }
 
-  public int getAmountTransaction() {
+  public float getAmountTransaction() {
     return amountTransaction;
   }
 

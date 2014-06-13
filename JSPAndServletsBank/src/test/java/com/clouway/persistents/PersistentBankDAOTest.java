@@ -57,7 +57,7 @@ public class PersistentBankDAOTest {
 
     userUtil = new UserUtil(connection);
 
-    userUtil.registerNewUser(user.getUserName(), user.getPassword());
+    userUtil.registerNewUser(user);
 
     persistentBankDAO = new PersistentBankDAO(Providers.of(connection), Providers.of(currentUser), depositListener, clock);
   }
@@ -92,9 +92,39 @@ public class PersistentBankDAOTest {
 
     List<Transaction> transactions = persistentBankDAO.getAllTransactions();
 
-    //System.out.println(transactions.get(0).getDateTransaction());
+    assertThat(transactions.get(0).toString(), is("2014-02-11 00:00:00.0 | 100.0 | deposit"));
+    assertThat(transactions.get(1).toString(), is("2014-02-11 00:00:00.0 | 150.0 | deposit"));
 
-    assertThat(transactions, is(transactions));
+  }
+
+  @Test
+  public void takeHistoryOnCurrentUser() throws Exception {
+    User ivan = new User("ivan", "ivan", 2, "XCL453");
+
+    userUtil.registerNewUser(ivan);
+
+    persistentBankDAO.deposit(100, user.getUserID());
+    persistentBankDAO.deposit(150, user.getUserID());
+
+    persistentBankDAO.deposit(200, ivan.getUserID());
+
+    List<Transaction> transactions = persistentBankDAO.getUserHistory(ivan.getUserID());
+
+    assertThat(transactions.get(0).toString(), is("2014-02-11 00:00:00.0 | 200.0 | deposit"));
+
+  }
+
+  @Test
+  public void whenWithdrawingSomeValueThanCurrentAccountDecrementWithThisValue() throws Exception {
+    persistentBankDAO.deposit(100, user.getUserID());
+
+    persistentBankDAO.withdrawing(30, user.getUserID());
+
+    float currentAmount = persistentBankDAO.getCurrentUserBankAmount(user.getUserID());
+
+    System.out.println(currentAmount);
+
+    assertThat(currentAmount, is(70.0f));
 
   }
 }

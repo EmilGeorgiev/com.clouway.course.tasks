@@ -1,5 +1,7 @@
 package com.clouway.persistents.util;
 
+import com.clouway.core.User;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -15,7 +17,7 @@ public class UserUtil  {
     this.connection = connection;
   }
 
-  public void registerNewUser(String name, String password) {
+  public void registerNewUser(User user) {
     PreparedStatement preparedStatement = null;
 
    // PreparedStatement createAccount = null;
@@ -27,8 +29,8 @@ public class UserUtil  {
       preparedStatement =  connection.prepareStatement("INSERT INTO Users (name, password) " +
               "VALUE (?, ?)");
 
-      preparedStatement.setString(1, name);
-      preparedStatement.setString(2, password);
+      preparedStatement.setString(1, user.getUserName());
+      preparedStatement.setString(2, user.getPassword());
 
       preparedStatement.executeUpdate();
 
@@ -37,7 +39,7 @@ public class UserUtil  {
               "VALUES (?, ?)");
 
       preparedStatement.setInt(1, 0);
-      preparedStatement.setInt(2, 1);
+      preparedStatement.setInt(2, user.getUserID());
 
       preparedStatement.executeUpdate();
 

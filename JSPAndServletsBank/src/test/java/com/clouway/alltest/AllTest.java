@@ -13,6 +13,6 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({LoginServletTest.class, TransactionServletTest.class, LogoutServletTest.class,
-                    SessionValidatorFilterTest.class, PersistentBankDAOTest.class})
+                    SessionValidatorFilterTest.class, PersistentBankDAOTest.class, PersistentBankDAOTest.class})
 public class AllTest {
 }

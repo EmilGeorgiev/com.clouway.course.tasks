@@ -18,11 +18,9 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by clouway on 6/6/14.
- */
+
 @Singleton
-public class PersistentBankDAO implements AccountBankDAO, TransactionHistory, CurrentAmountRepository, DepositListener{
+public class PersistentBankDAO implements AccountBankDAO, TransactionHistory, CurrentAmountRepository {
 
   private final Provider<Connection> connectionProvider;
   private final DepositListener depositListener;
@@ -70,8 +68,8 @@ public class PersistentBankDAO implements AccountBankDAO, TransactionHistory, Cu
   }
 
   @Override
-  public float withdrawing(float withdrawingAmount, int userID) {
-    PreparedStatement preparedStatement = null;
+  public float withdraw(float withdrawingAmount, int userID) {
+    PreparedStatement preparedStatement;
 
     Connection connection = connectionProvider.get();
 
@@ -87,6 +85,7 @@ public class PersistentBankDAO implements AccountBankDAO, TransactionHistory, Cu
       e.printStackTrace();
     }
 
+    onTransaction(withdrawingAmount, userID, "withdraw");
     return withdrawingAmount;
   }
 
@@ -167,7 +166,7 @@ public class PersistentBankDAO implements AccountBankDAO, TransactionHistory, Cu
   @Override
   public List<Transaction> getAllTransactions() {
 
-    PreparedStatement preparedStatement = null;
+    PreparedStatement preparedStatement;
 
     Connection connection = connectionProvider.get();
 
@@ -194,8 +193,8 @@ public class PersistentBankDAO implements AccountBankDAO, TransactionHistory, Cu
     return null;
   }
 
-  @Override
-  public void onTransaction(float amount, int userID, String transaction) {
+
+  private void onTransaction(float amount, int userID, String transaction) {
     PreparedStatement prepareStatement = null;
 
    Connection connection = connectionProvider.get();

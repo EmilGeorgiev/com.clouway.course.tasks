@@ -35,8 +35,8 @@ public class ViewCurrentAmountServlet extends HttpServlet{
 //    List<Transaction> transactions = depositAccountDAO.getHistory();
 //
 //    if (transactions != null) {
-//      for (Transaction transaction : transactions) {
-//        messageBuilder.append("\n" + transaction.toString());
+//      for (Transaction transactionType : transactions) {
+//        messageBuilder.append("\n" + transactionType.toString());
 //      }
 //    }
 //

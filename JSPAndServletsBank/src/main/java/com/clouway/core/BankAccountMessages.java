@@ -11,7 +11,7 @@ public interface BankAccountMessages {
 
   String transactionAmount();
 
-  String transaction();
+  String transactionType();
 
   String deposit();
 }

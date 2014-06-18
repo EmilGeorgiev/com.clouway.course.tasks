@@ -1,12 +1,12 @@
 package com.clouway.http;
 
-import com.clouway.core.CurrentUser;
-import com.clouway.core.PageSiteMap;
-import com.clouway.core.User;
+import com.clouway.core.SiteMap;
 import com.clouway.core.UserSessionsRepository;
-import com.google.inject.Provider;
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,28 +15,46 @@ import java.io.IOException;
 /**
  * When user is logout then hes session and <code>Cookie</code> is deleted from database.
  */
+@Singleton
 public class LogoutServlet extends HttpServlet {
 
 
   private final UserSessionsRepository userSessionsRepository;
-  private final PageSiteMap pageSiteMap;
-  private final Provider<CurrentUser> currentUserProvider;
+  private final SiteMap siteMap;
 
-  public LogoutServlet(UserSessionsRepository userSessionsRepository, PageSiteMap pageSiteMap,
-                        Provider<CurrentUser> currentUserProvider) {
+
+  @Inject
+  public LogoutServlet(UserSessionsRepository userSessionsRepository, SiteMap siteMap) {
 
     this.userSessionsRepository = userSessionsRepository;
-    this.pageSiteMap = pageSiteMap;
-    this.currentUserProvider = currentUserProvider;
+    this.siteMap = siteMap;
+
   }
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-    User user = currentUserProvider.get().getUser();
+    String sessionID = getSessionID(req);
 
-    userSessionsRepository.deleteSession(user.getUserID());
+    if (sessionID != null) {
+      userSessionsRepository.deleteSession(sessionID);
+    }
 
-    resp.sendRedirect(pageSiteMap.loginPage());
+    resp.sendRedirect(siteMap.loginPage());
+  }
+
+  private String getSessionID(HttpServletRequest req) {
+    Cookie[] cookies = req.getCookies();
+
+    if (cookies != null) {
+      for (Cookie cookie : cookies) {
+        if ( "sid".equals(cookie.getName())) {
+          return cookie.getValue();
+        }
+      }
+    }
+
+
+    return null;
   }
 }

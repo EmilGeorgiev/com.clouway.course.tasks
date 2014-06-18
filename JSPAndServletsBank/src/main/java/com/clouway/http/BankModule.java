@@ -2,7 +2,7 @@ package com.clouway.http;
 
 import com.clouway.core.BankAccountMessages;
 import com.clouway.core.CurrentUser;
-import com.clouway.core.PageSiteMap;
+import com.clouway.core.SiteMap;
 import com.clouway.core.UserMessages;
 import com.clouway.core.UserSessionsRepository;
 import com.clouway.core.User;
@@ -26,7 +26,6 @@ public class BankModule extends AbstractModule {
   }
 
   @Provides
-  @RequestScoped
   public BankAccountMessages getBankAccountMessages() {
     return new BankAccountMessages() {
 
@@ -47,8 +46,8 @@ public class BankModule extends AbstractModule {
       }
 
       @Override
-      public String transaction() {
-        return "transaction";
+      public String transactionType() {
+        return "transactionType";
       }
 
       @Override
@@ -60,7 +59,6 @@ public class BankModule extends AbstractModule {
   }
 
   @Provides
-  @RequestScoped
   public UserMessages getUserMessages() {
     return new UserMessages() {
       @Override
@@ -76,9 +74,8 @@ public class BankModule extends AbstractModule {
   }
 
   @Provides
-  @RequestScoped
-  public PageSiteMap getPageMessages() {
-    return new PageSiteMap() {
+  public SiteMap getPageMessages() {
+    return new SiteMap() {
       @Override
       public String mainPage() {
         return "mainPage.jsp";
@@ -107,7 +104,6 @@ public class BankModule extends AbstractModule {
   }
 
   @Provides
-  @RequestScoped
   public ValidationMessages getValidationMessages() {
     return new ValidationMessages() {
       @Override

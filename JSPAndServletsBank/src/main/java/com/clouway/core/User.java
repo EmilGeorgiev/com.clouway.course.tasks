@@ -9,13 +9,12 @@ public class User {
   private String password;
 
   private int userID;
-  private SessionID sessionID;
+//  private SessionID sessionID;
 
-  public User(String userName, String password, int userID, String session) {
+  public User(String userName, String password, int userID) {
     this.userName = userName;
     this.password = password;
     this.userID = userID;
-    sessionID = new SessionID(session);
   }
 
 
@@ -32,7 +31,11 @@ public class User {
     return this.userID;
   }
 
-  public SessionID getSessionID() {
-    return sessionID;
-  }
+//  public SessionID getSessionID() {
+//    return sessionID;
+//  }
+//
+//  public void setSessionID(String sessionID) {
+//    this.sessionID = new SessionID(sessionID);
+//  }
 }

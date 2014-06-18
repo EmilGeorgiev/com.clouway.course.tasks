@@ -1,4 +1,4 @@
-package com.clouway.alltest;
+package com.clouway.suite;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;

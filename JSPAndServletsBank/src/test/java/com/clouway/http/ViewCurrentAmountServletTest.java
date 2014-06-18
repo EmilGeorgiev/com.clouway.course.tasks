@@ -35,7 +35,7 @@ public class ViewCurrentAmountServletTest {
 //
 //    inMemoryBankDAO.deposit(20, clock.now());
 //    inMemoryBankDAO.deposit(20, clock.now());
-//    inMemoryBankDAO.withdrawing(10, clock.now());
+//    inMemoryBankDAO.withdraw(10, clock.now());
 //  }
 
 //  @Test
@@ -57,7 +57,7 @@ public class ViewCurrentAmountServletTest {
 //    assertThat(message, is("Current amount is: 30\n" +
 //            "Fri May 30 00:00:00 EEST 2014 | 20 | deposit\n" +
 //            "Fri May 30 00:00:00 EEST 2014 | 20 | deposit\n" +
-//            "Fri May 30 00:00:00 EEST 2014 | 10 | withdrawing"));
+//            "Fri May 30 00:00:00 EEST 2014 | 10 | withdraw"));
 //
 //  }
 

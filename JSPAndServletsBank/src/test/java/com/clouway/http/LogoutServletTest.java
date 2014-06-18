@@ -1,10 +1,7 @@
 package com.clouway.http;
 
-import com.clouway.core.CurrentUser;
-import com.clouway.core.PageSiteMap;
-import com.clouway.core.User;
+import com.clouway.core.SiteMap;
 import com.clouway.core.UserSessionsRepository;
-import com.google.inject.util.Providers;
 import org.jmock.Expectations;
 import org.jmock.auto.Mock;
 import org.jmock.integration.junit4.JUnitRuleMockery;
@@ -12,6 +9,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,7 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 public class LogoutServletTest {
 
   private LogoutServlet logoutServlet;
-  private User user = new User("emil", "emil", 1, "SSJ765");
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
@@ -34,25 +31,23 @@ public class LogoutServletTest {
   private UserSessionsRepository userSessionsRepository = null;
 
   @Mock
-  private PageSiteMap pageSiteMap = null;
+  private SiteMap siteMap = null;
 
   @Before
   public void setUp() {
 
-
-    CurrentUser currentUser = new CurrentUser(user);
-
-    logoutServlet = new LogoutServlet(userSessionsRepository, pageSiteMap, Providers.of(currentUser));
+    logoutServlet = new LogoutServlet(userSessionsRepository, siteMap);
   }
 
   @Test
-  public void userIsLogout() throws Exception {
+  public void userSessionIsExpired() throws Exception {
 
     context.checking(new Expectations() {{
 
-      oneOf(userSessionsRepository).deleteSession(user.getUserID());
+      oneOf(servletRequest).getCookies();
+      will(returnValue(with(any(Cookie[].class))));
 
-      oneOf(pageSiteMap).loginPage();
+      oneOf(siteMap).loginPage();
       will(returnValue("loginPage.jsp"));
 
       oneOf(servletResponse).sendRedirect("loginPage.jsp");
@@ -62,4 +57,14 @@ public class LogoutServletTest {
     logoutServlet.doPost(servletRequest, servletResponse);
 
   }
+
+//  @Test
+//  public void userIsLogout() throws Exception {
+//    context.checking(new Expectations() {{
+//      oneOf(servletRequest).getCookies();
+//      will(returnValue(with(any(Cookie[].class))));
+//    }
+//    });
+//
+//  }
 }

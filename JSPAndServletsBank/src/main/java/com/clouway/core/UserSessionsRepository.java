@@ -11,7 +11,9 @@ public interface UserSessionsRepository {
    */
   User isUserExistBySession(String sessionId);
 
-  void deleteSession(int userID);
+  void deleteSession(String userID);
 
-  boolean isValidUserSession(String value);
+  boolean isValidUserSession(String userID);
+
+//  String getUserSessionIDByID(int userID);
 }

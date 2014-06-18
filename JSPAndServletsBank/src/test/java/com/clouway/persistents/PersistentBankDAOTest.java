@@ -18,13 +18,13 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class PersistentBankDAOTest {
 
   private PersistentBankDAO persistentBankDAO;
 
-  private User user = new User("emil", "emil", 1, "XVL4567");
+  private User user = new User("emil", "emil", 1);
 
   private UserUtil userUtil;
 
@@ -33,17 +33,27 @@ public class PersistentBankDAOTest {
   Clock clock = new Clock() {
     @Override
     public Timestamp now() {
-      return new Timestamp(CalendarUtil.february(2014, 1, 11));
+      return new Timestamp(CalendarUtil.getDate(2014, 1, 11));
+    }
+
+    @Override
+    public int getExpiryTime() {
+      return 30;
+    }
+
+    @Override
+    public void setTimeExpiry(int timeExpiry) {
+
     }
   };
 
   @Rule
-  public DataStoreRule dataStoreRule = new DataStoreRule();
+  public DatastoreRule datastoreRule = new DatastoreRule();
 
   @Before
   public void setUp() throws SQLException {
 
-    Connection connection = dataStoreRule.getDataSource().getConnection();
+    Connection connection = datastoreRule.getDataSource().getConnection();
 
     userUtil = new UserUtil(connection);
 
@@ -67,18 +77,28 @@ public class PersistentBankDAOTest {
 //  }
 
   @Test
-  public void whenMakeTwoDepositsWhitSameValueThanCurrentAmountIncreasesTwoTime() throws Exception {
+  public void whenMakeTwoDepositsWithSameValueThanCurrentAmountIncreasesTwoTime() throws Exception {
+    pretendThatUserHasDepositOf(20,userId(50));
 
-    float currentAmount = persistentBankDAO.getCurrentUserBankAmount(user.getUserID());
+    float currentAmount = persistentBankDAO.getCurrentUserBankAmount(userId(50));
 
-    assertThat(currentAmount, is(250f));
+    assertThat(currentAmount, is(20f));
 
   }
+
+  private void pretendThatUserHasDepositOf(float deposit, int userId) {
+    userUtil.registerNewUser(new User("testuser","testpass",userId));
+
+    persistentBankDAO.deposit(deposit,userId);
+  }
+
 
   @Test
   public void whenMakeTwoDepositsThenMakeAndTwoTransaction() throws Exception {
 
     List<Transaction> transactions = persistentBankDAO.getAllTransactions();
+
+    System.out.println(clock.now());
 
     assertThat(transactions.get(0).toString(), is("2014-02-11 00:00:00.0 | 100.0 | deposit"));
     assertThat(transactions.get(1).toString(), is("2014-02-11 00:00:00.0 | 150.0 | deposit"));
@@ -87,7 +107,7 @@ public class PersistentBankDAOTest {
 
   @Test
   public void takeHistoryOnCurrentUser() throws Exception {
-    User ivan = new User("ivan", "ivan", 2, "XCL453");
+    User ivan = new User("ivan", "ivan", 2);
 
     userUtil.registerNewUser(ivan);
 
@@ -102,11 +122,16 @@ public class PersistentBankDAOTest {
   @Test
   public void whenWithdrawingSomeValueThanCurrentAccountDecrementWithThisValue() throws Exception {
 
-    persistentBankDAO.withdrawing(30, user.getUserID());
+    persistentBankDAO.withdraw(30, user.getUserID());
 
     float currentAmount = persistentBankDAO.getCurrentUserBankAmount(user.getUserID());
 
     assertThat(currentAmount, is(220.0f));
 
+  }
+
+
+  private int userId(int userId) {
+    return userId;
   }
 }

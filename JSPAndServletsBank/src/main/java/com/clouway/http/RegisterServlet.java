@@ -2,32 +2,37 @@ package com.clouway.http;
 
 import com.clouway.core.AuthenticateService;
 import com.clouway.core.SiteMap;
-import com.clouway.core.SessionID;
+import com.clouway.core.UserDAO;
 import com.clouway.core.UserMessages;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Created by clouway on 6/13/14.
+ */
 @Singleton
-public class LoginServlet extends HttpServlet {
+public class RegisterServlet extends HttpServlet {
 
-
-  private final UserMessages userMessages;
+  private final UserDAO userDAO;
   private final SiteMap siteMap;
+  private final UserMessages userMessages;
   private final AuthenticateService authenticateService;
 
   @Inject
-  public LoginServlet(UserMessages userMessages, SiteMap siteMap, AuthenticateService authenticateService) {
+  public RegisterServlet(UserDAO userDAO,
+                         SiteMap siteMap,
+                         UserMessages userMessages,
+                         AuthenticateService authenticateService) {
 
-    this.userMessages = userMessages;
+    this.userDAO = userDAO;
     this.siteMap = siteMap;
-
+    this.userMessages = userMessages;
     this.authenticateService = authenticateService;
   }
 
@@ -37,16 +42,21 @@ public class LoginServlet extends HttpServlet {
 
     String userPassword = req.getParameter(userMessages.userPassword());
 
-    SessionID sessionID = authenticateService.authenticate(userName, userPassword);
 
-    if (sessionID != null) {
-      Cookie sessionCookie = new Cookie("sid",sessionID.getSessionID());
-      resp.addCookie(sessionCookie);
+    if (authenticateService.authenticate(userName, userPassword) == null) {
+      userDAO.register(userName, userPassword);
 
       resp.sendRedirect(siteMap.mainPage());
 
-    } else {
-      resp.sendRedirect(siteMap.loginPage());
+      return;
+
     }
+
+    resp.sendRedirect(siteMap.loginPage());
+  }
+
+  @Override
+  protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
   }
 }

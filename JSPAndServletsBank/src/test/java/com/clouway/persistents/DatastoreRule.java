@@ -8,7 +8,7 @@ import org.junit.runners.model.Statement;
 /**
  * Created by clouway on 6/6/14.
  */
-public class DataStoreRule implements TestRule {
+public class DatastoreRule implements TestRule {
 
   private MysqlConnectionPoolDataSource dataSource = new MysqlConnectionPoolDataSource();
 

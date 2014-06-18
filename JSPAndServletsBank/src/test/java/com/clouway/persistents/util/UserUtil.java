@@ -20,11 +20,9 @@ public class UserUtil  {
   public void registerNewUser(User user) {
     PreparedStatement preparedStatement = null;
 
-   // PreparedStatement createAccount = null;
-
     try {
 
-      //connection.setAutoCommit(false);
+      connection.setAutoCommit(false);
 
       preparedStatement =  connection.prepareStatement("INSERT INTO Users (name, password) " +
               "VALUE (?, ?)");

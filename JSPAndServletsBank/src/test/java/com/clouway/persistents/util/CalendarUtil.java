@@ -7,7 +7,7 @@ import java.util.Calendar;
  */
 public class CalendarUtil {
 
-  public static long february(int year, int month, int day) {
+  public static long getDate(int year, int month, int day) {
     Calendar calendar = Calendar.getInstance();
 
 

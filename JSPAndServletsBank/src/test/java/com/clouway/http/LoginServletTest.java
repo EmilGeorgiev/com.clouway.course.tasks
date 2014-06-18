@@ -1,9 +1,8 @@
 package com.clouway.http;
 
-import com.clouway.core.BankAccountMessages;
-import com.clouway.core.PageSiteMap;
+import com.clouway.core.AuthenticateService;
+import com.clouway.core.SiteMap;
 import com.clouway.core.SessionID;
-import com.clouway.core.UserDAO;
 import com.clouway.core.UserMessages;
 import org.jmock.Expectations;
 import org.jmock.auto.Mock;
@@ -12,6 +11,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -27,28 +27,35 @@ public class LoginServletTest {
   public JUnitRuleMockery context = new JUnitRuleMockery();
 
   @Mock
-  private BankAccountMessages bankAccountMessages;
+  private HttpServletResponse response = null;
 
   @Mock
-  private HttpServletResponse response;
+  private HttpServletRequest request = null;
 
   @Mock
-  private HttpServletRequest request;
+  private UserMessages userMessages = null;
 
   @Mock
-  private UserMessages userMessages;
+  private SiteMap siteMap = null;
 
   @Mock
-  private PageSiteMap pageSiteMap;
+  private AuthenticateService authenticateService = null;
 
-  @Mock
-  private UserDAO userDAO;
+  public static class RequestedUser {
+    public final String user;
+    public final String pass;
+
+    RequestedUser(String user, String pass) {
+      this.user = user;
+      this.pass = pass;
+    }
+  }
 
 
   @Before
   public void setUp() {
 
-    loginServlet = new LoginServlet(userDAO, userMessages, pageSiteMap);
+    loginServlet = new LoginServlet(userMessages, siteMap, authenticateService);
 
     sessionID = new SessionID("XL4562GD");
 
@@ -56,16 +63,18 @@ public class LoginServletTest {
 
   @Test
   public void loginWithExistingUser() throws Exception {
+    final RequestedUser anyRequestedUser = new RequestedUser("emil", "emilpass");
+
+    pretendThatRequestedUserIs(anyRequestedUser);
+
     context.checking(new Expectations() {{
 
-      expectAssertion();
-
-      oneOf(userDAO).authenticate("emil", "emil");
+      oneOf(authenticateService).authenticate("emil", "emilpass");
       will(returnValue(sessionID));
 
-      oneOf(response).addCookie(sessionID.getCookie());
+      oneOf(response).addCookie(with(any(Cookie.class)));
 
-      oneOf(pageSiteMap).mainPage();
+      oneOf(siteMap).mainPage();
       will(returnValue("mainPage.jsp"));
 
       oneOf(response).sendRedirect("mainPage.jsp");
@@ -79,15 +88,15 @@ public class LoginServletTest {
 
   @Test
   public void loginWithNotExistingUser() throws Exception {
+    final RequestedUser requestedUser = new RequestedUser("ivan", "ivanpass");
+    pretendThatRequestedUserIs(requestedUser);
 
     context.checking(new Expectations() {{
 
-      expectAssertion();
-
-      oneOf(userDAO).authenticate("emil", "emil");
+      oneOf(authenticateService).authenticate(requestedUser.user, requestedUser.pass);
       will(returnValue(null));
 
-      oneOf(pageSiteMap).loginPage();
+      oneOf(siteMap).loginPage();
       will(returnValue("loginPage.jsp"));
 
       oneOf(response).sendRedirect("loginPage.jsp");
@@ -98,20 +107,20 @@ public class LoginServletTest {
 
   }
 
-  private void expectAssertion() {
+  private void pretendThatRequestedUserIs(final RequestedUser requestedUser) {
     context.checking(new Expectations() {{
 
       oneOf(userMessages).userName();
       will(returnValue("user_name"));
 
       oneOf(request).getParameter("user_name");
-      will(returnValue("emil"));
+      will(returnValue(requestedUser.user));
 
       oneOf(userMessages).userPassword();
       will(returnValue("user_password"));
 
       oneOf(request).getParameter("user_password");
-      will(returnValue("emil"));
+      will(returnValue(requestedUser.pass));
     }
     });
   }

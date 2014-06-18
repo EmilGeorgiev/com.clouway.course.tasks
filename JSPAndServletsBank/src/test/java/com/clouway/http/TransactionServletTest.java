@@ -4,7 +4,7 @@ import com.clouway.core.AccountBankDAO;
 import com.clouway.core.BankAccountMessages;
 import com.clouway.core.CurrentAmountRepository;
 import com.clouway.core.CurrentUser;
-import com.clouway.core.PageSiteMap;
+import com.clouway.core.SiteMap;
 import com.clouway.core.User;
 import com.google.inject.util.Providers;
 import org.jmock.Expectations;
@@ -26,7 +26,7 @@ public class TransactionServletTest {
 
   private CurrentUser currentUser;
 
-  private User user = new User("emil", "emil", 1, "CKJI3456");
+  private User user = new User("emil", "emil", 1);
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
@@ -41,7 +41,7 @@ public class TransactionServletTest {
   private BankAccountMessages bankAccountMessages;
 
   @Mock
-  private PageSiteMap pageSiteMap;
+  private SiteMap siteMap;
 
   @Mock
   private AccountBankDAO accountBankDAO;
@@ -67,7 +67,7 @@ public class TransactionServletTest {
 
     transactionServlet = new TransactionServlet(accountBankDAO,
                                                 bankAccountMessages,
-            pageSiteMap,
+                                                siteMap,
                                                 Providers.of(currentUser));
 
   }
@@ -113,7 +113,7 @@ public class TransactionServletTest {
       oneOf(servletRequest).getParameter("transactionAmount");
       will(returnValue("50XL"));
 
-      oneOf(pageSiteMap).mainPage();
+      oneOf(siteMap).mainPage();
       will(returnValue("mainPage.jsp"));
 
       oneOf(servletResponse).sendRedirect("mainPage.jsp");
@@ -134,18 +134,18 @@ public class TransactionServletTest {
       oneOf(servletRequest).getParameter("transactionAmount");
       will(returnValue("50"));
 
-      oneOf(bankAccountMessages).transaction();
-      will(returnValue("transaction"));
+      oneOf(bankAccountMessages).transactionType();
+      will(returnValue("transactionType"));
 
-      oneOf(servletRequest).getParameter("transaction");
+      oneOf(servletRequest).getParameter("transactionType");
       will(returnValue("withdrawingPage.jsp"));
 
       oneOf(bankAccountMessages).deposit();
       will(returnValue("deposit"));
 
-      oneOf(accountBankDAO).withdrawing(50, user.getUserID());
+      oneOf(accountBankDAO).withdraw(50, user.getUserID());
 
-      oneOf(pageSiteMap).mainPage();
+      oneOf(siteMap).mainPage();
       will(returnValue("mainPage.jsp"));
 
       oneOf(servletResponse).sendRedirect("mainPage.jsp");

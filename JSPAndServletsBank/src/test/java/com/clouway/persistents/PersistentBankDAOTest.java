@@ -1,8 +1,6 @@
 package com.clouway.persistents;
 
 import com.clouway.core.Clock;
-import com.clouway.core.DepositListener;
-import com.clouway.core.Listener;
 import com.clouway.core.Transaction;
 import com.clouway.core.User;
 import com.clouway.persistents.util.CalendarUtil;
@@ -23,11 +21,7 @@ public class PersistentBankDAOTest {
 
   private PersistentBankDAO persistentBankDAO;
 
-  private User user = new User("emil", "emil", 1);
-
   private UserUtil userUtil;
-
-  private DepositListener depositListener = new Listener();
 
   Clock clock = new Clock() {
     @Override
@@ -46,19 +40,8 @@ public class PersistentBankDAOTest {
 
     userUtil = new UserUtil(connection);
 
-    persistentBankDAO = new PersistentBankDAO(Providers.of(connection), depositListener, clock);
+    persistentBankDAO = new PersistentBankDAO(Providers.of(connection), clock);
   }
-
-//  @Test
-//  public void whenMakeDepositWithSomeValueThanBankAccountIncreasesWithThisValue() throws Exception {
-//
-//    persistentBankDAO.deposit(100, user.getUserID());
-//
-//    float currentAmount = persistentBankDAO.getCurrentUserBankAmount(user.getUserID());
-//
-//    assertThat(currentAmount, is(100f));
-//
-//  }
 
   @Test
   public void whenMakeDepositsWithSameValueThanCurrentAmountIncreasesWithThisValue() throws Exception {
@@ -79,8 +62,8 @@ public class PersistentBankDAOTest {
     List<Transaction> transactions = persistentBankDAO.getAllTransactions();
 
 
-    assertThat(transactions.get(0).toString(), is("2014-07-18 22:50:00.0 | 100.0 | deposit"));
-    assertThat(transactions.get(1).toString(), is("2014-07-18 22:50:00.0 | 150.0 | deposit"));
+    assertThat(transactions.get(0).toString(), is("2014-07-18 10:50:00.0 | 100.0 | deposit"));
+    assertThat(transactions.get(1).toString(), is("2014-07-18 10:50:00.0 | 150.0 | deposit"));
 
   }
 
@@ -91,7 +74,7 @@ public class PersistentBankDAOTest {
 
     List<Transaction> transactions = persistentBankDAO.getUserHistory(userId(1));
 
-    assertThat(transactions.get(0).toString(), is("2014-07-18 22:50:00.0 | 20.0 | deposit"));
+    assertThat(transactions.get(0).toString(), is("2014-07-18 10:50:00.0 | 20.0 | deposit"));
 
   }
 

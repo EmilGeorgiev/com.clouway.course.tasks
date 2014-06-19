@@ -3,7 +3,6 @@ package com.clouway.persistents;
 import com.clouway.core.AccountBankDAO;
 import com.clouway.core.Clock;
 import com.clouway.core.CurrentAmountRepository;
-import com.clouway.core.DepositListener;
 import com.clouway.core.Transaction;
 import com.clouway.core.TransactionHistory;
 import com.google.inject.Inject;
@@ -23,17 +22,13 @@ import java.util.List;
 public class PersistentBankDAO implements AccountBankDAO, TransactionHistory, CurrentAmountRepository {
 
   private final Provider<Connection> connectionProvider;
-  private final DepositListener depositListener;
   private final Clock clock;
 
   @Inject
   public PersistentBankDAO(Provider<Connection> connectionProvider,
-                           DepositListener depositListener,
                            Clock clock) {
 
     this.connectionProvider = connectionProvider;
-   // this.currentUser = currentUser;
-    this.depositListener = depositListener;
     this.clock = clock;
   }
 
@@ -192,7 +187,6 @@ public class PersistentBankDAO implements AccountBankDAO, TransactionHistory, Cu
 
     return null;
   }
-
 
   private void onTransaction(float amount, int userID, String transaction) {
     PreparedStatement prepareStatement = null;

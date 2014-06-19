@@ -5,6 +5,7 @@
     <input type="text" name="depositAmount">
     <input type="hidden" name="transactionType" value="deposit">
     <input type="submit" value="deposit">
+
 </form>
 </body>
 </html>

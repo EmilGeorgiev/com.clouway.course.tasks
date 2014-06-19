@@ -2,6 +2,7 @@ package com.clouway.suite;
 
 import com.clouway.http.LoginServletTest;
 import com.clouway.http.LogoutServletTest;
+import com.clouway.http.RegisterServletTest;
 import com.clouway.http.SessionValidatorFilterTest;
 import com.clouway.http.TransactionServletTest;
 import com.clouway.persistents.PersistentBankDAOTest;
@@ -14,11 +15,12 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({LoginServletTest.class,
-                      TransactionServletTest.class,
                       LogoutServletTest.class,
+                      RegisterServletTest.class,
                       SessionValidatorFilterTest.class,
+                      TransactionServletTest.class,
                       PersistentBankDAOTest.class,
-                      PersistentUserDAOTest.class,
+                      PersistentUserDAOTest.class
                    })
 public class AllTest {
 }

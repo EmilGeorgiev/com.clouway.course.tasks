@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
@@ -72,23 +73,23 @@ public class LoginServletTest {
 
   @Test
   public void loginWithExistingUser() throws Exception {
-//    final RequestedUser anyRequestedUser = new RequestedUser("emil", "emilPass");
-//
-//    pretendThatRequestedUserIs(anyRequestedUser);
-//
-//    context.checking(new Expectations() {{
-//
-//      oneOf(authenticateService).authenticate("emil", "emilPass", clock.now());
-//      will(returnValue(sessionID));
-//
-//      oneOf(response).addCookie(with(any(Cookie.class)));
-//
-//      oneOf(siteMap).mainPage();
-//      will(returnValue("mainPage.jsp"));
-//
-//      oneOf(response).sendRedirect("mainPage.jsp");
-//    }
-//    });
+    final RequestedUser anyRequestedUser = new RequestedUser("emil", "emilPass");
+
+    pretendThatRequestedUserIs(anyRequestedUser);
+
+    context.checking(new Expectations() {{
+
+      oneOf(authenticateService).authenticate("emil", "emilPass", clock.now());
+      will(returnValue(sessionID));
+
+      oneOf(response).addCookie(with(any(Cookie.class)));
+
+      oneOf(siteMap).mainPage();
+      will(returnValue("mainPage.jsp"));
+
+      oneOf(response).sendRedirect("mainPage.jsp");
+    }
+    });
 
     loginServlet.doPost(request, response);
   }

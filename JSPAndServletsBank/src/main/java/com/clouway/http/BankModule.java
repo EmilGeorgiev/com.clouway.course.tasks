@@ -77,7 +77,7 @@ public class BankModule extends AbstractModule {
 
       @Override
       public String loginPage() {
-        return "loginPAge.jsp";
+        return "loginPage.jsp";
       }
 
       @Override

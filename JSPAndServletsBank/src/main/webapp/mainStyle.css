@@ -1,0 +1,59 @@
+
+.main {
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 20%;
+}
+
+.main {
+    border-style: solid;
+}
+
+.title {
+    border-style: ridge;
+}
+
+.menu {
+    border-style: ridge;
+    height: 30%;
+}
+
+h1 {
+    font-size: 1.5em;
+    padding: 1em 8px;
+    color: #333;
+    background-color: lightgreen;
+    margin: 0;
+}
+
+.navigationBar {
+    width: 100%;
+    float: left;
+    margin: 0 0 3em 0;
+    padding: 0;
+    list-style: none;
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+}
+
+.navigationBar li {
+    float: left;
+}
+
+.navigationBar li a {
+    display: block;
+    padding: 8px 15px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #069;
+    border-right: 1px solid #ccc;
+}
+
+.navigationBar li a:hover {
+    color: #c00;
+    background-color: #fff;
+}
+
+
+

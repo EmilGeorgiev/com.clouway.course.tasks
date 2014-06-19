@@ -11,9 +11,12 @@
     <title></title>
 </head>
 <body>
-<div class="main">
 
+<form method="POST" action="/transactionServlet">
 
-</div>
+    Amount: <input type="text" name="transactionAmount">
+            <input type="hidden" name="deposit">
+            <input type="submit" value="Deposit">
+</form>
 </body>
 </html>

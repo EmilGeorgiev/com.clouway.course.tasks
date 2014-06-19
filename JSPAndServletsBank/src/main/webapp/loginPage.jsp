@@ -29,7 +29,6 @@
         <div align="center">
             <a href="/registerPage.jsp">Register</a>
         </div>
-
     </div>
 
 </body>

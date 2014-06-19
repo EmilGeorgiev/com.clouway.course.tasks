@@ -18,23 +18,23 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Calendar;
+import java.util.Date;
 
 @Singleton
 public class PersistentUserDAO implements UserDAO, UserSessionsRepository, AuthenticateService {
 
 
   private final Provider<Connection> connectionProvider;
-  private final Clock clock;
 
   @Inject
-  public PersistentUserDAO(Provider<Connection> connectionProvider, Clock clock) {
+  public PersistentUserDAO(Provider<Connection> connectionProvider) {
 
     this.connectionProvider = connectionProvider;
-    this.clock = clock;
+
   }
 
   @Override
-  public SessionID authenticate(String userName, String userPassword) {
+  public SessionID authenticate(String userName, String userPassword, Date date) {
 
     SessionID sessionID = null;
 
@@ -54,7 +54,7 @@ public class PersistentUserDAO implements UserDAO, UserSessionsRepository, Authe
 
         int id = resultSet.getInt("user_id");
 
-        sessionID = createSessionID(userName, id);
+        sessionID = createSessionID(userName, id, date);
       }
 
       return sessionID;
@@ -76,7 +76,10 @@ public class PersistentUserDAO implements UserDAO, UserSessionsRepository, Authe
 
 
   @Override
-  public void register(String userName, String userPassword) {
+  public SessionID register(String userName, String userPassword, Date date) {
+
+    int userID = 0;
+
     PreparedStatement preparedStatement = null;
     Connection connection = connectionProvider.get();
 
@@ -88,6 +91,19 @@ public class PersistentUserDAO implements UserDAO, UserSessionsRepository, Authe
       preparedStatement.setString(2, userPassword);
 
       preparedStatement.executeUpdate();
+
+
+      preparedStatement = connection.prepareStatement("SELECT user_id FROM Users " +
+              "WHERE name = ? AND password = ?");
+
+      preparedStatement.setString(1, userName);
+      preparedStatement.setString(2, userPassword);
+
+      ResultSet resultSet = preparedStatement.executeQuery();
+
+      resultSet.next();
+
+      userID = resultSet.getInt("user_id");
 
     } catch (SQLException e) {
       e.printStackTrace();
@@ -101,13 +117,18 @@ public class PersistentUserDAO implements UserDAO, UserSessionsRepository, Authe
       }
     }
 
-    createAccount(userName, userPassword);
+    createAccount(userName, userID, date);
+
+    return createSessionID(userName, userID, date);
   }
 
-
+  @Override
+  public User findUser(String userName, String userPassword) {
+    return null;
+  }
 
   @Override
-  public User isUserExistBySession(String sessionId) {
+  public User isUserExistBySession(String sessionId, Clock clock) {
 
     PreparedStatement preparedStatement = null;
 
@@ -148,8 +169,6 @@ public class PersistentUserDAO implements UserDAO, UserSessionsRepository, Authe
     return null;
   }
 
-
-
   @Override
   public void deleteSession(String sessionID) {
     PreparedStatement preparedStatement = null;
@@ -178,10 +197,10 @@ public class PersistentUserDAO implements UserDAO, UserSessionsRepository, Authe
   }
 
   @Override
-  public boolean isValidUserSession(String sessionID) {
+  public boolean isValidUserSession(String sessionID, Date date) {
 
     if(sessionID == null) {
-      cleanExpiredSessionsID();
+      cleanExpiredSessionsID(date);
       return false;
     }
 
@@ -196,14 +215,16 @@ public class PersistentUserDAO implements UserDAO, UserSessionsRepository, Authe
 
       ResultSet resultSet = preparedStatement.executeQuery();
 
-      resultSet.next();
+      if (!resultSet.next()) {
+        return false;
+      }
 
-      Timestamp expiryDate = resultSet.getTimestamp("expiry_date");
+      Date expiryDate = resultSet.getTimestamp("expiry_date");
 
-      if (clock.now().compareTo(expiryDate) < 0) {
-        updateUserSession(sessionID);
+      if (date.compareTo(expiryDate) < 0) {
+        updateUserSession(sessionID, date);
 
-        cleanExpiredSessionsID();
+        cleanExpiredSessionsID(date);
         return true;
       }
 
@@ -221,6 +242,7 @@ public class PersistentUserDAO implements UserDAO, UserSessionsRepository, Authe
 
     return false;
   }
+
 
 
 
@@ -255,12 +277,12 @@ public class PersistentUserDAO implements UserDAO, UserSessionsRepository, Authe
 //    return null;
 //  }
 
-  private SessionID createSessionID(String userName, int userID) {
+  private SessionID createSessionID(String userName, int userID, Date date) {
     HashFunction sha1 = Hashing.sha1();
 
-    String sessionID = sha1.hashString(userName + clock.now()).toString();
+    String sessionID = sha1.hashString(userName + date.getTime()).toString();
 
-    long expiredTime = setTimeExpired();
+    long expiredTime = getTimeExpired(date);
 
     PreparedStatement preparedStatement = null;
 
@@ -291,24 +313,25 @@ public class PersistentUserDAO implements UserDAO, UserSessionsRepository, Authe
     return new SessionID(sessionID);
   }
 
-  private void createAccount(String userName, String userPassword) {
+    private long getTimeExpired(Date date) {
+
+    Calendar calendar = Calendar.getInstance();
+
+    calendar.setTime(date);
+
+    calendar.add(Calendar.MINUTE, 30);
+
+    return calendar.getTimeInMillis();
+
+
+  }
+
+  private void createAccount(String userName, int userID, Date date) {
     PreparedStatement preparedStatement = null;
 
     Connection connection = connectionProvider.get();
 
       try {
-        preparedStatement = connection.prepareStatement("SELECT user_id FROM Users " +
-                "WHERE name = ? AND password = ?");
-
-        preparedStatement.setString(1, userName);
-        preparedStatement.setString(2, userPassword);
-
-        ResultSet resultSet = preparedStatement.executeQuery();
-
-        resultSet.next();
-
-        int userID = resultSet.getInt("user_id");
-
 
         preparedStatement = connection.prepareStatement("INSERT INTO Accounts (amount, user_id) " +
                 "VALUES (?, ?)");
@@ -317,8 +340,6 @@ public class PersistentUserDAO implements UserDAO, UserSessionsRepository, Authe
         preparedStatement.setInt(2, userID);
 
         preparedStatement.executeUpdate();
-
-        createSessionID(userName, userID);
 
       } catch (SQLException e) {
         e.printStackTrace();
@@ -331,8 +352,6 @@ public class PersistentUserDAO implements UserDAO, UserSessionsRepository, Authe
           e.printStackTrace();
         }
       }
-
-
   }
 
   private User findUserByID(int userID) {
@@ -367,22 +386,9 @@ public class PersistentUserDAO implements UserDAO, UserSessionsRepository, Authe
     return null;
   }
 
-  private long setTimeExpired() {
+  private void updateUserSession(String sessionID, Date date) {
 
-    Calendar calendar = Calendar.getInstance();
-
-    calendar.setTime(clock.now());
-
-    calendar.add(Calendar.MINUTE, clock.getExpiryTime());
-
-    return calendar.getTimeInMillis();
-
-
-  }
-
-  private void updateUserSession(String sessionID) {
-
-    long expiredTime = setTimeExpired();
+    long expiredTime = getTimeExpired(date);
 
     PreparedStatement preparedStatement = null;
 
@@ -410,7 +416,7 @@ public class PersistentUserDAO implements UserDAO, UserSessionsRepository, Authe
 
   }
 
-  private void cleanExpiredSessionsID() {
+  private void cleanExpiredSessionsID(Date date) {
     PreparedStatement preparedStatement = null;
 
     Connection connection = connectionProvider.get();
@@ -418,7 +424,7 @@ public class PersistentUserDAO implements UserDAO, UserSessionsRepository, Authe
     try {
       preparedStatement = connection.prepareStatement("DELETE Session WHERE expiry_date < ?");
 
-      preparedStatement.setTimestamp(1, clock.now());
+      preparedStatement.setTimestamp(1, new Timestamp(date.getTime()));
 
       preparedStatement.executeUpdate();
 

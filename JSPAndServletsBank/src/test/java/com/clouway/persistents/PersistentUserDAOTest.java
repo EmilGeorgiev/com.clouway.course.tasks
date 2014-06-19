@@ -4,6 +4,7 @@ import com.clouway.core.Clock;
 import com.clouway.core.SessionID;
 import com.clouway.core.Time;
 import com.clouway.core.User;
+import com.clouway.persistents.util.CalendarUtil;
 import com.google.inject.util.Providers;
 import org.junit.Before;
 import org.junit.Rule;
@@ -11,6 +12,7 @@ import org.junit.Test;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Date;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -23,9 +25,12 @@ public class PersistentUserDAOTest {
 
   private PersistentUserDAO persistentUserDAO;
 
-  private User user;
-
-  private Clock clock;
+  private Clock clock = new Clock() {
+    @Override
+    public Date now() {
+      return CalendarUtil.getDate(2014, 6, 18, 10, 50);
+    }
+  };
 
 
   @Rule
@@ -38,23 +43,23 @@ public class PersistentUserDAOTest {
 
     clock = new Time();
 
-    user = new User("emil", "emil", 1);
+    User user = new User("emil", "emil", 1);
 
+    persistentUserDAO = new PersistentUserDAO(Providers.of(connection));
 
-    persistentUserDAO = new PersistentUserDAO(Providers.of(connection), clock);
-    persistentUserDAO.register(user.getUserName(), user.getPassword());
+    persistentUserDAO.register(user.getUserName(), user.getPassword(), clock.now());
 
   }
 
   @Test
   public void authenticateNewUser() throws Exception {
 
-    persistentUserDAO.register("ivan", "ivan");
+    persistentUserDAO.register("ivan", "ivanPass", clock.now());
 
     // registers new session
-    SessionID sessionID = persistentUserDAO.authenticate("ivan", "ivan"/* , 2014-05-20 10:50*/);
+    SessionID sessionID = persistentUserDAO.authenticate("ivan", "ivanPass", clock.now());
 
-    persistentUserDAO.isValidUserSession(sessionID.getSessionID()/* 2014-05-20 11:25 */);
+    persistentUserDAO.isValidUserSession(sessionID.getSessionID(), CalendarUtil.getDate(2014, 6, 18, 11, 25));
 
     assertThat(sessionID.getSessionID(), notNullValue());
 
@@ -63,13 +68,12 @@ public class PersistentUserDAOTest {
   @Test
   public void validUserSessionExpired() throws Exception {
 
-    clock.setTimeExpiry(30);
+    User ivan = new User("ivan", "ivanPass", 2);
 
-    User ivan = new User("ivan", "ivan", 2);
+    SessionID session = persistentUserDAO.register(ivan.getUserName(), ivan.getPassword(), CalendarUtil.getDate(2014, 6, 18, 10, 55));
+    System.out.println(session);
 
-    persistentUserDAO.register(ivan.getUserName(), ivan.getPassword());
-
-    boolean isValidSession = persistentUserDAO.isValidUserSession("");//Tuk trqnba da pomislq
+    boolean isValidSession = persistentUserDAO.isValidUserSession(session.getSessionID(), CalendarUtil.getDate(2014, 6, 18, 11, 5));
 
     assertThat(isValidSession, is(true));
 
@@ -77,9 +81,8 @@ public class PersistentUserDAOTest {
 
   @Test
   public void expiredUserSession() throws Exception {
-    clock.setTimeExpiry(0);
 
-    boolean isValidSession = persistentUserDAO.isValidUserSession(""/*, clock.now()*/); //tuk syshto trqbva da pomislq
+    boolean isValidSession = persistentUserDAO.isValidUserSession(""/*, clock.now()*/, CalendarUtil.getDate(2014, 6, 18, 11, 25));
 
     assertThat(isValidSession, is(false));
 

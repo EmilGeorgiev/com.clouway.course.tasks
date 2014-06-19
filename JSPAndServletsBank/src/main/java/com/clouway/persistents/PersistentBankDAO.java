@@ -205,7 +205,7 @@ public class PersistentBankDAO implements AccountBankDAO, TransactionHistory, Cu
 
       prepareStatement.setString(1, transaction);
 
-      prepareStatement.setTimestamp(2, clock.now());
+      prepareStatement.setTimestamp(2, new Timestamp(clock.now().getTime()));
 
       prepareStatement.setFloat(3, amount);
 

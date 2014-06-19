@@ -1,5 +1,6 @@
 package com.clouway.http;
 
+import com.clouway.core.Clock;
 import com.clouway.core.SiteMap;
 import com.clouway.core.UserSessionsRepository;
 import com.google.inject.Inject;
@@ -25,15 +26,19 @@ public class SessionValidatorFilter implements Filter{
 
   private final SiteMap siteMap;
   private final UserSessionsRepository userSessionsRepository;
+  private final Clock clock;
   private String excludeLoginServlet;
   private String excludeRegisterServlet;
 
 
   @Inject
-  public SessionValidatorFilter(SiteMap siteMap, UserSessionsRepository userSessionsRepository) {
+  public SessionValidatorFilter(SiteMap siteMap,
+                                UserSessionsRepository userSessionsRepository,
+                                Clock clock) {
     this.siteMap = siteMap;
     this.userSessionsRepository = userSessionsRepository;
 
+    this.clock = clock;
   }
 
   @Override
@@ -56,7 +61,7 @@ public class SessionValidatorFilter implements Filter{
       return;
     }
 
-    if (!userSessionsRepository.isValidUserSession(getUserSessionID(request))) {
+    if (!userSessionsRepository.isValidUserSession(getUserSessionID(request), clock.now())) {
       response.sendRedirect(siteMap.loginPage());
       return;
     }

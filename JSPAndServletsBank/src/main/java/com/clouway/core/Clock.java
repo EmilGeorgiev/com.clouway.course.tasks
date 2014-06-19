@@ -1,13 +1,8 @@
 package com.clouway.core;
 
-import java.sql.Timestamp;
-
+import java.util.Date;
 
 public interface Clock {
 
-  Timestamp now();
-
-  int getExpiryTime();
-
-  void setTimeExpiry(int timeExpiry);
+  Date now();
 }

@@ -32,22 +32,22 @@ public class TransactionServletTest {
   public JUnitRuleMockery context = new JUnitRuleMockery();
 
   @Mock
-  private HttpServletRequest servletRequest;
+  private HttpServletRequest servletRequest = null;
 
   @Mock
-  private HttpServletResponse servletResponse;
+  private HttpServletResponse servletResponse = null;
 
   @Mock
-  private BankAccountMessages bankAccountMessages;
+  private BankAccountMessages bankAccountMessages = null;
 
   @Mock
-  private SiteMap siteMap;
+  private SiteMap siteMap = null;
 
   @Mock
-  private AccountBankDAO accountBankDAO;
+  private AccountBankDAO accountBankDAO = null;
 
   @Mock
-  private CurrentAmountRepository currentAmountRepository;
+  private CurrentAmountRepository currentAmountRepository = null;
 
 
   @Before

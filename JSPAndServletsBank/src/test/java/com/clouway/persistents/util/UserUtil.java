@@ -24,11 +24,12 @@ public class UserUtil  {
 
       connection.setAutoCommit(false);
 
-      preparedStatement =  connection.prepareStatement("INSERT INTO Users (name, password) " +
-              "VALUE (?, ?)");
+      preparedStatement =  connection.prepareStatement("INSERT INTO Users (user_id, name, password) " +
+              "VALUE (?, ?, ?)");
 
-      preparedStatement.setString(1, user.getUserName());
-      preparedStatement.setString(2, user.getPassword());
+      preparedStatement.setInt(1, user.getUserID());
+      preparedStatement.setString(2, user.getUserName());
+      preparedStatement.setString(3, user.getPassword());
 
       preparedStatement.executeUpdate();
 

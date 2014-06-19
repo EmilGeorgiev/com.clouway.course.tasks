@@ -8,21 +8,10 @@ import java.util.Calendar;
  */
 public class Time implements Clock {
 
-  private int timeExpiry;
-
-  public void setTimeExpiry(int timeExpiry) {
-    this.timeExpiry = timeExpiry;
-  }
-
   @Override
-  public Timestamp now() {
+  public java.util.Date now() {
 
     Calendar calendar = Calendar.getInstance();
     return new Timestamp(calendar.getTimeInMillis());
-  }
-
-  @Override
-  public int getExpiryTime() {
-    return this.timeExpiry;
   }
 }

@@ -1,12 +1,6 @@
 package com.clouway.http;
 
-import com.clouway.core.BankAccountMessages;
-import com.clouway.core.CurrentUser;
-import com.clouway.core.SiteMap;
-import com.clouway.core.UserMessages;
-import com.clouway.core.UserSessionsRepository;
-import com.clouway.core.User;
-import com.clouway.core.ValidationMessages;
+import com.clouway.core.*;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provider;
 import com.google.inject.Provides;
@@ -120,13 +114,13 @@ public class BankModule extends AbstractModule {
 
   @Provides
   @RequestScoped
-  public CurrentUser getCurrentUser(Provider<HttpServletRequest> requestProvider, UserSessionsRepository userSessionsRepository) {
+  public CurrentUser getCurrentUser(Provider<HttpServletRequest> requestProvider, UserSessionsRepository userSessionsRepository, Clock clock) {
     Cookie[] cookies = requestProvider.get().getCookies();
     for (Cookie cookie : cookies) {
       // session id
       if ("sid".equalsIgnoreCase(cookie.getName())) {
 
-        User user = userSessionsRepository.isUserExistBySession(cookie.getValue());
+        User user = userSessionsRepository.isUserExistBySession(cookie.getValue(), clock);
         return new CurrentUser(user);
       }
     }

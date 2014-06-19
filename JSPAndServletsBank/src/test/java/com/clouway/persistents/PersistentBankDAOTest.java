@@ -14,7 +14,6 @@ import org.junit.Test;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -32,18 +31,8 @@ public class PersistentBankDAOTest {
 
   Clock clock = new Clock() {
     @Override
-    public Timestamp now() {
-      return new Timestamp(CalendarUtil.getDate(2014, 1, 11));
-    }
-
-    @Override
-    public int getExpiryTime() {
-      return 30;
-    }
-
-    @Override
-    public void setTimeExpiry(int timeExpiry) {
-
+    public java.util.Date now() {
+      return CalendarUtil.getDate(2014, 6, 18, 10, 50);
     }
   };
 
@@ -57,12 +46,7 @@ public class PersistentBankDAOTest {
 
     userUtil = new UserUtil(connection);
 
-    userUtil.registerNewUser(user);
-
     persistentBankDAO = new PersistentBankDAO(Providers.of(connection), depositListener, clock);
-
-    persistentBankDAO.deposit(100, user.getUserID());
-    persistentBankDAO.deposit(150, user.getUserID());
   }
 
 //  @Test
@@ -77,8 +61,8 @@ public class PersistentBankDAOTest {
 //  }
 
   @Test
-  public void whenMakeTwoDepositsWithSameValueThanCurrentAmountIncreasesTwoTime() throws Exception {
-    pretendThatUserHasDepositOf(20,userId(50));
+  public void whenMakeDepositsWithSameValueThanCurrentAmountIncreasesWithThisValue() throws Exception {
+    pretendThatUserHasDepositOf(20, new User("test", "testPass", userId(50)));
 
     float currentAmount = persistentBankDAO.getCurrentUserBankAmount(userId(50));
 
@@ -86,52 +70,55 @@ public class PersistentBankDAOTest {
 
   }
 
-  private void pretendThatUserHasDepositOf(float deposit, int userId) {
-    userUtil.registerNewUser(new User("testuser","testpass",userId));
-
-    persistentBankDAO.deposit(deposit,userId);
-  }
-
-
   @Test
-  public void whenMakeTwoDepositsThenMakeAndTwoTransaction() throws Exception {
+  public void getTransactionsOnAllUsers() throws Exception {
+
+    pretendThatUserHasDepositOf(100, new User("ivan", "ivanPass", userId(1)));
+    pretendThatUserHasDepositOf(150, new User("test", "testPass", userId(2)));
 
     List<Transaction> transactions = persistentBankDAO.getAllTransactions();
 
-    System.out.println(clock.now());
 
-    assertThat(transactions.get(0).toString(), is("2014-02-11 00:00:00.0 | 100.0 | deposit"));
-    assertThat(transactions.get(1).toString(), is("2014-02-11 00:00:00.0 | 150.0 | deposit"));
+    assertThat(transactions.get(0).toString(), is("2014-07-18 22:50:00.0 | 100.0 | deposit"));
+    assertThat(transactions.get(1).toString(), is("2014-07-18 22:50:00.0 | 150.0 | deposit"));
 
   }
 
   @Test
   public void takeHistoryOnCurrentUser() throws Exception {
-    User ivan = new User("ivan", "ivan", 2);
 
-    userUtil.registerNewUser(ivan);
+    pretendThatUserHasDepositOf(20, new User("test", "testPass", userId(1)));
 
-    persistentBankDAO.deposit(200, ivan.getUserID());
+    List<Transaction> transactions = persistentBankDAO.getUserHistory(userId(1));
 
-    List<Transaction> transactions = persistentBankDAO.getUserHistory(ivan.getUserID());
-
-    assertThat(transactions.get(0).toString(), is("2014-02-11 00:00:00.0 | 200.0 | deposit"));
+    assertThat(transactions.get(0).toString(), is("2014-07-18 22:50:00.0 | 20.0 | deposit"));
 
   }
 
   @Test
-  public void whenWithdrawingSomeValueThanCurrentAccountDecrementWithThisValue() throws Exception {
+  public void withdrawValueFromCurrentAccount() throws Exception {
 
-    persistentBankDAO.withdraw(30, user.getUserID());
+    pretendThatUserHasDepositOf(50, new User("ivan", "ivanPass", userId(23)));
 
-    float currentAmount = persistentBankDAO.getCurrentUserBankAmount(user.getUserID());
+    pretendThatUserHasWithdrawOf(20, userId(23));
 
-    assertThat(currentAmount, is(220.0f));
+    float currentAmount = persistentBankDAO.getCurrentUserBankAmount(userId(23));
+
+    assertThat(currentAmount, is(30.0f));
 
   }
 
+  private void pretendThatUserHasWithdrawOf(int amount, int userID) {
+    persistentBankDAO.withdraw(amount, userID);
+  }
 
   private int userId(int userId) {
     return userId;
+  }
+
+  private void pretendThatUserHasDepositOf(float deposit, User user) {
+    userUtil.registerNewUser(user);
+
+    persistentBankDAO.deposit(deposit, user.getUserID());
   }
 }

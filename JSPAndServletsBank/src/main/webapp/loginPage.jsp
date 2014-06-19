@@ -9,9 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <link rel="stylesheet" href="border.css">
-    <link rel="stylesheet" href="margin.css">
-    <link rel="stylesheet" href="headerStyle.css">
+    <link rel="stylesheet" href="loginStyle.css">
     <title></title>
 </head>
 <body>

@@ -12,19 +12,10 @@
     <link rel="stylesheet" href="menuBarStyle.css">
 </head>
 <body>
-<ul class="menu-bar">
-    <li><a href="depositPage.jsp">Deposit</a></li>
-    <li><a href="withdrawingPage.jsp">Withdrawing</a></li>
-    <li><a href="viewAmountPage.jsp">View Amount</a></li>
+<ul class="navigationBar">
+    <li><a  href="/depositPage.jsp">Deposit</a></li>
+    <li><a  href="/withdrawingPage.jsp">Withdrawing</a></li>
+    <li><a  href="/viewAmountPage.jsp">Amount</a></li>
 </ul>
-<%--<div class="header" align="center">--%>
-
-        <%--<button class="buttons">DEPOSIT</button>--%>
-
-        <%--<button class="buttons">WITHDRAWING</button>--%>
-
-        <%--<button>VIEW AMOUNT</button>--%>
-
-<%--</div>--%>
 </body>
 </html>

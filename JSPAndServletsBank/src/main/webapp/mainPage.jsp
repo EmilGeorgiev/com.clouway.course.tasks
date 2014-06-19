@@ -1,3 +1,4 @@
+<%@ page import="com.clouway.persistents.PersistentUserDAO" %>
 <%--
   Created by IntelliJ IDEA.
   User: clouway
@@ -9,14 +10,28 @@
 <html>
 <head>
     <title></title>
-    <link rel="stylesheet" href="margin.css">
-    <link rel="stylesheet" href="headerStyle.css">
+    <link rel="stylesheet" href="mainStyle.css">
 </head>
 <body>
-<div class="main" align="center">
-    <%@ include file="header.jsp" %>
-    <%@ include file="history.jsp" %>
-</div>
+
+    <div class="main" align="center">
+        <div class="title">
+            <h1 align="center">INTERNET BANK</h1>
+        </div>
+        <div class="menu">
+            <ul class="navigationBar">
+                <li><a href="/depositPage.jsp">Deposit</a></li>
+                <li><a href="/withdrawPage.jsp">Withdraw</a></li>
+                <li><a href="/currentAmountPage.jsp">Amount</a></li>
+            </ul>
+        </div>
+        <div>
+            <form method="POST" class="footer" action="/logoutServlet">
+                <input type="submit" value="Logout">
+            </form>
+        </div>
+    </div>
+
 
 </body>
 </html>

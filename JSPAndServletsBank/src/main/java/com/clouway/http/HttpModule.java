@@ -37,11 +37,9 @@ public class HttpModule extends ServletModule {
     bind(CurrentAmountRepository.class).to(PersistentBankDAO.class);
 
 
-
     bind(UserSessionsRepository.class).to(PersistentUserDAO.class);
     bind(UserDAO.class).to(PersistentUserDAO.class);
     bind(AuthenticateService.class).to(PersistentUserDAO.class);
-
     bind(Clock.class).to(Time.class);
 
   }

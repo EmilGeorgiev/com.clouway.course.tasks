@@ -1,4 +1,30 @@
 
+.main {
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 20%;
+}
+
+.main {
+    border-style: solid;
+}
+
+.title {
+    border-style: ridge;
+}
+
+.menu {
+    border-style: ridge;
+    height: 30%;
+}
+
+h1 {
+    font-size: 1.5em;
+    padding: 1em 8px;
+    color: #333;
+    background-color: lightgreen;
+    margin: 0;
+}
 
 .navigationBar {
     width: 100%;
@@ -28,3 +54,6 @@
     color: #c00;
     background-color: #fff;
 }
+
+
+

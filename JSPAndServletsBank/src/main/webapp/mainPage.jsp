@@ -22,7 +22,7 @@
             <ul class="navigationBar">
                 <li><a href="/depositPage.jsp">Deposit</a></li>
                 <li><a href="/withdrawPage.jsp">Withdraw</a></li>
-                <li><a href="/currentAmountPage.jsp">Amount</a></li>
+                <li><a href="/viewAmountPage.jsp">Amount</a></li>
             </ul>
         </div>
         <div>

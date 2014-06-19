@@ -5,13 +5,13 @@ package com.clouway.core;
  */
 public interface BankAccountMessages {
 
-  String withdrawingAmount();
-
-  String depositAmount();
+  String withdraw();
 
   String transactionAmount();
 
   String transactionType();
 
   String deposit();
+
+  String currentAmount();
 }

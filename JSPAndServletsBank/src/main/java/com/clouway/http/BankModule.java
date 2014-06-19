@@ -24,15 +24,9 @@ public class BankModule extends AbstractModule {
     return new BankAccountMessages() {
 
       @Override
-      public String withdrawingAmount() {
-        return "withdrawingAmount";
+      public String withdraw() {
+        return "withdraw";
       }
-
-      @Override
-      public String depositAmount() {
-        return "depositAmount";
-      }
-
 
       @Override
       public String transactionAmount() {
@@ -47,6 +41,11 @@ public class BankModule extends AbstractModule {
       @Override
       public String deposit() {
         return "deposit";
+      }
+
+      @Override
+      public String currentAmount() {
+        return "currentAmount";
       }
 
     };
@@ -93,6 +92,11 @@ public class BankModule extends AbstractModule {
       @Override
       public String depositPage() {
         return "depositPage.jsp";
+      }
+
+      @Override
+      public String viewAmountPage() {
+        return "viewAmountPage.jsp";
       }
     };
   }

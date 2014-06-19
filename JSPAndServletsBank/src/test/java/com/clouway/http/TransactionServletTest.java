@@ -6,6 +6,7 @@ import com.clouway.core.CurrentAmountRepository;
 import com.clouway.core.CurrentUser;
 import com.clouway.core.SiteMap;
 import com.clouway.core.User;
+import com.clouway.persistents.util.BankUtil;
 import com.google.inject.util.Providers;
 import org.jmock.Expectations;
 import org.jmock.auto.Mock;
@@ -27,6 +28,8 @@ public class TransactionServletTest {
   private CurrentUser currentUser;
 
   private User user = new User("emil", "emil", 1);
+
+  private BankUtil bankUtil = new BankUtil();
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
@@ -154,5 +157,26 @@ public class TransactionServletTest {
 
     transactionServlet.doPost(servletRequest, servletResponse);
 
+  }
+
+  @Test
+  public void whenTryingWithdrawLargeValueThenTransactionIsFailed() throws Exception {
+    pretendThatUserHasDepositOf(50, new User("ivan", "ivanPass", userId(7)));
+
+    pretendThatUserWithdrawOf(60, userId(7));
+
+  }
+
+  private void pretendThatUserWithdrawOf(float withdrawAmount, int userId) {
+    bankUtil.withdraw(withdrawAmount, userId);
+
+  }
+
+  private void pretendThatUserHasDepositOf(float depositAmount, User user) {
+    bankUtil.deposit(depositAmount, user.getUserID());
+  }
+
+  private int userId(int userId) {
+    return userId;
   }
 }

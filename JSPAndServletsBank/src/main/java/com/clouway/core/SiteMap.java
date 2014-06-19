@@ -14,4 +14,6 @@ public interface SiteMap {
   String withdrawingPage();
 
   String depositPage();
+
+  String viewAmountPage();
 }

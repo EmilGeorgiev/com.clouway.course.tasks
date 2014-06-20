@@ -1,7 +1,7 @@
 package com.clouway.http;
 
+import com.clouway.core.AccountBankDAO;
 import com.clouway.core.BankAccountMessages;
-import com.clouway.core.CurrentAmountRepository;
 import com.clouway.core.CurrentUser;
 import com.clouway.core.SiteMap;
 import com.clouway.core.User;
@@ -23,18 +23,18 @@ import java.io.IOException;
 public class ViewCurrentAmountServlet extends HttpServlet{
 
 
-  private final CurrentAmountRepository currentAmountRepository;
+
   private final SiteMap siteMap;
   private final Provider<CurrentUser> currentUserProvider;
   private final BankAccountMessages bankAccountMessages;
+  private final AccountBankDAO accountBankDAO;
 
   @Inject
-  public ViewCurrentAmountServlet(CurrentAmountRepository currentAmountRepository,
+  public ViewCurrentAmountServlet(AccountBankDAO accountBankDAO,
                                   SiteMap siteMap,
                                   Provider<CurrentUser> currentUserProvider,
                                   BankAccountMessages bankAccountMessages) {
-
-    this.currentAmountRepository = currentAmountRepository;
+    this.accountBankDAO = accountBankDAO;
     this.siteMap = siteMap;
     this.currentUserProvider = currentUserProvider;
     this.bankAccountMessages = bankAccountMessages;
@@ -45,7 +45,7 @@ public class ViewCurrentAmountServlet extends HttpServlet{
 
     User user = currentUserProvider.get().getUser();
 
-    String currentAmount = String.valueOf(currentAmountRepository.getCurrentUserBankAmount(user.getUserID()));
+    String currentAmount = String.valueOf(accountBankDAO.getCurrentUserBankAmount(user.getUserID()));
 
     req.setAttribute(bankAccountMessages.currentAmount(), currentAmount);
 

@@ -31,6 +31,10 @@ public class User {
     return this.userID;
   }
 
+  public void setUserID(int userID) {
+    this.userID = userID;
+  }
+
 //  public SessionID getSessionID() {
 //    return sessionID;
 //  }

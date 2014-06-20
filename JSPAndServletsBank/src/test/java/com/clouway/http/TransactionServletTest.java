@@ -2,12 +2,12 @@ package com.clouway.http;
 
 import com.clouway.core.AccountBankDAO;
 import com.clouway.core.BankAccountMessages;
-import com.clouway.core.CurrentAmountRepository;
 import com.clouway.core.CurrentUser;
 import com.clouway.core.SiteMap;
 import com.clouway.core.User;
 import com.clouway.persistents.util.BankUtil;
 import com.google.inject.util.Providers;
+import org.hamcrest.core.IsNull;
 import org.jmock.Expectations;
 import org.jmock.auto.Mock;
 import org.jmock.integration.junit4.JUnitRuleMockery;
@@ -18,6 +18,9 @@ import org.junit.Test;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 /**
  * Created by clouway on 6/11/14.
  */
@@ -25,11 +28,9 @@ public class TransactionServletTest {
 
   private TransactionServlet transactionServlet;
 
-  private CurrentUser currentUser;
-
   private User user = new User("emil", "emil", 1);
 
-  private BankUtil bankUtil = new BankUtil();
+  private AccountBankDAO accountBankDAO;
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
@@ -46,27 +47,13 @@ public class TransactionServletTest {
   @Mock
   private SiteMap siteMap = null;
 
-  @Mock
-  private AccountBankDAO accountBankDAO = null;
-
-  @Mock
-  private CurrentAmountRepository currentAmountRepository = null;
-
 
   @Before
   public void setUp() {
 
+    accountBankDAO = new BankUtil();
 
-    context.checking(new Expectations() {{
-      oneOf(accountBankDAO).deposit(100, 1);
-    }
-    });
-
-
-    accountBankDAO.deposit(100, 1);
-
-
-    currentUser = new CurrentUser(user);
+    CurrentUser currentUser = new CurrentUser(user);
 
     transactionServlet = new TransactionServlet(accountBankDAO,
                                                 bankAccountMessages,
@@ -109,12 +96,14 @@ public class TransactionServletTest {
   @Test
   public void whenTryingTransferInvalidValueThenTransactionIsFailed() throws Exception {
 
+    pretendThatUserHasDepositOf("50RX", userID(5));
+
     context.checking(new Expectations() {{
       oneOf(bankAccountMessages).transactionAmount();
       will(returnValue("transactionAmount"));
 
       oneOf(servletRequest).getParameter("transactionAmount");
-      will(returnValue("50XL"));
+      will(returnValue("50RX"));
 
       oneOf(siteMap).mainPage();
       will(returnValue("mainPage.jsp"));
@@ -124,29 +113,33 @@ public class TransactionServletTest {
     });
 
     transactionServlet.doPost(servletRequest, servletResponse);
+
+    Float currentAmount = accountBankDAO.getCurrentUserBankAmount(userID(5));
+
+    assertThat(currentAmount, new IsNull());
 
   }
 
   @Test
   public void withdrawingAmount() throws Exception {
 
+    pretendThatUserHasDepositOf("100", userID(4));
+
     context.checking(new Expectations() {{
       oneOf(bankAccountMessages).transactionAmount();
       will(returnValue("transactionAmount"));
 
       oneOf(servletRequest).getParameter("transactionAmount");
-      will(returnValue("50"));
+      will(returnValue("40"));
 
       oneOf(bankAccountMessages).transactionType();
       will(returnValue("transactionType"));
 
       oneOf(servletRequest).getParameter("transactionType");
-      will(returnValue("withdrawingPage.jsp"));
+      will(returnValue("withdraw"));
 
       oneOf(bankAccountMessages).deposit();
       will(returnValue("deposit"));
-
-      oneOf(accountBankDAO).withdraw(50, user.getUserID());
 
       oneOf(siteMap).mainPage();
       will(returnValue("mainPage.jsp"));
@@ -157,26 +150,79 @@ public class TransactionServletTest {
 
     transactionServlet.doPost(servletRequest, servletResponse);
 
+    Float currentAmount = accountBankDAO.getCurrentUserBankAmount(userID(4));
+
+    assertThat(currentAmount, is(60f));
+
   }
 
   @Test
   public void whenTryingWithdrawLargeValueThenTransactionIsFailed() throws Exception {
-    pretendThatUserHasDepositOf(50, new User("ivan", "ivanPass", userId(7)));
+    pretendThatUserHasDepositOf("50", userID(7));
 
-    pretendThatUserWithdrawOf(60, userId(7));
+    pretendThatUserWithdrawOf("100", userID(7));
+
+    context.checking(new Expectations() {
+      {
+        oneOf(bankAccountMessages).transactionAmount();
+        will(returnValue("transactionAmount"));
+
+        oneOf(servletRequest).getParameter("transactionAmount");
+        will(returnValue("100"));
+
+        oneOf(bankAccountMessages).transactionType();
+        will(returnValue("withdraw"));
+
+        oneOf(servletRequest).getParameter("withdraw");
+
+
+        oneOf(bankAccountMessages).deposit();
+        will(returnValue("deposit"));
+
+        oneOf(siteMap).mainPage();
+        will(returnValue("mainPage.jsp"));
+
+        oneOf(servletResponse).sendRedirect("mainPage.jsp");
+      }
+    });
+
+    transactionServlet.doPost(servletRequest, servletResponse);
+
+    float currentAmount = accountBankDAO.getCurrentUserBankAmount(userID(7));
+
+    assertThat(currentAmount, is(50f));
 
   }
 
-  private void pretendThatUserWithdrawOf(float withdrawAmount, int userId) {
-    bankUtil.withdraw(withdrawAmount, userId);
+  private void pretendThatUserWithdrawOf(String withdrawAmount, int userID) {
+    Float amount;
 
+    try {
+      amount = Float.valueOf(withdrawAmount);
+    } catch (NumberFormatException ex) {
+      return;
+    }
+
+    if (accountBankDAO.getCurrentUserBankAmount(userID) > amount) {
+
+      accountBankDAO.withdraw(amount, userID);
+    }
   }
 
-  private void pretendThatUserHasDepositOf(float depositAmount, User user) {
-    bankUtil.deposit(depositAmount, user.getUserID());
+  private void pretendThatUserHasDepositOf(String depositAmount, int userID) {
+
+    Float amount;
+
+    try {
+      amount = Float.valueOf(depositAmount);
+    } catch (NumberFormatException ex) {
+      return;
+    }
+    accountBankDAO.deposit(amount, userID);
   }
 
-  private int userId(int userId) {
-    return userId;
+  private int userID(int userID) {
+    user.setUserID(userID);
+    return userID;
   }
 }

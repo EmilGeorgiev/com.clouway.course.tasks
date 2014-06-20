@@ -36,32 +36,40 @@ public class TransactionServlet extends HttpServlet{
     this.bankAccountMessages = bankAccountMessages;
     this.siteMap = siteMap;
     this.currentUser = currentUser;
+
   }
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-    String transactionAmount = req.getParameter(bankAccountMessages.transactionAmount());
-
-    Float amount;
+    Float transactionAmount;
 
     try {
-      amount = Float.parseFloat(transactionAmount);
+      transactionAmount = Float.valueOf(req.getParameter(bankAccountMessages.transactionAmount()));
     } catch (NumberFormatException e) {
       resp.sendRedirect(siteMap.mainPage());
       return;
     }
 
-    User user = currentUser.get().getUser();
-
-    if (req.getParameter(bankAccountMessages.transactionType()).equals(bankAccountMessages.deposit())) {
-      accountBankDAO.deposit(amount, user.getUserID());
-    } else {
-      accountBankDAO.withdraw(amount, user.getUserID());
-    }
+    makeTransaction(req, transactionAmount);
 
     resp.sendRedirect(siteMap.mainPage());
 
+  }
+
+  private void makeTransaction(HttpServletRequest req, Float transactionAmount) {
+    User user = currentUser.get().getUser();
+
+    if (req.getParameter(bankAccountMessages.transactionType()).equals(bankAccountMessages.deposit())) {
+      accountBankDAO.deposit(transactionAmount, user.getUserID());
+      return;
+    }
+
+    Float currentAmount = accountBankDAO.getCurrentUserBankAmount(user.getUserID());
+
+    if (currentAmount > transactionAmount) {
+      accountBankDAO.withdraw(transactionAmount, user.getUserID());
+    }
 
   }
 }

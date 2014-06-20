@@ -2,7 +2,6 @@ package com.clouway.persistents;
 
 import com.clouway.core.AccountBankDAO;
 import com.clouway.core.Clock;
-import com.clouway.core.CurrentAmountRepository;
 import com.clouway.core.Transaction;
 import com.clouway.core.TransactionHistory;
 import com.google.inject.Inject;
@@ -19,7 +18,7 @@ import java.util.List;
 
 
 @Singleton
-public class PersistentBankDAO implements AccountBankDAO, TransactionHistory, CurrentAmountRepository {
+public class PersistentBankDAO implements AccountBankDAO, TransactionHistory {
 
   private final Provider<Connection> connectionProvider;
   private final Clock clock;
@@ -63,7 +62,7 @@ public class PersistentBankDAO implements AccountBankDAO, TransactionHistory, Cu
   }
 
   @Override
-  public float withdraw(float withdrawingAmount, int userID) {
+  public Float withdraw(float withdrawingAmount, int userID) {
     PreparedStatement preparedStatement;
 
     Connection connection = connectionProvider.get();
@@ -85,7 +84,7 @@ public class PersistentBankDAO implements AccountBankDAO, TransactionHistory, Cu
   }
 
   @Override
-  public float getCurrentUserBankAmount(int userID) {
+  public Float getCurrentUserBankAmount(int userID) {
 
     PreparedStatement preparedStatement = null;
     Connection connection = connectionProvider.get();
@@ -100,7 +99,7 @@ public class PersistentBankDAO implements AccountBankDAO, TransactionHistory, Cu
 
       resultSet.next();
 
-      return resultSet.getInt("amount");
+      return resultSet.getFloat("amount");
 
     } catch (SQLException e) {
       e.printStackTrace();
@@ -114,7 +113,7 @@ public class PersistentBankDAO implements AccountBankDAO, TransactionHistory, Cu
       }
     }
 
-    return 0;
+    return 0f;
   }
 
   @Override

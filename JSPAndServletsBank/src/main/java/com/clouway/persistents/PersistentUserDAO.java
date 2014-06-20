@@ -422,7 +422,8 @@ public class PersistentUserDAO implements UserDAO, UserSessionsRepository, Authe
     Connection connection = connectionProvider.get();
 
     try {
-      preparedStatement = connection.prepareStatement("DELETE Session WHERE expiry_date < ?");
+
+      preparedStatement = connection.prepareStatement("DELETE Session WHERE TIMESTAMPDIFF(expiry_date, ?) <= 0)");
 
       preparedStatement.setTimestamp(1, new Timestamp(date.getTime()));
 

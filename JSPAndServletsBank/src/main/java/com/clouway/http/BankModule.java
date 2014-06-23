@@ -98,6 +98,11 @@ public class BankModule extends AbstractModule {
       public String viewAmountPage() {
         return "viewAmountPage.jsp";
       }
+
+      @Override
+      public String contentPage() {
+        return "contentPage";
+      }
     };
   }
 

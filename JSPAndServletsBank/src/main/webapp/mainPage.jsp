@@ -8,6 +8,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+<%
+    String contentContent= null;
+    if (request.getAttribute("contentPage") != null) {
+    contentContent = (String) request.getAttribute("contentPage");
+}%>
 <head>
     <title></title>
     <link rel="stylesheet" href="mainStyle.css">
@@ -20,10 +25,21 @@
         </div>
         <div class="menu">
             <ul class="navigationBar">
-                <li><a href="/depositPage.jsp">Deposit</a></li>
-                <li><a href="/withdrawPage.jsp">Withdraw</a></li>
-                <li><a href="/viewAmountPage.jsp">Amount</a></li>
+                <li><a href="/includePageController?pageName=depositPage.jsp">Deposit</a></li>
+                <li><a href="/includePageController?pageName=withdrawPage.jsp">Withdraw</a></li>
+                <li><a href="/includePageController?pageName=viewAmountPage.jsp">Amount</a></li>
             </ul>
+        </div>
+        <div class="content">
+            <% if (contentContent != null) { %>
+
+                <jsp:include page="<%=contentContent%>"/>
+
+            <%} else { %>
+                <%@ include file="emptyPage.jsp" %>
+            <% }%>
+
+
         </div>
         <div>
             <form method="POST" class="footer" action="/logoutServlet">
@@ -31,7 +47,6 @@
             </form>
         </div>
     </div>
-
 
 </body>
 </html>

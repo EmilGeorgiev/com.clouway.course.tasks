@@ -9,6 +9,7 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -53,7 +54,8 @@ public class TransactionServlet extends HttpServlet{
 
     makeTransaction(req, transactionAmount);
 
-    resp.sendRedirect(siteMap.mainPage());
+    RequestDispatcher requestDispatcher = req.getRequestDispatcher(siteMap.mainPage());
+    requestDispatcher.forward(req, resp);
 
   }
 
@@ -61,6 +63,7 @@ public class TransactionServlet extends HttpServlet{
     User user = currentUser.get().getUser();
 
     if (req.getParameter(bankAccountMessages.transactionType()).equals(bankAccountMessages.deposit())) {
+      req.setAttribute(siteMap.contentPage(), siteMap.depositPage());
       accountBankDAO.deposit(transactionAmount, user.getUserID());
       return;
     }

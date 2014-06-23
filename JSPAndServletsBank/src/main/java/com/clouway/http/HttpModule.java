@@ -30,6 +30,7 @@ public class HttpModule extends ServletModule {
     serve("/logoutServlet").with(LogoutServlet.class);
     serve("/transactionServlet").with(TransactionServlet.class);
     serve("/viewCurrentAmountServlet").with(ViewCurrentAmountServlet.class);
+    serve("/includePageController").with(IncludePageController.class);
 
 
     bind(AccountBankDAO.class).to(PersistentBankDAO.class);

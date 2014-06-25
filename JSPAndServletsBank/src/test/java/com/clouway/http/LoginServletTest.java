@@ -84,10 +84,11 @@ public class LoginServletTest {
 
       oneOf(response).addCookie(with(any(Cookie.class)));
 
-      oneOf(siteMap).mainPage();
-      will(returnValue("mainPage.jsp"));
+      oneOf(siteMap).mainServlet();
+      will(returnValue("completeAttributeServlet"));
 
-      oneOf(response).sendRedirect("mainPage.jsp");
+      oneOf(request).getRequestDispatcher("/completeAttributeServlet");
+
     }
     });
 

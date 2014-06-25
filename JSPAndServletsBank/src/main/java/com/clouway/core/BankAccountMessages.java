@@ -14,4 +14,10 @@ public interface BankAccountMessages {
   String deposit();
 
   String currentAmount();
+
+  String viewAmount();
+
+  String transactionHistory();
+
+  String sid();
 }

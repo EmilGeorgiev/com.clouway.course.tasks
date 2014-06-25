@@ -1,5 +1,6 @@
 package com.clouway.http;
 
+import com.clouway.core.BankAccountMessages;
 import com.clouway.core.SiteMap;
 import com.clouway.core.UserSessionsRepository;
 import com.google.inject.Inject;
@@ -21,14 +22,18 @@ public class LogoutServlet extends HttpServlet {
 
   private final UserSessionsRepository userSessionsRepository;
   private final SiteMap siteMap;
+  private final BankAccountMessages bankAccountMessages;
 
 
   @Inject
-  public LogoutServlet(UserSessionsRepository userSessionsRepository, SiteMap siteMap) {
+  public LogoutServlet(UserSessionsRepository userSessionsRepository,
+                       SiteMap siteMap,
+                       BankAccountMessages bankAccountMessages) {
 
     this.userSessionsRepository = userSessionsRepository;
     this.siteMap = siteMap;
 
+    this.bankAccountMessages = bankAccountMessages;
   }
 
   @Override
@@ -48,12 +53,11 @@ public class LogoutServlet extends HttpServlet {
 
     if (cookies != null) {
       for (Cookie cookie : cookies) {
-        if ( "sid".equals(cookie.getName())) {
+        if ( bankAccountMessages.sid().equals(cookie.getName())) {
           return cookie.getValue();
         }
       }
     }
-
 
     return null;
   }

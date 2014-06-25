@@ -117,13 +117,46 @@ public class PersistentUserDAO implements UserDAO, UserSessionsRepository, Authe
       }
     }
 
-    createAccount(userName, userID, date);
+    createAccount(userID);
 
     return createSessionID(userName, userID, date);
   }
 
   @Override
   public User findUser(String userName, String userPassword) {
+
+    PreparedStatement preparedStatement = null;
+
+    Connection connection = connectionProvider.get();
+
+    try {
+      preparedStatement = connection.prepareStatement("SELECT name, password, user_id FROM Users " +
+              "WHERE name = ? AND password = ?");
+
+      preparedStatement.setString(1, userName);
+      preparedStatement.setString(2, userPassword);
+
+      ResultSet resultSet = preparedStatement.executeQuery();
+
+      if (resultSet.next()) {
+        String name = resultSet.getString("name");
+        String password = resultSet.getString("password");
+        int userID = resultSet.getInt("user_id");
+
+        return new User(name, password, userID);
+      }
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if (preparedStatement != null) {
+          preparedStatement.close();
+        }
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+    }
     return null;
   }
 
@@ -326,7 +359,7 @@ public class PersistentUserDAO implements UserDAO, UserSessionsRepository, Authe
 
   }
 
-  private void createAccount(String userName, int userID, Date date) {
+  private void createAccount(int userID) {
     PreparedStatement preparedStatement = null;
 
     Connection connection = connectionProvider.get();
@@ -423,9 +456,9 @@ public class PersistentUserDAO implements UserDAO, UserSessionsRepository, Authe
 
     try {
 
-      preparedStatement = connection.prepareStatement("DELETE Session WHERE TIMESTAMPDIFF(expiry_date, ?) <= 0)");
+      preparedStatement = connection.prepareStatement("DELETE FROM Session WHERE expiry_date < ?");
 
-      preparedStatement.setTimestamp(1, new Timestamp(date.getTime()));
+      preparedStatement.setDate(1, new java.sql.Date(date.getTime()));
 
       preparedStatement.executeUpdate();
 

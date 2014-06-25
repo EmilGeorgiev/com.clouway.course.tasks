@@ -18,12 +18,16 @@ public class HttpModule extends ServletModule {
   @Override
   protected void configureServlets() {
 
-    Map<String, String> initParam = new HashMap<String, String>();
-    initParam.put("excludeLoginServlet", "/loginServlet");
-    initParam.put("excludeRegisterServlet", "/registerServlet");
+    Map<String, String> initParamSession = new HashMap<String, String>();
+    initParamSession.put("excludeLoginServlet", "/loginServlet");
+    initParamSession.put("excludeRegisterServlet", "/registerServlet");
 
-    filter("/*Servlet").through(SessionValidatorFilter.class, initParam);
-    filter("/*").through(ConnectionPerRequestFilter.class);
+    Map<String, String> initParamConnection = new HashMap<String, String>();
+    initParamConnection.put("excludeLoginPage", "/loginPage.jsp");
+    initParamConnection.put("excludeLoginStyle", "/loginStyle.css");
+
+    filter("/*Servlet").through(SessionValidatorFilter.class, initParamSession);
+    filter("/*").through(ConnectionPerRequestFilter.class, initParamConnection);
 
     serve("/loginServlet").with(LoginServlet.class);
     serve("/registerServlet").with(RegisterServlet.class);
@@ -31,6 +35,7 @@ public class HttpModule extends ServletModule {
     serve("/transactionServlet").with(TransactionServlet.class);
     serve("/viewCurrentAmountServlet").with(ViewCurrentAmountServlet.class);
     serve("/includePageController").with(IncludePageController.class);
+    serve("/mainServlet").with(MainServlet.class);
 
 
     bind(AccountBankDAO.class).to(PersistentBankDAO.class);

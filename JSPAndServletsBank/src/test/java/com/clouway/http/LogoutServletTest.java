@@ -58,13 +58,4 @@ public class LogoutServletTest {
 
   }
 
-//  @Test
-//  public void userIsLogout() throws Exception {
-//    context.checking(new Expectations() {{
-//      oneOf(servletRequest).getCookies();
-//      will(returnValue(with(any(Cookie[].class))));
-//    }
-//    });
-//
-//  }
 }

@@ -71,6 +71,7 @@ public class TransactionServlet extends HttpServlet{
     Float currentAmount = accountBankDAO.getCurrentUserBankAmount(user.getUserID());
 
     if (currentAmount > transactionAmount) {
+      req.setAttribute(siteMap.contentPage(), siteMap.withdrawingPage());
       accountBankDAO.withdraw(transactionAmount, user.getUserID());
     }
 

@@ -82,7 +82,7 @@ public class PersistentUserDAOTest {
   @Test
   public void expiredUserSession() throws Exception {
 
-    boolean isValidSession = persistentUserDAO.isValidUserSession(""/*, clock.now()*/, CalendarUtil.getDate(2014, 6, 18, 11, 25));
+    boolean isValidSession = persistentUserDAO.isValidUserSession("", CalendarUtil.getDate(2014, 6, 18, 11, 25));
 
     assertThat(isValidSession, is(false));
 

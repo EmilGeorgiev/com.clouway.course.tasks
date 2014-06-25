@@ -1,0 +1,19 @@
+.transactionType, .transactionAmount {
+    width: 7%;
+    float: left;
+    margin-left: 0%;
+    font-size: large;
+}
+
+.transactionDate {
+    width: 25%;
+    margin-left: 0%;
+    font-size: large;
+
+}
+
+.currentAmount {
+    background-color: aqua;
+    font-size: x-large;
+}
+

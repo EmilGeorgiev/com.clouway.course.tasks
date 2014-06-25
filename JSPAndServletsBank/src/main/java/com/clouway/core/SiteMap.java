@@ -18,4 +18,8 @@ public interface SiteMap {
   String viewAmountPage();
 
   String contentPage();
+
+  String mainServlet();
+
+  String emptyPage();
 }

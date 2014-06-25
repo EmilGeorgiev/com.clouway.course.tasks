@@ -1,5 +1,6 @@
 package com.clouway.http;
 
+import com.clouway.core.BankAccountMessages;
 import com.clouway.core.Clock;
 import com.clouway.core.SiteMap;
 import com.clouway.core.UserSessionsRepository;
@@ -27,6 +28,7 @@ public class SessionValidatorFilter implements Filter{
   private final SiteMap siteMap;
   private final UserSessionsRepository userSessionsRepository;
   private final Clock clock;
+  private final BankAccountMessages bankAccountMessages;
   private String excludeLoginServlet;
   private String excludeRegisterServlet;
 
@@ -34,11 +36,13 @@ public class SessionValidatorFilter implements Filter{
   @Inject
   public SessionValidatorFilter(SiteMap siteMap,
                                 UserSessionsRepository userSessionsRepository,
-                                Clock clock) {
+                                Clock clock,
+                                BankAccountMessages bankAccountMessages) {
     this.siteMap = siteMap;
     this.userSessionsRepository = userSessionsRepository;
 
     this.clock = clock;
+    this.bankAccountMessages = bankAccountMessages;
   }
 
   @Override
@@ -80,7 +84,7 @@ public class SessionValidatorFilter implements Filter{
     Cookie[] cookies = request.getCookies();
 
     for(Cookie cookie : cookies) {
-      if ("sid".equals(cookie.getValue())) {
+      if (bankAccountMessages.sid().equals(cookie.getValue())) {
         return cookie.getValue();
       }
     }

@@ -48,6 +48,21 @@ public class BankModule extends AbstractModule {
         return "currentAmount";
       }
 
+      @Override
+      public String viewAmount() {
+        return "viewAmount";
+      }
+
+      @Override
+      public String transactionHistory() {
+        return "transactionHistory";
+      }
+
+      @Override
+      public String sid() {
+        return "sid";
+      }
+
     };
   }
 
@@ -86,7 +101,7 @@ public class BankModule extends AbstractModule {
 
       @Override
       public String withdrawingPage() {
-        return "withdrawingPage.jsp";
+        return "withdrawPage.jsp";
       }
 
       @Override
@@ -103,20 +118,30 @@ public class BankModule extends AbstractModule {
       public String contentPage() {
         return "contentPage";
       }
+
+      @Override
+      public String mainServlet() {
+        return "/mainServlet";
+      }
+
+      @Override
+      public String emptyPage() {
+        return "emptyPage.jsp";
+      }
     };
   }
 
   @Provides
-  public ValidationMessages getValidationMessages() {
-    return new ValidationMessages() {
+  public ValidationUserData getValidationMessages() {
+    return new ValidationUserData() {
       @Override
       public String userNameValidationPattern() {
-        return null;
+        return "^[a-zA-z]{1,15}$";
       }
 
       @Override
       public String passwordValidationPattern() {
-        return null;
+        return "^[a-zA-z0-9]{1,15}$";
       }
     };
   }

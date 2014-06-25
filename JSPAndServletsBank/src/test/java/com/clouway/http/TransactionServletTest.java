@@ -62,37 +62,6 @@ public class TransactionServletTest {
 
   }
 
-//  @Test
-//  public void whenDepositSomeValueThenCurrentValueIncrementWithThisValue() throws Exception {
-//
-//    context.checking(new Expectations() {{
-//
-//      oneOf(bankAccountMessages).transactionAmount();
-//      will(returnValue("transactionAmount"));
-//
-//      oneOf(servletRequest).getParameter("transactionAmount");
-//      will(returnValue("50"));
-//
-//      oneOf(pageMessages).depositPage();
-//      will(returnValue("depositPage.jsp"));
-//
-//      oneOf(servletRequest).getHeader("Referer");
-//      will(returnValue("depositPage.jsp"));
-//
-//      oneOf(accountBankDAO).deposit(50, 1);
-//
-//      oneOf(pageMessages).mainPage();
-//      will(returnValue("mainPage.jsp"));
-//
-//      oneOf(servletResponse).sendRedirect("mainPage.jsp");
-//
-//    }
-//    });
-//
-//    transactionServlet.doPost(servletRequest, servletResponse);
-//
-//  }
-
   @Test
   public void whenTryingTransferInvalidValueThenTransactionIsFailed() throws Exception {
 
@@ -126,6 +95,7 @@ public class TransactionServletTest {
     pretendThatUserHasDepositOf("100", userID(4));
 
     context.checking(new Expectations() {{
+
       oneOf(bankAccountMessages).transactionAmount();
       will(returnValue("transactionAmount"));
 
@@ -141,10 +111,19 @@ public class TransactionServletTest {
       oneOf(bankAccountMessages).deposit();
       will(returnValue("deposit"));
 
+      oneOf(siteMap).contentPage();
+      will(returnValue("withdrawPage"));
+
+      oneOf(siteMap).withdrawingPage();
+      will(returnValue("withdrawPage.jsp"));
+
+      oneOf(servletRequest).setAttribute("withdrawPage", "withdrawPage.jsp");
+
       oneOf(siteMap).mainPage();
       will(returnValue("mainPage.jsp"));
 
-      oneOf(servletResponse).sendRedirect("mainPage.jsp");
+      oneOf(servletRequest).getRequestDispatcher("mainPage.jsp");
+
     }
     });
 
@@ -171,10 +150,10 @@ public class TransactionServletTest {
         will(returnValue("100"));
 
         oneOf(bankAccountMessages).transactionType();
+        will(returnValue("transactionType"));
+
+        oneOf(servletRequest).getParameter("transactionType");
         will(returnValue("withdraw"));
-
-        oneOf(servletRequest).getParameter("withdraw");
-
 
         oneOf(bankAccountMessages).deposit();
         will(returnValue("deposit"));
@@ -182,7 +161,8 @@ public class TransactionServletTest {
         oneOf(siteMap).mainPage();
         will(returnValue("mainPage.jsp"));
 
-        oneOf(servletResponse).sendRedirect("mainPage.jsp");
+        oneOf(servletRequest).getRequestDispatcher("mainPage.jsp");
+
       }
     });
 

@@ -1,4 +1,6 @@
-<%@ page import="org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding" %>
+<%@ page import="com.clouway.core.Transaction" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.util.List" %>
 <%--
   Created by IntelliJ IDEA.
   User: clouway
@@ -8,20 +10,42 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<% String currentAmount = (String) request.getAttribute("currentAmount");
+
+<link rel="stylesheet" href="viewAmountPage.css">
+<%
+
+    Float currentAmount = (Float) request.getAttribute("currentAmount");
+
 %>
 <head>
     <title></title>
 </head>
 <body>
-<form method="POST" action="/viewCurrentAmountServlet">
-    <input type="submit" value="Current Amount">
-</form>
 
-<% if(currentAmount != null) { %>
+
+<div align="center" class="currentAmount">
     Current amount is: <%= currentAmount%>
-<% } %>
+</div>
+    <br/>
 
-<a href="mainPage.jsp">Main Page</a>
+    <%
+        List<Transaction> transactions = (List<Transaction>) request.getAttribute("transactionHistory");
+
+       for(Transaction transaction : transactions) {
+           String transactionType = transaction.getTransfer();
+           float transactionAmount = transaction.getAmountTransaction();
+           Date transactionDate = transaction.getDateTransaction(); %>
+
+            <div class="transactionType">
+                <i><%=transactionType%></i>
+            </div>
+            <div class="transactionAmount">
+                <i><%=transactionAmount%></i>
+            </div>
+            <div class="transactionDate">
+                <i><%=transactionDate%></i>
+            </div>
+            <br/>
+       <%}%>
 </body>
 </html>

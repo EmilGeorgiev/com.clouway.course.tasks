@@ -6,6 +6,7 @@ import com.clouway.core.SiteMap;
 import com.clouway.core.User;
 import com.clouway.core.UserDAO;
 import com.clouway.core.UserMessages;
+import com.clouway.core.ValidationUserData;
 import com.clouway.persistents.util.CalendarUtil;
 import org.jmock.Expectations;
 import org.jmock.auto.Mock;
@@ -54,6 +55,9 @@ public class RegisterServletTest {
   @Mock
   private UserDAO userDAO = null;
 
+  @Mock
+  private ValidationUserData validationUserData = null;
+
 
   public static class RequestedUser {
     private final String userName;
@@ -67,7 +71,11 @@ public class RegisterServletTest {
 
   @Before
   public void setUp() {
-    registerServlet = new RegisterServlet(siteMap, userMessages, userDAO, clock);
+    registerServlet = new RegisterServlet(siteMap,
+            userMessages,
+            userDAO,
+            clock,
+            validationUserData);
   }
 
   @Test
@@ -123,35 +131,6 @@ public class RegisterServletTest {
 
   }
 
-  /**
-   * Do i need to test?
-   * @throws Exception
-   */
-//  @Test
-//  public void whenRegisteredUserThanCreateAccountWithZeroAmount() throws Exception {
-//    final RequestedUser anyRequestUser = new RequestedUser("georgi", "georgiPass");
-//
-//    pretendThatRequestUserIs(anyRequestUser);
-//
-//    context.checking(new Expectations() {{
-//      oneOf(userDAO).findUser(anyRequestUser.userName, anyRequestUser.userPassword);
-//      will(returnValue(null));
-//
-//      oneOf(userDAO).register(anyRequestUser.userName, anyRequestUser.userPassword, clock.now());
-//      will(returnValue(sessionID));
-//
-//      oneOf(siteMap).mainPage();
-//      will(returnValue("mainPage.jsp"));
-//
-//      oneOf(response).sendRedirect("mainPage.jsp");
-//
-//    }
-//    });
-//
-//    registerServlet.doPost(request, response);
-//
-//  }
-
   private void pretendThatRequestUserIs(final RequestedUser anyRequestedUser) {
     context.checking(new Expectations() {{
       oneOf(userMessages).userName();
@@ -165,6 +144,12 @@ public class RegisterServletTest {
 
       oneOf(request).getParameter("user_password");
       will(returnValue(anyRequestedUser.userPassword));
+
+      oneOf(validationUserData).userNameValidationPattern();
+      will(returnValue("^[a-zA-z]{1,15}$"));
+
+      oneOf(validationUserData).passwordValidationPattern();
+      will(returnValue("^[a-zA-z0-9]{6,15}$"));
     }
     });
   }

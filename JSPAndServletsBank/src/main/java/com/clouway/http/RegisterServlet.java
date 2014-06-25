@@ -1,11 +1,6 @@
 package com.clouway.http;
 
-import com.clouway.core.Clock;
-import com.clouway.core.SessionID;
-import com.clouway.core.SiteMap;
-import com.clouway.core.User;
-import com.clouway.core.UserDAO;
-import com.clouway.core.UserMessages;
+import com.clouway.core.*;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
@@ -26,16 +21,22 @@ public class RegisterServlet extends HttpServlet {
   private final UserMessages userMessages;
   private final UserDAO userDAO;
   private final Clock clock;
+  private final ValidationUserData validationUserData;
+  private final BankAccountMessages bankAccountMessages;
 
   @Inject
   public RegisterServlet(SiteMap siteMap,
                          UserMessages userMessages,
                          UserDAO userDAO,
-                         Clock clock) {
+                         Clock clock,
+                         ValidationUserData validationUserData,
+                         BankAccountMessages bankAccountMessages) {
     this.siteMap = siteMap;
     this.userMessages = userMessages;
     this.userDAO = userDAO;
     this.clock = clock;
+    this.validationUserData = validationUserData;
+    this.bankAccountMessages = bankAccountMessages;
   }
 
   @Override
@@ -44,17 +45,23 @@ public class RegisterServlet extends HttpServlet {
 
     String userPassword = req.getParameter(userMessages.userPassword());
 
+    boolean isValid = validateUserDate(userName, userPassword);
+
+    if (!isValid) {
+      resp.sendRedirect(siteMap.loginPage());
+    }
+
     User user = userDAO.findUser(userName, userPassword);
 
     if (user == null) {
 
       SessionID session = userDAO.register(userName, userPassword, clock.now());
 
-      Cookie cookie = new Cookie("sid", session.getSessionID());
+      Cookie cookie = new Cookie(bankAccountMessages.sid(), session.getSessionID());
 
       resp.addCookie(cookie);
 
-      resp.sendRedirect(siteMap.mainPage());
+      resp.sendRedirect(siteMap.mainServlet());
 
       return;
 
@@ -63,8 +70,17 @@ public class RegisterServlet extends HttpServlet {
     resp.sendRedirect(siteMap.loginPage());
   }
 
+  private boolean validateUserDate(String userName, String userPassword) {
+
+    String namePattern = validationUserData.userNameValidationPattern();
+    String passwordPattern = validationUserData.passwordValidationPattern();
+
+    return userName.matches(namePattern) && userPassword.matches(passwordPattern);
+
+  }
+
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+    doPost(req, resp);
   }
 }

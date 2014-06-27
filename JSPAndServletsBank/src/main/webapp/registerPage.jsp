@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+
     <link rel="stylesheet" href="registerPage.css">
     <title></title>
 </head>
@@ -16,6 +17,13 @@
     <div class="title">
         <h1>Internet Bank</h1>
     </div>
+    <%
+        Object attribute = request.getAttribute("javax.servlet.error.message");
+
+        if (attribute != null) { %>
+
+    <p><% out.println(attribute); %></p>
+    <% } %>
     <form method="POST" action="/registerServlet">
         <div class="row">
             <label for="userName" class="dataUser">User Name</label>

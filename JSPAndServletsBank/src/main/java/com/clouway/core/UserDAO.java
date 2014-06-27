@@ -7,7 +7,5 @@ import java.util.Date;
  */
 public interface UserDAO {
 
-  SessionID register(String userName, String userPassword, Date now);
-
-  User findUser(String userName, String userPassword);
+  SessionID registerUserIfNotExist(String userName, String password, Date now);
 }

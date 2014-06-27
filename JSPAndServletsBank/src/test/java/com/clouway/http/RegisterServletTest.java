@@ -1,12 +1,6 @@
 package com.clouway.http;
 
-import com.clouway.core.Clock;
-import com.clouway.core.SessionID;
-import com.clouway.core.SiteMap;
-import com.clouway.core.User;
-import com.clouway.core.UserDAO;
-import com.clouway.core.UserMessages;
-import com.clouway.core.ValidationUserData;
+import com.clouway.core.*;
 import com.clouway.persistents.util.CalendarUtil;
 import org.jmock.Expectations;
 import org.jmock.auto.Mock;
@@ -58,6 +52,9 @@ public class RegisterServletTest {
   @Mock
   private ValidationUserData validationUserData = null;
 
+  @Mock
+  private BankAccountMessages bankAccountMessages = null;
+
 
   public static class RequestedUser {
     private final String userName;
@@ -75,7 +72,8 @@ public class RegisterServletTest {
             userMessages,
             userDAO,
             clock,
-            validationUserData);
+            validationUserData,
+            bankAccountMessages);
   }
 
   @Test
@@ -87,18 +85,18 @@ public class RegisterServletTest {
 
     context.checking(new Expectations() {{
 
-      oneOf(userDAO).findUser(anyRequestedUser.userName, anyRequestedUser.userPassword);
-      will(returnValue(null));
-
-      oneOf(userDAO).register(anyRequestedUser.userName, anyRequestedUser.userPassword, clock.now());
+      oneOf(userDAO).registerUserIfNotExist("emil", "emilPass", clock.now());
       will(returnValue(sessionID));
+
+      oneOf(bankAccountMessages).sid();
+      will(returnValue("sid"));
 
       oneOf(response).addCookie(with(any(Cookie.class)));
 
-      oneOf(siteMap).mainPage();
-      will(returnValue("mainPage.jsp"));
+      oneOf(siteMap).mainServlet();
+      will(returnValue("/mainServlet"));
 
-      oneOf(response).sendRedirect("mainPage.jsp");
+      oneOf(response).sendRedirect("/mainServlet");
     }
     });
 
@@ -117,8 +115,8 @@ public class RegisterServletTest {
 
     context.checking(new Expectations() {{
 
-      oneOf(userDAO).findUser(anyRequestUser.userName, anyRequestUser.userPassword);
-      will(returnValue(user));
+      oneOf(userDAO).registerUserIfNotExist(anyRequestUser.userName, anyRequestUser.userPassword, clock.now());
+      will(returnValue(null));
 
       oneOf(siteMap).loginPage();
       will(returnValue("loginPage.jsp"));
@@ -149,7 +147,7 @@ public class RegisterServletTest {
       will(returnValue("^[a-zA-z]{1,15}$"));
 
       oneOf(validationUserData).passwordValidationPattern();
-      will(returnValue("^[a-zA-z0-9]{6,15}$"));
+      will(returnValue("^[a-zA-z0-9]{1,15}$"));
     }
     });
   }

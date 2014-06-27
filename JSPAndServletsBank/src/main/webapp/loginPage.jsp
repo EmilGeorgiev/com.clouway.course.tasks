@@ -18,6 +18,13 @@
             <div class="header">
                <h3>Internet Bank</h3>
             </div>
+            <%
+                Object attribute = request.getAttribute("javax.servlet.error.message");
+
+                if (attribute != null) { %>
+
+            <p><% out.println(attribute); %></p>
+            <% } %>
             <form method="POST" action="/loginServlet">
                 User Name: <input type="text" name="user_name">
                 <br/>

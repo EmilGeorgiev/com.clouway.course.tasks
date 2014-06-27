@@ -47,21 +47,18 @@ public class PersistentUserDAOTest {
 
     persistentUserDAO = new PersistentUserDAO(Providers.of(connection));
 
-    persistentUserDAO.register(user.getUserName(), user.getPassword(), clock.now());
+    persistentUserDAO.registerUserIfNotExist(user.getUserName(), user.getPassword(), clock.now());
 
   }
 
   @Test
   public void authenticateNewUser() throws Exception {
 
-    persistentUserDAO.register("ivan", "ivanPass", clock.now());
+    SessionID session = persistentUserDAO.registerUserIfNotExist("ivan", "ivanPass", clock.now());
 
-    // registers new session
-    SessionID sessionID = persistentUserDAO.authenticate("ivan", "ivanPass", clock.now());
+    persistentUserDAO.isValidUserSession(session.getSessionID(), CalendarUtil.getDate(2014, 6, 18, 11, 25));
 
-    persistentUserDAO.isValidUserSession(sessionID.getSessionID(), CalendarUtil.getDate(2014, 6, 18, 11, 25));
-
-    assertThat(sessionID.getSessionID(), notNullValue());
+    assertThat(session.getSessionID(), notNullValue());
 
   }
 
@@ -70,7 +67,7 @@ public class PersistentUserDAOTest {
 
     User ivan = new User("ivan", "ivanPass", 2);
 
-    SessionID session = persistentUserDAO.register(ivan.getUserName(), ivan.getPassword(), CalendarUtil.getDate(2014, 6, 18, 10, 55));
+    SessionID session = persistentUserDAO.registerUserIfNotExist(ivan.getUserName(), ivan.getPassword(), CalendarUtil.getDate(2014, 6, 18, 10, 55));
     System.out.println(session);
 
     boolean isValidSession = persistentUserDAO.isValidUserSession(session.getSessionID(), CalendarUtil.getDate(2014, 6, 18, 11, 5));

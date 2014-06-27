@@ -1,6 +1,7 @@
 package com.clouway.http;
 
 import com.clouway.core.AuthenticateService;
+import com.clouway.core.BankAccountMessages;
 import com.clouway.core.Clock;
 import com.clouway.core.SessionID;
 import com.clouway.core.SiteMap;
@@ -51,6 +52,9 @@ public class LoginServletTest {
   @Mock
   private AuthenticateService authenticateService = null;
 
+  @Mock
+  private BankAccountMessages bankAccountMessages;
+
   public static class RequestedUser {
     public final String user;
     public final String pass;
@@ -65,7 +69,7 @@ public class LoginServletTest {
   @Before
   public void setUp() {
 
-    loginServlet = new LoginServlet(userMessages, siteMap, authenticateService, clock);
+    loginServlet = new LoginServlet(userMessages, siteMap, authenticateService, clock, bankAccountMessages);
 
     sessionID = new SessionID("");
 
@@ -82,12 +86,15 @@ public class LoginServletTest {
       oneOf(authenticateService).authenticate("emil", "emilPass", clock.now());
       will(returnValue(sessionID));
 
+      oneOf(bankAccountMessages).sid();
+      will(returnValue("sid"));
+
       oneOf(response).addCookie(with(any(Cookie.class)));
 
       oneOf(siteMap).mainServlet();
-      will(returnValue("completeAttributeServlet"));
+      will(returnValue("/mainServlet"));
 
-      oneOf(request).getRequestDispatcher("/completeAttributeServlet");
+      oneOf(response).sendRedirect("/mainServlet");
 
     }
     });
@@ -107,10 +114,10 @@ public class LoginServletTest {
       oneOf(authenticateService).authenticate(requestedUser.user, requestedUser.pass, clock.now());
       will(returnValue(null));
 
-      oneOf(siteMap).loginPage();
-      will(returnValue("loginPage.jsp"));
+      oneOf(siteMap).loginError();
+      will(returnValue("User does not exist"));
 
-      oneOf(response).sendRedirect("loginPage.jsp");
+      oneOf(response).sendError(401, "User does not exist");
     }
     });
 

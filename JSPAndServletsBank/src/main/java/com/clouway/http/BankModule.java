@@ -63,6 +63,16 @@ public class BankModule extends AbstractModule {
         return "sid";
       }
 
+      @Override
+      public String successTransaction() {
+        return "Transaction is success";
+      }
+
+      @Override
+      public String transactionResponse() {
+        return "response";
+      }
+
     };
   }
 
@@ -127,6 +137,26 @@ public class BankModule extends AbstractModule {
       @Override
       public String emptyPage() {
         return "emptyPage.jsp";
+      }
+
+      @Override
+      public String errorPage() {
+        return "errorPage.jsp";
+      }
+
+      @Override
+      public String registerError() {
+        return "Invalid user name or password.";
+      }
+
+      @Override
+      public String loginError() {
+        return "User does not exist.";
+      }
+
+      @Override
+      public String errorNotFound() {
+        return "Not found page: ";
       }
     };
   }

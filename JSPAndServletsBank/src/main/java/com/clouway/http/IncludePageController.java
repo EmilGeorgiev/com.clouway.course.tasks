@@ -1,40 +1,28 @@
 package com.clouway.http;
 
-import com.clouway.core.BankAccountMessages;
+import com.clouway.core.AuthorizationURLParameters;
 import com.clouway.core.SiteMap;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 
 @Singleton
 public class IncludePageController extends HttpServlet {
 
   private final SiteMap siteMap;
-  private final BankAccountMessages bankAccountMessages;
-  private Map<String, String> webPages = new HashMap<String, String>();
+  private final AuthorizationURLParameters authorizationURLParameters;
 
   @Inject
-  public IncludePageController(SiteMap siteMap, BankAccountMessages bankAccountMessages) {
+  public IncludePageController(SiteMap siteMap, AuthorizationURLParameters authorizationURLParameters) {
     this.siteMap = siteMap;
-    this.bankAccountMessages = bankAccountMessages;
-  }
-
-
-  @Override
-  public void init(ServletConfig config) throws ServletException {
-    webPages.put(bankAccountMessages.deposit(), siteMap.depositPage());
-    webPages.put(bankAccountMessages.viewAmount(), siteMap.viewAmountPage());
-    webPages.put(bankAccountMessages.withdraw(), siteMap.withdrawingPage());
+    this.authorizationURLParameters = authorizationURLParameters;
   }
 
   @Override
@@ -44,10 +32,12 @@ public class IncludePageController extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    String pageName = req.getParameter("pageName");
+    String urlParameter = req.getParameter("pageName");
 
-    if((pageName != null) && webPages.containsKey(pageName)) {
-      req.setAttribute(siteMap.contentPage(), webPages.get(pageName));
+    String pageName = authorizationURLParameters.getWebPageIfParameterIsAuthorize(urlParameter);
+
+    if(pageName != null) {
+      req.setAttribute(siteMap.contentPage(), pageName);
 
       RequestDispatcher requestDispatcher = req.getRequestDispatcher(siteMap.mainServlet());
 
@@ -56,8 +46,7 @@ public class IncludePageController extends HttpServlet {
       return;
     }
 
-    resp.sendRedirect(siteMap.emptyPage());
-
+    resp.sendError(404, (siteMap.errorNotFound() + urlParameter));
 
   }
 

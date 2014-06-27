@@ -65,6 +65,7 @@ public class TransactionServlet extends HttpServlet{
     if (req.getParameter(bankAccountMessages.transactionType()).equals(bankAccountMessages.deposit())) {
       req.setAttribute(siteMap.contentPage(), siteMap.depositPage());
       accountBankDAO.deposit(transactionAmount, user.getUserID());
+      req.setAttribute(bankAccountMessages.transactionResponse(), bankAccountMessages.successTransaction());
       return;
     }
 
@@ -73,6 +74,7 @@ public class TransactionServlet extends HttpServlet{
     if (currentAmount > transactionAmount) {
       req.setAttribute(siteMap.contentPage(), siteMap.withdrawingPage());
       accountBankDAO.withdraw(transactionAmount, user.getUserID());
+      req.setAttribute(bankAccountMessages.transactionResponse(), bankAccountMessages.successTransaction());
     }
 
   }

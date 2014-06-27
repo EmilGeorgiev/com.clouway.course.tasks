@@ -1,5 +1,6 @@
 package com.clouway.http;
 
+import com.clouway.core.BankAccountMessages;
 import com.clouway.core.SiteMap;
 import com.clouway.core.UserSessionsRepository;
 import org.jmock.Expectations;
@@ -33,10 +34,13 @@ public class LogoutServletTest {
   @Mock
   private SiteMap siteMap = null;
 
+  @Mock
+  private BankAccountMessages bankAccountMessages;
+
   @Before
   public void setUp() {
 
-    logoutServlet = new LogoutServlet(userSessionsRepository, siteMap);
+    logoutServlet = new LogoutServlet(userSessionsRepository, siteMap, bankAccountMessages);
   }
 
   @Test

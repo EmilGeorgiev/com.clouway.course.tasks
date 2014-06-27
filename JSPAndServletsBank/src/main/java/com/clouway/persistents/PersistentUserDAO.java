@@ -76,7 +76,12 @@ public class PersistentUserDAO implements UserDAO, UserSessionsRepository, Authe
 
 
   @Override
-  public SessionID register(String userName, String userPassword, Date date) {
+  public SessionID registerUserIfNotExist(String userName, String userPassword, Date date) {
+    User user = findUser(userName, userPassword);
+
+    if (user != null) {
+      return null;
+    }
 
     int userID = 0;
 
@@ -120,44 +125,7 @@ public class PersistentUserDAO implements UserDAO, UserSessionsRepository, Authe
     createAccount(userID);
 
     return createSessionID(userName, userID, date);
-  }
 
-  @Override
-  public User findUser(String userName, String userPassword) {
-
-    PreparedStatement preparedStatement = null;
-
-    Connection connection = connectionProvider.get();
-
-    try {
-      preparedStatement = connection.prepareStatement("SELECT name, password, user_id FROM Users " +
-              "WHERE name = ? AND password = ?");
-
-      preparedStatement.setString(1, userName);
-      preparedStatement.setString(2, userPassword);
-
-      ResultSet resultSet = preparedStatement.executeQuery();
-
-      if (resultSet.next()) {
-        String name = resultSet.getString("name");
-        String password = resultSet.getString("password");
-        int userID = resultSet.getInt("user_id");
-
-        return new User(name, password, userID);
-      }
-
-    } catch (SQLException e) {
-      e.printStackTrace();
-    } finally {
-      try {
-        if (preparedStatement != null) {
-          preparedStatement.close();
-        }
-      } catch (SQLException e) {
-        e.printStackTrace();
-      }
-    }
-    return null;
   }
 
   @Override
@@ -276,39 +244,42 @@ public class PersistentUserDAO implements UserDAO, UserSessionsRepository, Authe
     return false;
   }
 
+  private User findUser(String userName, String userPassword) {
 
+    PreparedStatement preparedStatement = null;
 
+    Connection connection = connectionProvider.get();
 
-//  @Override
-//  public String getUserSessionIDByID(int userID) {
-//    PreparedStatement preparedStatement = null;
-//
-//    Connection connection = connectionProvider.get();
-//
-//    try {
-//      preparedStatement = connection.prepareStatement("SELECT sid FROM Session WHERE user_id = ?");
-//
-//      preparedStatement.setInt(1, userID);
-//
-//      ResultSet resultSet = preparedStatement.executeQuery();
-//
-//      resultSet.next();
-//
-//      return resultSet.getString("sid");
-//
-//    } catch (SQLException e) {
-//      e.printStackTrace();
-//    } finally {
-//      try {
-//        if (preparedStatement != null) {
-//          preparedStatement.close();
-//        }
-//      } catch (SQLException e) {
-//        e.printStackTrace();
-//      }
-//    }
-//    return null;
-//  }
+    try {
+      preparedStatement = connection.prepareStatement("SELECT name, password, user_id FROM Users " +
+              "WHERE name = ? AND password = ?");
+
+      preparedStatement.setString(1, userName);
+      preparedStatement.setString(2, userPassword);
+
+      ResultSet resultSet = preparedStatement.executeQuery();
+
+      if (resultSet.next()) {
+        String name = resultSet.getString("name");
+        String password = resultSet.getString("password");
+        int userID = resultSet.getInt("user_id");
+
+        return new User(name, password, userID);
+      }
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if (preparedStatement != null) {
+          preparedStatement.close();
+        }
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+    }
+    return null;
+  }
 
   private SessionID createSessionID(String userName, int userID, Date date) {
     HashFunction sha1 = Hashing.sha1();

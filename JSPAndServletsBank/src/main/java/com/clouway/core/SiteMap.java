@@ -22,4 +22,12 @@ public interface SiteMap {
   String mainServlet();
 
   String emptyPage();
+
+  String errorPage();
+
+  String registerError();
+
+  String loginError();
+
+  String errorNotFound();
 }

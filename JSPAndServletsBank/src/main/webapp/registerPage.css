@@ -26,3 +26,8 @@ h1 {
 .register {
 
 }
+
+p {
+    font-size: large;
+    color: red;
+}

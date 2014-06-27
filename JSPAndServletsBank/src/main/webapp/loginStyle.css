@@ -10,6 +10,11 @@ h3 {
     border-style: solid;
 }
 
+p {
+    font-size: large;
+    color: red;
+}
+
 .main {
     margin-top: 50px;
     margin-bottom: 250px;

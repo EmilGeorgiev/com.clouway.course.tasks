@@ -119,6 +119,14 @@ public class TransactionServletTest {
 
       oneOf(servletRequest).setAttribute("withdrawPage", "withdrawPage.jsp");
 
+      oneOf(bankAccountMessages).transactionResponse();
+      will(returnValue("response"));
+
+      oneOf(bankAccountMessages).successTransaction();
+      will(returnValue("Transaction is success"));
+
+      oneOf(servletRequest).setAttribute("response", "Transaction is success");
+
       oneOf(siteMap).mainPage();
       will(returnValue("mainPage.jsp"));
 

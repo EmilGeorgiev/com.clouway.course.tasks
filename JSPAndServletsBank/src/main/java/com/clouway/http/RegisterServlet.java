@@ -45,17 +45,15 @@ public class RegisterServlet extends HttpServlet {
 
     String userPassword = req.getParameter(userMessages.userPassword());
 
-    boolean isValid = validateUserDate(userName, userPassword);
-
-    if (!isValid) {
-      resp.sendRedirect(siteMap.loginPage());
+    if (!validateUserDate(userName, userPassword)) {
+      resp.sendError(401, siteMap.registerError());
+      return;
+//      resp.sendRedirect(siteMap.loginPage());
     }
 
-    User user = userDAO.findUser(userName, userPassword);
+    SessionID session = userDAO.registerUserIfNotExist(userName, userPassword, clock.now());
 
-    if (user == null) {
-
-      SessionID session = userDAO.register(userName, userPassword, clock.now());
+    if (session != null) {
 
       Cookie cookie = new Cookie(bankAccountMessages.sid(), session.getSessionID());
 

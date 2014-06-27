@@ -45,6 +45,7 @@ public class HttpModule extends ServletModule {
     bind(UserDAO.class).to(PersistentUserDAO.class);
     bind(AuthenticateService.class).to(PersistentUserDAO.class);
     bind(Clock.class).to(Time.class);
+    bind(AuthorizationURLParameters.class).to(VerificationURLParameter.class);
 
   }
 

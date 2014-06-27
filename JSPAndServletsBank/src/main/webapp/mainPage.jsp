@@ -10,6 +10,13 @@
 <html>
 <%
       String contentContent = (String) request.getAttribute("contentPage");
+
+    String successTransaction = null;
+
+    if (request.getAttribute("response") != null) {
+            successTransaction = (String) request.getAttribute("response");
+
+    }
 %>
 <head>
     <title></title>
@@ -28,6 +35,11 @@
                 <li><a href="/includePageController?pageName=viewAmount">Amount</a></li>
             </ul>
         </div>
+        <% if (successTransaction != null) { %>
+           <%=successTransaction%>
+        <%}%>
+
+
         <div class="content">
             <jsp:include page="<%=contentContent%>"/>
         </div>

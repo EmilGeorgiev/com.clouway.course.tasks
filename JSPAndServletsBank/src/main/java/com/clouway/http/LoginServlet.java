@@ -63,7 +63,7 @@ public class LoginServlet extends HttpServlet {
      resp.sendRedirect(siteMap.mainServlet());
 
     } else {
-      resp.sendRedirect(siteMap.loginPage());
+      resp.sendError(401, siteMap.loginError());
     }
   }
 }

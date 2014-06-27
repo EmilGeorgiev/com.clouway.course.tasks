@@ -20,4 +20,8 @@ public interface BankAccountMessages {
   String transactionHistory();
 
   String sid();
+
+  String successTransaction();
+
+  String transactionResponse();
 }

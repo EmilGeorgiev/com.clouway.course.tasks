@@ -1,5 +1,6 @@
 package com.clouway.http;
 
+import com.clouway.core.BankAccountMessages;
 import com.clouway.core.Clock;
 import com.clouway.core.SiteMap;
 import com.clouway.core.UserSessionsRepository;
@@ -46,10 +47,13 @@ public class SessionValidatorFilterTest {
   @Mock
   private FilterChain filterChain = null;
 
+  @Mock
+  private BankAccountMessages bankAccountMessages;
+
   @Before
   public void setUp() {
 
-    validatorFilter = new SessionValidatorFilter(siteMap, userSessionsRepository, clock);
+    validatorFilter = new SessionValidatorFilter(siteMap, userSessionsRepository, clock, bankAccountMessages);
   }
 
   @Test

@@ -1,7 +1,6 @@
 package com.clouway.http;
 
 import com.clouway.core.RegisterFormMessages;
-import com.clouway.core.SiteMap;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
@@ -16,21 +15,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 
-/**
- * Created by clouway on 6/27/14.
- */
+
 @Singleton
 public class RegisterFilter implements Filter {
 
-
   private final RegisterFormMessages formMessages;
-  private final SiteMap siteMap;
 
   @Inject
-  public RegisterFilter(RegisterFormMessages formMessages, SiteMap siteMap) {
+  public RegisterFilter(RegisterFormMessages formMessages) {
 
     this.formMessages = formMessages;
-    this.siteMap = siteMap;
+
   }
 
   @Override

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Enumeration;
+import java.util.Map;
 
 
 @Singleton
@@ -41,33 +41,21 @@ public class AuthenticateRegisterFormServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-    //Get all parameter names from register <code>form<code>.
-   Enumeration<String> parameterNames = req.getParameterNames();
+    Map<String, String[]> parameters = req.getParameterMap();
 
     //Check whether user data is valid according to requirements on webapp.
-    while (parameterNames.hasMoreElements()) {
-      String parameterName = parameterNames.nextElement();
+    for(Map.Entry<String, String[]> parameter : parameters.entrySet()) {
 
-      String parameter = req.getParameter(parameterName);
+      String result = authorizationFormData.validateUserData(parameter.getKey(), parameter.getValue()[0]);
 
-      String regex = authorizationFormData.getRegexForParameter(parameterName);
-
-      if(authorizationFormData.isUserDataMatchToRegex(parameter, regex)) {
-
-        req.setAttribute(parameterName, "wrong");
-
-      } else {
-
-        req.setAttribute(parameterName, "correct");
-
-      }
+      //Set attribute with <code>result<code> messages which display on browser
+      // and inform user whether its data are correct or is not.
+      req.setAttribute(parameter.getKey(), result);
 
       //Allow user data to be retained after refresh page.
-      req.setAttribute(parameterName + registerFormMessages.value(), parameter);
-
+      req.setAttribute(parameter.getKey() + registerFormMessages.value(), parameter.getValue()[0]);
     }
 
-    //Return back to register page to view which user data is correct and which is not.
     RequestDispatcher requestDispatcher = req.getRequestDispatcher(siteMap.registerForm());
 
     requestDispatcher.forward(req, resp);

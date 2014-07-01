@@ -5,8 +5,5 @@ package com.clouway.core;
  */
 public interface AuthorizationFormData {
 
-
-  String getRegexForParameter(String parameterName);
-
-  boolean isUserDataMatchToRegex(String parameter, String regex);
+  String validateUserData(String parameterName, String parameterValue);
 }

@@ -12,10 +12,7 @@ import org.junit.Test;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,11 +22,7 @@ public class AuthenticateRegisterFormServletTest {
 
   private AuthenticateRegisterFormServlet authenticateRegisterFormServlet;
 
-  private List<String> parameterNames = new ArrayList<String>();
-
-  private List<String> parameterValues = new ArrayList<String>();
-
-  private Map<String, String> parameterNameRegex = new HashMap<String, String>();
+  private Map<String, String[]> parameters = new HashMap<String, String[]>();
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
@@ -51,24 +44,10 @@ public class AuthenticateRegisterFormServletTest {
 
   @Before
   public void setUp() {
-    parameterNames.add("first_name");
-    parameterNames.add("last_name");
-    parameterNames.add("user_egn");
-    parameterNames.add("user_age");
-    parameterNames.add("user_address");
-    parameterNames.add("user_password");
-
-    parameterNameRegex.put("first_name", "^[a-zA-z]{1,15}$");
-    parameterNameRegex.put("last_name", "^[a-zA-z]{1,15}$");
-    parameterNameRegex.put("user_egn", "^[0-9]{10}$");
-    parameterNameRegex.put("user_age", "^1[8-9]$|^[2-9][0-9]$|^10[0-9]$|^11[1-8]$");
-    parameterNameRegex.put("user_address", "^[\\W\\w]{1,100}$");
-    parameterNameRegex.put("user_password", "^[a-zA-z0-9]{6,15}$");
 
     authenticateRegisterFormServlet = new AuthenticateRegisterFormServlet(authorizationFormData,
                                                                           siteMap,
                                                                           registerFormMessages);
-
   }
 
   @Test
@@ -82,8 +61,8 @@ public class AuthenticateRegisterFormServletTest {
             password("testPass1"));
 
     context.checking(new Expectations() {{
-      oneOf(request).getParameterNames();
-      will(returnValue(any(with(Enumeration.class))));
+      oneOf(request).getParameterMap();
+      will(returnValue(parameters));
 
       expectInvokeExpectation();
 
@@ -99,37 +78,24 @@ public class AuthenticateRegisterFormServletTest {
 
   private void expectInvokeExpectation() {
 
-    for (int i = 0; i < 6; i++) {
-      final int index = i;
+    for (final Map.Entry<String, String[]> parameter : parameters.entrySet()) {
+
       context.checking(new Expectations() {
         {
 
-          String parameterName = parameterNames.get(index);
+          oneOf(authorizationFormData).validateUserData(parameter.getKey(), parameter.getValue()[0]);
+          will(returnValue("correct"));
 
-          String parameterValue = parameterValues.get(index);
+          oneOf(request).setAttribute(parameter.getKey(), "correct");
 
-          String regex = parameterNameRegex.get(parameterName);
+          oneOf(registerFormMessages).value();
+          will(returnValue("Value"));
 
-          oneOf(request).getParameter(parameterName);
-          will(returnValue(parameterValue));
+          oneOf(request).setAttribute(parameter.getKey()+"Value", parameter.getValue());
 
-          oneOf(authorizationFormData).getRegexForParameter(parameterName);
-          will(returnValue(regex));
-
-          oneOf(authorizationFormData).isUserDataMatchToRegex(parameterValue, regex);
-          will(returnValue(true));
-
-          oneOf(request).setAttribute(parameterName, "correct");
-
-//          oneOf(registerFormMessages).value();
-//          will(returnValue("Value"));
-
-          oneOf(request).setAttribute(parameterName +  "Value"/*registerFormMessages.value()*/, parameterName);
         }
       });
     }
-
-
   }
 
   private void pretendThatTryRegisterUser(String firstName,
@@ -139,12 +105,13 @@ public class AuthenticateRegisterFormServletTest {
                                           String address,
                                           String password) {
 
-    parameterValues.add(firstName);
-    parameterValues.add(lastName);
-    parameterValues.add(egn);
-    parameterValues.add(age);
-    parameterValues.add(address);
-    parameterValues.add(password);
+
+    parameters.put("first_name", new String[]{firstName});
+    parameters.put("last_name", new String[]{lastName});
+    parameters.put("user_egn", new String[]{egn});
+    parameters.put("user_age", new String[]{age});
+    parameters.put("user_address", new String[]{address});
+    parameters.put("user_password", new String[]{password});
 
   }
 

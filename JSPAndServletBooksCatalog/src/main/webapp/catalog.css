@@ -1,0 +1,42 @@
+.main {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+h1 {
+    border-style: groove;
+    background-color: coral;
+}
+
+.catalog {
+    border-style: ridge;
+    height: 5%;
+}
+
+.navigation {
+    width: 100%;
+    float: left;
+    margin: 0 0 3em 0;
+    padding: 0;
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    list-style: none;
+}
+
+.navigation li {
+    float: left;
+}
+
+.navigation li a {
+    display: block;
+    text-decoration: none;
+    padding: 8px 15px;
+    font-weight: bold;
+    border-right: solid #ccc;
+}
+
+.navigation li a:hover {
+    color: brown;
+    background-color: #fff;
+}

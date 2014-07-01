@@ -1,0 +1,20 @@
+.main {
+    background-color: beige;
+    margin-left: 20%;
+    margin-right: 20%;
+    border-style: double;
+}
+
+.registerForm {
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.userData {
+    float: left;
+    width: 20%;
+}
+
+.message {
+    margin-left: 50%;
+}

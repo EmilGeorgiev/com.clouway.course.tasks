@@ -8,4 +8,7 @@ import java.util.Map;
 public interface RegisterFormMessages {
   Map<String,String> getMessages();
 
+  String value();
+
+  String emptyValue();
 }

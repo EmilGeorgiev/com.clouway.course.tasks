@@ -3,10 +3,10 @@
   <tlib-version>1.0</tlib-version>
   <jsp-version>1.1</jsp-version>
   <short-name>info</short-name>
-  <!--<uri>http://viralpatel.net/blogs/jsp/taglib/substr</uri>-->
+  <!--<uri>com.clouway.http://viralpatel.net/blogs/jsp/taglib/substr</uri>-->
   <tag>
     <name>info</name>
-    <tag-class>core.SubstringTagHandler</tag-class>
+    <tag-class>com.clouway.core.SubstringTagHandler</tag-class>
     <attribute>
       <name>input</name>
       <required>true</required>

@@ -1,8 +1,9 @@
 package com.clouway.http;
 
-import com.clouway.core.AuthorizationFormData;
-import com.clouway.core.RegisterFormMessages;
+import com.clouway.core.InitialMessages;
 import com.clouway.core.SiteMap;
+import com.clouway.core.UserMessage;
+import com.clouway.core.Validator;
 import org.jmock.Expectations;
 import org.jmock.auto.Mock;
 import org.jmock.integration.junit4.JUnitRuleMockery;
@@ -15,14 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by clouway on 6/30/14.
- */
-public class AuthenticateRegisterFormServletTest {
+public class ValidatorServletTest {
 
-  private AuthenticateRegisterFormServlet authenticateRegisterFormServlet;
+  private ValidatorServlet validatorServlet;
 
   private Map<String, String[]> parameters = new HashMap<String, String[]>();
+  private Map<String, UserMessage> messageMap = new HashMap<String, UserMessage>();
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
@@ -34,10 +33,10 @@ public class AuthenticateRegisterFormServletTest {
   private HttpServletRequest request = null;
 
   @Mock
-  private AuthorizationFormData authorizationFormData = null;
+  private Validator validator = null;
 
   @Mock
-  private RegisterFormMessages registerFormMessages = null;
+  private InitialMessages initialMessages = null;
 
   @Mock
   private SiteMap siteMap = null;
@@ -45,26 +44,31 @@ public class AuthenticateRegisterFormServletTest {
   @Before
   public void setUp() {
 
-    authenticateRegisterFormServlet = new AuthenticateRegisterFormServlet(authorizationFormData,
-                                                                          siteMap,
-                                                                          registerFormMessages);
+    validatorServlet = new ValidatorServlet(validator, siteMap);
   }
 
   @Test
   public void authenticateUserData() throws Exception {
 
     pretendThatTryRegisterUser(firstName("test"),
-            lastName("test"),
-            egn("1122334455"),
-            age("25"),
-            address("Ivan Vazov"),
-            password("testPass1"));
+                               lastName("test"),
+                               egn("1122334455"),
+                               age("25"),
+                               address("Ivan Vazov"),
+                               password("testPass1"));
 
     context.checking(new Expectations() {{
+
       oneOf(request).getParameterMap();
       will(returnValue(parameters));
 
-      expectInvokeExpectation();
+      oneOf(validator).validate(parameters);
+      will(returnValue(messageMap));
+
+      oneOf(siteMap).messages();
+      will(returnValue("userMessages"));
+
+      oneOf(request).setAttribute("userMessages", messageMap);
 
       oneOf(siteMap).registerForm();
       will(returnValue("registerForm.jsp"));
@@ -73,29 +77,7 @@ public class AuthenticateRegisterFormServletTest {
     }
     });
 
-    authenticateRegisterFormServlet.doPost(request, response);
-  }
-
-  private void expectInvokeExpectation() {
-
-    for (final Map.Entry<String, String[]> parameter : parameters.entrySet()) {
-
-      context.checking(new Expectations() {
-        {
-
-          oneOf(authorizationFormData).validateUserData(parameter.getKey(), parameter.getValue()[0]);
-          will(returnValue("correct"));
-
-          oneOf(request).setAttribute(parameter.getKey(), "correct");
-
-          oneOf(registerFormMessages).value();
-          will(returnValue("Value"));
-
-          oneOf(request).setAttribute(parameter.getKey()+"Value", parameter.getValue());
-
-        }
-      });
-    }
+    validatorServlet.doPost(request, response);
   }
 
   private void pretendThatTryRegisterUser(String firstName,

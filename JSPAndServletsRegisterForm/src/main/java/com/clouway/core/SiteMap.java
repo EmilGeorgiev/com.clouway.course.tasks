@@ -7,4 +7,19 @@ public interface SiteMap {
 
   String registerForm();
 
+  String messages();
+
+  String firstName();
+
+  String emptyValue();
+
+  String lastName();
+
+  String egn();
+
+  String age();
+
+  String address();
+
+  String password();
 }

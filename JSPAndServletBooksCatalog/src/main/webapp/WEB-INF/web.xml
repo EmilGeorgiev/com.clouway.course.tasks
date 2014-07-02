@@ -16,7 +16,7 @@
   </filter-mapping>
 
   <listener>
-    <listener-class>http.AppServletContextListener</listener-class>
+    <listener-class>com.clouway.http.AppServletContextListener</listener-class>
   </listener>
 
 </web-app>

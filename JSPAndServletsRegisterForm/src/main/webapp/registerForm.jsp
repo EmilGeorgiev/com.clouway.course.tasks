@@ -1,4 +1,5 @@
-<%@ page import="java.util.Enumeration" %>
+<%@ page import="com.clouway.core.UserMessage" %>
+<%@ page import="java.util.Map" %>
 <%--
   Created by IntelliJ IDEA.
   User: clouway
@@ -10,12 +11,25 @@
 <html>
 <head>
     <%
-        String firstNameMessage = (String) request.getAttribute("first_name");
-        String lastNameMessage = (String) request.getAttribute("last_name");
-        String EGNMessage = (String) request.getAttribute("user_egn");
-        String ageMessage = (String) request.getAttribute("user_age");
-        String addressMessage = (String) request.getAttribute("user_address");
-        String passwordMessage = (String) request.getAttribute("user_password");
+        Map<String, UserMessage> messageMap = (Map<String, UserMessage>) request.getAttribute("messages");
+
+        String firstNameMessage = messageMap.get("first_name").getAuthenticateMessage();
+        String firstNameValue = messageMap.get("first_name").getFieldValue();
+
+        String lastNameMessage = messageMap.get("last_name").getAuthenticateMessage();
+        String lastNameValue = messageMap.get("last_name").getFieldValue();
+
+        String egnMessage = messageMap.get("user_egn").getAuthenticateMessage();
+        String egnValue = messageMap.get("user_egn").getFieldValue();
+
+        String ageMessage = messageMap.get("user_age").getAuthenticateMessage();
+        String ageValue = messageMap.get("user_age").getFieldValue();
+
+        String addressMessage = messageMap.get("user_address").getAuthenticateMessage();
+        String addressValue = messageMap.get("user_address").getFieldValue();
+
+        String passwordMessage = messageMap.get("user_password").getAuthenticateMessage();
+        String passwordValue = messageMap.get("user_password").getFieldValue();
 
     %>
     <link rel="stylesheet" href="registerForm.css">
@@ -27,7 +41,7 @@
         <h1>REGISTER</h1>
     </div>
     <div class="form">
-        <form class="registerForm" method="POST" action="/authenticateServlet">
+        <form class="registerForm" method="POST" action="/validatorServlet">
 
             <div class="row">
                 <label class="userData" for="firstName">First Name:</label>
@@ -36,7 +50,7 @@
                            class="userData"
                            id="firstName"
                            name="first_name"
-                           value="<%=request.getAttribute("first_nameValue")%>">
+                           value="<%=firstNameValue%>">
                 </div>
                 <div class="message"><i><%=firstNameMessage %></i></div>
             </div>
@@ -49,7 +63,7 @@
                             class="userData"
                             id="lastName"
                             name="last_name"
-                            value="<%=request.getAttribute("last_nameValue")%>">
+                            value="<%=lastNameValue%>">
                 </div>
                 <div class="message"><i><%=lastNameMessage %></i></div>
             </div>
@@ -62,9 +76,9 @@
                             class="userData"
                             id="EGN"
                             name="user_egn"
-                            value="<%=request.getAttribute("user_egnValue")%>">
+                            value="<%=egnValue%>">
                 </div>
-                <div class="message"><i><%=EGNMessage %></i></div>
+                <div class="message"><i><%=egnMessage%></i></div>
             </div>
             <br/>
             <div class="row">
@@ -75,9 +89,9 @@
                             class="userData"
                             id="age"
                             name="user_age"
-                            value="<%=request.getAttribute("user_ageValue")%>">
+                            value="<%=ageValue%>">
                 </div>
-                <div class="message"><i><%=ageMessage %></i></div>
+                <div class="message"><i><%=ageMessage%></i></div>
             </div>
             <br/>
             <div class="row">
@@ -88,9 +102,9 @@
                             class="userData"
                             id="address"
                             name="user_address"
-                            value="<%=request.getAttribute("user_addressValue")%>">
+                            value="<%=addressValue%>">
                 </div>
-                <div class="message"><i><%=addressMessage %></i></div>
+                <div class="message"><i><%=addressMessage%></i></div>
             </div>
             <br/>
             <div class="row">
@@ -101,6 +115,7 @@
                             class="userData"
                             id="password"
                             name="user_password">
+
                 </div>
                 <div class="message"><i><%=passwordMessage %></i></div>
             </div>

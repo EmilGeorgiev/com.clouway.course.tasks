@@ -1,9 +1,9 @@
 package com.clouway.http;
 
-import com.clouway.core.AuthorizationFormData;
-import com.clouway.core.ErrorMessages;
-import com.clouway.core.RegexMessages;
-import com.clouway.core.RegisterFormMessages;
+import com.clouway.core.AuthenticateMessages;
+import com.clouway.core.Validator;
+import com.clouway.core.ValidatorMessages;
+import com.clouway.core.InitialMessages;
 import com.clouway.core.SiteMap;
 import com.clouway.core.UserDataValidator;
 import com.google.inject.Provides;
@@ -17,23 +17,18 @@ import java.util.Map;
  */
 public class AuthenticateModule extends ServletModule {
 
-  private Map<String, String> formMessages = new HashMap<String, String>();
-  private Map<String, String> regexMessages = new HashMap<String, String>();
-
   @Override
   protected void configureServlets() {
 
-    serve("/authenticateServlet").with(AuthenticateRegisterFormServlet.class);
+    serve("/validatorServlet").with(ValidatorServlet.class);
 
-    filter("/registerForm.jsp").through(RegisterFilter.class);
-
-    bind(AuthorizationFormData.class).to(UserDataValidator.class);
+    bind(Validator.class).to(UserDataValidator.class);
 
   }
 
   @Provides
-  public ErrorMessages getErrorMessages() {
-    return new ErrorMessages() {
+  public AuthenticateMessages getErrorMessages() {
+    return new AuthenticateMessages() {
       @Override
       public String wrong() {
         return "wrong";
@@ -47,7 +42,9 @@ public class AuthenticateModule extends ServletModule {
   }
 
   @Provides
-  public RegexMessages getRegexMessages() {
+  public ValidatorMessages getRegexMessages() {
+
+    final Map<String, String> regexMessages = new HashMap<String, String>();
 
     regexMessages.put("first_name", "^[a-zA-z]{1,15}$");
     regexMessages.put("last_name", "^[a-zA-z]{1,15}$");
@@ -56,10 +53,10 @@ public class AuthenticateModule extends ServletModule {
     regexMessages.put("user_address", "^[\\W\\w]{1,100}$");
     regexMessages.put("user_password", "^[a-zA-z0-9]{6,15}$");
 
-    return new RegexMessages() {
+    return new ValidatorMessages() {
 
       @Override
-      public String getRegexForParameter(String parameterName) {
+      public String getValidatorMessageForParameter(String parameterName) {
         return regexMessages.get(parameterName);
       }
     };
@@ -72,11 +69,53 @@ public class AuthenticateModule extends ServletModule {
       public String registerForm() {
         return "/registerForm.jsp";
       }
+
+      @Override
+      public String messages() {
+        return "messages";
+      }
+
+      @Override
+      public String firstName() {
+        return "first_name";
+      }
+
+      @Override
+      public String emptyValue() {
+        return "";
+      }
+
+      @Override
+      public String lastName() {
+        return "last_name";
+      }
+
+      @Override
+      public String egn() {
+        return "user_egn";
+      }
+
+      @Override
+      public String age() {
+        return "user_age";
+      }
+
+      @Override
+      public String address() {
+        return "user_address";
+      }
+
+      @Override
+      public String password() {
+        return "user_password";
+      }
     };
   }
 
   @Provides
-  public RegisterFormMessages getRegisterFormMessages() {
+  public InitialMessages getRegisterFormMessages() {
+
+    final Map<String, String> formMessages = new HashMap<String, String>();
 
     formMessages.put("first_name", "Contains form 1 to 15 symbols");
     formMessages.put("last_name", "Contains form 1 to 15 symbols");
@@ -85,7 +124,7 @@ public class AuthenticateModule extends ServletModule {
     formMessages.put("user_address", "From 1 to 100");
     formMessages.put("user_password", "From 6 to 18 symbols and contains only latin letters and numbers");
 
-    return new RegisterFormMessages() {
+    return new InitialMessages() {
       @Override
       public Map<String, String> getMessages() {
         return formMessages;
@@ -99,6 +138,11 @@ public class AuthenticateModule extends ServletModule {
       @Override
       public String emptyValue() {
         return "";
+      }
+
+      @Override
+      public String getMessageForField(String parameterName) {
+        return formMessages.get(parameterName);
       }
 
     };

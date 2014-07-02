@@ -40,3 +40,9 @@ h1 {
     color: brown;
     background-color: #fff;
 }
+
+.book {
+    float: left;
+    width: 30%;
+    height: 170%;
+}

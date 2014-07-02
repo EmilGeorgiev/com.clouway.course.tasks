@@ -8,6 +8,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="book" uri="/WEB-INF/SubstringDescriptor.tld"%>
 <html>
+<%
+    Integer lastPage = (Integer) request.getAttribute("lastPage");
+    Integer currentPage = (Integer) request.getAttribute("currentPage");
+    Integer nextPage = currentPage + 1;
+    Integer previousPage = currentPage - 1;
+    Integer booksNumber = (Integer) request.getAttribute("booksNumber");
+
+%>
+
 <head>
     <link rel="stylesheet" href="catalog.css">
     <title></title>
@@ -20,20 +29,28 @@
     <div class="catalog">
         <div>
             <ul class="navigation">
-                <li><a href="/pageController?page=first_page">First Page</a></li>
-                <li><a href="/pageController?page=previous_page">Previous Page</a></li>
-                <li><a href="/pageController?page=next_page">Next Page</a></li>
-                <li><a href="/pageController?page=last_page">Last Page</a></li>
+                <li><a href="/navigationPageController?page=1">First Page</a></li>
+                <li><a href="/navigationPageController?page=<%=previousPage%>">Previous Page</a></li>
+                <li><a href="/navigationPageController?page=<%=nextPage%>">Next Page</a></li>
+                <li><a href="/navigationPageController?page=<%=lastPage%>">Last Page</a></li>
             </ul>
         </div>
+        <p align="center"><%=currentPage%></p>
         <div class="books">
             <%
                 String book = "book";
-                for (int i = 0; i < 20; i++) {
+                for (int i = 1; i <= booksNumber; i++) {
                     book = book + i; %>
-                    <a href="/bookInfoController?title=<%=book%>" target="_blank"><%=book%>></a>
-                    <book:info input=""></book:info>
-            <%}%>
+
+                    <div class="book">
+                        <a href="/bookInfoController?title=<%=book%>" target="_blank"><%=book%>></a><br/>
+                        Publishers: <book:info input="Hermes"/><br/>
+                        Release Year: <book:info input="2013"/><br/>
+                    </div>
+
+                    <%
+                    book = "book";
+                }%>
         </div>
     </div>
 </div>

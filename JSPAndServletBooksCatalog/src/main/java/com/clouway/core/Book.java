@@ -78,10 +78,10 @@ public class Book {
   }
 
   public int getYearPublisher() {
-    return yearPublisher;
+    return publisherYear;
   }
 
-  public void setYearPublisher(int yearPublisher) {
-    this.yearPublisher = yearPublisher;
+  public void setYearPublisher(int publisherYear) {
+    this.publisherYear = publisherYear;
   }
 }

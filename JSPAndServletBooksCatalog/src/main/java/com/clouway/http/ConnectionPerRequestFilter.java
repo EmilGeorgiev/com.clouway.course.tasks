@@ -1,6 +1,5 @@
 package com.clouway.http;
 
-
 import com.google.inject.Singleton;
 import com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource;
 
@@ -17,7 +16,6 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-
 @Singleton
 public class ConnectionPerRequestFilter implements Filter {
 
@@ -25,47 +23,30 @@ public class ConnectionPerRequestFilter implements Filter {
 
   private MysqlConnectionPoolDataSource dataSource = new MysqlConnectionPoolDataSource();
 
-  private String excludeLoginPage;
-  private String excludeLoginStyle;
-
   @Override
   public void init(FilterConfig filterConfig) throws ServletException {
     dataSource.setUser("root");
     dataSource.setPassword("root");
-    dataSource.setDatabaseName("Bank");
+    dataSource.setDatabaseName("Book_Store");
     dataSource.setServerName("localhost");
-
-    this.excludeLoginPage = filterConfig.getInitParameter("excludeLoginPage");
-    this.excludeLoginStyle = filterConfig.getInitParameter("excludeLoginStyle");
-
   }
 
   @Override
   public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-
     HttpServletRequest request = (HttpServletRequest) servletRequest;
 
     HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-    String url = request.getRequestURI();
-
-    if (matchExcludePattern(url)) {
-      filterChain.doFilter(request, response);
-      return;
-    }
-
     try {
-      if (CONNECTION.get() == null) {
-
+      if(CONNECTION.get() == null) {
         Connection connection = getConnection();
 
         CONNECTION.set(connection);
-
       }
 
-      filterChain.doFilter(servletRequest, servletResponse);
+      filterChain.doFilter(request, response);
 
-      if (CONNECTION.get() != null) {
+      if(CONNECTION.get() != null) {
 
         CONNECTION.get().close();
 
@@ -74,10 +55,6 @@ public class ConnectionPerRequestFilter implements Filter {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-  }
-
-  @Override
-  public void destroy() {
 
   }
 
@@ -87,7 +64,8 @@ public class ConnectionPerRequestFilter implements Filter {
     return pooledConnection.getConnection();
   }
 
-  private boolean matchExcludePattern(String url) {
-    return url.equals(excludeLoginPage) || url.equals(excludeLoginStyle);
+  @Override
+  public void destroy() {
+
   }
 }

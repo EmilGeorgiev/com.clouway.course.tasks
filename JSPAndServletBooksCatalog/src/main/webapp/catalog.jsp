@@ -1,3 +1,5 @@
+<%@ page import="com.clouway.core.Book" %>
+<%@ page import="com.clouway.core.PageDetails" %>
 <%--
   Created by IntelliJ IDEA.
   User: clouway
@@ -6,14 +8,20 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="book" uri="/WEB-INF/SubstringDescriptor.tld"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="book" uri="/WEB-INF/SubstringDescriptor.tld"%>
+<%--<jsp:useBean id="pageDetails" class="com.clouway.core.PageDetails"/>--%>
+<%--<jsp:setProperty name="pageDetails" property="*"/>--%>
 <html>
 <%
-    Integer lastPage = (Integer) request.getAttribute("lastPage");
-    Integer currentPage = (Integer) request.getAttribute("currentPage");
-    Integer nextPage = currentPage + 1;
-    Integer previousPage = currentPage - 1;
-    Integer booksNumber = (Integer) request.getAttribute("booksNumber");
+
+//    Integer lastPage = Integer.valueOf(getServletConfig().getInitParameter("lastPage"));
+//    Integer currentPage = (Integer) request.getAttribute("requestPage");
+//    Integer nextPage = currentPage + 1;
+//    Integer previousPage = currentPage - 1;
+//    List<Book> bookList = (List<Book>) request.getAttribute("bookList");
+
+    PageDetails pageDetails = (PageDetails) request.getAttribute("requestPage");
 
 %>
 
@@ -30,27 +38,25 @@
         <div>
             <ul class="navigation">
                 <li><a href="/navigationPageController?page=1">First Page</a></li>
-                <li><a href="/navigationPageController?page=<%=previousPage%>">Previous Page</a></li>
-                <li><a href="/navigationPageController?page=<%=nextPage%>">Next Page</a></li>
-                <li><a href="/navigationPageController?page=<%=lastPage%>">Last Page</a></li>
+                <li><a href="/navigationPageController?page="<%=pageDetails.getPreviousPage()%>">Previous Page</a></li>
+                <li><a href="/navigationPageController?page=<%=pageDetails.getNextPage()%>">Next Page</a></li>
+                <li><a href="/navigationPageController?page=<%=config.getInitParameter("lastPage")%>">Last Page</a></li>
             </ul>
         </div>
-        <p align="center"><%=currentPage%></p>
+        <p align="center"><%=pageDetails.getPageNumber()%></p>
         <div class="books">
             <%
-                String book = "book";
-                for (int i = 1; i <= booksNumber; i++) {
-                    book = book + i; %>
+                for (Book book : pageDetails.getBookList()) { %>
 
                     <div class="book">
-                        <a href="/bookInfoController?title=<%=book%>" target="_blank"><%=book%>></a><br/>
-                        Publishers: <book:info input="Hermes"/><br/>
-                        Release Year: <book:info input="2013"/><br/>
+
+                        <a href="/bookDetailsController?bookId=<%=book.getId()%>" target="_blank"><%=book.getTitle()%>></a><br/>
+                        Publishers: <i><%=book.getPublishers()%></i><br/>
+                        Release Year: <i><%=book.getYearPublisher()%></i><br/>
+
                     </div>
 
-                    <%
-                    book = "book";
-                }%>
+                    <%}%>
         </div>
     </div>
 </div>

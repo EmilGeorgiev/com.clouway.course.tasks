@@ -33,7 +33,7 @@ public class PageNavigationPageControllerTest {
   private SiteMap siteMap = null;
 
   @Mock
-  private Configured configured = null;
+  private Configured<PageDetails> configured = null;
 
   @Before
   public void setUp() {
@@ -74,29 +74,6 @@ public class PageNavigationPageControllerTest {
     navigationPage.doPost(request, response);
   }
 
-  private void pretendThatVisitStoreForFirstTime(int previousPage, int nextPage, int lastPage, int currentPage) {
-    pageDetails = PageDetailsBuilder.newPageDetails()
-                                    .previousPage(previousPage)
-                                    .nextPage(nextPage)
-                                    .pageNumber(currentPage)
-                                    .build();
-  }
-
-  private int currentPage(int currentPage) {
-    return currentPage;
-  }
-
-  private int lastPage(int lastPage) {
-    return lastPage;
-  }
-
-  private int nextPage(int nextPage) {
-    return nextPage;
-  }
-
-  private int previousPage(int previousPage) {
-    return previousPage;
-  }
 
   @Test
   public void navigateToAnyPage() throws Exception {
@@ -126,5 +103,29 @@ public class PageNavigationPageControllerTest {
 
     navigationPage.doPost(request, response);
 
+  }
+
+  private void pretendThatVisitStoreForFirstTime(int previousPage, int nextPage, int lastPage, int currentPage) {
+    pageDetails = PageDetailsBuilder.newPageDetails()
+            .previousPage(previousPage)
+            .nextPage(nextPage)
+            .pageNumber(currentPage)
+            .build();
+  }
+
+  private int currentPage(int currentPage) {
+    return currentPage;
+  }
+
+  private int lastPage(int lastPage) {
+    return lastPage;
+  }
+
+  private int nextPage(int nextPage) {
+    return nextPage;
+  }
+
+  private int previousPage(int previousPage) {
+    return previousPage;
   }
 }

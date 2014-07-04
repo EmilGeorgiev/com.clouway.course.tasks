@@ -10,15 +10,17 @@ public class Book {
   private int publisherYear;
   private int id;
   private int belongsPage;
+  private String description;
 
   public Book() {
   }
 
-  public Book(String title, String publishers, int publisherYear, int belongsPage, int id) {
+  public Book(String title, String publishers, int publisherYear, String description, int belongsPage, int id) {
 
     this.title = title;
     this.publishers = publishers;
     this.publisherYear = publisherYear;
+    this.description = description;
     this.belongsPage = belongsPage;
     this.id = id;
   }
@@ -87,5 +89,9 @@ public class Book {
 
   public void setYearPublisher(int publisherYear) {
     this.publisherYear = publisherYear;
+  }
+
+  public String getDescription() {
+    return description;
   }
 }

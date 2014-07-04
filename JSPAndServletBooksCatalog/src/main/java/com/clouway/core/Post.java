@@ -5,7 +5,22 @@ package com.clouway.core;
  */
 public class Post {
 
-  public Post(String author, String post, int bookId) {
+  private final String author;
+  private final String postContent;
+  private final int bookId;
 
+  public Post(String author, String postContent, int bookId) {
+
+    this.author = author;
+    this.postContent = postContent;
+    this.bookId = bookId;
+  }
+
+  public String getAuthor() {
+    return author;
+  }
+
+  public String getPostContent() {
+    return postContent;
   }
 }

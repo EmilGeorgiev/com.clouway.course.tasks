@@ -52,6 +52,12 @@ public class PersistentBookRepositoryTest {
 
   }
 
+
+  @Test
+  public void testName() throws Exception {
+
+  }
+
   private void pretendThatOnPageHas(List<Book> books, int pageNumber) {
     for(Book book : books) {
       book.setBelongsPage(pageNumber);
@@ -60,6 +66,7 @@ public class PersistentBookRepositoryTest {
   }
 
   private List<Book> bookList(Book book1, Book book2) {
+
     List<Book> bookList = new ArrayList<Book>();
 
     bookList.add(book1);

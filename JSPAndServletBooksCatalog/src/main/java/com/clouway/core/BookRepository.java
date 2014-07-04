@@ -7,4 +7,6 @@ import java.util.List;
  */
 public interface BookRepository {
   List<Book> findAllBooksForPage(int pageNumber);
+
+  Book findBookById(int bookId);
 }

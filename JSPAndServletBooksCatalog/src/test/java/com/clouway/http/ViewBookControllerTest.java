@@ -14,6 +14,8 @@ import org.junit.Test;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by clouway on 7/4/14.
@@ -22,7 +24,7 @@ public class ViewBookControllerTest {
 
   private ViewBookController detailsController;
   private BookDetails bookDetails;
-  private Post bookPost;
+
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
 
@@ -36,7 +38,7 @@ public class ViewBookControllerTest {
   private HttpServletRequest request = null;
 
   @Mock
-  private Configured<BookDetails> configured;
+  private Configured<BookDetails> configured = null;
 
   @Before
   public void setUp() {
@@ -46,10 +48,11 @@ public class ViewBookControllerTest {
   @Test
   public void showBookDetails() throws Exception {
     pretendThatUserWantsToSeeDetailsForBook(new Book(title("JavaEE"),
-            publisher("SoftPress"),
-            publishersYear(2013),
-            belongsPage(4),
-            bookId(45)));
+                                          publisher("SoftPress"),
+                                          publishersYear(2013),
+                                          description("Book for JavaEE"),
+                                          belongsPage(4),
+                                          bookId(45)));
 
     context.checking(new Expectations() {{
 
@@ -78,21 +81,18 @@ public class ViewBookControllerTest {
 
   }
 
-  private int bookId(int bookId) {
-    return bookId;
+  private String description(String description) {
+    return description;
   }
 
   private void pretendThatUserWantsToSeeDetailsForBook(Book book) {
-    bookPost = new Post(author("Ivan"), post("Ivan post"), book.getId());
-    bookDetails = new BookDetails(book, bookPost);
+    List<Post> postList = new ArrayList<Post>();
+    bookDetails = new BookDetails(book, postList);
+
   }
 
-  private String post(String post) {
-    return post;
-  }
-
-  private String author(String author) {
-    return author;
+  private int bookId(int bookId) {
+    return bookId;
   }
 
   private int belongsPage(int page) {

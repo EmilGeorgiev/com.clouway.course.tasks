@@ -5,12 +5,15 @@ package com.clouway.core;
  */
 public class BookBuilder {
 
+
+
   public static BookBuilder newBook() {
     return new BookBuilder();
   }
 
   private String title;
   private String publishers;
+  private String description;
   private int publisherYear;
   private int belongsPage;
   private int id;
@@ -22,6 +25,11 @@ public class BookBuilder {
 
   public BookBuilder publishers(String publishers) {
     this.publishers = publishers;
+    return this;
+  }
+
+  public BookBuilder description(String description) {
+    this.description = description;
     return this;
   }
 
@@ -41,6 +49,6 @@ public class BookBuilder {
   }
 
   public Book build() {
-    return new Book(title, publishers, publisherYear, belongsPage, id);
+    return new Book(title, publishers, publisherYear, description, belongsPage, id);
   }
 }

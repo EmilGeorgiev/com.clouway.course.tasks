@@ -2,6 +2,8 @@ package com.clouway.persistent;
 
 import com.clouway.core.Book;
 import com.clouway.core.BookRepository;
+import com.clouway.core.Post;
+import com.clouway.core.PostRepository;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
@@ -17,7 +19,7 @@ import static com.clouway.core.BookBuilder.newBook;
 
 
 @Singleton
-public class PersistentBookRepository implements BookRepository {
+public class PersistentBookRepository implements BookRepository, PostRepository {
 
 
   private final Provider<Connection> connectionProvider;
@@ -70,4 +72,18 @@ public class PersistentBookRepository implements BookRepository {
     return bookList;
   }
 
+  @Override
+  public Book findBookById(int bookId) {
+    return null;
+  }
+
+  @Override
+  public List<Post> findPostByBookId(int bookId) {
+    return null;
+  }
+
+  @Override
+  public void addPost(Post post) {
+
+  }
 }

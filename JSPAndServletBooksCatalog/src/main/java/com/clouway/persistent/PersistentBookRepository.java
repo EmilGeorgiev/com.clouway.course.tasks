@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.clouway.core.BookBuilder.newBook;
+
 
 @Singleton
 public class PersistentBookRepository implements BookRepository {
@@ -33,7 +35,8 @@ public class PersistentBookRepository implements BookRepository {
     Connection connection = connectionProvider.get();
 
     try {
-      preparedStatement = connection.prepareStatement("SELECT FROM Books WHERE belongs_page = ?)");
+      preparedStatement = connection.prepareStatement("SELECT title, publishers, year_publisher, belongs_page FROM Books " +
+                                                      "WHERE belongs_page = ?");
 
       preparedStatement.setInt(1, pageNumber);
 
@@ -45,13 +48,26 @@ public class PersistentBookRepository implements BookRepository {
         int yearPublisher = resultSet.getInt("year_publisher");
         int belongsPage = resultSet.getInt("belongs_page");
 
-        bookList.add(new Book())
+        bookList.add(newBook()
+                              .title(title)
+                              .publishers(publishers)
+                              .publisherYear(yearPublisher)
+                              .belongsPage(belongsPage)
+                              .build());
       }
 
     } catch (SQLException e) {
       e.printStackTrace();
+    } finally {
+      try {
+        if (preparedStatement != null) {
+          preparedStatement.close();
+        }
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
     }
-    return null;
+    return bookList;
   }
 
 }

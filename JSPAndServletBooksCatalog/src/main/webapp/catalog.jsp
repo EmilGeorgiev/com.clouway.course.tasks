@@ -14,15 +14,7 @@
 <%--<jsp:setProperty name="pageDetails" property="*"/>--%>
 <html>
 <%
-
-//    Integer lastPage = Integer.valueOf(getServletConfig().getInitParameter("lastPage"));
-//    Integer currentPage = (Integer) request.getAttribute("requestPage");
-//    Integer nextPage = currentPage + 1;
-//    Integer previousPage = currentPage - 1;
-//    List<Book> bookList = (List<Book>) request.getAttribute("bookList");
-
     PageDetails pageDetails = (PageDetails) request.getAttribute("requestPage");
-
 %>
 
 <head>
@@ -50,7 +42,7 @@
 
                     <div class="book">
 
-                        <a href="/bookDetailsController?bookId=<%=book.getId()%>" target="_blank"><%=book.getTitle()%>></a><br/>
+                        <a href="/detailsController?bookId=<%=book.getId()%>" target="_blank"><%=book.getTitle()%>></a><br/>
                         Publishers: <i><%=book.getPublishers()%></i><br/>
                         Release Year: <i><%=book.getYearPublisher()%></i><br/>
 

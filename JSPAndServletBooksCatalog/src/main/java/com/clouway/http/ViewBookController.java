@@ -1,7 +1,7 @@
 package com.clouway.http;
 
+import com.clouway.core.BookDetails;
 import com.clouway.core.Configured;
-import com.clouway.core.PageDetails;
 import com.clouway.core.SiteMap;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -13,17 +13,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Created by clouway on 7/4/14.
+ */
 @Singleton
-public class NavigationPageController extends HttpServlet {
+public class ViewBookController extends HttpServlet {
   private final SiteMap siteMap;
-  private final Configured<PageDetails> configured;
+  private final Configured<BookDetails> configured;
 
   @Inject
-  public NavigationPageController(SiteMap siteMap, Configured<PageDetails> configured) {
+  public ViewBookController(SiteMap siteMap, Configured<BookDetails> configured) {
 
     this.siteMap = siteMap;
     this.configured = configured;
-
   }
 
   @Override
@@ -33,12 +35,11 @@ public class NavigationPageController extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    BookDetails bookDetails = configured.configure(req.getParameter(siteMap.bookId()));
 
-    PageDetails details = configured.configure(req.getParameter(siteMap.requestPage()));
+    req.setAttribute(siteMap.details(), bookDetails);
 
-    req.setAttribute(siteMap.requestPage(), details);
-
-    RequestDispatcher dispatcher = req.getRequestDispatcher(siteMap.catalog());
+    RequestDispatcher dispatcher = req.getRequestDispatcher(siteMap.bookDetails());
 
     dispatcher.forward(req, resp);
   }

@@ -11,12 +11,16 @@ public class Book {
   private int id;
   private int belongsPage;
 
-  public Book(String title, String publishers, int publisherYear, int belongsPage) {
+  public Book() {
+  }
+
+  public Book(String title, String publishers, int publisherYear, int belongsPage, int id) {
 
     this.title = title;
     this.publishers = publishers;
     this.publisherYear = publisherYear;
     this.belongsPage = belongsPage;
+    this.id = id;
   }
 
   @Override

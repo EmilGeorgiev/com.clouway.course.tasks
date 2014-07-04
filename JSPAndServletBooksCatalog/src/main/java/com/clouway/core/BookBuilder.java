@@ -13,6 +13,7 @@ public class BookBuilder {
   private String publishers;
   private int publisherYear;
   private int belongsPage;
+  private int id;
 
   public BookBuilder title(String title) {
     this.title = title;
@@ -34,7 +35,12 @@ public class BookBuilder {
     return this;
   }
 
+  public BookBuilder id(int id) {
+    this.id = id;
+    return this;
+  }
+
   public Book build() {
-    return new Book(title, publishers, publisherYear, belongsPage);
+    return new Book(title, publishers, publisherYear, belongsPage, id);
   }
 }

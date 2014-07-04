@@ -1,20 +1,28 @@
 package com.clouway.core;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+
 import java.util.List;
 
 /**
  * Created by clouway on 7/3/14.
  */
-public class SettingsPage implements PageConfigure {
+@Singleton
+public class SettingsPage implements Configured<PageDetails> {
 
   private final BookRepository bookRepository;
 
+  @Inject
   public SettingsPage(BookRepository bookRepository) {
     this.bookRepository = bookRepository;
   }
 
   @Override
-  public PageDetails configurePage(String requiredPage) {
+  public PageDetails configure(String requiredPage) {
+    if (requiredPage == null) {
+      requiredPage = String.valueOf(1);
+    }
     int pageNumber = Integer.valueOf(requiredPage);
     List<Book> bookList = bookRepository.findAllBooksForPage(pageNumber);
 

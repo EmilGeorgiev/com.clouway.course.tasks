@@ -11,4 +11,10 @@ public interface SiteMap {
   String requestPage();
 
   String books();
+
+  String bookId();
+
+  String bookDetails();
+
+  String details();
 }

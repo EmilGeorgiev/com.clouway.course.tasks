@@ -3,31 +3,26 @@ package com.clouway.core;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import java.util.List;
-
 /**
- * Created by clouway on 7/4/14.
+ * Setting book details.
  */
 @Singleton
-public class SettingsBook implements Configured<BookDetails> {
+public class SettingsBook implements Configured<Book> {
 
   private final BookRepository bookRepository;
-  private final PostRepository postRepository;
 
   @Inject
-  public SettingsBook(BookRepository bookRepository, PostRepository postRepository) {
+  public SettingsBook(BookRepository bookRepository) {
 
     this.bookRepository = bookRepository;
-    this.postRepository = postRepository;
+
   }
 
   @Override
-  public BookDetails configure(String id) {
+  public Book configure(String id) {
+
     int bookId = Integer.parseInt(id);
-    Book book = bookRepository.findBookById(bookId);
 
-    List<Post> postList = postRepository.findPostByBookId(bookId);
-
-    return  new BookDetails(book, postList);
+    return bookRepository.findBookById(bookId);
   }
 }

@@ -1,4 +1,4 @@
-<%@ page import="com.clouway.core.BookDetails" %>
+<%@ page import="com.clouway.core.Book" %>
 <%@ page import="com.clouway.core.Post" %>
 <%--
   Created by IntelliJ IDEA.
@@ -10,16 +10,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <%
-    BookDetails details = (BookDetails) request.getAttribute("details");
+    Book book = (Book) request.getAttribute("details");
 %>
 <head>
     <title></title>
 </head>
 <body>
-<h3><%=details.getBook().getTitle()%></h3>
+<h3><%=book.getTitle()%></h3>
 <br/>
-<p><%=details.getBook().getDescription()%></p>
-<% for (Post post : details.getPosts()) {%>
+<p><%=book.getDescription()%></p>
+<% for (Post post : book.getPostList()) {%>
     <div>
         <i><%=post.getAuthor()%></i>&nbsp;&nbsp;||
         <i><%=post.getPostContent()%></i>

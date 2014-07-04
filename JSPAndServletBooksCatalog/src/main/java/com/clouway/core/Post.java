@@ -3,7 +3,7 @@ package com.clouway.core;
 /**
  * Created by clouway on 7/4/14.
  */
-public class Post {
+public class  Post {
 
   private final String author;
   private final String postContent;
@@ -14,6 +14,10 @@ public class Post {
     this.author = author;
     this.postContent = postContent;
     this.bookId = bookId;
+  }
+
+  public int getBookId() {
+    return bookId;
   }
 
   public String getAuthor() {

@@ -5,14 +5,14 @@ import java.util.List;
 /**
  * Created by clouway on 7/3/14.
  */
-public class PageDetails {
+public class Page {
 
   private int pageNumber;
   private int nextPage;
   private int previousPage;
   private List<Book> bookList;
 
-  public PageDetails(int pageNumber, int nextPage, int previousPage, List<Book> bookList) {
+  public Page(int pageNumber, int nextPage, int previousPage, List<Book> bookList) {
     this.pageNumber = pageNumber;
     this.nextPage = nextPage;
     this.previousPage = previousPage;

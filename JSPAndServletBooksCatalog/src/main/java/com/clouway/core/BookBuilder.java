@@ -1,5 +1,7 @@
 package com.clouway.core;
 
+import java.util.List;
+
 /**
  * Created by clouway on 7/3/14.
  */
@@ -11,12 +13,18 @@ public class BookBuilder {
     return new BookBuilder();
   }
 
+  private List<Post> postList;
   private String title;
   private String publishers;
   private String description;
   private int publisherYear;
   private int belongsPage;
   private int id;
+
+  public BookBuilder postList(List<Post> postList) {
+    this.postList =postList;
+    return this;
+  }
 
   public BookBuilder title(String title) {
     this.title = title;
@@ -49,6 +57,12 @@ public class BookBuilder {
   }
 
   public Book build() {
-    return new Book(title, publishers, publisherYear, description, belongsPage, id);
+    return new Book(postList,
+                    title,
+                    publishers,
+                    publisherYear,
+                    description,
+                    belongsPage,
+                    id);
   }
 }

@@ -56,6 +56,7 @@ public class PersistentBookRepositoryTest {
   @Test
   public void testName() throws Exception {
 
+
   }
 
   private void pretendThatOnPageHas(List<Book> books, int pageNumber) {

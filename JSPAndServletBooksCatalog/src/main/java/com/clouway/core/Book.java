@@ -1,22 +1,26 @@
 package com.clouway.core;
 
+import java.util.List;
+
 /**
  * Created by clouway on 7/3/14.
  */
 public class Book {
 
+  private List<Post> postList;
   private String title;
   private String publishers;
+  private String description;
   private int publisherYear;
   private int id;
   private int belongsPage;
-  private String description;
 
   public Book() {
   }
 
-  public Book(String title, String publishers, int publisherYear, String description, int belongsPage, int id) {
+  public Book(List<Post> postList, String title, String publishers, int publisherYear, String description, int belongsPage, int id) {
 
+    this.postList = postList;
     this.title = title;
     this.publishers = publishers;
     this.publisherYear = publisherYear;
@@ -49,6 +53,26 @@ public class Book {
     result = 31 * result + id;
     result = 31 * result + belongsPage;
     return result;
+  }
+
+  public List<Post> getPostList() {
+    return postList;
+  }
+
+  public void setPostList(List<Post> postList) {
+    this.postList = postList;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public int getPublisherYear() {
+    return publisherYear;
+  }
+
+  public void setPublisherYear(int publisherYear) {
+    this.publisherYear = publisherYear;
   }
 
   public int getBelongsPage() {

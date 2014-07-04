@@ -1,7 +1,6 @@
 package com.clouway.http;
 
 import com.clouway.core.Book;
-import com.clouway.core.BookDetails;
 import com.clouway.core.Configured;
 import com.clouway.core.Post;
 import com.clouway.core.SiteMap;
@@ -23,7 +22,8 @@ import java.util.List;
 public class ViewBookControllerTest {
 
   private ViewBookController detailsController;
-  private BookDetails bookDetails;
+  private Book bookDetails;
+  private List<Post> postList = new ArrayList<Post>();
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
@@ -38,7 +38,7 @@ public class ViewBookControllerTest {
   private HttpServletRequest request = null;
 
   @Mock
-  private Configured<BookDetails> configured = null;
+  private Configured<Book> configured = null;
 
   @Before
   public void setUp() {
@@ -47,7 +47,8 @@ public class ViewBookControllerTest {
 
   @Test
   public void showBookDetails() throws Exception {
-    pretendThatUserWantsToSeeDetailsForBook(new Book(title("JavaEE"),
+    pretendThatUserWantsToSeeDetailsForBook(new Book(postList,
+                                          title("JavaEE"),
                                           publisher("SoftPress"),
                                           publishersYear(2013),
                                           description("Book for JavaEE"),
@@ -86,8 +87,8 @@ public class ViewBookControllerTest {
   }
 
   private void pretendThatUserWantsToSeeDetailsForBook(Book book) {
-    List<Post> postList = new ArrayList<Post>();
-    bookDetails = new BookDetails(book, postList);
+
+    bookDetails = book;
 
   }
 

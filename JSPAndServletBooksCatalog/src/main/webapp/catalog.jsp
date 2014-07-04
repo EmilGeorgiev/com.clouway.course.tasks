@@ -1,5 +1,5 @@
 <%@ page import="com.clouway.core.Book" %>
-<%@ page import="com.clouway.core.PageDetails" %>
+<%@ page import="com.clouway.core.Page" %>
 <%--
   Created by IntelliJ IDEA.
   User: clouway
@@ -14,7 +14,7 @@
 <%--<jsp:setProperty name="pageDetails" property="*"/>--%>
 <html>
 <%
-    PageDetails pageDetails = (PageDetails) request.getAttribute("requestPage");
+    Page pageDetails = (Page) request.getAttribute("requestPage");
 %>
 
 <head>
@@ -29,10 +29,10 @@
     <div class="catalog">
         <div>
             <ul class="navigation">
-                <li><a href="/navigationPageController?page=1">First Page</a></li>
-                <li><a href="/navigationPageController?page="<%=pageDetails.getPreviousPage()%>">Previous Page</a></li>
-                <li><a href="/navigationPageController?page=<%=pageDetails.getNextPage()%>">Next Page</a></li>
-                <li><a href="/navigationPageController?page=<%=config.getInitParameter("lastPage")%>">Last Page</a></li>
+                <li><a href="/navigationController?page=1">First Page</a></li>
+                <li><a href="/navigationController?page="<%=pageDetails.getPreviousPage()%>">Previous Page</a></li>
+                <li><a href="/navigationController?page=<%=pageDetails.getNextPage()%>">Next Page</a></li>
+                <li><a href="/navigationController?page=<%=config.getInitParameter("lastPage")%>">Last Page</a></li>
             </ul>
         </div>
         <p align="center"><%=pageDetails.getPageNumber()%></p>
@@ -42,7 +42,7 @@
 
                     <div class="book">
 
-                        <a href="/detailsController?bookId=<%=book.getId()%>" target="_blank"><%=book.getTitle()%>></a><br/>
+                        <a href="/viewBookController?bookId=<%=book.getId()%>" target="_blank"><%=book.getTitle()%>></a><br/>
                         Publishers: <i><%=book.getPublishers()%></i><br/>
                         Release Year: <i><%=book.getYearPublisher()%></i><br/>
 

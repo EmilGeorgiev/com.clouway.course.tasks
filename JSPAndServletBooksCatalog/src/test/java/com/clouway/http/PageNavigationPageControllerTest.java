@@ -1,8 +1,8 @@
 package com.clouway.http;
 
 import com.clouway.core.Configured;
-import com.clouway.core.PageDetails;
-import com.clouway.core.PageDetailsBuilder;
+import com.clouway.core.Page;
+import com.clouway.core.PageBuilder;
 import com.clouway.core.SiteMap;
 import org.jmock.Expectations;
 import org.jmock.auto.Mock;
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 public class PageNavigationPageControllerTest {
 
   private NavigationPageController navigationPage;
-  private PageDetails pageDetails;
+  private Page page;
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
@@ -33,7 +33,7 @@ public class PageNavigationPageControllerTest {
   private SiteMap siteMap = null;
 
   @Mock
-  private Configured<PageDetails> configured = null;
+  private Configured<Page> configured = null;
 
   @Before
   public void setUp() {
@@ -57,12 +57,12 @@ public class PageNavigationPageControllerTest {
       will(returnValue(null));
 
       oneOf(configured).configure(null);
-      will(returnValue(pageDetails));
+      will(returnValue(page));
 
       oneOf(siteMap).requestPage();
       will(returnValue("requestPage"));
 
-      oneOf(request).setAttribute("requestPage", pageDetails);
+      oneOf(request).setAttribute("requestPage", page);
 
       oneOf(siteMap).catalog();
       will(returnValue("catalog.jsp"));
@@ -87,12 +87,12 @@ public class PageNavigationPageControllerTest {
       will(returnValue("3"));
 
       oneOf(configured).configure("3");
-      will(returnValue(pageDetails));
+      will(returnValue(page));
 
       oneOf(siteMap).requestPage();
       will(returnValue("requestPage"));
 
-      oneOf(request).setAttribute("requestPage", pageDetails);
+      oneOf(request).setAttribute("requestPage", page);
 
       oneOf(siteMap).catalog();
       will(returnValue("catalog.jsp"));
@@ -106,7 +106,7 @@ public class PageNavigationPageControllerTest {
   }
 
   private void pretendThatVisitStoreForFirstTime(int previousPage, int nextPage, int lastPage, int currentPage) {
-    pageDetails = PageDetailsBuilder.newPageDetails()
+    page = PageBuilder.newPageDetails()
             .previousPage(previousPage)
             .nextPage(nextPage)
             .pageNumber(currentPage)

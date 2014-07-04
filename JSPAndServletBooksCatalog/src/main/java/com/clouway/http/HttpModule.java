@@ -1,11 +1,15 @@
 package com.clouway.http;
 
+import com.clouway.core.Book;
 import com.clouway.core.BookRepository;
 import com.clouway.core.Configured;
+import com.clouway.core.Page;
+import com.clouway.core.SettingsBook;
 import com.clouway.core.SettingsPage;
 import com.clouway.core.SiteMap;
 import com.clouway.persistent.PersistentBookRepository;
 import com.google.inject.Provides;
+import com.google.inject.Singleton;
 import com.google.inject.servlet.ServletModule;
 
 import java.sql.Connection;
@@ -20,9 +24,22 @@ public class HttpModule extends ServletModule {
     filter("/*").through(ConnectionPerRequestFilter.class);
 
     serve("/navigationController").with(NavigationPageController.class);
+    serve("/viewBookController").with(ViewBookController.class);
 
     bind(BookRepository.class).to(PersistentBookRepository.class);
-    bind(Configured.class).to(SettingsPage.class);
+
+  }
+
+  @Provides
+  @Singleton
+  public Configured<Page> provideConfiguredPage(BookRepository bookRepository) {
+    return new SettingsPage(bookRepository);
+  }
+
+  @Provides
+  @Singleton
+  public Configured<Book> provideConfiguredBook(BookRepository bookRepository) {
+    return new SettingsBook(bookRepository);
   }
 
   @Provides

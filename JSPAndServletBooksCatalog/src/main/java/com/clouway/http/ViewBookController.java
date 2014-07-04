@@ -1,6 +1,6 @@
 package com.clouway.http;
 
-import com.clouway.core.BookDetails;
+import com.clouway.core.Book;
 import com.clouway.core.Configured;
 import com.clouway.core.SiteMap;
 import com.google.inject.Inject;
@@ -18,11 +18,12 @@ import java.io.IOException;
  */
 @Singleton
 public class ViewBookController extends HttpServlet {
+
   private final SiteMap siteMap;
-  private final Configured<BookDetails> configured;
+  private final Configured<Book> configured;
 
   @Inject
-  public ViewBookController(SiteMap siteMap, Configured<BookDetails> configured) {
+  public ViewBookController(SiteMap siteMap, Configured<Book> configured) {
 
     this.siteMap = siteMap;
     this.configured = configured;
@@ -35,7 +36,7 @@ public class ViewBookController extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    BookDetails bookDetails = configured.configure(req.getParameter(siteMap.bookId()));
+    Book bookDetails = configured.configure(req.getParameter(siteMap.bookId()));
 
     req.setAttribute(siteMap.details(), bookDetails);
 

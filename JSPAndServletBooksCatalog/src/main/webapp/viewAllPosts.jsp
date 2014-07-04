@@ -9,8 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
  <%
-     BookDetails details = (BookDetails) request.getAttribute("details");
-     List<Post> postList = details.getPosts();
+     List<Post> postList = book.getPostList();
  %>
 <head>
     <title></title>

@@ -1,3 +1,4 @@
+<%@ page import="com.clouway.core.Post" %>
 <%@ page import="java.util.List" %>
 <%--
   Created by IntelliJ IDEA.

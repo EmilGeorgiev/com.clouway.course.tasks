@@ -1,9 +1,11 @@
 package com.clouway.http;
 
 import com.clouway.core.Book;
+import com.clouway.core.BookId;
 import com.clouway.core.Configured;
 import com.clouway.core.Post;
 import com.clouway.core.SiteMap;
+import com.google.inject.util.Providers;
 import org.jmock.Expectations;
 import org.jmock.auto.Mock;
 import org.jmock.integration.junit4.JUnitRuleMockery;
@@ -24,6 +26,7 @@ public class ViewBookControllerTest {
   private ViewBookController detailsController;
   private Book bookDetails;
   private List<Post> postList = new ArrayList<Post>();
+  private BookId bookId = new BookId("1");
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
@@ -42,7 +45,8 @@ public class ViewBookControllerTest {
 
   @Before
   public void setUp() {
-    detailsController = new ViewBookController(siteMap, configured);
+
+    detailsController = new ViewBookController(siteMap, configured, Providers.of(bookId));
   }
 
   @Test

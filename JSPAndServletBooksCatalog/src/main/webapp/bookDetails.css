@@ -1,0 +1,32 @@
+.main {
+    margin-left: 20%;
+    margin-right: 20%;
+    border-style: double;
+    background-color: bisque;
+}
+
+h1 {
+    border-style: groove;
+    background: green;
+    font-size: larger;
+}
+
+.bookInfo {
+    border-style: groove;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+i {
+ font-size: larger;
+}
+
+label {
+    font: larger;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+h4 {
+    margin-left: 20%;
+}

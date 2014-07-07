@@ -183,7 +183,6 @@ public class BankModule extends AbstractModule {
     for (Cookie cookie : cookies) {
       // session id
       if ("sid".equalsIgnoreCase(cookie.getName())) {
-
         User user = userSessionsRepository.isUserExistBySession(cookie.getValue(), clock);
         return new CurrentUser(user);
       }

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.clouway.core.Post" %>
 <%@ page import="java.util.List" %>
 <%--
@@ -9,6 +10,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+<link rel="stylesheet" href="viewAllPosts.css">
  <%
      List<Post> postList = book.getPostList();
  %>
@@ -16,14 +18,19 @@
     <title></title>
 </head>
 <body>
-<div>
-    <% for(Post post : postList) { %>
-        <div>
-            <i><%=post.getAuthor()%></i> &nbsp;||
-            <i><%=post.getPostContent()%></i>
-        </div>
-        <br/>
-    <%}%>
+
+<%--<%if (postList.size() != 0) {%>--%>
+<label>Posts</label>
+<div class="allPosts">
+    <% for(Post post : postList) {%>
+    <div class="post">
+        <i><%=post.getAuthor()%></i> &nbsp;||
+        <i><%=post.getPostContent()%></i>
+    </div>
+    <br/>
+    <% } %>
+<%--<%}%>--%>
+
 </div>
 </body>
 </html>

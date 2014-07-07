@@ -1,0 +1,10 @@
+.post {
+    border-style: dotted;
+    background-color: aquamarine;
+}
+
+.allPosts {
+    border-style: groove;
+    margin-left: 20%;
+    margin-right: 20%;
+}

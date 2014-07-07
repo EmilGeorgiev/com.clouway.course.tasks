@@ -6,7 +6,6 @@ import com.clouway.core.SiteMap;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -45,9 +44,7 @@ public class PostController extends HttpServlet {
 
     postRepository.addPost(new Post(author, postContent, bookId));
 
-    RequestDispatcher dispatcher = req.getRequestDispatcher(siteMap.viewBookController());
+    resp.sendRedirect(siteMap.viewBookController());
 
-    dispatcher.forward(req, resp);
-//    resp.sendRedirect(siteMap.bookDetails());
   }
 }

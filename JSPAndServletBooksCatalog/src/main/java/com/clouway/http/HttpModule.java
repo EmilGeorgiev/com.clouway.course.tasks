@@ -2,10 +2,14 @@ package com.clouway.http;
 
 import com.clouway.core.*;
 import com.clouway.persistent.PersistentBookRepository;
+import com.google.inject.Provider;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
+import com.google.inject.servlet.RequestScoped;
 import com.google.inject.servlet.ServletModule;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import java.sql.Connection;
 
 /**
@@ -36,6 +40,19 @@ public class HttpModule extends ServletModule {
   @Singleton
   public Configured<Book> provideConfiguredBook(BookRepository bookRepository) {
     return new SettingsBook(bookRepository);
+  }
+
+  @Provides
+  @RequestScoped
+  public BookId provideBookId(Provider<HttpServletRequest> requestProvides) {
+    Cookie[] cookies = requestProvides.get().getCookies();
+
+    for (Cookie cookie : cookies) {
+      if("bookId".equals(cookie.getName())) {
+        return new BookId(cookie.getValue());
+      }
+    }
+    return new BookId(null);
   }
 
   @Provides

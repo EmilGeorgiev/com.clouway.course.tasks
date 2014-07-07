@@ -1,12 +1,6 @@
 package com.clouway.http;
 
-import com.clouway.core.Book;
-import com.clouway.core.BookRepository;
-import com.clouway.core.Configured;
-import com.clouway.core.Page;
-import com.clouway.core.SettingsBook;
-import com.clouway.core.SettingsPage;
-import com.clouway.core.SiteMap;
+import com.clouway.core.*;
 import com.clouway.persistent.PersistentBookRepository;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
@@ -25,8 +19,10 @@ public class HttpModule extends ServletModule {
 
     serve("/navigationController").with(NavigationPageController.class);
     serve("/viewBookController").with(ViewBookController.class);
+    serve("/postController").with(PostController.class);
 
     bind(BookRepository.class).to(PersistentBookRepository.class);
+    bind(PostRepository.class).to(PersistentBookRepository.class);
 
   }
 
@@ -83,6 +79,26 @@ public class HttpModule extends ServletModule {
       @Override
       public String details() {
         return "details";
+      }
+
+      @Override
+      public String author() {
+        return "author";
+      }
+
+      @Override
+      public String postContent() {
+        return "postContent";
+      }
+
+      @Override
+      public String bookInfoPage() {
+        return "bookInfoPage.jsp";
+      }
+
+      @Override
+      public String viewBookController() {
+        return "/viewBookController";
       }
     };
   }

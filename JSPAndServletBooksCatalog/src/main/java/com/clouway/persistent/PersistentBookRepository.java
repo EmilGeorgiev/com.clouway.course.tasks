@@ -38,7 +38,7 @@ public class PersistentBookRepository implements BookRepository, PostRepository 
     Connection connection = connectionProvider.get();
 
     try {
-      preparedStatement = connection.prepareStatement("SELECT title, publishers, year_publisher, description, belongs_page " +
+      preparedStatement = connection.prepareStatement("SELECT id_book, title, publishers, year_publisher, description, belongs_page " +
                                                       "FROM Catalog_Books WHERE belongs_page = ?");
 
       preparedStatement.setInt(1, pageNumber);
@@ -46,6 +46,7 @@ public class PersistentBookRepository implements BookRepository, PostRepository 
       ResultSet resultSet = preparedStatement.executeQuery();
 
       while (resultSet.next()) {
+        int bookId = resultSet.getInt("id_book");
         String title = resultSet.getString("title");
         String publishers = resultSet.getString("publishers");
         int yearPublisher = resultSet.getInt("year_publisher");
@@ -53,6 +54,7 @@ public class PersistentBookRepository implements BookRepository, PostRepository 
         int belongsPage = resultSet.getInt("belongs_page");
 
         bookList.add(newBook()
+                .id(bookId)
                 .title(title)
                 .publishers(publishers)
                 .publisherYear(yearPublisher)
@@ -96,7 +98,7 @@ public class PersistentBookRepository implements BookRepository, PostRepository 
       String publishers = resultSet.getString("publishers");
       String description = resultSet.getString("description");
       int yearPublisher = resultSet.getInt("year_publisher");
-      int belongsPage = resultSet.getInt("belongsPage");
+      int belongsPage = resultSet.getInt("belongs_page");
 
       List<Post> listPost = findPostByBookId(bookId);
 

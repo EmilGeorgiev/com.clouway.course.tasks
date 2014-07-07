@@ -1,5 +1,4 @@
 <%@ page import="com.clouway.core.Book" %>
-<%@ page import="com.clouway.core.Post" %>
 <%--
   Created by IntelliJ IDEA.
   User: clouway
@@ -19,22 +18,15 @@
 <h3><%=book.getTitle()%></h3>
 <br/>
 <p><%=book.getDescription()%></p>
-<% for (Post post : book.getPostList()) {%>
-    <div>
-        <i><%=post.getAuthor()%></i>&nbsp;&nbsp;||
-        <i><%=post.getPostContent()%></i>
-    </div>
-    <br/>
-<%}%>
 
 <%@include file="/viewAllPosts.jsp"%>
 
 <div>
-    <form action="addPostController" method="POST">
+    <form action="postController?bookId=<%=book.getId()%>" method="POST">
         <div>
             <h4>Add new post</h4>
-            <input type="text" name="content">
-            <input type="text" name="author"><br/>
+            <input type="text" name="author">
+            <input type="text" name="postContent"><br/>
             <input type="submit" value="Add Post">
         </div>
     </form>

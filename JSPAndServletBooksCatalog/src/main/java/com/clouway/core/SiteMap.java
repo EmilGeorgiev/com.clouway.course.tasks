@@ -17,4 +17,12 @@ public interface SiteMap {
   String bookDetails();
 
   String details();
+
+  String author();
+
+  String postContent();
+
+  String bookInfoPage();
+
+  String viewBookController();
 }

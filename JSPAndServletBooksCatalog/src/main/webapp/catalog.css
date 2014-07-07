@@ -9,7 +9,7 @@ h1 {
 }
 
 .catalog {
-    border-style: ridge;
+
     height: 5%;
 }
 
@@ -45,4 +45,13 @@ h1 {
     float: left;
     width: 30%;
     height: 170%;
+    border-style: groove;
+}
+
+.books {
+    height: 200%;
+}
+
+a {
+    font-size: larger;
 }

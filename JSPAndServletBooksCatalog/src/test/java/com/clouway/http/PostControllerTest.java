@@ -46,11 +46,17 @@ public class PostControllerTest {
   @Test
   public void addNewPost() throws Exception {
 
-    pretendThatSameUserAddPost(user("Ivan"), postContent("Very gook book"), bookId(1));
+    pretendThatSameUserAddPost(user("Ivan"), postContent("Very good book"), bookId(1));
 
     context.checking(new Expectations() {{
       oneOf(siteMap).author();
       will(returnValue("author"));
+
+      oneOf(request).getParameter("author");
+      will(returnValue("Ivan"));
+
+      oneOf(request).getParameter("postContent");
+      will(returnValue("Very good book"));
 
       oneOf(siteMap).postContent();
       will(returnValue("postContent"));
@@ -58,12 +64,16 @@ public class PostControllerTest {
       oneOf(siteMap).bookId();
       will(returnValue("bookId"));
 
+      oneOf(request).getParameter("bookId");
+      will(returnValue("1"));
+
+
       oneOf(postRepository).addPost(newPost);
 
-      oneOf(siteMap).bookInfoPage();
-      will(returnValue("bookInfoPage.jsp"));
+      oneOf(siteMap).viewBookController();
+      will(returnValue("/viewBookController"));
 
-      oneOf(response).sendRedirect("bookInfoPage.jsp");
+      oneOf(response).sendRedirect("/viewBookController");
     }
     });
 

@@ -25,4 +25,6 @@ public interface SiteMap {
   String bookInfoPage();
 
   String viewBookController();
+
+  int pageSize();
 }

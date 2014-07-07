@@ -7,6 +7,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,6 +44,8 @@ public class PostController extends HttpServlet {
     int bookId = Integer.parseInt(req.getParameter(siteMap.bookId()));
 
     postRepository.addPost(new Post(author, postContent, bookId));
+
+    resp.addCookie(new Cookie(siteMap.bookId(), req.getParameter(siteMap.bookId())));
 
     resp.sendRedirect(siteMap.viewBookController());
 

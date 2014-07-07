@@ -28,6 +28,7 @@ public class PersistentBookRepository implements BookRepository, PostRepository 
   @Inject
   public PersistentBookRepository(Provider<Connection> connectionProvider) {
     this.connectionProvider = connectionProvider;
+
   }
 
   @Override
@@ -38,10 +39,15 @@ public class PersistentBookRepository implements BookRepository, PostRepository 
     Connection connection = connectionProvider.get();
 
     try {
-      preparedStatement = connection.prepareStatement("SELECT id_book, title, publishers, year_publisher, description, belongs_page " +
-                                                      "FROM Catalog_Books WHERE belongs_page = ?");
+      preparedStatement = connection.prepareStatement("SELECT id_book, title, publishers, year_publisher, description " +
+                                                      "FROM Catalog_Books limit ? offset ?");
 
-      preparedStatement.setInt(1, pageNumber);
+
+
+      int offset = 3 * (pageNumber - 1);
+
+      preparedStatement.setInt(1, 3);
+      preparedStatement.setInt(2, offset);
 
       ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -51,14 +57,12 @@ public class PersistentBookRepository implements BookRepository, PostRepository 
         String publishers = resultSet.getString("publishers");
         int yearPublisher = resultSet.getInt("year_publisher");
         String description = resultSet.getString("description");
-        int belongsPage = resultSet.getInt("belongs_page");
 
         bookList.add(newBook()
                 .id(bookId)
                 .title(title)
                 .publishers(publishers)
                 .publisherYear(yearPublisher)
-                .belongsPage(belongsPage)
                 .description(description)
                 .build());
       }
@@ -85,7 +89,7 @@ public class PersistentBookRepository implements BookRepository, PostRepository 
     Connection connection = connectionProvider.get();
 
     try {
-      preparedStatement = connection.prepareStatement("SELECT title, publishers, year_publisher, description, belongs_page FROM Catalog_Books " +
+      preparedStatement = connection.prepareStatement("SELECT title, publishers, year_publisher, description FROM Catalog_Books " +
               "WHERE id_book = ?");
 
       preparedStatement.setInt(1, bookId);
@@ -98,12 +102,10 @@ public class PersistentBookRepository implements BookRepository, PostRepository 
       String publishers = resultSet.getString("publishers");
       String description = resultSet.getString("description");
       int yearPublisher = resultSet.getInt("year_publisher");
-      int belongsPage = resultSet.getInt("belongs_page");
 
       List<Post> listPost = findPostByBookId(bookId);
 
       return BookBuilder.newBook().description(description)
-                                  .belongsPage(belongsPage)
                                   .id(bookId)
                                   .publishers(publishers)
                                   .publisherYear(yearPublisher)

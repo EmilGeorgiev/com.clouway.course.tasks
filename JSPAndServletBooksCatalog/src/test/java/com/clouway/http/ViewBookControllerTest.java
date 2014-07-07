@@ -2,7 +2,7 @@ package com.clouway.http;
 
 import com.clouway.core.Book;
 import com.clouway.core.BookId;
-import com.clouway.core.Configured;
+import com.clouway.core.BookRepository;
 import com.clouway.core.Post;
 import com.clouway.core.SiteMap;
 import com.google.inject.util.Providers;
@@ -41,12 +41,12 @@ public class ViewBookControllerTest {
   private HttpServletRequest request = null;
 
   @Mock
-  private Configured<Book> configured = null;
+  private BookRepository bookRepository = null;
 
   @Before
   public void setUp() {
 
-    detailsController = new ViewBookController(siteMap, configured, Providers.of(bookId));
+    detailsController = new ViewBookController(siteMap,bookRepository, Providers.of(bookId));
   }
 
   @Test
@@ -66,9 +66,6 @@ public class ViewBookControllerTest {
 
       oneOf(request).getParameter("bookId");
       will(returnValue("45"));
-
-      oneOf(configured).configure("45");
-      will(returnValue(bookDetails));
 
       oneOf(siteMap).details();
       will(returnValue("details"));

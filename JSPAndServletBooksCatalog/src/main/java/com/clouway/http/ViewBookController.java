@@ -2,7 +2,7 @@ package com.clouway.http;
 
 import com.clouway.core.Book;
 import com.clouway.core.BookId;
-import com.clouway.core.Configured;
+import com.clouway.core.BookRepository;
 import com.clouway.core.SiteMap;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
@@ -22,14 +22,14 @@ import java.io.IOException;
 public class ViewBookController extends HttpServlet {
 
   private final SiteMap siteMap;
-  private final Configured<Book> configured;
+  private final BookRepository bookRepository;
   private final Provider<BookId> idProvider;
 
   @Inject
-  public ViewBookController(SiteMap siteMap, Configured<Book> configured, Provider<BookId> idProvider) {
+  public ViewBookController(SiteMap siteMap, BookRepository bookReapository, Provider<BookId> idProvider) {
 
     this.siteMap = siteMap;
-    this.configured = configured;
+    this.bookRepository = bookReapository;
     this.idProvider = idProvider;
   }
 
@@ -43,10 +43,12 @@ public class ViewBookController extends HttpServlet {
 
     Book bookDetails;
 
-    if (idProvider.get().getId() != null) {
-      bookDetails = configured.configure(idProvider.get().getId());
+    if (req.getParameter(siteMap.bookId()) != null) {
+      int bookId = Integer.parseInt(req.getParameter(siteMap.bookId()));
+      bookDetails = bookRepository.findBookById(bookId);
     } else {
-      bookDetails = configured.configure(req.getParameter(siteMap.bookId()));
+      int bookId = Integer.parseInt(idProvider.get().getId());
+      bookDetails = bookRepository.findBookById(bookId);
     }
 
     req.setAttribute(siteMap.details(), bookDetails);

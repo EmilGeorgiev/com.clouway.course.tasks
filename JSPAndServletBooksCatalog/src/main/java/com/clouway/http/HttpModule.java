@@ -24,6 +24,7 @@ public class HttpModule extends ServletModule {
     serve("/navigationController").with(NavigationPageController.class);
     serve("/viewBookController").with(ViewBookController.class);
     serve("/postController").with(PostController.class);
+    serve("/proba").with(ProbaController.class);
 
     bind(BookRepository.class).to(PersistentBookRepository.class);
     bind(PostRepository.class).to(PersistentBookRepository.class);
@@ -32,13 +33,13 @@ public class HttpModule extends ServletModule {
 
   @Provides
   @Singleton
-  public Configured<Page> provideConfiguredPage(BookRepository bookRepository) {
+  public BuildPage<Page> provideConfiguredPage(BookRepository bookRepository) {
     return new SettingsPage(bookRepository);
   }
 
   @Provides
   @Singleton
-  public Configured<Book> provideConfiguredBook(BookRepository bookRepository) {
+  public BuildPage<Book> provideConfiguredBook(BookRepository bookRepository) {
     return new SettingsBook(bookRepository);
   }
 
@@ -116,6 +117,11 @@ public class HttpModule extends ServletModule {
       @Override
       public String viewBookController() {
         return "/viewBookController";
+      }
+
+      @Override
+      public int pageSize() {
+        return 3;
       }
     };
   }

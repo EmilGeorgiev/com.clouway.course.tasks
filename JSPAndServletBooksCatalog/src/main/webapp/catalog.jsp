@@ -22,33 +22,37 @@
     <title></title>
 </head>
 <body>
+
 <div class="main" align="center">
     <div class="title">
         <h1>Book Catalog</h1>
     </div>
+
+    <i align="center"><%=pageDetails.getPageNumber()%></i>
+
     <div class="catalog">
-        <div>
-            <ul class="navigation">
-                <li><a href="/navigationController?page=1">First Page</a></li>
-                <li><a href="/navigationController?page="<%=pageDetails.getPreviousPage()%>">Previous Page</a></li>
-                <li><a href="/navigationController?page=<%=pageDetails.getNextPage()%>">Next Page</a></li>
-                <li><a href="/navigationController?page=<%=config.getInitParameter("lastPage")%>">Last Page</a></li>
-            </ul>
-        </div>
-        <p align="center"><%=pageDetails.getPageNumber()%></p>
+
         <div class="books">
             <%
                 for (Book book : pageDetails.getBookList()) { %>
 
                     <div class="book">
 
-                        <a href="/viewBookController?bookId=<%=book.getId()%>" target="_blank"><%=book.getTitle()%>></a><br/>
+                        <a href="/viewBookController?bookId=<%=book.getId()%>" target="_blank"><%=book.getTitle()%></a><br/>
                         Publishers: <i><%=book.getPublishers()%></i><br/>
                         Release Year: <i><%=book.getYearPublisher()%></i><br/>
 
                     </div>
 
                     <%}%>
+        </div>
+        <div>
+            <ul class="navigation">
+                <li><a href="/navigationController?requestPage=1">First Page</a></li>
+                <li><a href="/navigationController?requestPage=<%=pageDetails.getPreviousPage()%>">Previous Page</a></li>
+                <li><a href="/navigationController?requestPage=<%=pageDetails.getNextPage()%>">Next Page</a></li>
+                <li><a href="/navigationController?requestPage=<%=config.getInitParameter("lastPage")%>">Last Page</a></li>
+            </ul>
         </div>
     </div>
 </div>

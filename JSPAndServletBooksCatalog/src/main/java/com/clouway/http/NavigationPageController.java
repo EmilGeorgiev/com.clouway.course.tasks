@@ -1,6 +1,6 @@
 package com.clouway.http;
 
-import com.clouway.core.Configured;
+import com.clouway.core.BuildPage;
 import com.clouway.core.Page;
 import com.clouway.core.SiteMap;
 import com.google.inject.Inject;
@@ -16,13 +16,13 @@ import java.io.IOException;
 @Singleton
 public class NavigationPageController extends HttpServlet {
   private final SiteMap siteMap;
-  private final Configured<Page> configured;
+  private final BuildPage buildPage;
 
   @Inject
-  public NavigationPageController(SiteMap siteMap, Configured<Page> configured) {
+  public NavigationPageController(SiteMap siteMap, BuildPage buildPage) {
 
     this.siteMap = siteMap;
-    this.configured = configured;
+    this.buildPage = buildPage;
 
   }
 
@@ -34,9 +34,9 @@ public class NavigationPageController extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-    Page details = configured.configure(req.getParameter(siteMap.requestPage()));
+    Page currentPage = buildPage.configure(req.getParameter(siteMap.requestPage()));
 
-    req.setAttribute(siteMap.requestPage(), details);
+    req.setAttribute(siteMap.requestPage(), currentPage);
 
     RequestDispatcher dispatcher = req.getRequestDispatcher(siteMap.catalog());
 

@@ -1,6 +1,6 @@
 package com.clouway.http;
 
-import com.clouway.core.Configured;
+import com.clouway.core.BuildPage;
 import com.clouway.core.Page;
 import com.clouway.core.PageBuilder;
 import com.clouway.core.SiteMap;
@@ -33,11 +33,11 @@ public class PageNavigationPageControllerTest {
   private SiteMap siteMap = null;
 
   @Mock
-  private Configured<Page> configured = null;
+  private BuildPage<Page> buildPage = null;
 
   @Before
   public void setUp() {
-    navigationPage = new NavigationPageController(siteMap, configured);
+    navigationPage = new NavigationPageController(siteMap, buildPage);
   }
 
   @Test
@@ -56,7 +56,7 @@ public class PageNavigationPageControllerTest {
       oneOf(request).getParameter("requestPage");
       will(returnValue(null));
 
-      oneOf(configured).configure(null);
+      oneOf(buildPage).configure(null);
       will(returnValue(page));
 
       oneOf(siteMap).requestPage();
@@ -86,7 +86,7 @@ public class PageNavigationPageControllerTest {
       oneOf(request).getParameter("requestPage");
       will(returnValue("3"));
 
-      oneOf(configured).configure("3");
+      oneOf(buildPage).configure("3");
       will(returnValue(page));
 
       oneOf(siteMap).requestPage();

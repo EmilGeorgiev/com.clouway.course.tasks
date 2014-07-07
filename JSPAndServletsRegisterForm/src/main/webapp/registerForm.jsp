@@ -1,5 +1,6 @@
 <%@ page import="com.clouway.core.UserMessage" %>
-<%@ page import="java.util.Map" %>
+<jsp:useBean id="userinfo" class="com.clouway.core.UserData"/>
+<jsp:setProperty name="userinfo" property="*"/>
 <%--
   Created by IntelliJ IDEA.
   User: clouway
@@ -10,28 +11,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <%
-        Map<String, UserMessage> messageMap = (Map<String, UserMessage>) request.getAttribute("messages");
 
-        String firstNameMessage = messageMap.get("first_name").getAuthenticateMessage();
-        String firstNameValue = messageMap.get("first_name").getFieldValue();
 
-        String lastNameMessage = messageMap.get("last_name").getAuthenticateMessage();
-        String lastNameValue = messageMap.get("last_name").getFieldValue();
-
-        String egnMessage = messageMap.get("user_egn").getAuthenticateMessage();
-        String egnValue = messageMap.get("user_egn").getFieldValue();
-
-        String ageMessage = messageMap.get("user_age").getAuthenticateMessage();
-        String ageValue = messageMap.get("user_age").getFieldValue();
-
-        String addressMessage = messageMap.get("user_address").getAuthenticateMessage();
-        String addressValue = messageMap.get("user_address").getFieldValue();
-
-        String passwordMessage = messageMap.get("user_password").getAuthenticateMessage();
-        String passwordValue = messageMap.get("user_password").getFieldValue();
-
-    %>
     <link rel="stylesheet" href="registerForm.css">
     <title></title>
 </head>
@@ -50,9 +31,9 @@
                            class="userData"
                            id="firstName"
                            name="first_name"
-                           value="<%=firstNameValue%>">
+                           value="<jsp:getProperty property="first_name" name="userinfo"/>">
                 </div>
-                <div class="message"><i><%=firstNameMessage %></i></div>
+                <%--<div class="message"><i><%=firstNameMessage %></i></div>--%>
             </div>
             <br/>
             <div class="row">
@@ -63,9 +44,9 @@
                             class="userData"
                             id="lastName"
                             name="last_name"
-                            value="<%=lastNameValue%>">
+                            value="<jsp:getProperty property="last_name" name="userinfo"/>">
                 </div>
-                <div class="message"><i><%=lastNameMessage %></i></div>
+                <%--<div class="message"><i><%=lastNameMessage %></i></div>--%>
             </div>
             <br/>
             <div class="row">
@@ -76,9 +57,9 @@
                             class="userData"
                             id="EGN"
                             name="user_egn"
-                            value="<%=egnValue%>">
+                            value="<jsp:getProperty property="user_egn" name="userinfo"/>">
                 </div>
-                <div class="message"><i><%=egnMessage%></i></div>
+                <%--<div class="message"><i><%=egnMessage%></i></div>--%>
             </div>
             <br/>
             <div class="row">
@@ -89,9 +70,9 @@
                             class="userData"
                             id="age"
                             name="user_age"
-                            value="<%=ageValue%>">
+                            value="<jsp:getProperty property="user_age" name="userinfo"/>">
                 </div>
-                <div class="message"><i><%=ageMessage%></i></div>
+                <%--<div class="message"><i><%=ageMessage%></i></div>--%>
             </div>
             <br/>
             <div class="row">
@@ -102,9 +83,9 @@
                             class="userData"
                             id="address"
                             name="user_address"
-                            value="<%=addressValue%>">
+                            value="<jsp:getProperty property="user_address" name="userinfo"/>">
                 </div>
-                <div class="message"><i><%=addressMessage%></i></div>
+                <%--<div class="message"><i><%=addressMessage%></i></div>--%>
             </div>
             <br/>
             <div class="row">
@@ -117,7 +98,7 @@
                             name="user_password">
 
                 </div>
-                <div class="message"><i><%=passwordMessage %></i></div>
+                <%--<div class="message"><i><%=passwordMessage %></i></div>--%>
             </div>
             <br/>
             <input type="submit" value="Valid Data">

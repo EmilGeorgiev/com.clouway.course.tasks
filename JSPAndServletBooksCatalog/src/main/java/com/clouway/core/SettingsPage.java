@@ -9,7 +9,7 @@ import java.util.List;
  * Created by clouway on 7/3/14.
  */
 @Singleton
-public class SettingsPage implements Configured<Page> {
+public class SettingsPage implements BuildPage<Page> {
 
   private final BookRepository bookRepository;
 
@@ -21,7 +21,7 @@ public class SettingsPage implements Configured<Page> {
   @Override
   public Page configure(String requiredPage) {
     if (requiredPage == null) {
-      requiredPage = String.valueOf(1);
+      requiredPage = "1";
     }
     int pageNumber = Integer.valueOf(requiredPage);
     List<Book> bookList = bookRepository.findAllBooksForPage(pageNumber);

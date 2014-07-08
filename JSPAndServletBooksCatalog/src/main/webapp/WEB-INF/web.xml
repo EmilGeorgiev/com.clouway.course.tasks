@@ -7,7 +7,7 @@
 
   <context-param>
     <param-name>lastPage</param-name>
-    <param-value>10</param-value>
+    <param-value>5</param-value>
   </context-param>
 
   <filter>

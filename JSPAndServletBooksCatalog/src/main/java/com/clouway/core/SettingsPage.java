@@ -9,21 +9,27 @@ import java.util.List;
  * Created by clouway on 7/3/14.
  */
 @Singleton
-public class SettingsPage implements BuildPage<Page> {
+public class SettingsPage implements BuildPage {
 
   private final BookRepository bookRepository;
+  private final int lastPage;
 
   @Inject
-  public SettingsPage(BookRepository bookRepository) {
+  public SettingsPage(BookRepository bookRepository, Integer lastPage) {
     this.bookRepository = bookRepository;
+    this.lastPage = lastPage;
   }
 
   @Override
   public Page configure(String requiredPage) {
-    if (requiredPage == null) {
+    if (requiredPage == null || ("0".equals(requiredPage))) {
       requiredPage = "1";
     }
     int pageNumber = Integer.valueOf(requiredPage);
+    if (pageNumber > lastPage) {
+      pageNumber = lastPage;
+    }
+
     List<Book> bookList = bookRepository.findAllBooksForPage(pageNumber);
 
     int nextPage = findNextPage(pageNumber);

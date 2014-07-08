@@ -10,11 +10,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="book" uri="/WEB-INF/SubstringDescriptor.tld"%>
-<%--<jsp:useBean id="pageDetails" class="com.clouway.core.PageDetails"/>--%>
-<%--<jsp:setProperty name="pageDetails" property="*"/>--%>
+<%--<jsp:useBean id="currentPage" class="com.clouway.core.PageDetails"/>--%>
+<%--<jsp:setProperty name="currentPage" property="*"/>--%>
 <html>
 <%
-    Page pageDetails = (Page) request.getAttribute("requestPage");
+    Page currentPage = (Page) request.getAttribute("requestPage");
 %>
 
 <head>
@@ -28,13 +28,13 @@
         <h1>Book Catalog</h1>
     </div>
 
-    <i align="center"><%=pageDetails.getPageNumber()%></i>
+    <i align="center"><%=currentPage.getPageNumber()%></i>
 
     <div class="catalog">
 
         <div class="books">
             <%
-                for (Book book : pageDetails.getBookList()) { %>
+                for (Book book : currentPage.getBookList()) { %>
 
                     <div class="book">
 
@@ -49,9 +49,9 @@
         <div>
             <ul class="navigation">
                 <li><a href="/navigationController?requestPage=1">First Page</a></li>
-                <li><a href="/navigationController?requestPage=<%=pageDetails.getPreviousPage()%>">Previous Page</a></li>
-                <li><a href="/navigationController?requestPage=<%=pageDetails.getNextPage()%>">Next Page</a></li>
-                <li><a href="/navigationController?requestPage=<%=config.getInitParameter("lastPage")%>">Last Page</a></li>
+                <li><a href="/navigationController?requestPage=<%=currentPage.getPreviousPage()%>">Previous Page</a></li>
+                <li><a href="/navigationController?requestPage=<%=currentPage.getNextPage()%>">Next Page</a></li>
+                <li><a href="/navigationController?requestPage=<%=pageContext.getServletContext().getInitParameter("lastPage")%>">Last Page</a></li>
             </ul>
         </div>
     </div>

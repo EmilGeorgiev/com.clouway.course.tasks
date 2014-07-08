@@ -10,8 +10,6 @@ public interface SiteMap {
 
   String requestPage();
 
-  String books();
-
   String bookId();
 
   String bookDetails();
@@ -22,9 +20,7 @@ public interface SiteMap {
 
   String postContent();
 
-  String bookInfoPage();
-
   String viewBookController();
 
-  int pageSize();
+  String lastPage();
 }

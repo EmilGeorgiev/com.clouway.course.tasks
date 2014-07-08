@@ -1,6 +1,11 @@
 package com.clouway.http;
 
-import com.clouway.core.*;
+import com.clouway.core.BookId;
+import com.clouway.core.BookRepository;
+import com.clouway.core.BuildPage;
+import com.clouway.core.PostRepository;
+import com.clouway.core.SettingsPage;
+import com.clouway.core.SiteMap;
 import com.clouway.persistent.PersistentBookRepository;
 import com.google.inject.Provider;
 import com.google.inject.Provides;
@@ -24,23 +29,24 @@ public class HttpModule extends ServletModule {
     serve("/navigationController").with(NavigationPageController.class);
     serve("/viewBookController").with(ViewBookController.class);
     serve("/postController").with(PostController.class);
-    serve("/proba").with(ProbaController.class);
 
-    bind(BookRepository.class).to(PersistentBookRepository.class);
-    bind(PostRepository.class).to(PersistentBookRepository.class);
 
   }
 
   @Provides
-  @Singleton
-  public BuildPage<Page> provideConfiguredPage(BookRepository bookRepository) {
-    return new SettingsPage(bookRepository);
+  public PostRepository getPostRepository(Provider<Connection> connectionProvider) {
+    return new PersistentBookRepository(connectionProvider, bookOnPage(3));
+  }
+
+  @Provides
+  public BookRepository providesBookRepository(Provider<Connection> connectionProvider) {
+    return new PersistentBookRepository(connectionProvider, bookOnPage(3));
   }
 
   @Provides
   @Singleton
-  public BuildPage<Book> provideConfiguredBook(BookRepository bookRepository) {
-    return new SettingsBook(bookRepository);
+  public BuildPage providesBuildPage(BookRepository bookRepository) {
+    return new SettingsPage(bookRepository, lastPage(5));
   }
 
   @Provides
@@ -80,11 +86,6 @@ public class HttpModule extends ServletModule {
       }
 
       @Override
-      public String books() {
-        return null;
-      }
-
-      @Override
       public String bookId() {
         return "bookId";
       }
@@ -110,19 +111,22 @@ public class HttpModule extends ServletModule {
       }
 
       @Override
-      public String bookInfoPage() {
-        return "bookInfoPage.jsp";
-      }
-
-      @Override
       public String viewBookController() {
         return "/viewBookController";
       }
 
       @Override
-      public int pageSize() {
-        return 3;
+      public String lastPage() {
+        return "lastPage";
       }
     };
+  }
+
+  private int lastPage(int lastPage) {
+    return lastPage;
+  }
+
+  private int bookOnPage(int bookCount) {
+    return bookCount;
   }
 }

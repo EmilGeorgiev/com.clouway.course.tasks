@@ -24,11 +24,13 @@ public class PersistentBookRepository implements BookRepository, PostRepository 
 
 
   private final Provider<Connection> connectionProvider;
+  private final int bookCount;
 
   @Inject
-  public PersistentBookRepository(Provider<Connection> connectionProvider) {
+  public PersistentBookRepository(Provider<Connection> connectionProvider, int pageSize) {
     this.connectionProvider = connectionProvider;
 
+    this.bookCount = pageSize;
   }
 
   @Override
@@ -44,9 +46,9 @@ public class PersistentBookRepository implements BookRepository, PostRepository 
 
 
 
-      int offset = 3 * (pageNumber - 1);
+      int offset = bookCount * (pageNumber - 1);
 
-      preparedStatement.setInt(1, 3);
+      preparedStatement.setInt(1, bookCount);
       preparedStatement.setInt(2, offset);
 
       ResultSet resultSet = preparedStatement.executeQuery();

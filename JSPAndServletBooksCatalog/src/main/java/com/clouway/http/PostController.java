@@ -41,11 +41,13 @@ public class PostController extends HttpServlet {
 
     String postContent = req.getParameter(siteMap.postContent());
 
-    int bookId = Integer.parseInt(req.getParameter(siteMap.bookId()));
+    String id = siteMap.bookId();
+
+    int bookId = Integer.parseInt(req.getParameter(id));
 
     postRepository.addPost(new Post(author, postContent, bookId));
 
-    resp.addCookie(new Cookie(siteMap.bookId(), req.getParameter(siteMap.bookId())));
+    resp.addCookie(new Cookie(id, req.getParameter(id)));
 
     resp.sendRedirect(siteMap.viewBookController());
 

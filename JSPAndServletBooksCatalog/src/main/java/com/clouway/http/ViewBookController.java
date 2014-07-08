@@ -42,9 +42,10 @@ public class ViewBookController extends HttpServlet {
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     Book bookDetails;
+    String id = siteMap.bookId();
 
-    if (req.getParameter(siteMap.bookId()) != null) {
-      int bookId = Integer.parseInt(req.getParameter(siteMap.bookId()));
+    if (req.getParameter(id) != null) {
+      int bookId = Integer.parseInt(req.getParameter(id));
       bookDetails = bookRepository.findBookById(bookId);
     } else {
       int bookId = Integer.parseInt(idProvider.get().getId());

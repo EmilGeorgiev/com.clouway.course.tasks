@@ -67,8 +67,9 @@ public class PostControllerTest {
       oneOf(request).getParameter("bookId");
       will(returnValue("1"));
 
-
       oneOf(postRepository).addPost(newPost);
+
+//      oneOf(response).addCookie(any(with(Cookie.class)));
 
       oneOf(siteMap).viewBookController();
       will(returnValue("/viewBookController"));

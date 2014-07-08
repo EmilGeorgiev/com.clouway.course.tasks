@@ -33,7 +33,7 @@ public class PageNavigationPageControllerTest {
   private SiteMap siteMap = null;
 
   @Mock
-  private BuildPage<Page> buildPage = null;
+  private BuildPage buildPage = null;
 
   @Before
   public void setUp() {
@@ -45,7 +45,7 @@ public class PageNavigationPageControllerTest {
 
     pretendThatVisitStoreForFirstTime(previousPage(1),
             nextPage(2),
-            lastPage(10),
+            lastPage(5),
             currentPage(1));
 
     context.checking(new Expectations() {{

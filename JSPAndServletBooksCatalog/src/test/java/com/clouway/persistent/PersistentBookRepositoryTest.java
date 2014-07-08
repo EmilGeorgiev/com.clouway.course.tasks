@@ -32,13 +32,17 @@ public class PersistentBookRepositoryTest {
 
     Connection connection = datastoreRule.getDataSource().getConnection();
 
-    persistentBookRepository = new PersistentBookRepository(Providers.of(connection));
+    persistentBookRepository = new PersistentBookRepository(Providers.of(connection), bookCount(3));
 
     javaSE = new Book();
     javaEE = new Book();
 
     bookUtil = new BookUtil(connection);
 
+  }
+
+  private int bookCount(int bookCount) {
+    return bookCount;
   }
 
   @Test

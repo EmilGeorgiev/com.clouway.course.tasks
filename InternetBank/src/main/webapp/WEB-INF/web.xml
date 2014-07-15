@@ -4,4 +4,18 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+  <filter>
+    <filter-name>GuiceFilter</filter-name>
+    <filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>GuiceFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <listener>
+    <listener-class>com.clouway.http.AppInjector</listener-class>
+  </listener>
 </web-app>

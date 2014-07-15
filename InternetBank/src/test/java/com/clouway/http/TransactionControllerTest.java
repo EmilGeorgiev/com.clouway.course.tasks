@@ -2,6 +2,7 @@ package com.clouway.http;
 
 import com.clouway.core.BankRepository;
 import com.clouway.core.Transaction;
+import com.clouway.http.util.CalendarUtil;
 import org.jmock.Expectations;
 import org.jmock.auto.Mock;
 import org.jmock.integration.junit4.JUnitRuleMockery;
@@ -17,6 +18,8 @@ public class TransactionControllerTest {
   private TransactionController transactionController;
   private Transaction transaction;
 
+  private CalendarUtil clock = new CalendarUtil(2014, 7, 14, 15, 46);
+
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
 
@@ -30,7 +33,7 @@ public class TransactionControllerTest {
   @Before
   public void setUp() {
 
-    transactionController = new TransactionController(bankRepository);
+    transactionController = new TransactionController(/*bankRepository*/);
   }
 
   @Test
@@ -47,7 +50,7 @@ public class TransactionControllerTest {
   }
 
   private void pretendThatMakeTransaction(String transactionType, float amount, float currentAmount) {
-
+    transaction = new Transaction();
   }
 
   private float currentAmount(float currentAmount) {

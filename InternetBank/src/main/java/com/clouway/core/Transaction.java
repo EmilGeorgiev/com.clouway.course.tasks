@@ -7,10 +7,19 @@ import java.util.Date;
  */
 public class Transaction {
 
-  private String transactionType;
+
+  private final String transactionType;
   private float amount;
-  private Date now;
-  private String userId;
+  private final Date date;
+  private final Object userId;
+
+  public Transaction(String transactionType, float amount, Date date, Object userId) {
+
+    this.transactionType = transactionType;
+    this.amount = amount;
+    this.date = date;
+    this.userId = userId;
+  }
 
   public String getTransactionType() {
     return transactionType;
@@ -24,25 +33,12 @@ public class Transaction {
     this.amount = amount;
   }
 
-
-  public void setTransactionType(String transactionType) {
-    this.transactionType = transactionType;
+  public Date getDate() {
+    return date;
   }
 
-  public void setNow(Date now) {
-    this.now = now;
-  }
-
-  public Date getNow() {
-    return now;
-  }
-
-  public String getUserId() {
+  public Object getUserId() {
     return userId;
-  }
-
-  public void setUserId(String userId) {
-    this.userId = userId;
   }
 
   @Override
@@ -53,7 +49,7 @@ public class Transaction {
     Transaction that = (Transaction) o;
 
     if (Float.compare(that.amount, amount) != 0) return false;
-    if (now != null ? !now.equals(that.now) : that.now != null) return false;
+    if (date != null ? !date.equals(that.date) : that.date != null) return false;
     if (transactionType != null ? !transactionType.equals(that.transactionType) : that.transactionType != null)
       return false;
     if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
@@ -65,7 +61,7 @@ public class Transaction {
   public int hashCode() {
     int result = transactionType != null ? transactionType.hashCode() : 0;
     result = 31 * result + (amount != +0.0f ? Float.floatToIntBits(amount) : 0);
-    result = 31 * result + (now != null ? now.hashCode() : 0);
+    result = 31 * result + (date != null ? date.hashCode() : 0);
     result = 31 * result + (userId != null ? userId.hashCode() : 0);
     return result;
   }

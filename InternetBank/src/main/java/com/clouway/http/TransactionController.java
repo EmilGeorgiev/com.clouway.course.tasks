@@ -3,9 +3,11 @@ package com.clouway.http;
 import com.clouway.core.BankRepository;
 import com.clouway.core.Clock;
 import com.clouway.core.Transaction;
+import com.clouway.core.TransactionDTO;
+import com.clouway.core.User;
 import com.google.inject.Inject;
+import com.google.inject.Provider;
 import com.google.sitebricks.At;
-import com.google.sitebricks.http.Get;
 import com.google.sitebricks.http.Post;
 
 /**
@@ -14,35 +16,29 @@ import com.google.sitebricks.http.Post;
 @At("/transactionController")
 public class TransactionController {
 
-  private Transaction transaction = new Transaction();
-
+  private TransactionDTO transactionDTO = new TransactionDTO();
   private final BankRepository bankRepository;
   private final Clock clock;
+  private final Provider<User> currentUser;
+
 
   @Inject
-  public TransactionController(BankRepository bankRepository, Clock clock) {
+  public TransactionController(BankRepository bankRepository,
+                               Clock clock,
+                               Provider<User> currentUser) {
     this.bankRepository = bankRepository;
     this.clock = clock;
+    this.currentUser = currentUser;
   }
 
   @Post
-  public void doPost(){
-    transaction.setNow(clock.now());
-    System.out.println(transaction.getTransactionType());
+  public void transfer(){
+
+    Transaction transaction = new Transaction(transactionDTO.getTransactionType(),
+                                              transactionDTO.getAmount(),
+                                              clock.now(),
+                                              currentUser.get().getId());
 
     bankRepository.makeTransaction(transaction);
-  }
-
-  @Get
-  public void doGet() {
-
-  }
-
-  public Transaction getTransaction() {
-    return transaction;
-  }
-
-  public void setTransaction(Transaction transaction) {
-    this.transaction = transaction;
   }
 }

@@ -59,8 +59,6 @@ public class PersistentBankRepositoryTest {
     persistentBankRepository = new PersistentBankRepository(Providers.of(connection), bankMessage, messagesDB);
   }
 
-
-
   @Test
   public void depositSameValue() throws Exception {
     pretendThatDeposit(amount(30), currentAmount(50), transactionType("deposit"), userId(23));
@@ -72,6 +70,19 @@ public class PersistentBankRepositoryTest {
     float currentAmount = persistentBankRepository.getCurrentAmount(userId(23));
 
     assertThat(currentAmount, is(80F));
+  }
+
+  @Test
+  public void whenMakeDepositThenCreateNewTransaction() throws Exception {
+    pretendThatDeposit(amount(30), currentAmount(50), transactionType("deposit"), userId(25));
+
+    expectInvoke();
+
+    persistentBankRepository.makeTransaction(transaction);
+
+    float currentAmount = persistentBankRepository.getCurrentAmount(userId(25));
+//    List<Transaction> transactionList = persistentBankRepository.findAllTransactionForUser(userId(25));
+
   }
 
   private void cleanDB() {
@@ -103,20 +114,20 @@ public class PersistentBankRepositoryTest {
       oneOf(messagesDB).fieldAccount();
       will(returnValue("account"));
 
-//      oneOf(messagesDB).fieldTransactionType();
-//      will(returnValue("transactionType"));
-//
-//      oneOf(messagesDB).fieldAmount();
-//      will(returnValue("amount"));
-//
-//      oneOf(messagesDB).fieldDate();
-//      will(returnValue("date"));
-//
-//      oneOf(messagesDB).fieldUserId();
-//      will(returnValue("user_id"));
-//
-//      oneOf(messagesDB).collectionTransaction();
-//      will(returnValue("transaction"));
+      oneOf(messagesDB).fieldTransactionType();
+      will(returnValue("transactionType"));
+
+      oneOf(messagesDB).fieldAmount();
+      will(returnValue("amount"));
+
+      oneOf(messagesDB).fieldDate();
+      will(returnValue("date"));
+
+      oneOf(messagesDB).fieldUserId();
+      will(returnValue("user_id"));
+
+      oneOf(messagesDB).collectionTransaction();
+      will(returnValue("transaction"));
 
     }
     });

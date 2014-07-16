@@ -17,6 +17,7 @@ import com.google.sitebricks.http.Post;
 public class TransactionController {
 
   private TransactionDTO transactionDTO = new TransactionDTO();
+  private String message;
   private final BankRepository bankRepository;
   private final Clock clock;
   private final Provider<User> currentUser;
@@ -40,5 +41,15 @@ public class TransactionController {
                                               currentUser.get().getUserId());
 
     bankRepository.makeTransaction(transaction);
+
+    message = "Transaction success";
+  }
+
+  public String getMessage() {
+    return message;
+  }
+
+  public void setMessage(String message) {
+    this.message = message;
   }
 }

@@ -5,6 +5,13 @@
     <title></title>
 </head>
 <body>
-Transaction succsess
+<div class="message" align="center">${message}</div>
+<form action="/TransactionController" method="post">
+    <label>
+       Amount: <input type="text" name="transactionDTO.amount">
+    </label>
+    <input type="hidden" name="transactionDTO.transactionType" value="deposit">
+    <input type="submit" value="Deposit">
+</form>
 </body>
 </html>

@@ -33,8 +33,12 @@ public class TransactionControllerTest {
   @Before
   public void setUp() {
 
-    user = new User(name("test"), password("testPass"), userId(23));
+    user = new User(name("test"), password("testPass"), userId(23), sessionID("45XQ"));
     transactionController = new TransactionController(bankRepository, clock, Providers.of(user));
+  }
+
+  private String sessionID(String sessionID) {
+    return sessionID;
   }
 
   @Test

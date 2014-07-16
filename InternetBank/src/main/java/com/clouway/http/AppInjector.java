@@ -10,6 +10,6 @@ import com.google.inject.servlet.GuiceServletContextListener;
 public class AppInjector extends GuiceServletContextListener {
   @Override
   protected Injector getInjector() {
-    return Guice.createInjector(new HttpModule());
+    return Guice.createInjector(new SitebricksModule(), new HttpModule());
   }
 }

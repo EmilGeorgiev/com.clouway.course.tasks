@@ -1,6 +1,8 @@
 package com.clouway.http;
 
+import com.clouway.core.BankMessage;
 import com.clouway.core.BankRepository;
+import com.clouway.core.DBMessage;
 import com.clouway.core.Transaction;
 import com.clouway.persistent.PersistentBankRepository;
 import com.google.inject.Provides;
@@ -23,6 +25,67 @@ public class HttpModule extends SitebricksModule {
     bind(BankRepository.class).to(PersistentBankRepository.class);
 
   }
+
+  @Provides
+  public BankMessage providerBankMessage() {
+    return new BankMessage() {
+      @Override
+      public String deposit() {
+        return "deposit";
+      }
+    };
+  }
+
+  @Provides
+  public DBMessage providerDBMessages() {
+    return new DBMessage() {
+      @Override
+      public String collectionUser() {
+        return "user";
+      }
+
+      @Override
+      public String fieldAccount() {
+        return "account";
+      }
+
+      @Override
+      public String fieldId() {
+        return "_id";
+      }
+
+      @Override
+      public String operatorInc() {
+        return "$inc";
+      }
+
+      @Override
+      public String fieldTransactionType() {
+        return "transactionType";
+      }
+
+      @Override
+      public String fieldAmount() {
+        return "amount";
+      }
+
+      @Override
+      public String fieldDate() {
+        return "date";
+      }
+
+      @Override
+      public String fieldUserId() {
+        return "user_id";
+      }
+
+      @Override
+      public String collectionTransaction() {
+        return "transaction";
+      }
+    };
+  }
+
 
   @Provides
   public DB getConnection() {

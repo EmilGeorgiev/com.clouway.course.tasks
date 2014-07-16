@@ -1,6 +1,8 @@
 package com.clouway.persistent;
 
+import com.clouway.core.BankMessage;
 import com.clouway.core.BankRepository;
+import com.clouway.core.DBMessage;
 import com.clouway.core.Transaction;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
@@ -17,18 +19,24 @@ import com.mongodb.DBObject;
 public class PersistentBankRepository implements BankRepository {
 
   private final Provider<DB> dbProvider;
+  private final BankMessage bankMessage;
+  private final DBMessage messagesDB;
 
   @Inject
-  public PersistentBankRepository(Provider<DB> dbProvider) {
+  public PersistentBankRepository(Provider<DB> dbProvider,
+                                  BankMessage bankMessage,
+                                  DBMessage messagesDB) {
 
     this.dbProvider = dbProvider;
 
+    this.bankMessage = bankMessage;
+    this.messagesDB = messagesDB;
   }
 
   @Override
   public void makeTransaction(Transaction transaction) {
 
-    if("deposit".equals(transaction.getTransactionType())) {
+    if(bankMessage.deposit().equals(transaction.getTransactionType())) {
 
       deposit(transaction);
     } else {
@@ -42,11 +50,12 @@ public class PersistentBankRepository implements BankRepository {
 
     DB db = dbProvider.get();
 
-    DBCollection userColl = db.getCollection("user");
+    DBCollection userColl = db.getCollection(messagesDB.collectionUser());
 
     DBObject dbObject = userColl.findOne(userId);
+    String amount = String.valueOf(dbObject.get(messagesDB.fieldAccount()));
 
-    return (Float) dbObject.get("account");
+    return Float.valueOf(amount);
   }
 
   private void deposit(Transaction transaction) {
@@ -63,24 +72,24 @@ public class PersistentBankRepository implements BankRepository {
 
     DB connection = dbProvider.get();
 
-    DBCollection userCollection = connection.getCollection("user");
+    DBCollection userCollection = connection.getCollection(messagesDB.collectionUser());
 
     BasicDBObject updateQuery = new BasicDBObject();
 
-    updateQuery.put("_id", transaction.getUserId());
+    updateQuery.put(messagesDB.fieldId(), transaction.getUserId());
 
     BasicDBObject updateCommand = new BasicDBObject();
 
-    updateCommand.put("$inc", new BasicDBObject("account", transaction.getAmount()));
+    updateCommand.put(messagesDB.operatorInc(), new BasicDBObject(messagesDB.fieldAccount(), transaction.getAmount()));
 
     userCollection.update(updateQuery, updateCommand);
 
     //Add new transaction in database.
-    BasicDBObject newTransaction = new BasicDBObject("transactionType", transaction.getTransactionType())
-            .append("amount", transaction.getAmount())
-            .append("date", transaction.getDate())
-            .append("user_id", transaction.getUserId());
-
-    connection.getCollection("transaction").insert(newTransaction);
+//    BasicDBObject newTransaction = new BasicDBObject(messagesDB.fieldTransactionType(), transaction.getTransactionType())
+//            .append(messagesDB.fieldAmount(), transaction.getAmount())
+//            .append(messagesDB.fieldDate(), transaction.getDate())
+//            .append(messagesDB.fieldUserId(), transaction.getUserId());
+//
+//    connection.getCollection(messagesDB.collectionTransaction()).insert(newTransaction);
   }
 }

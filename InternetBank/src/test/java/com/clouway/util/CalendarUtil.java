@@ -1,4 +1,4 @@
-package com.clouway.http.util;
+package com.clouway.util;
 
 import com.clouway.core.Clock;
 

@@ -37,7 +37,7 @@ public class TransactionController {
     Transaction transaction = new Transaction(transactionDTO.getTransactionType(),
                                               transactionDTO.getAmount(),
                                               clock.now(),
-                                              currentUser.get().getId());
+                                              currentUser.get().getUserId());
 
     bankRepository.makeTransaction(transaction);
   }

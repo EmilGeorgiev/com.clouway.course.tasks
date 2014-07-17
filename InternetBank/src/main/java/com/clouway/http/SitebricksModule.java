@@ -34,6 +34,21 @@ public class SitebricksModule extends com.google.sitebricks.SitebricksModule {
       public String loginPage() {
         return "LoginController.html";
       }
+
+      @Override
+      public String mainPage() {
+        return "MainController.html";
+      }
+
+      @Override
+      public String mainController() {
+        return "/mainController";
+      }
+
+      @Override
+      public String sid() {
+        return "sid";
+      }
     };
   }
 

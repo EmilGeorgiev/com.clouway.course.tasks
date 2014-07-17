@@ -6,4 +6,9 @@ package com.clouway.core;
 public interface SiteMap {
   String loginPage();
 
+  String mainPage();
+
+  String mainController();
+
+  String sid();
 }

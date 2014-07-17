@@ -3,6 +3,7 @@ package com.clouway.http;
 import com.clouway.core.SessionRepository;
 import com.clouway.core.SiteMap;
 import com.clouway.core.User;
+import com.clouway.util.CalendarUtil;
 import com.google.inject.util.Providers;
 import org.jmock.Expectations;
 import org.jmock.auto.Mock;
@@ -22,6 +23,8 @@ public class AuthenticatedFilterTest {
 
   private AuthenticatedFilter authenticatedFilter;
   private User user;
+  private CalendarUtil clock;
+
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
@@ -44,9 +47,52 @@ public class AuthenticatedFilterTest {
   @Before
   public void setUp() {
 
+    clock = new CalendarUtil(2014, 7, 23, 12, 45, 34);
+
     user = new User(name("test"), password("testPass"), userId(24), sessionID("45XQ"));
 
-    authenticatedFilter = new AuthenticatedFilter(sessionRepository, Providers.of(user), siteMap);
+    authenticatedFilter = new AuthenticatedFilter(sessionRepository,
+                                                  Providers.of(user),
+                                                  siteMap,
+                                                  clock);
+  }
+
+  @Test
+  public void authenticateUserWithValidSession() throws Exception {
+
+    context.checking(new Expectations() {{
+
+      oneOf(sessionRepository).authenticateSession(user.getUserSession(), clock);
+      will(returnValue(user));
+
+      oneOf(filterChain).doFilter(request, response);
+
+    }
+    });
+
+    authenticatedFilter.doFilter(request, response, filterChain);
+
+  }
+
+  @Test
+  public void authenticateUserWithExpireSession() throws Exception {
+
+    context.checking(new Expectations() {{
+
+      oneOf(sessionRepository).authenticateSession(user.getUserSession(), clock);
+      will(returnValue(null));
+
+      oneOf(siteMap).loginPage();
+      will(returnValue("LoginController.html"));
+
+      oneOf(response).sendRedirect("LoginController.html");
+
+      oneOf(filterChain).doFilter(request, response);
+
+    }
+    });
+
+    authenticatedFilter.doFilter(request, response, filterChain);
   }
 
   private String sessionID(String sessionID) {
@@ -63,43 +109,5 @@ public class AuthenticatedFilterTest {
 
   private String name(String name) {
     return name;
-  }
-
-  @Test
-  public void authenticateUserWithValidSession() throws Exception {
-
-    context.checking(new Expectations() {{
-
-      oneOf(sessionRepository).authenticateSession(user.getUserSession());
-      will(returnValue(true));
-
-      oneOf(filterChain).doFilter(request, response);
-
-    }
-    });
-
-    authenticatedFilter.doFilter(request, response, filterChain);
-
-  }
-
-  @Test
-  public void authenticateUserWithExpireSession() throws Exception {
-
-    context.checking(new Expectations() {{
-
-      oneOf(sessionRepository).authenticateSession(user.getUserSession());
-      will(returnValue(false));
-
-      oneOf(siteMap).loginPage();
-      will(returnValue("LoginController.html"));
-
-      oneOf(response).sendRedirect("LoginController.html");
-
-      oneOf(filterChain).doFilter(request, response);
-
-    }
-    });
-
-    authenticatedFilter.doFilter(request, response, filterChain);
   }
 }

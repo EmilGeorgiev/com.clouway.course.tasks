@@ -15,13 +15,15 @@ public class CalendarUtil implements Clock {
   private final int day;
   private final int hour;
   private final int minute;
+  private final int seconds;
 
-  public CalendarUtil(int year, int month, int day, int hour, int minute) {
+  public CalendarUtil(int year, int month, int day, int hour, int minute, int seconds) {
     this.year = year;
     this.month = month;
     this.day = day;
     this.hour = hour;
     this.minute = minute;
+    this.seconds = seconds;
   }
 
   @Override
@@ -33,6 +35,7 @@ public class CalendarUtil implements Clock {
     calendar.set(Calendar.DAY_OF_MONTH, day);
     calendar.set(Calendar.HOUR_OF_DAY, hour);
     calendar.set(Calendar.MINUTE, minute);
+    calendar.set(Calendar.SECOND, seconds);
 
     return calendar.getTime();
   }

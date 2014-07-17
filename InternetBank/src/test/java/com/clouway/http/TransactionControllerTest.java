@@ -3,6 +3,7 @@ package com.clouway.http;
 import com.clouway.core.BankRepository;
 import com.clouway.core.Transaction;
 import com.clouway.core.User;
+import com.clouway.http.capture.CapturingMatcher;
 import com.clouway.util.CalendarUtil;
 import com.google.inject.util.Providers;
 import org.jmock.Expectations;
@@ -20,7 +21,7 @@ public class TransactionControllerTest {
   private TransactionController transactionController;
   private Transaction transaction;
 
-  private CalendarUtil clock = new CalendarUtil(2014, 7, 14, 15, 46);
+  private CalendarUtil clock = new CalendarUtil(2014, 7, 14, 15, 46, 34);
 
   User user;
 
@@ -42,11 +43,14 @@ public class TransactionControllerTest {
   }
 
   @Test
-  public void depositSomeValue() throws Exception {
+  public void transactionSomeValue() throws Exception {
+
+    final CapturingMatcher<Transaction> capturingMatcher =
+            new CapturingMatcher<Transaction>(Expectations.any(Transaction.class));
 
     context.checking(new Expectations() {{
 
-      oneOf(bankRepository).makeTransaction(transaction);
+      oneOf(bankRepository).makeTransaction(with(capturingMatcher));
     }
     });
 

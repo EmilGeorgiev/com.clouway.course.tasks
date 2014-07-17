@@ -1,5 +1,6 @@
 package com.clouway.http;
 
+import com.clouway.core.Clock;
 import com.clouway.core.SessionRepository;
 import com.clouway.core.SiteMap;
 import com.clouway.core.User;
@@ -25,15 +26,18 @@ public class AuthenticatedFilter implements Filter{
   private final SessionRepository sessionRepository;
   private final Provider<User> userProvider;
   private final SiteMap siteMap;
+  private final Clock clock;
 
   @Inject
   public AuthenticatedFilter(SessionRepository sessionRepository,
                              Provider<User> userProvider,
-                             SiteMap siteMap) {
+                             SiteMap siteMap,
+                             Clock clock) {
 
     this.sessionRepository = sessionRepository;
     this.userProvider = userProvider;
     this.siteMap = siteMap;
+    this.clock = clock;
   }
 
   @Override
@@ -48,7 +52,7 @@ public class AuthenticatedFilter implements Filter{
 
     HttpServletResponse servletResponse = (HttpServletResponse) response;
 
-    if (!sessionRepository.authenticateSession(userProvider.get().getUserSession())) {
+    if (sessionRepository.authenticateSession(userProvider.get().getUserSession(), clock) == null) {
       servletResponse.sendRedirect(siteMap.loginPage());
     }
 

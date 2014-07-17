@@ -1,8 +1,8 @@
 package com.clouway.http;
 
-import com.clouway.core.SessionRepository;
 import com.clouway.core.SiteMap;
 import com.clouway.core.UserDTO;
+import com.clouway.core.UserRepository;
 import com.clouway.http.capture.CapturingMatcher;
 import org.jmock.Expectations;
 import org.jmock.auto.Mock;
@@ -32,11 +32,11 @@ public class LoginControllerTest {
   private SiteMap siteMap = null;
 
   @Mock
-  private SessionRepository sessionRepository = null;
+  private UserRepository userRepository = null;
 
   @Before
   public void setUp(){
-    loginController = new LoginController(sessionRepository, response, siteMap);
+    loginController = new LoginController(userRepository, response, siteMap);
   }
 
   @Test
@@ -47,7 +47,7 @@ public class LoginControllerTest {
 
     context.checking(new Expectations() {{
 
-      oneOf(sessionRepository).authenticateUser(userDTO);
+      oneOf(userRepository).authenticateUser(userDTO);
       will(returnValue(sid("DF45")));
 
       oneOf(siteMap).sid();
@@ -71,7 +71,7 @@ public class LoginControllerTest {
   public void loginUserWithInvalidData() throws Exception {
 
     context.checking(new Expectations() {{
-      oneOf(sessionRepository).authenticateUser(userDTO);
+      oneOf(userRepository).authenticateUser(userDTO);
       will(returnValue(null));
     }
     });

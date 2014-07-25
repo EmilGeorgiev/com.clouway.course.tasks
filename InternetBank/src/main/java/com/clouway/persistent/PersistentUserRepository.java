@@ -1,9 +1,7 @@
 package com.clouway.persistent;
 
-import com.clouway.core.Clock;
-import com.clouway.core.UserDTO;
-import com.clouway.core.UserMessage;
-import com.clouway.core.UserRepository;
+import com.clouway.core.*;
+import com.google.common.base.Optional;
 import com.google.common.hash.HashFunction;
 import com.google.common.hash.Hashing;
 import com.google.inject.Inject;
@@ -47,16 +45,16 @@ public class PersistentUserRepository implements UserRepository {
 
     WriteResult writeResult = users().update(documentQuery, documentUpdate, true, false);
 
-   if(writeResult.isUpdateOfExisting()) {
-     return userMessage.get().failed();
-   }
+    if(writeResult.isUpdateOfExisting()) {
+      return userMessage.get().failed();
+    }
 
-   return userMessage.get().success();
+    return userMessage.get().success();
 
   }
 
   @Override
-  public String isUserExist(UserDTO user) {
+  public User findUser(UserDTO user) {
 
     DBObject documentUser = new BasicDBObject(NAME, user.getName())
                                       .append(PASSWORD, user.getPassword());
@@ -67,11 +65,28 @@ public class PersistentUserRepository implements UserRepository {
       return null;
     }
 
-    return createUserSession(user.getName());
+    String sessionId = createUserSession(user.getName());
+
+    return new User(sessionId, user.getName());
 
   }
 
-  private String createUserSession(String userName) {
+    @Override
+    public User findUserBySessionID(String session) {
+        BasicDBObject documentQuery = new BasicDBObject(SID, session);
+
+        String userName = (String) sessions().findOne(documentQuery).get(USER_NAME);
+
+        documentQuery = new BasicDBObject(NAME, userName);
+
+        DBObject user = users().findOne(documentQuery);
+
+        String userSession = (String) user.get(SESSION);
+
+        return new User(userSession, userName);
+    }
+
+    private String createUserSession(String userName) {
 
     HashFunction sha1 = Hashing.sha1();
 

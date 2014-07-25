@@ -27,4 +27,5 @@ public class DBMessages {
   public static final String REGISTRATION_FAILED = "User name or password already exist";
   public static final String REGISTRATION_SUCCESS = "Registration is success";
   public static final String UPSERT = "upsert";
+    public static final String USER_NAME = "user_name";
 }

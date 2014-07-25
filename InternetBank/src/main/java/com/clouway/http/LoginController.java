@@ -39,7 +39,7 @@ public class LoginController {
   public void login() throws IOException {
 
     //Check whether user data is valid and return sessionID or null if not.
-    String sid = userRepository.isUserExist(userDTO);
+    String sid = userRepository.findUser(userDTO);
 
     if (sid != null) {
 

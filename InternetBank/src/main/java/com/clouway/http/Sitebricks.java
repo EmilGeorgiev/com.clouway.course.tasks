@@ -1,11 +1,6 @@
 package com.clouway.http;
 
-import com.clouway.core.BankMessage;
-import com.clouway.core.Clock;
-import com.clouway.core.SessionRepository;
-import com.clouway.core.SiteMap;
-import com.clouway.core.User;
-import com.clouway.core.UserMessage;
+import com.clouway.core.*;
 import com.google.inject.Provider;
 import com.google.inject.Provides;
 import com.google.inject.servlet.RequestScoped;
@@ -100,12 +95,12 @@ public class Sitebricks extends com.google.sitebricks.SitebricksModule {
   @Provides
   @RequestScoped
   public User getCurrentUser(Provider<HttpServletRequest> requestProvider,
-                             SessionRepository sessionRepository, Clock clock) {
+                                    UserRepository userRepository) {
     Cookie[] cookies = requestProvider.get().getCookies();
     for (Cookie cookie : cookies) {
-      // session id
+
       if ("sid".equalsIgnoreCase(cookie.getName())) {
-        return sessionRepository.authenticateSession(cookie.getValue(), clock);
+        return userRepository.findUserBySessionID(cookie.getValue());
       }
     }
 

@@ -2,7 +2,6 @@ package com.clouway.persistent;
 
 import com.clouway.core.BankMessage;
 import com.clouway.core.Clock;
-import com.clouway.core.DBMessage;
 import com.clouway.core.Time;
 import com.clouway.core.Transaction;
 import com.clouway.util.BankUtil;
@@ -17,9 +16,11 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import java.net.UnknownHostException;
+import java.util.Arrays;
+import java.util.List;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
 
 /**
  * Created by clouway on 7/15/14.
@@ -36,11 +37,9 @@ public class PersistentBankRepositoryTest {
 
   private Clock clock = new Time();
 
+
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
-
-  @Mock
-  private DBMessage messagesDB = null;
 
   @Mock
   private BankMessage bankMessage = null;
@@ -54,106 +53,65 @@ public class PersistentBankRepositoryTest {
 
     cleanDB();
 
+    transaction = new Transaction(type("deposit"), amount(10), clock.now(), userId("123"));
+
     bankUtil = new BankUtil(connection);
 
-    persistentBankRepository = new PersistentBankRepository(Providers.of(connection), bankMessage, messagesDB);
+    bankUtil.registerUser(userId("123"));
+
+    persistentBankRepository = new PersistentBankRepository(Providers.of(connection), bankMessage);
   }
 
   @Test
-  public void depositSameValue() throws Exception {
-    pretendThatDeposit(amount(30), currentAmount(50), transactionType("deposit"), userId(23));
+  public void whenMakeTransferThenCreateAndNewTransaction() throws Exception {
 
-    expectInvoke();
+    Transaction deposit = new Transaction(type("deposit"), amount(30), clock.now(), userId("123"));
 
-    persistentBankRepository.makeTransaction(transaction);
+    Transaction withdraw = new Transaction(type("withdrawing"), amount(20), clock.now(), userId("123"));
 
-    float currentAmount = persistentBankRepository.getCurrentAmount(userId(23));
+    pretendThatHasTransactions(deposit, withdraw);
 
-    assertThat(currentAmount, is(80F));
-  }
-
-  @Test
-  public void whenMakeDepositThenCreateNewTransaction() throws Exception {
-    pretendThatDeposit(amount(30), currentAmount(50), transactionType("deposit"), userId(25));
-
-    expectInvoke();
-
-    persistentBankRepository.makeTransaction(transaction);
-
-    float currentAmount = persistentBankRepository.getCurrentAmount(userId(25));
-//    List<Transaction> transactionList = persistentBankRepository.findAllTransactionForUser(userId(25));
-
-  }
-
-  private void cleanDB() {
-    connection.getCollection("user_test").drop();
-    connection.getCollection("transaction").drop();
-  }
-
-  private void expectInvoke() {
     context.checking(new Expectations() {{
-
       oneOf(bankMessage).deposit();
       will(returnValue("deposit"));
-
-      oneOf(messagesDB).collectionUser();
-      will(returnValue("user_test"));
-
-      oneOf(messagesDB).fieldAccount();
-      will(returnValue("account"));
-
-      oneOf(messagesDB).collectionUser();
-      will(returnValue("user_test"));
-
-      oneOf(messagesDB).fieldId();
-      will(returnValue("_id"));
-
-      oneOf(messagesDB).operatorInc();
-      will(returnValue("$inc"));
-
-      oneOf(messagesDB).fieldAccount();
-      will(returnValue("account"));
-
-      oneOf(messagesDB).fieldTransactionType();
-      will(returnValue("transactionType"));
-
-      oneOf(messagesDB).fieldAmount();
-      will(returnValue("amount"));
-
-      oneOf(messagesDB).fieldDate();
-      will(returnValue("date"));
-
-      oneOf(messagesDB).fieldUserId();
-      will(returnValue("user_id"));
-
-      oneOf(messagesDB).collectionTransaction();
-      will(returnValue("transaction"));
-
     }
     });
+
+    persistentBankRepository.makeTransaction(transaction);
+
+    double currentAmount = persistentBankRepository.getCurrentAmount(userId("123"));
+
+    List<Transaction> transactionList = persistentBankRepository.getAllTransactionByUserName("123");
+
+    assertThat(currentAmount, is(20D));
+
+    assertThat(transactionList, is(Arrays.asList(deposit, withdraw, transaction)));
+
   }
 
-  private void pretendThatDeposit(float amount, float currentAmount, String transactionType, int userId) {
+  private void pretendThatHasTransactions(Transaction deposit, Transaction withdrawing) {
 
-    transaction = new Transaction(transactionType, amount, clock.now(), userId);
+    bankUtil.makeTransaction(deposit);
 
-    bankUtil.deposit(transaction, currentAmount);
-
+    withdrawing.setAmount(-withdrawing.getAmount());
+    bankUtil.makeTransaction(withdrawing);
   }
 
-  private String transactionType(String deposit) {
-    return deposit;
+  private String type(String transferType) {
+    return transferType;
   }
 
-  private float amount(float amount) {
+  private double amount(double amount) {
+
     return amount;
   }
 
-  private float currentAmount(float currentAmount) {
-    return currentAmount;
+  private String userId(String userId) {
+    return userId;
   }
 
-  private int userId(int userId) {
-    return userId;
+  private void cleanDB() {
+    connection.getCollection("users").drop();
+    connection.getCollection("transactions").drop();
   }
 }

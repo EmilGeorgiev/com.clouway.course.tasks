@@ -8,6 +8,7 @@ import com.google.inject.Provider;
 import com.google.inject.Singleton;
 import com.google.sitebricks.At;
 import com.google.sitebricks.http.Get;
+import com.google.sitebricks.http.Post;
 
 import java.util.List;
 
@@ -29,10 +30,16 @@ public class MainController {
     this.userProvider = userProvider;
   }
 
+
+  @Post
+  public void post() {
+    System.out.println("i am post");
+  }
+
   @Get
   public void configure() {
     user = userProvider.get();
-    list = transactionRepository.getAllTransactionByUserID(user.getUserId());
+    list = transactionRepository.getAllTransactionByUserName(user.getUserName());
   }
 
   public List<Transaction> getList() {

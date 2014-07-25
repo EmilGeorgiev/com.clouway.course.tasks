@@ -33,7 +33,7 @@ public class MainControllerTest {
 
   @Before
   public void setUp() {
-    user = new User(name("test"), password("testPass"), userId(34), sessionID("45th"));
+    user = new User(userId("34"), sessionID("45th"));
 
     mainController = new MainController(transactionRepository, Providers.of(user));
   }
@@ -42,23 +42,15 @@ public class MainControllerTest {
     return sessionID;
   }
 
-  private Object userId(int userID) {
+  private String userId(String userID) {
     return userID;
-  }
-
-  private String password(String password) {
-    return password;
-  }
-
-  private String name(String name) {
-    return name;
   }
 
   @Test
   public void configureMainPage() throws Exception {
 
     context.checking(new Expectations() {{
-      oneOf(transactionRepository).getAllTransactionByUserID(user.getUserId());
+      oneOf(transactionRepository).getAllTransactionByUserName(user.getUserName());
       will(returnValue(transactionList));
     }
     });

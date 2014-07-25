@@ -1,0 +1,14 @@
+.mainFramework {
+    margin-left:20%;
+    margin - right:20%;
+}
+
+.col-md-8, .col-md-1 {
+    text-align : center;
+    vertical-align : middle;
+
+}
+
+.row {}
+
+.col-md-8 {background-color: green;}

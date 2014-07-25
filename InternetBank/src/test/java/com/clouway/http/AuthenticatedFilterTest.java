@@ -49,7 +49,7 @@ public class AuthenticatedFilterTest {
 
     clock = new CalendarUtil(2014, 7, 23, 12, 45, 34);
 
-    user = new User(name("test"), password("testPass"), userId(24), sessionID("45XQ"));
+    user = new User(userId("24"), sessionID("45XQ"));
 
     authenticatedFilter = new AuthenticatedFilter(sessionRepository,
                                                   Providers.of(user),
@@ -82,10 +82,10 @@ public class AuthenticatedFilterTest {
       oneOf(sessionRepository).authenticateSession(user.getUserSession(), clock);
       will(returnValue(null));
 
-      oneOf(siteMap).loginPage();
-      will(returnValue("LoginController.html"));
+      oneOf(siteMap).loginController();
+      will(returnValue("/loginController"));
 
-      oneOf(response).sendRedirect("LoginController.html");
+      oneOf(response).sendRedirect("/loginController");
 
       oneOf(filterChain).doFilter(request, response);
 
@@ -99,15 +99,8 @@ public class AuthenticatedFilterTest {
     return sessionID;
   }
 
-  private Object userId(int userId) {
+  private String userId(String userId) {
     return userId;
   }
 
-  private String password(String password) {
-    return password;
-  }
-
-  private String name(String name) {
-    return name;
-  }
 }

@@ -47,8 +47,8 @@ public class LoginControllerTest {
 
     context.checking(new Expectations() {{
 
-      oneOf(userRepository).authenticateUser(userDTO);
-      will(returnValue(sid("DF45")));
+      oneOf(userRepository).isUserExist(userDTO);
+      will(returnValue(sid("12345")));
 
       oneOf(siteMap).sid();
       will(returnValue("sid"));
@@ -57,8 +57,6 @@ public class LoginControllerTest {
 
       oneOf(siteMap).mainController();
       will(returnValue("/mainController"));
-
-      oneOf(response).sendRedirect("/mainController");
 
     }
     });
@@ -71,8 +69,11 @@ public class LoginControllerTest {
   public void loginUserWithInvalidData() throws Exception {
 
     context.checking(new Expectations() {{
-      oneOf(userRepository).authenticateUser(userDTO);
+      oneOf(userRepository).isUserExist(userDTO);
       will(returnValue(null));
+
+      oneOf(siteMap).loginController();
+      will(returnValue("/loginController"));
     }
     });
 

@@ -8,12 +8,14 @@ import com.clouway.core.User;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.sitebricks.At;
+import com.google.sitebricks.Show;
 import com.google.sitebricks.http.Post;
 
 /**
  * Created by clouway on 7/14/14.
  */
 @At("/transactionController")
+@Show("MainController")
 public class TransactionController {
 
   private TransactionDTO transactionDTO = new TransactionDTO();
@@ -38,7 +40,7 @@ public class TransactionController {
     Transaction transaction = new Transaction(transactionDTO.getTransactionType(),
                                               transactionDTO.getAmount(),
                                               clock.now(),
-                                              currentUser.get().getUserId());
+                                              currentUser.get().getUserName());
 
     bankRepository.makeTransaction(transaction);
 
@@ -51,5 +53,13 @@ public class TransactionController {
 
   public void setMessage(String message) {
     this.message = message;
+  }
+
+  public TransactionDTO getTransactionDTO() {
+    return transactionDTO;
+  }
+
+  public void setTransactionDTO(TransactionDTO transactionDTO) {
+    this.transactionDTO = transactionDTO;
   }
 }

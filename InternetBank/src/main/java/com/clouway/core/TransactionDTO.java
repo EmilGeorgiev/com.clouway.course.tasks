@@ -5,8 +5,8 @@ package com.clouway.core;
  */
 public class TransactionDTO {
 
-  private String transactionType;
-  private float amount;
+  private String transactionType = null;
+  private Double amount = null;
 
   public String getTransactionType() {
     return transactionType;
@@ -16,11 +16,11 @@ public class TransactionDTO {
     this.transactionType = transactionType;
   }
 
-  public float getAmount() {
+  public Double getAmount() {
     return amount;
   }
 
-  public void setAmount(float amount) {
+  public void setAmount(Double amount) {
     this.amount = amount;
   }
 }

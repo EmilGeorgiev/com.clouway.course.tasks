@@ -7,6 +7,8 @@ import com.clouway.http.MainControllerTest;
 import com.clouway.http.RegisteredControllerTest;
 import com.clouway.http.TransactionControllerTest;
 import com.clouway.persistent.PersistentBankRepositoryTest;
+import com.clouway.persistent.PersistentSessionRepositoryTest;
+import com.clouway.persistent.PersistentUserRepositoryTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -20,7 +22,9 @@ import org.junit.runners.Suite;
         MainControllerTest.class,
         RegisteredControllerTest.class,
         TransactionControllerTest.class,
-        PersistentBankRepositoryTest.class
+        PersistentBankRepositoryTest.class,
+        PersistentSessionRepositoryTest.class,
+        PersistentUserRepositoryTest.class
         })
 public class SuiteTests {
 }

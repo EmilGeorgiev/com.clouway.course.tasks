@@ -1,7 +1,5 @@
 package com.clouway.core;
 
-import java.util.Date;
-
 /**
  * Created by clouway on 7/16/14.
  */

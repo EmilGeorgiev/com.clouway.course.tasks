@@ -7,16 +7,14 @@ public class UserDTO {
   private String name;
   private String password;
 
-  public UserDTO(String name, String password) {
+  public UserDTO() {
+  }
+
+  public UserDTO(String name, String pass) {
 
     this.name = name;
-    this.password = password;
+    this.password = pass;
   }
-
-  public UserDTO() {
-
-  }
-
 
   public void setName(String name) {
     this.name = name;

@@ -7,29 +7,29 @@ import java.util.Date;
  */
 public class Transaction {
 
-
   private final String transactionType;
-  private float amount;
+  private double amount;
   private final Date date;
-  private final Object userId;
+  private final String userName;
 
-  public Transaction(String transactionType, float amount, Date date, Object userId) {
+  public Transaction(String transactionType, double amount, Date date, String userName) {
 
     this.transactionType = transactionType;
     this.amount = amount;
+
     this.date = date;
-    this.userId = userId;
+    this.userName = userName;
   }
 
   public String getTransactionType() {
     return transactionType;
   }
 
-  public float getAmount() {
+  public double getAmount() {
     return amount;
   }
 
-  public void setAmount(float amount) {
+  public void setAmount(double amount) {
     this.amount = amount;
   }
 
@@ -37,8 +37,8 @@ public class Transaction {
     return date;
   }
 
-  public Object getUserId() {
-    return userId;
+  public String getUserName() {
+    return userName;
   }
 
   @Override
@@ -48,21 +48,24 @@ public class Transaction {
 
     Transaction that = (Transaction) o;
 
-    if (Float.compare(that.amount, amount) != 0) return false;
+    if (Double.compare(that.amount, amount) != 0) return false;
     if (date != null ? !date.equals(that.date) : that.date != null) return false;
     if (transactionType != null ? !transactionType.equals(that.transactionType) : that.transactionType != null)
       return false;
-    if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
+    if (userName != null ? !userName.equals(that.userName) : that.userName != null) return false;
 
     return true;
   }
 
   @Override
   public int hashCode() {
-    int result = transactionType != null ? transactionType.hashCode() : 0;
-    result = 31 * result + (amount != +0.0f ? Float.floatToIntBits(amount) : 0);
+    int result;
+    long temp;
+    result = transactionType != null ? transactionType.hashCode() : 0;
+    temp = Double.doubleToLongBits(amount);
+    result = 31 * result + (int) (temp ^ (temp >>> 32));
     result = 31 * result + (date != null ? date.hashCode() : 0);
-    result = 31 * result + (userId != null ? userId.hashCode() : 0);
+    result = 31 * result + (userName != null ? userName.hashCode() : 0);
     return result;
   }
 }

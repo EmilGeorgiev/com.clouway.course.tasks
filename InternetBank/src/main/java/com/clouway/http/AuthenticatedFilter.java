@@ -23,6 +23,7 @@ import java.io.IOException;
  */
 @Singleton
 public class AuthenticatedFilter implements Filter{
+
   private final SessionRepository sessionRepository;
   private final Provider<User> userProvider;
   private final SiteMap siteMap;
@@ -53,7 +54,7 @@ public class AuthenticatedFilter implements Filter{
     HttpServletResponse servletResponse = (HttpServletResponse) response;
 
     if (sessionRepository.authenticateSession(userProvider.get().getUserSession(), clock) == null) {
-      servletResponse.sendRedirect(siteMap.loginPage());
+      servletResponse.sendRedirect(siteMap.loginController());
     }
 
     chain.doFilter(servletRequest, servletResponse);

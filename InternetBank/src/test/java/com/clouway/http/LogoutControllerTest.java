@@ -3,8 +3,6 @@ package com.clouway.http;
 import com.clouway.core.SessionRepository;
 import com.clouway.core.User;
 import com.google.inject.util.Providers;
-import com.google.sitebricks.At;
-import com.google.sitebricks.Show;
 import org.jmock.Expectations;
 import org.jmock.auto.Mock;
 import org.jmock.integration.junit4.JUnitRuleMockery;
@@ -15,8 +13,6 @@ import org.junit.Test;
 /**
  * Created by clouway on 7/17/14.
  */
-@At("/logoutController")
-@Show("LoginController.html")
 public class LogoutControllerTest {
 
   private LogoutController logoutController;
@@ -30,7 +26,7 @@ public class LogoutControllerTest {
   @Before
   public void setUp() {
 
-    User currentUser = new User(name("test"), password("testPass"), id(23), session("45tg"));
+    User currentUser = new User(id("123"), session("321"));
 
     logoutController = new LogoutController(sessionRepository, Providers.of(currentUser));
   }
@@ -40,7 +36,7 @@ public class LogoutControllerTest {
 
     context.checking(new Expectations() {{
 
-      oneOf(sessionRepository).deleteSessionByID("45tg");
+      oneOf(sessionRepository).deleteSessionByID("321");
     }
     });
 
@@ -48,16 +44,8 @@ public class LogoutControllerTest {
 
   }
 
-  private Object id(int id) {
+  private String id(String id) {
     return id;
-  }
-
-  private String password(String password) {
-    return password;
-  }
-
-  private String name(String name) {
-    return name;
   }
 
   private String session(String session) {

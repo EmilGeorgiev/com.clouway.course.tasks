@@ -14,6 +14,7 @@ import com.google.sitebricks.http.Get;
 @At("/logoutController")
 @Singleton
 public class LogoutController {
+
   private final SessionRepository sessionRepository;
   private final Provider<User> currentUser;
 

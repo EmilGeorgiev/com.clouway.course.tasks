@@ -23,9 +23,12 @@ public class LoginController {
   private final HttpServletResponse response;
   private final SiteMap siteMap;
   private UserDTO userDTO = new UserDTO();
+  private String userMessage;
+  private boolean isShowMessage = false;
 
   @Inject
-  public LoginController(UserRepository userRepository, HttpServletResponse response, SiteMap siteMap) {
+  public LoginController(UserRepository userRepository,
+                         HttpServletResponse response, SiteMap siteMap) {
     this.userRepository = userRepository;
     this.response = response;
 
@@ -33,21 +36,45 @@ public class LoginController {
   }
 
   @Post
-  public void login() {
+  public void login() throws IOException {
 
     //Check whether user data is valid and return sessionID or null if not.
-    String sid = userRepository.authenticateUser(userDTO);
+    String sid = userRepository.isUserExist(userDTO);
 
     if (sid != null) {
 
+      isShowMessage = false;
+
       response.addCookie(new Cookie(siteMap.sid(), sid));
 
-      try {
-        response.sendRedirect(siteMap.mainController());
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
+      response.sendRedirect(siteMap.mainController());
+
+      return;
+
     }
+
+    userMessage = "Invalid user name or password";
+    isShowMessage = true;
+
   }
 
+  public UserDTO getUserDTO() {
+    return userDTO;
+  }
+
+  public void setUserDTO(UserDTO userDTO) {
+    this.userDTO = userDTO;
+  }
+
+  public String getUserMessage() {
+    return userMessage;
+  }
+
+  public void setUserMessage(String userMessage) {
+    this.userMessage = userMessage;
+  }
+
+  public boolean getIsShowMessage() {
+    return isShowMessage;
+  }
 }

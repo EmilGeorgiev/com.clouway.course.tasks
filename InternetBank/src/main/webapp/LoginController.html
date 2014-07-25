@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title></title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="login.css">
+
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12" align="center">
+            <h3>Please login</h3>
+        </div>
+    </div>
+    @ShowIf(isShowMessage)
+    <div class="alert alert-danger" role="alert">${userMessage}</div>
+    <div class="row">
+        <div class="col-md-10">
+            <form class="form-horizontal" role="form" method="post" action="/loginController">
+                <div class="row">
+                    <div class="col-md-offset-4 col-md-4">
+                        <i style="color: red">${userMessage}</i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-md-2 control-label">Name:</label>
+                    <div class="col-md-6">
+                        <input type="text"
+                               name="userDTO.name"
+                               class="form-control"
+                               id="name"
+                               placeholder="Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password"  class="col-md-2 control-label">Password:</label>
+                    <div class="col-md-6">
+                        <input type="password"
+                               name="userDTO.password"
+                               class="form-control"
+                               id="password"
+                               placeholder="Password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-4">
+                        <button type="submit" class="btn btn-default">Sing in</button>
+                        <a href="registeredController" class="btn btn-default">Register</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

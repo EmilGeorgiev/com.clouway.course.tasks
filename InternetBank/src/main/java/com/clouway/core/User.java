@@ -5,29 +5,17 @@ package com.clouway.core;
  */
 public class User {
 
-  private final String name;
-  private final String password;
-  private final Object userId;
+  private final String userName;
   private final String sessionID;
 
-  public User(String name, String password, Object userId, String sessionID) {
+  public User(String sessionID, String userName) {
 
-    this.name = name;
-    this.password = password;
-    this.userId = userId;
+    this.userName = userName;
     this.sessionID = sessionID;
   }
 
-  public String getName() {
-    return name;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public Object getUserId() {
-    return userId;
+  public String getUserName() {
+    return userName;
   }
 
   public String getUserSession() {

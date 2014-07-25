@@ -5,22 +5,18 @@ import com.clouway.core.UserRepository;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.sitebricks.At;
-import com.google.sitebricks.Show;
-import com.google.sitebricks.headless.Service;
 import com.google.sitebricks.http.Post;
 
 /**
  * Created by clouway on 7/16/14.
  */
-@At("/registerController")
-@Service
-@Show("/LoginController.html")
+@At("/registeredController")
 @Singleton
 public class RegisteredController {
 
   private UserDTO userDTO = new UserDTO();
   private final UserRepository userRepository;
-  private String authenticateMessage;
+  private String registeredMessage = null;
 
   @Inject
   public RegisteredController(UserRepository userRepository) {
@@ -32,15 +28,23 @@ public class RegisteredController {
   @Post
   public void registered() {
 
-    authenticateMessage = userRepository.registerUserIfNotExist(userDTO);
+    registeredMessage = userRepository.registerUserIfNotExist(userDTO);
 
   }
 
-  public String getAuthenticateMessage() {
-    return authenticateMessage;
+  public String getRegisteredMessage() {
+    return registeredMessage;
   }
 
-  public void setAuthenticateMessage(String authenticateMessage) {
-    this.authenticateMessage = authenticateMessage;
+  public void setRegisteredMessage(String registeredMessage) {
+    this.registeredMessage = registeredMessage;
+  }
+
+  public UserDTO getUserDTO() {
+    return userDTO;
+  }
+
+  public void setUserDTO(UserDTO userDTO) {
+    this.userDTO = userDTO;
   }
 }

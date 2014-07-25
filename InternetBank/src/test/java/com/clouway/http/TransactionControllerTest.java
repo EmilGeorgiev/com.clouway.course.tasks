@@ -34,7 +34,7 @@ public class TransactionControllerTest {
   @Before
   public void setUp() {
 
-    user = new User(name("test"), password("testPass"), userId(23), sessionID("45XQ"));
+    user = new User(userId("23"), sessionID("45XQ"));
     transactionController = new TransactionController(bankRepository, clock, Providers.of(user));
   }
 
@@ -58,15 +58,7 @@ public class TransactionControllerTest {
 
   }
 
-  private Object userId(int userId) {
+  private String userId(String userId) {
     return userId;
-  }
-
-  private String password(String password) {
-    return password;
-  }
-
-  private String name(String name) {
-    return name;
   }
 }

@@ -2,35 +2,39 @@ package com.clouway.persistent;
 
 import com.clouway.core.BankMessage;
 import com.clouway.core.BankRepository;
-import com.clouway.core.DBMessage;
 import com.clouway.core.Transaction;
+import com.clouway.core.TransactionRepository;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import static com.clouway.core.DBMessages.*;
 
 /**
  * Created by clouway on 7/15/14.
  */
 @Singleton
-public class PersistentBankRepository implements BankRepository {
+public class PersistentBankRepository implements BankRepository, TransactionRepository {
 
-  private final Provider<DB> dbProvider;
+  private final Provider<DB> connection;
   private final BankMessage bankMessage;
-  private final DBMessage messagesDB;
 
   @Inject
-  public PersistentBankRepository(Provider<DB> dbProvider,
-                                  BankMessage bankMessage,
-                                  DBMessage messagesDB) {
+  public PersistentBankRepository(Provider<DB> connection,
+                                  BankMessage bankMessage) {
 
-    this.dbProvider = dbProvider;
-
+    this.connection = connection;
     this.bankMessage = bankMessage;
-    this.messagesDB = messagesDB;
+
   }
 
   @Override
@@ -46,16 +50,17 @@ public class PersistentBankRepository implements BankRepository {
     }
   }
 
-  public float getCurrentAmount(Object userId) {
+  public float getCurrentAmount(String userId) {
 
-    DB db = dbProvider.get();
+    DB db = connection.get();
 
-    DBCollection userColl = db.getCollection(messagesDB.collectionUser());
+    DBObject dbObject = users().findOne(userId);
 
-    DBObject dbObject = userColl.findOne(userId);
-    String amount = String.valueOf(dbObject.get(messagesDB.fieldAccount()));
+    String account = String.valueOf(dbObject.get(ACCOUNT));
 
-    return Float.valueOf(amount);
+    db.collectionExists(USERS);
+
+    return Float.valueOf(account);
   }
 
   private void deposit(Transaction transaction) {
@@ -70,26 +75,61 @@ public class PersistentBankRepository implements BankRepository {
 
   private void updateDatabases(Transaction transaction) {
 
-    DB connection = dbProvider.get();
+    DB connection = this.connection.get();
 
-    DBCollection userCollection = connection.getCollection(messagesDB.collectionUser());
+    BasicDBObject updateQuery = new BasicDBObject(NAME, transaction.getUserName());
 
-    BasicDBObject updateQuery = new BasicDBObject();
+    BasicDBObject updateCommand = new BasicDBObject("$inc",
+                                             new BasicDBObject(ACCOUNT, transaction.getAmount()));
 
-    updateQuery.put(messagesDB.fieldId(), transaction.getUserId());
+    users().update(updateQuery, updateCommand);
 
-    BasicDBObject updateCommand = new BasicDBObject();
+    addNewTransaction(transaction, connection);
 
-    updateCommand.put(messagesDB.operatorInc(), new BasicDBObject(messagesDB.fieldAccount(), transaction.getAmount()));
-
-    userCollection.update(updateQuery, updateCommand);
-
-    //Add new transaction in database.
-//    BasicDBObject newTransaction = new BasicDBObject(messagesDB.fieldTransactionType(), transaction.getTransactionType())
-//            .append(messagesDB.fieldAmount(), transaction.getAmount())
-//            .append(messagesDB.fieldDate(), transaction.getDate())
-//            .append(messagesDB.fieldUserId(), transaction.getUserId());
-//
-//    connection.getCollection(messagesDB.collectionTransaction()).insert(newTransaction);
+    connection.collectionExists(USERS);
   }
+
+  private void addNewTransaction(Transaction transaction, DB connection) {
+    BasicDBObject newTransaction = new BasicDBObject(TRANSACTION_TYPE, transaction.getTransactionType())
+            .append(AMOUNT, transaction.getAmount())
+            .append(DATE, transaction.getDate())
+            .append(NAME, transaction.getUserName());
+
+    connection.getCollection(TRANSACTIONS).insert(newTransaction);
+  }
+
+  private DBCollection getCollection(String collectionName) {
+    return connection.get().getCollection(collectionName);
+  }
+
+  @Override
+  public List<Transaction> getAllTransactionByUserName(String userName) {
+    List<Transaction> transactionList = new ArrayList<Transaction>();
+
+    BasicDBObject wereClause = new BasicDBObject(NAME, userName);
+
+    DBCursor transactions = connection.get().getCollection(TRANSACTIONS).find(wereClause);
+
+    while (transactions.hasNext()) {
+      DBObject transaction = transactions.next();
+
+      String transactionType = (String) transaction.get(TRANSACTION_TYPE);
+      Double amount = (Double) transaction.get(AMOUNT);
+      Date date = (Date) transaction.get(DATE);
+      String name = (String) transaction.get(NAME);
+
+      transactionList.add(new Transaction(transactionType, amount, date, name));
+    }
+
+    return transactionList;
+  }
+
+  private DBCollection users() {
+    return connection.get().getCollection(USERS);
+  }
+
+  private DBCollection sessions() {
+    return connection.get().getCollection(SESSIONS);
+  }
+
 }

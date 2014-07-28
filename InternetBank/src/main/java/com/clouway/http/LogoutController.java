@@ -25,6 +25,9 @@ public class LogoutController {
     this.currentUser = currentUser;
   }
 
+  /**
+   * Delete user' session from database.
+   */
   @Get
   public void logout() {
 

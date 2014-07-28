@@ -6,7 +6,7 @@ package com.clouway.core;
 public interface UserRepository {
   String registerUserIfNotExist(UserDTO userDTO);
 
-  User findUser(UserDTO userDTO);
+  String isUserExist(UserDTO userDTO);
 
   User findUserBySessionID(String session);
 }

@@ -5,14 +5,15 @@
     <title></title>
 </head>
 <body>
-@Repeat(items=transactionList, var="transaction" )
-<div>
-    <p></p>
-    <i>transaction.transactionType</i>&nbsp;&nbsp;&nbsp;
-    <i>transaction.amount</i>&nbsp;&nbsp;&nbsp;
-    <i>transaction.date</i>&nbsp;&nbsp;&nbsp;
-    <i>transaction.userID</i>&nbsp;&nbsp;&nbsp;
-</div>
+<ul>
+    @Repeat(items=transactions, var="transaction" )
+    <li>
+        ${transaction.transactionType}&nbsp;&nbsp;&nbsp;
+        ${transaction.amount}&nbsp;&nbsp;&nbsp;
+        ${transaction.date}&nbsp;&nbsp;&nbsp;
+        ${transaction.userName}&nbsp;&nbsp;&nbsp;
+    </li>
+</ul>
 
 </body>
 </html>

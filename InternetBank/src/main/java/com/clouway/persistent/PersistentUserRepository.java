@@ -1,7 +1,11 @@
 package com.clouway.persistent;
 
-import com.clouway.core.*;
-import com.google.common.base.Optional;
+import com.clouway.core.Clock;
+import com.clouway.core.SessionRepository;
+import com.clouway.core.User;
+import com.clouway.core.UserDTO;
+import com.clouway.core.UserMessage;
+import com.clouway.core.UserRepository;
 import com.google.common.hash.HashFunction;
 import com.google.common.hash.Hashing;
 import com.google.inject.Inject;
@@ -22,14 +26,16 @@ import static com.clouway.core.DBMessages.*;
  * Created by clouway on 7/17/14.
  */
 @Singleton
-public class PersistentUserRepository implements UserRepository {
+public class PersistentUserRepository implements UserRepository, SessionRepository {
 
   private final Provider<DB> connection;
   private final Clock clock;
   private final Provider<UserMessage> userMessage;
 
   @Inject
-  public PersistentUserRepository(Provider<DB> connection, Clock clock, Provider<UserMessage> userMessage) {
+  public PersistentUserRepository(Provider<DB> connection,
+                                  Clock clock,
+                                  Provider<UserMessage> userMessage) {
 
     this.connection = connection;
     this.clock = clock;
@@ -45,7 +51,7 @@ public class PersistentUserRepository implements UserRepository {
 
     WriteResult writeResult = users().update(documentQuery, documentUpdate, true, false);
 
-    if(writeResult.isUpdateOfExisting()) {
+    if (writeResult.isUpdateOfExisting()) {
       return userMessage.get().failed();
     }
 
@@ -54,39 +60,72 @@ public class PersistentUserRepository implements UserRepository {
   }
 
   @Override
-  public User findUser(UserDTO user) {
+  public String isUserExist(UserDTO user) {
 
     DBObject documentUser = new BasicDBObject(NAME, user.getName())
-                                      .append(PASSWORD, user.getPassword());
+            .append(PASSWORD, user.getPassword());
 
-    documentUser = users().findOne(documentUser);
+    DBObject doc = users().findOne(documentUser);
 
-    if(documentUser == null) {
+    if (documentUser == null) {
       return null;
     }
 
-    String sessionId = createUserSession(user.getName());
-
-    return new User(sessionId, user.getName());
+    return createUserSession(user.getName());
 
   }
 
-    @Override
-    public User findUserBySessionID(String session) {
-        BasicDBObject documentQuery = new BasicDBObject(SID, session);
+  @Override
+  public User findUserBySessionID(String session) {
+    BasicDBObject documentQuery = new BasicDBObject(SID, session);
 
-        String userName = (String) sessions().findOne(documentQuery).get(USER_NAME);
+    String userName = (String) sessions().findOne(documentQuery).get(USER_NAME);
 
-        documentQuery = new BasicDBObject(NAME, userName);
+    documentQuery = new BasicDBObject(NAME, userName);
 
-        DBObject user = users().findOne(documentQuery);
+    DBObject user = users().findOne(documentQuery);
 
-        String userSession = (String) user.get(SESSION);
+    String userSession = (String) user.get(SESSION);
 
-        return new User(userSession, userName);
+    return new User(userSession, userName);
+  }
+
+  @Override
+  public User authenticateSession(String sessionID, Clock date) {
+    BasicDBObject whereQuery = new BasicDBObject(SID, sessionID)
+                                         .append(EXPIRATION_DATE, new BasicDBObject(GREATE, date.now()));
+
+    DBObject user = users().findOne(whereQuery);
+
+    if(user != null) {
+
+      updateSession(whereQuery);
+
+      String userSession = (String) user.get(SID);
+
+      String userName = (String) user.get(NAME);
+
+      return new User(userSession, userName);
     }
 
-    private String createUserSession(String userName) {
+    return null;
+  }
+
+  @Override
+  public void deleteSessionByID(String sid) {
+    BasicDBObject sessionDocument = new BasicDBObject(SID, sid);
+
+    sessions().remove(sessionDocument);
+  }
+
+  private void updateSession(BasicDBObject whereQuery) {
+
+    BasicDBObject updateDocument = new BasicDBObject(EXPIRATION_DATE, getDateExpired(clock.now()));
+
+    sessions().update(whereQuery, updateDocument);
+  }
+
+  private String createUserSession(String userName) {
 
     HashFunction sha1 = Hashing.sha1();
 
@@ -95,7 +134,7 @@ public class PersistentUserRepository implements UserRepository {
     Date expiredDate = getDateExpired(clock.now());
 
     BasicDBObject documentSession = new BasicDBObject("sid", sessionID)
-            .append(NAME, userName)
+            .append(USER_NAME, userName)
             .append(EXPIRATION_DATE, expiredDate);
 
     sessions().insert(documentSession);
@@ -123,4 +162,5 @@ public class PersistentUserRepository implements UserRepository {
   private DBCollection sessions() {
     return connection.get().getCollection(SESSIONS);
   }
+
 }

@@ -18,9 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Created by clouway on 7/16/14.
- */
 @Singleton
 public class AuthenticatedFilter implements Filter{
 
@@ -46,9 +43,12 @@ public class AuthenticatedFilter implements Filter{
 
   }
 
+  /**
+   * For each request from the user checks whether the current user session has expired.
+   */
   @Override
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-
+    System.out.println("i am filter");
     HttpServletRequest servletRequest = (HttpServletRequest) request;
 
     HttpServletResponse servletResponse = (HttpServletResponse) response;

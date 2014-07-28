@@ -8,13 +8,9 @@ import com.google.inject.Provider;
 import com.google.inject.Singleton;
 import com.google.sitebricks.At;
 import com.google.sitebricks.http.Get;
-import com.google.sitebricks.http.Post;
 
 import java.util.List;
 
-/**
- * Created by clouway on 7/16/14.
- */
 @At("/mainController")
 @Singleton
 public class MainController {
@@ -22,6 +18,7 @@ public class MainController {
   private final Provider<User> userProvider;
   private List<Transaction> list;
   private User user;
+  private String userMessage;
 
   @Inject
   public MainController(TransactionRepository transactionRepository, Provider<User> userProvider) {
@@ -30,14 +27,12 @@ public class MainController {
     this.userProvider = userProvider;
   }
 
-
-  @Post
-  public void post() {
-    System.out.println("i am post");
-  }
-
+  /**
+   * Retrieve all transaction on current user.
+   */
   @Get
   public void configure() {
+
     user = userProvider.get();
     list = transactionRepository.getAllTransactionByUserName(user.getUserName());
   }
@@ -56,5 +51,13 @@ public class MainController {
 
   public void setUser(User user) {
     this.user = user;
+  }
+
+  public String getUserMessage() {
+    return userMessage;
+  }
+
+  public void setUserMessage(String userMessage) {
+    this.userMessage = userMessage;
   }
 }

@@ -35,11 +35,15 @@ public class LoginController {
     this.siteMap = siteMap;
   }
 
+  /**
+   * login user and preserves user's session in <code>Cookie</code>
+   * @throws IOException
+   */
   @Post
   public void login() throws IOException {
 
     //Check whether user data is valid and return sessionID or null if not.
-    String sid = userRepository.findUser(userDTO);
+    String sid = userRepository.isUserExist(userDTO);
 
     if (sid != null) {
 

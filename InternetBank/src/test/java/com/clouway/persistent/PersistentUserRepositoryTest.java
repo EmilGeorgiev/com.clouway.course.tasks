@@ -1,8 +1,12 @@
 package com.clouway.persistent;
 
+import com.clouway.core.Clock;
+import com.clouway.core.User;
 import com.clouway.core.UserDTO;
+import com.clouway.core.UserMessage;
 import com.clouway.util.BankUtil;
 import com.clouway.util.CalendarUtil;
+import com.clouway.util.SessionUtil;
 import com.google.inject.util.Providers;
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
@@ -11,14 +15,11 @@ import org.junit.Test;
 
 import java.net.UnknownHostException;
 
-import static com.clouway.core.DBMessages.REGISTRATION_FAILED;
-import static com.clouway.core.DBMessages.REGISTRATION_SUCCESS;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
-/**
- * Created by clouway on 7/17/14.
- */
 public class PersistentUserRepositoryTest {
 
   private PersistentUserRepository userRepository;
@@ -26,6 +27,21 @@ public class PersistentUserRepositoryTest {
   private CalendarUtil clock = new CalendarUtil(2014, 7, 28, 12, 20, 45 );
   private UserDTO userDTO;
   private BankUtil bankUtil;
+  private SessionUtil sessionUtil;
+
+  private UserMessage userMessage = new UserMessage() {
+
+
+    @Override
+    public String failed() {
+      return "Registered is failed";
+    }
+
+    @Override
+    public String success() {
+      return "Registered is success";
+    }
+  };
 
 
   @Before
@@ -34,14 +50,15 @@ public class PersistentUserRepositoryTest {
 
     connection = mongoClient.getDB("Bank_Test");
 
-    userRepository = new PersistentUserRepository(Providers.of(connection), clock);
+    userRepository = new PersistentUserRepository(Providers.of(connection),
+                                                  clock,
+                                                  Providers.of(userMessage));
 
     cleanDB();
 
     bankUtil = new BankUtil(connection);
+    sessionUtil = new SessionUtil(connection);
   }
-
-
 
   @Test
   public void registerNewUser() throws Exception {
@@ -50,7 +67,7 @@ public class PersistentUserRepositoryTest {
 
     String userMessage = userRepository.registerUserIfNotExist(userDTO);
 
-    assertThat(userMessage, is(REGISTRATION_SUCCESS));
+    assertThat(userMessage, is("Registered is success"));
 
   }
 
@@ -61,7 +78,28 @@ public class PersistentUserRepositoryTest {
 
     String userMessage = userRepository.registerUserIfNotExist(userDTO);
 
-    assertThat(userMessage, is(REGISTRATION_FAILED));
+    assertThat(userMessage, is("Registered is failed"));
+
+  }
+
+  @Test
+  public void userSessionIsNotExpiration() throws Exception {
+
+    pretendThatUserSessionIs(session("123"), userId("321"), expirationDate(new CalendarUtil(2014, 7, 28, 12, 55, 0)));
+
+    User user = userRepository.authenticateSession(session("123"), clock);
+
+    assertNotNull(user);
+
+  }
+
+  @Test
+  public void userSessionIsExpiration() throws Exception {
+    pretendThatUserSessionIs(session("456"), userId("654"), expirationDate(new CalendarUtil(2014, 7, 28, 10, 20, 0)));
+
+    User user = userRepository.authenticateSession(session("456"), clock);
+
+    assertNull(user);
 
   }
 
@@ -69,6 +107,23 @@ public class PersistentUserRepositoryTest {
     userDTO = new UserDTO(name, pass);
     bankUtil.registerUser(name, pass);
   }
+
+  private String userId(String userId) {
+    return userId;
+  }
+
+  private void pretendThatUserSessionIs(String session, String userId, Clock expirationTime) {
+    sessionUtil.addUserSessionInDatabase(session, userId, expirationTime);
+  }
+
+  private Clock expirationDate(CalendarUtil calendarUtil) {
+    return calendarUtil;
+  }
+
+  private String session(String session) {
+    return session;
+  }
+
 
   private void pretendThatUserWantsRegister(String name, String pass) {
     userDTO = new UserDTO(name, pass);
@@ -84,5 +139,6 @@ public class PersistentUserRepositoryTest {
 
   private void cleanDB() {
     connection.getCollection("users").drop();
+    connection.getCollection("sessions").drop();
   }
 }

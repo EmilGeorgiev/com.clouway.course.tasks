@@ -3,7 +3,6 @@ package com.clouway.http;
 import com.clouway.core.Transaction;
 import com.google.sitebricks.rendering.EmbedAs;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,13 +11,13 @@ import java.util.List;
 @EmbedAs("Transaction")
 public class ShowTransaction {
 
-  private List<Transaction> transactionList = new ArrayList<Transaction>();
+  private List<Transaction> transactions;
 
   public List<Transaction> getTransactionList() {
-    return transactionList;
+    return transactions;
   }
 
   public void setTransactionList(List<Transaction> transactionList) {
-    this.transactionList = transactionList;
+    this.transactions = transactionList;
   }
 }

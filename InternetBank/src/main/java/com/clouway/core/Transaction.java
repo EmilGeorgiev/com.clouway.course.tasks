@@ -7,16 +7,15 @@ import java.util.Date;
  */
 public class Transaction {
 
-  private final String transactionType;
+  private String transactionType;
   private double amount;
-  private final Date date;
-  private final String userName;
+  private Date date;
+  private String userName;
 
   public Transaction(String transactionType, double amount, Date date, String userName) {
 
     this.transactionType = transactionType;
     this.amount = amount;
-
     this.date = date;
     this.userName = userName;
   }
@@ -39,6 +38,18 @@ public class Transaction {
 
   public String getUserName() {
     return userName;
+  }
+
+  public void setTransactionType(String transactionType) {
+    this.transactionType = transactionType;
+  }
+
+  public void setDate(Date date) {
+    this.date = date;
+  }
+
+  public void setUserName(String userName) {
+    this.userName = userName;
   }
 
   @Override

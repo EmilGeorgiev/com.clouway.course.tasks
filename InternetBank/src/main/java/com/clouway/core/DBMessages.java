@@ -28,4 +28,5 @@ public class DBMessages {
   public static final String REGISTRATION_SUCCESS = "Registration is success";
   public static final String UPSERT = "upsert";
     public static final String USER_NAME = "user_name";
+  public static final String TRANSACTION_SUCCESS = "Transaction is success.";
 }

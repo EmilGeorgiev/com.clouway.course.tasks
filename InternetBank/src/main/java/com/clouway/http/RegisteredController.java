@@ -7,9 +7,6 @@ import com.google.inject.Singleton;
 import com.google.sitebricks.At;
 import com.google.sitebricks.http.Post;
 
-/**
- * Created by clouway on 7/16/14.
- */
 @At("/registeredController")
 @Singleton
 public class RegisteredController {
@@ -25,6 +22,9 @@ public class RegisteredController {
 
   }
 
+  /**
+   * Register new user if it not exist and return message on user.
+   */
   @Post
   public void registered() {
 

@@ -23,7 +23,7 @@ public class Sitebricks extends com.google.sitebricks.SitebricksModule {
     at("/logoutController").show(LogoutController.class);
     at("/mainController").show(MainController.class);
     at("/registeredController").show(RegisteredController.class);
-    at("/transactionController").show(TransactionController.class);
+    at("/transactionController").serve(TransactionController.class);
 
     embed(ShowTransaction.class).as("Transaction");
 

@@ -18,7 +18,7 @@ public class BankUtil {
 
   public void makeTransaction(Transaction transaction) {
 
-    BasicDBObject updateQuery = new BasicDBObject("_id", transaction.getUserName());
+    BasicDBObject updateQuery = new BasicDBObject("name", transaction.getUserName());
 
     BasicDBObject updateDocument = new BasicDBObject("$inc", new BasicDBObject("account", transaction.getAmount()));
 
@@ -27,9 +27,9 @@ public class BankUtil {
     addNewTransaction(transaction);
   }
 
-  public void registerUser(String userId) {
+  public void registerUser(String userName) {
 
-    BasicDBObject user = new BasicDBObject("_id", userId)
+    BasicDBObject user = new BasicDBObject("name", userName)
             .append("account", 0.0);
 
     connection.getCollection("users").save(user);
@@ -46,7 +46,7 @@ public class BankUtil {
     BasicDBObject newTransaction = new BasicDBObject("transactionType", transaction.getTransactionType())
             .append("amount", transaction.getAmount())
             .append("date", transaction.getDate())
-            .append("user_id", transaction.getUserName());
+            .append("user_name", transaction.getUserName());
 
     DBCollection collection = connection.getCollection("transactions");
 

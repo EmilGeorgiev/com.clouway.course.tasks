@@ -2,20 +2,24 @@ package com.clouway.http;
 
 import com.clouway.core.BankRepository;
 import com.clouway.core.Clock;
+import com.clouway.core.SiteMap;
 import com.clouway.core.Transaction;
 import com.clouway.core.TransactionDTO;
 import com.clouway.core.User;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.sitebricks.At;
-import com.google.sitebricks.Show;
+import com.google.sitebricks.headless.Service;
 import com.google.sitebricks.http.Post;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * Created by clouway on 7/14/14.
  */
 @At("/transactionController")
-@Show("MainController")
+@Service
 public class TransactionController {
 
   private TransactionDTO transactionDTO = new TransactionDTO();
@@ -23,28 +27,36 @@ public class TransactionController {
   private final BankRepository bankRepository;
   private final Clock clock;
   private final Provider<User> currentUser;
+  private final SiteMap siteMap;
+  private final HttpServletResponse response;
 
 
   @Inject
   public TransactionController(BankRepository bankRepository,
                                Clock clock,
-                               Provider<User> currentUser) {
+                               Provider<User> currentUser,
+                               SiteMap siteMap,
+                               HttpServletResponse response) {
     this.bankRepository = bankRepository;
     this.clock = clock;
     this.currentUser = currentUser;
+    this.siteMap = siteMap;
+    this.response = response;
   }
 
+
   @Post
-  public void transfer(){
+  public void transfer() throws IOException {
 
     Transaction transaction = new Transaction(transactionDTO.getTransactionType(),
                                               transactionDTO.getAmount(),
                                               clock.now(),
                                               currentUser.get().getUserName());
 
-    bankRepository.makeTransaction(transaction);
+    message = bankRepository.makeTransaction(transaction);
 
-    message = "Transaction success";
+    response.sendRedirect(siteMap.mainController() + "?userMessage=" + message);
+
   }
 
   public String getMessage() {

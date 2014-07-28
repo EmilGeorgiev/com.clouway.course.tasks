@@ -53,11 +53,11 @@ public class PersistentBankRepositoryTest {
 
     cleanDB();
 
-    transaction = new Transaction(type("deposit"), amount(10), clock.now(), userId("123"));
+    transaction = new Transaction(type("deposit"), amount(10), clock.now(), userName("test"));
 
     bankUtil = new BankUtil(connection);
 
-    bankUtil.registerUser(userId("123"));
+    bankUtil.registerUser(userName("test"));
 
     persistentBankRepository = new PersistentBankRepository(Providers.of(connection), bankMessage);
   }
@@ -65,9 +65,9 @@ public class PersistentBankRepositoryTest {
   @Test
   public void whenMakeTransferThenCreateAndNewTransaction() throws Exception {
 
-    Transaction deposit = new Transaction(type("deposit"), amount(30), clock.now(), userId("123"));
+    Transaction deposit = new Transaction(type("deposit"), amount(30), clock.now(), userName("test"));
 
-    Transaction withdraw = new Transaction(type("withdrawing"), amount(20), clock.now(), userId("123"));
+    Transaction withdraw = new Transaction(type("withdrawing"), amount(20), clock.now(), userName("test"));
 
     pretendThatHasTransactions(deposit, withdraw);
 
@@ -79,9 +79,9 @@ public class PersistentBankRepositoryTest {
 
     persistentBankRepository.makeTransaction(transaction);
 
-    double currentAmount = persistentBankRepository.getCurrentAmount(userId("123"));
+    double currentAmount = persistentBankRepository.getCurrentAmount(userName("test"));
 
-    List<Transaction> transactionList = persistentBankRepository.getAllTransactionByUserName("123");
+    List<Transaction> transactionList = persistentBankRepository.getAllTransactionByUserName("test");
 
     assertThat(currentAmount, is(20D));
 
@@ -106,7 +106,7 @@ public class PersistentBankRepositoryTest {
     return amount;
   }
 
-  private String userId(String userId) {
+  private String userName(String userId) {
     return userId;
   }
 

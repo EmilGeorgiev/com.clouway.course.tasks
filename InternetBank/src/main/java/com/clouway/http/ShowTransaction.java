@@ -13,11 +13,11 @@ public class ShowTransaction {
 
   private List<Transaction> transactions;
 
-  public List<Transaction> getTransactionList() {
+  public List<Transaction> getTransactions() {
     return transactions;
   }
 
-  public void setTransactionList(List<Transaction> transactionList) {
-    this.transactions = transactionList;
+  public void setTransactions(List<Transaction> transactions) {
+    this.transactions = transactions;
   }
 }

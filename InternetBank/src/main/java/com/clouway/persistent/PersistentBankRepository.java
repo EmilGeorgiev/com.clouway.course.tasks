@@ -5,6 +5,7 @@ import com.clouway.core.BankRepository;
 import com.clouway.core.DBMessages;
 import com.clouway.core.Transaction;
 import com.clouway.core.TransactionRepository;
+import com.clouway.core.UserMessage;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
@@ -18,22 +19,21 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static com.clouway.core.DBMessages.*;
-
 
 @Singleton
 public class PersistentBankRepository implements BankRepository, TransactionRepository {
 
   private final Provider<DB> connection;
-  private final BankMessage bankMessage;
+  private final UserMessage userMessage;
 
   @Inject
   public PersistentBankRepository(Provider<DB> connection,
-                                  BankMessage bankMessage) {
+                                  UserMessage userMessage) {
 
     this.connection = connection;
-    this.bankMessage = bankMessage;
 
+
+    this.userMessage = userMessage;
   }
 
   @Override
@@ -49,24 +49,24 @@ public class PersistentBankRepository implements BankRepository, TransactionRepo
       withdrawing(transaction);
     }
 
-    return DBMessages.TRANSACTION_SUCCESS;
+    return userMessage.success();
   }
 
   @Override
   public List<Transaction> getAllTransactionByUserName(String userName) {
     List<Transaction> transactionList = new ArrayList<Transaction>();
 
-    BasicDBObject wereClause = new BasicDBObject(USER_NAME, userName);
+    BasicDBObject query = new BasicDBObject("user_name", userName);
 
-    DBCursor transactions = transactions().find(wereClause);
+    DBCursor transactions = transactions().find(query);
 
     while (transactions.hasNext()) {
       DBObject transaction = transactions.next();
 
-      String transactionType = (String) transaction.get(TRANSACTION_TYPE);
-      Double amount = (Double) transaction.get(AMOUNT);
-      Date date = (Date) transaction.get(DATE);
-      String name = (String) transaction.get(NAME);
+      String transactionType = (String) transaction.get("transaction_type");
+      Double amount = (Double) transaction.get("amount");
+      Date date = (Date) transaction.get("date");
+      String name = (String) transaction.get("name");
 
       transactionList.add(new Transaction(transactionType, amount, date, name));
     }
@@ -78,13 +78,13 @@ public class PersistentBankRepository implements BankRepository, TransactionRepo
 
     DB db = connection.get();
 
-    DBObject documentQuery = new BasicDBObject(NAME, userName);
+    DBObject documentQuery = new BasicDBObject("name", userName);
 
     DBObject dbObject = users().findOne(documentQuery);
 
-    String account = String.valueOf(dbObject.get(ACCOUNT));
+    String account = String.valueOf(dbObject.get("account"));
 
-    db.collectionExists(USERS);
+    db.collectionExists("users");
 
     return Float.valueOf(account);
   }
@@ -103,32 +103,32 @@ public class PersistentBankRepository implements BankRepository, TransactionRepo
 
     DB connection = this.connection.get();
 
-    BasicDBObject updateQuery = new BasicDBObject(NAME, transaction.getUserName());
+    BasicDBObject updateQuery = new BasicDBObject("name", transaction.getUserName());
 
     BasicDBObject updateCommand = new BasicDBObject("$inc",
-                                             new BasicDBObject(ACCOUNT, transaction.getAmount()));
+                                             new BasicDBObject("account", transaction.getAmount()));
 
     users().update(updateQuery, updateCommand);
 
     addNewTransaction(transaction);
 
-    connection.collectionExists(USERS);
+    connection.collectionExists("users");
   }
 
   private void addNewTransaction(Transaction transaction) {
-    BasicDBObject newTransaction = new BasicDBObject(TRANSACTION_TYPE, transaction.getTransactionType())
-            .append(AMOUNT, transaction.getAmount())
-            .append(DATE, transaction.getDate())
-            .append(USER_NAME, transaction.getUserName());
+    BasicDBObject newTransaction = new BasicDBObject("transaction_type", transaction.getTransactionType())
+                                .append("amount", transaction.getAmount())
+                                .append("date", transaction.getDate())
+                                .append("user_name", transaction.getUserName());
 
     transactions().insert(newTransaction);
   }
 
   private DBCollection users() {
-    return connection.get().getCollection(USERS);
+    return connection.get().getCollection("users");
   }
 
   private DBCollection transactions() {
-    return connection.get().getCollection(TRANSACTIONS);
+    return connection.get().getCollection("transactions");
   }
 }

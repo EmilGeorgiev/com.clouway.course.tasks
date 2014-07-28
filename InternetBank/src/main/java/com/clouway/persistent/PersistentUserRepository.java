@@ -20,8 +20,6 @@ import com.mongodb.WriteResult;
 import java.util.Calendar;
 import java.util.Date;
 
-import static com.clouway.core.DBMessages.*;
-
 /**
  * Created by clouway on 7/17/14.
  */
@@ -45,9 +43,9 @@ public class PersistentUserRepository implements UserRepository, SessionReposito
   @Override
   public String registerUserIfNotExist(UserDTO user) {
 
-    BasicDBObject documentQuery = new BasicDBObject(NAME, user.getName());
+    BasicDBObject documentQuery = new BasicDBObject("name", user.getName());
 
-    BasicDBObject documentUpdate = new BasicDBObject("$set", new BasicDBObject(ACCOUNT, 0));
+    BasicDBObject documentUpdate = new BasicDBObject("$set", new BasicDBObject("account", 0));
 
     WriteResult writeResult = users().update(documentQuery, documentUpdate, true, false);
 
@@ -62,12 +60,12 @@ public class PersistentUserRepository implements UserRepository, SessionReposito
   @Override
   public String isUserExist(UserDTO user) {
 
-    DBObject documentUser = new BasicDBObject(NAME, user.getName())
-            .append(PASSWORD, user.getPassword());
+    DBObject documentUser = new BasicDBObject("name", user.getName())
+            .append("password", user.getPassword());
 
     DBObject doc = users().findOne(documentUser);
 
-    if (documentUser == null) {
+    if (doc == null) {
       return null;
     }
 
@@ -77,23 +75,23 @@ public class PersistentUserRepository implements UserRepository, SessionReposito
 
   @Override
   public User findUserBySessionID(String session) {
-    BasicDBObject documentQuery = new BasicDBObject(SID, session);
+    BasicDBObject documentQuery = new BasicDBObject("sid", session);
 
-    String userName = (String) sessions().findOne(documentQuery).get(USER_NAME);
+    String userName = (String) sessions().findOne(documentQuery).get("user_name");
 
-    documentQuery = new BasicDBObject(NAME, userName);
+    documentQuery = new BasicDBObject("name", userName);
 
     DBObject user = users().findOne(documentQuery);
 
-    String userSession = (String) user.get(SESSION);
+    String userSession = (String) user.get("session");
 
     return new User(userSession, userName);
   }
 
   @Override
   public User authenticateSession(String sessionID, Clock date) {
-    BasicDBObject whereQuery = new BasicDBObject(SID, sessionID)
-                                         .append(EXPIRATION_DATE, new BasicDBObject(GREATE, date.now()));
+    BasicDBObject whereQuery = new BasicDBObject("sid", sessionID)
+                                         .append("expiration_date", new BasicDBObject("$gt", date.now()));
 
     DBObject user = users().findOne(whereQuery);
 
@@ -101,9 +99,9 @@ public class PersistentUserRepository implements UserRepository, SessionReposito
 
       updateSession(whereQuery);
 
-      String userSession = (String) user.get(SID);
+      String userSession = (String) user.get("sid");
 
-      String userName = (String) user.get(NAME);
+      String userName = (String) user.get("name");
 
       return new User(userSession, userName);
     }
@@ -113,14 +111,14 @@ public class PersistentUserRepository implements UserRepository, SessionReposito
 
   @Override
   public void deleteSessionByID(String sid) {
-    BasicDBObject sessionDocument = new BasicDBObject(SID, sid);
+    BasicDBObject sessionDocument = new BasicDBObject("sid", sid);
 
     sessions().remove(sessionDocument);
   }
 
   private void updateSession(BasicDBObject whereQuery) {
 
-    BasicDBObject updateDocument = new BasicDBObject(EXPIRATION_DATE, getDateExpired(clock.now()));
+    BasicDBObject updateDocument = new BasicDBObject("expiration_date", getDateExpired(clock.now()));
 
     sessions().update(whereQuery, updateDocument);
   }
@@ -134,8 +132,8 @@ public class PersistentUserRepository implements UserRepository, SessionReposito
     Date expiredDate = getDateExpired(clock.now());
 
     BasicDBObject documentSession = new BasicDBObject("sid", sessionID)
-            .append(USER_NAME, userName)
-            .append(EXPIRATION_DATE, expiredDate);
+            .append("user_name", userName)
+            .append("expiration_date", expiredDate);
 
     sessions().insert(documentSession);
 
@@ -156,11 +154,11 @@ public class PersistentUserRepository implements UserRepository, SessionReposito
   }
 
   private DBCollection users() {
-    return connection.get().getCollection(USERS);
+    return connection.get().getCollection("users");
   }
 
   private DBCollection sessions() {
-    return connection.get().getCollection(SESSIONS);
+    return connection.get().getCollection("sessions");
   }
 
 }

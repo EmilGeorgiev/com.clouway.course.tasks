@@ -1,6 +1,7 @@
 package com.clouway.http;
 
 import com.clouway.core.SessionRepository;
+import com.clouway.core.SiteMap;
 import com.clouway.core.User;
 import com.google.inject.util.Providers;
 import org.jmock.Expectations;
@@ -21,12 +22,15 @@ public class LogoutControllerTest {
   @Mock
   private SessionRepository sessionRepository = null;
 
+  @Mock
+  private SiteMap siteMap = null;
+
   @Before
   public void setUp() {
 
     User currentUser = new User(session("123"), name("test"));
 
-    logoutController = new LogoutController(sessionRepository, Providers.of(currentUser));
+    logoutController = new LogoutController(sessionRepository, Providers.of(currentUser), siteMap);
   }
 
   @Test
@@ -35,6 +39,9 @@ public class LogoutControllerTest {
     context.checking(new Expectations() {{
 
       oneOf(sessionRepository).deleteSessionByID("123");
+
+      oneOf(siteMap).loginController();
+      will(returnValue("/loginController"));
     }
     });
 

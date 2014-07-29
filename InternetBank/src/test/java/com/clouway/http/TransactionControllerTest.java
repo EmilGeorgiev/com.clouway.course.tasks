@@ -15,6 +15,9 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+
 /**
  * Created by clouway on 7/14/14.
  */
@@ -57,15 +60,19 @@ public class TransactionControllerTest {
 
     context.checking(new Expectations() {{
 
+      oneOf(siteMap).mainController();
+      will(returnValue("/mainController"));
+
       oneOf(bankRepository).executeTransaction(with(capturingMatcher));
+      will(returnValue("success"));
     }
     });
 
 
 
-//    String request = transactionController.transfer();
-//
-//    assertThat(request, is("mainController?userMessage=success"));
+    String request = transactionController.transfer();
+
+    assertThat(request, is("/mainController?userMessage=success"));
   }
 
   private String userName(String sessionID) {

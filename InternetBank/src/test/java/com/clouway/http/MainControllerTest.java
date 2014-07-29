@@ -1,5 +1,6 @@
 package com.clouway.http;
 
+import com.clouway.core.SiteMap;
 import com.clouway.core.Transaction;
 import com.clouway.core.TransactionRepository;
 import com.clouway.core.User;
@@ -31,11 +32,14 @@ public class MainControllerTest {
   @Mock
   private TransactionRepository transactionRepository;
 
+  @Mock
+  private SiteMap siteMap;
+
   @Before
   public void setUp() {
     user = new User(userId("34"), sessionID("45th"));
 
-    mainController = new MainController(transactionRepository, Providers.of(user));
+    mainController = new MainController(transactionRepository, Providers.of(user), siteMap);
   }
 
   private String sessionID(String sessionID) {

@@ -83,7 +83,7 @@ public class PersistentUserRepositoryTest {
   }
 
   @Test
-  public void userSessionIsNotExpiration() throws Exception {
+  public void userSessionIsNotExpired() throws Exception {
 
     pretendThatUserSessionIs(session("123"), userId("321"), expirationDate(new CalendarUtil(2014, 8, 28, 12, 55, 0)));
 

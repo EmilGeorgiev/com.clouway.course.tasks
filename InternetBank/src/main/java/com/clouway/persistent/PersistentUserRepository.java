@@ -93,7 +93,7 @@ public class PersistentUserRepository implements UserRepository, SessionReposito
     BasicDBObject whereQuery = new BasicDBObject("sid", sessionID)
                                          .append("expiration_date", new BasicDBObject("$gt", date.now()));
 
-    DBObject user = users().findOne(whereQuery);
+    DBObject user = sessions().findOne(whereQuery);
 
     if(user != null) {
 

@@ -18,7 +18,7 @@ public class SessionUtil {
 
   public void addUserSessionInDatabase(String session, String userId, Clock expirationTime) {
     BasicDBObject sessionRecord = new BasicDBObject("sid", session)
-            .append("user_id", userId)
+            .append("user_name", userId)
             .append("expiration_date", expirationTime.now());
 
     getCollection("sessions").insert(sessionRecord);

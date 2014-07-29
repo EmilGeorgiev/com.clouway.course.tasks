@@ -1,5 +1,6 @@
 package com.clouway.http;
 
+import com.clouway.core.SiteMap;
 import com.clouway.core.Transaction;
 import com.clouway.core.TransactionRepository;
 import com.clouway.core.User;
@@ -16,25 +17,34 @@ import java.util.List;
 public class MainController {
   private final TransactionRepository transactionRepository;
   private final Provider<User> userProvider;
+  private final SiteMap siteMap;
   private List<Transaction> list;
   private User user;
   private String userMessage;
 
   @Inject
-  public MainController(TransactionRepository transactionRepository, Provider<User> userProvider) {
+  public MainController(TransactionRepository transactionRepository,
+                        Provider<User> userProvider,
+                        SiteMap siteMap) {
 
     this.transactionRepository = transactionRepository;
     this.userProvider = userProvider;
+    this.siteMap = siteMap;
   }
 
   /**
    * Retrieve all transaction on current user.
    */
   @Get
-  public void configure() {
+  public String configure() {
+
 
     user = userProvider.get();
+    if(user == null) {
+      return siteMap.loginController();
+    }
     list = transactionRepository.getAllTransactionsBy(user.getUserName());
+    return null;
   }
 
   public List<Transaction> getList() {

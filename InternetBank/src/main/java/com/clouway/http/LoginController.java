@@ -40,7 +40,7 @@ public class LoginController {
    * @throws IOException
    */
   @Post
-  public void login() throws IOException {
+  public String login() throws IOException {
 
     //Check whether user data is valid and return sessionID or null if not.
     String sid = userRepository.isUserExist(userDTO);
@@ -51,15 +51,13 @@ public class LoginController {
 
       response.addCookie(new Cookie(siteMap.sid(), sid));
 
-      response.sendRedirect(siteMap.mainController());
-
-      return;
+      return siteMap.mainController();
 
     }
 
     userMessage = "Invalid user name or password";
     isShowMessage = true;
-
+    return siteMap.loginController();
   }
 
   public UserDTO getUserDTO() {

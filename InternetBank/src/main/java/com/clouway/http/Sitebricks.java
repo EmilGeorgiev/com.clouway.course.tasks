@@ -1,6 +1,11 @@
 package com.clouway.http;
 
-import com.clouway.core.*;
+import com.clouway.core.BankMessage;
+import com.clouway.core.BankTransaction;
+import com.clouway.core.SiteMap;
+import com.clouway.core.User;
+import com.clouway.core.UserMessage;
+import com.clouway.core.UserRepository;
 import com.google.inject.Provider;
 import com.google.inject.Provides;
 import com.google.inject.servlet.RequestScoped;
@@ -10,11 +15,15 @@ import com.mongodb.MongoClient;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.net.UnknownHostException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by clouway on 7/14/14.
  */
 public class Sitebricks extends com.google.sitebricks.SitebricksModule {
+
+  private Map<String, BankTransaction> bankTransactionMap = new HashMap<String, BankTransaction>();
 
   @Override
   protected void configureSitebricks() {
@@ -27,6 +36,14 @@ public class Sitebricks extends com.google.sitebricks.SitebricksModule {
 
     embed(ShowTransaction.class).as("Transaction");
 
+    bankTransactionMap.put("deposit", new Deposit(getConnection()));
+    bankTransactionMap.put("withdraw", new Withdraw(getConnection()));
+
+  }
+
+  @Provides
+  public Map<String, BankTransaction> providesMap() {
+    return bankTransactionMap;
   }
 
 

@@ -12,7 +12,6 @@ import com.google.sitebricks.At;
 import com.google.sitebricks.headless.Service;
 import com.google.sitebricks.http.Post;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
@@ -28,25 +27,23 @@ public class TransactionController {
   private final Clock clock;
   private final Provider<User> currentUser;
   private final SiteMap siteMap;
-  private final HttpServletResponse response;
 
 
   @Inject
   public TransactionController(BankRepository bankRepository,
                                Clock clock,
                                Provider<User> currentUser,
-                               SiteMap siteMap,
-                               HttpServletResponse response) {
+                               SiteMap siteMap) {
+
     this.bankRepository = bankRepository;
     this.clock = clock;
     this.currentUser = currentUser;
     this.siteMap = siteMap;
-    this.response = response;
   }
 
 
   @Post
-  public void transfer() throws IOException {
+  public String transfer() throws IOException {
 
     Transaction transaction = new Transaction(transactionDTO.getTransactionType(),
                                               transactionDTO.getAmount(),
@@ -55,7 +52,7 @@ public class TransactionController {
 
     message = bankRepository.makeTransaction(transaction);
 
-    response.sendRedirect(siteMap.mainController() + "?userMessage=" + message);
+    return siteMap.mainController() + "?userMessage=" + message;
 
   }
 

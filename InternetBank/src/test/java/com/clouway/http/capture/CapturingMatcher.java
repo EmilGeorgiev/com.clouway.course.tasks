@@ -11,24 +11,22 @@ public class CapturingMatcher<T> extends BaseMatcher<T> {
 
   private final Matcher<T> baseMatcher;
 
-  private Object captureArg;
+  private Object capturedArg;
 
-  public CapturingMatcher(Matcher<T> baseMatcher) {
+  public CapturingMatcher(Matcher<T> baseMatcher){
     this.baseMatcher = baseMatcher;
   }
 
-  public Object getCaptureArg() {
-    return captureArg;
+  public Object getCapturedArgument(){
+    return capturedArg;
   }
 
-  @Override
-  public boolean matches(Object item) {
-    captureArg = item;
-    return baseMatcher.matches(item);
+  public boolean matches(Object arg){
+    capturedArg = arg;
+    return baseMatcher.matches(arg);
   }
 
-  @Override
-  public void describeTo(Description description) {
-    baseMatcher.describeTo(description);
+  public void describeTo(Description arg){
+    baseMatcher.describeTo(arg);
   }
 }

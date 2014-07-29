@@ -8,6 +8,15 @@ public class TransactionDTO {
   private String transactionType = null;
   private Double amount = null;
 
+  public TransactionDTO() {
+
+  }
+
+  public TransactionDTO(String transactionType, double amount) {
+    this.amount = amount;
+    this.transactionType = transactionType;
+  }
+
   public String getTransactionType() {
     return transactionType;
   }

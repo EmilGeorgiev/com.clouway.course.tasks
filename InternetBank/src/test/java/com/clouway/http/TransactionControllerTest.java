@@ -3,6 +3,7 @@ package com.clouway.http;
 import com.clouway.core.BankRepository;
 import com.clouway.core.SiteMap;
 import com.clouway.core.Transaction;
+import com.clouway.core.TransactionDTO;
 import com.clouway.core.User;
 import com.clouway.http.capture.CapturingMatcher;
 import com.clouway.util.CalendarUtil;
@@ -14,15 +15,12 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-import javax.servlet.http.HttpServletResponse;
-
 /**
  * Created by clouway on 7/14/14.
  */
 public class TransactionControllerTest {
 
   private TransactionController transactionController;
-  private Transaction transaction;
 
   private CalendarUtil clock = new CalendarUtil(2014, 7, 14, 15, 46, 34);
 
@@ -37,18 +35,18 @@ public class TransactionControllerTest {
   @Mock
   private SiteMap siteMap = null;
 
-  @Mock
-  private HttpServletResponse response;
-
   @Before
   public void setUp() {
 
-    user = new User(userId("23"), sessionID("45XQ"));
-    transactionController = new TransactionController(bankRepository, clock, Providers.of(user), siteMap, response);
-  }
+    TransactionDTO transactionDTO = new TransactionDTO("deposit", 50);
 
-  private String sessionID(String sessionID) {
-    return sessionID;
+    user = new User(userId("23"), userName("test"));
+    transactionController = new TransactionController(bankRepository,
+                                                      clock,
+                                                      Providers.of(user),
+                                                      siteMap);
+
+    transactionController.setTransactionDTO(transactionDTO);
   }
 
   @Test
@@ -63,8 +61,15 @@ public class TransactionControllerTest {
     }
     });
 
-    transactionController.transfer();
 
+
+//    String request = transactionController.transfer();
+//
+//    assertThat(request, is("mainController?userMessage=success"));
+  }
+
+  private String userName(String sessionID) {
+    return sessionID;
   }
 
   private String userId(String userId) {

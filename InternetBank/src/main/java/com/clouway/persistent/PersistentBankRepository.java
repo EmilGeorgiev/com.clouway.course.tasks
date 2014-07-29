@@ -1,8 +1,7 @@
 package com.clouway.persistent;
 
-import com.clouway.core.BankMessage;
 import com.clouway.core.BankRepository;
-import com.clouway.core.DBMessages;
+import com.clouway.core.BankTransaction;
 import com.clouway.core.Transaction;
 import com.clouway.core.TransactionRepository;
 import com.clouway.core.UserMessage;
@@ -18,6 +17,7 @@ import com.mongodb.DBObject;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 
 @Singleton
@@ -25,29 +25,28 @@ public class PersistentBankRepository implements BankRepository, TransactionRepo
 
   private final Provider<DB> connection;
   private final UserMessage userMessage;
+  private final Provider<Map<String, BankTransaction>> mapProvider;
 
   @Inject
   public PersistentBankRepository(Provider<DB> connection,
-                                  UserMessage userMessage) {
+                                  UserMessage userMessage,
+                                  Provider<Map<String, BankTransaction>> mapProvider) {
 
     this.connection = connection;
 
 
     this.userMessage = userMessage;
+    this.mapProvider = mapProvider;
   }
 
   @Override
   public String makeTransaction(Transaction transaction) {
 
-    if(bankMessage.deposit().equals(transaction.getTransactionType())) {
+    BankTransaction bankTransaction = mapProvider.get().get(transaction.getTransactionType());
 
-      deposit(transaction);
+    bankTransaction.execute(transaction);
 
-    } else {
-
-      transaction.setAmount(-transaction.getAmount());
-      withdrawing(transaction);
-    }
+    addNewTransaction(transaction);
 
     return userMessage.success();
   }
@@ -66,7 +65,7 @@ public class PersistentBankRepository implements BankRepository, TransactionRepo
       String transactionType = (String) transaction.get("transaction_type");
       Double amount = (Double) transaction.get("amount");
       Date date = (Date) transaction.get("date");
-      String name = (String) transaction.get("name");
+      String name = (String) transaction.get("user_name");
 
       transactionList.add(new Transaction(transactionType, amount, date, name));
     }
@@ -87,32 +86,6 @@ public class PersistentBankRepository implements BankRepository, TransactionRepo
     db.collectionExists("users");
 
     return Float.valueOf(account);
-  }
-
-  private void deposit(Transaction transaction) {
-
-    updateDatabases(transaction);
-  }
-
-  private void withdrawing(Transaction transaction) {
-
-    updateDatabases(transaction);
-  }
-
-  private void updateDatabases(Transaction transaction) {
-
-    DB connection = this.connection.get();
-
-    BasicDBObject updateQuery = new BasicDBObject("name", transaction.getUserName());
-
-    BasicDBObject updateCommand = new BasicDBObject("$inc",
-                                             new BasicDBObject("account", transaction.getAmount()));
-
-    users().update(updateQuery, updateCommand);
-
-    addNewTransaction(transaction);
-
-    connection.collectionExists("users");
   }
 
   private void addNewTransaction(Transaction transaction) {

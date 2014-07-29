@@ -10,9 +10,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-/**
- * Created by clouway on 7/17/14.
- */
+
 public class LogoutControllerTest {
 
   private LogoutController logoutController;
@@ -26,7 +24,7 @@ public class LogoutControllerTest {
   @Before
   public void setUp() {
 
-    User currentUser = new User(id("123"), session("321"));
+    User currentUser = new User(session("123"), name("test"));
 
     logoutController = new LogoutController(sessionRepository, Providers.of(currentUser));
   }
@@ -36,7 +34,7 @@ public class LogoutControllerTest {
 
     context.checking(new Expectations() {{
 
-      oneOf(sessionRepository).deleteSessionByID("321");
+      oneOf(sessionRepository).deleteSessionByID("123");
     }
     });
 
@@ -44,8 +42,8 @@ public class LogoutControllerTest {
 
   }
 
-  private String id(String id) {
-    return id;
+  private String name(String name) {
+    return name;
   }
 
   private String session(String session) {

@@ -20,6 +20,7 @@ public class HttpModule extends ServletModule {
     bind(UserRepository.class).to(PersistentUserRepository.class);
     bind(SessionRepository.class).to(PersistentUserRepository.class);
 
+
     bind(Clock.class).to(Time.class);
 
 //    filter("/*").through(AuthenticatedFilter.class);

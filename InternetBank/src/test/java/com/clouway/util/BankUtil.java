@@ -43,7 +43,7 @@ public class BankUtil {
   }
 
   private void addNewTransaction(Transaction transaction) {
-    BasicDBObject newTransaction = new BasicDBObject("transactionType", transaction.getTransactionType())
+    BasicDBObject newTransaction = new BasicDBObject("transaction_type", transaction.getTransactionType())
             .append("amount", transaction.getAmount())
             .append("date", transaction.getDate())
             .append("user_name", transaction.getUserName());

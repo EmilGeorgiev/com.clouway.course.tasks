@@ -1,9 +1,12 @@
 package com.clouway.persistent;
 
-import com.clouway.core.BankMessage;
+import com.clouway.core.BankTransaction;
 import com.clouway.core.Clock;
 import com.clouway.core.Time;
 import com.clouway.core.Transaction;
+import com.clouway.core.UserMessage;
+import com.clouway.http.Deposit;
+import com.clouway.http.Withdraw;
 import com.clouway.util.BankUtil;
 import com.google.inject.util.Providers;
 import com.mongodb.DB;
@@ -17,7 +20,9 @@ import org.junit.Test;
 
 import java.net.UnknownHostException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -37,12 +42,14 @@ public class PersistentBankRepositoryTest {
 
   private Clock clock = new Time();
 
+  private Map<String, BankTransaction> bankTransactionMap = new HashMap<String, BankTransaction>();
+
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
 
   @Mock
-  private BankMessage bankMessage = null;
+  private UserMessage userMessage = null;
 
   @Before
   public void setUp() throws UnknownHostException {
@@ -57,9 +64,15 @@ public class PersistentBankRepositoryTest {
 
     bankUtil = new BankUtil(connection);
 
+    bankTransactionMap.put("deposit", new Deposit(connection));
+    bankTransactionMap.put("withdraw", new Withdraw(connection));
+
+    persistentBankRepository = new PersistentBankRepository(Providers.of(connection),
+    userMessage,
+    Providers.of(bankTransactionMap));
+
     bankUtil.registerUser(userName("test"));
 
-    persistentBankRepository = new PersistentBankRepository(Providers.of(connection), bankMessage);
   }
 
   @Test
@@ -67,13 +80,11 @@ public class PersistentBankRepositoryTest {
 
     Transaction deposit = new Transaction(type("deposit"), amount(30), clock.now(), userName("test"));
 
-    Transaction withdraw = new Transaction(type("withdrawing"), amount(20), clock.now(), userName("test"));
-
-    pretendThatHasTransactions(deposit, withdraw);
+    pretendThatHasTransactions(deposit);
 
     context.checking(new Expectations() {{
-      oneOf(bankMessage).deposit();
-      will(returnValue("deposit"));
+      oneOf(userMessage).success();
+      will(returnValue("success"));
     }
     });
 
@@ -83,18 +94,16 @@ public class PersistentBankRepositoryTest {
 
     List<Transaction> transactionList = persistentBankRepository.getAllTransactionByUserName("test");
 
-    assertThat(currentAmount, is(20D));
+    assertThat(currentAmount, is(40D));
 
-    assertThat(transactionList, is(Arrays.asList(deposit, withdraw, transaction)));
+    assertThat(transactionList, is(Arrays.asList(deposit, transaction)));
 
   }
 
-  private void pretendThatHasTransactions(Transaction deposit, Transaction withdrawing) {
+  private void pretendThatHasTransactions(Transaction deposit) {
 
     bankUtil.makeTransaction(deposit);
 
-    withdrawing.setAmount(-withdrawing.getAmount());
-    bankUtil.makeTransaction(withdrawing);
   }
 
   private String type(String transferType) {

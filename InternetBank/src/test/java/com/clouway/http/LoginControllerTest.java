@@ -2,6 +2,7 @@ package com.clouway.http;
 
 import com.clouway.core.SiteMap;
 import com.clouway.core.UserDTO;
+import com.clouway.core.UserEntity;
 import com.clouway.core.UserRepository;
 import com.clouway.http.capture.CapturingMatcher;
 import org.jmock.Expectations;
@@ -20,7 +21,8 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginControllerTest {
 
   private LoginController loginController;
-  private UserDTO userDTO = new UserDTO();
+  private UserEntity userEntity = new UserEntity("test", "testPass");
+  private UserDTO userDTO = new UserDTO("test", "testPass");
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
@@ -37,6 +39,8 @@ public class LoginControllerTest {
   @Before
   public void setUp(){
     loginController = new LoginController(userRepository, response, siteMap);
+
+    loginController.setUserDTO(userDTO);
   }
 
   @Test
@@ -47,7 +51,7 @@ public class LoginControllerTest {
 
     context.checking(new Expectations() {{
 
-      oneOf(userRepository).isUserExist(userDTO);
+      oneOf(userRepository).isExist(userEntity);
       will(returnValue(sid("12345")));
 
       oneOf(siteMap).sid();
@@ -69,7 +73,7 @@ public class LoginControllerTest {
   public void loginUserWithInvalidData() throws Exception {
 
     context.checking(new Expectations() {{
-      oneOf(userRepository).isUserExist(userDTO);
+      oneOf(userRepository).isExist(userEntity);
       will(returnValue(null));
 
       oneOf(siteMap).loginController();

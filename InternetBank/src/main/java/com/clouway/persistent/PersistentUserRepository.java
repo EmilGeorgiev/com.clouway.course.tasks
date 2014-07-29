@@ -3,7 +3,7 @@ package com.clouway.persistent;
 import com.clouway.core.Clock;
 import com.clouway.core.SessionRepository;
 import com.clouway.core.User;
-import com.clouway.core.UserDTO;
+import com.clouway.core.UserEntity;
 import com.clouway.core.UserMessage;
 import com.clouway.core.UserRepository;
 import com.google.common.hash.HashFunction;
@@ -41,7 +41,7 @@ public class PersistentUserRepository implements UserRepository, SessionReposito
   }
 
   @Override
-  public String registerUserIfNotExist(UserDTO user) {
+  public String registerUserIfNotExist(UserEntity user) {
 
     BasicDBObject documentQuery = new BasicDBObject("name", user.getName());
 
@@ -58,7 +58,7 @@ public class PersistentUserRepository implements UserRepository, SessionReposito
   }
 
   @Override
-  public String isUserExist(UserDTO user) {
+  public String isExist(UserEntity user) {
 
     DBObject documentUser = new BasicDBObject("name", user.getName())
             .append("password", user.getPassword());

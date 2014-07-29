@@ -2,7 +2,7 @@ package com.clouway.persistent;
 
 import com.clouway.core.Clock;
 import com.clouway.core.User;
-import com.clouway.core.UserDTO;
+import com.clouway.core.UserEntity;
 import com.clouway.core.UserMessage;
 import com.clouway.util.BankUtil;
 import com.clouway.util.CalendarUtil;
@@ -25,7 +25,7 @@ public class PersistentUserRepositoryTest {
   private PersistentUserRepository userRepository;
   private DB connection;
   private CalendarUtil clock = new CalendarUtil(2014, 7, 28, 12, 20, 45 );
-  private UserDTO userDTO;
+  private UserEntity userEntity;
   private BankUtil bankUtil;
   private SessionUtil sessionUtil;
 
@@ -65,7 +65,7 @@ public class PersistentUserRepositoryTest {
 
     pretendThatUserWantsRegister(name("test"), pass("userPass"));
 
-    String userMessage = userRepository.registerUserIfNotExist(userDTO);
+    String userMessage = userRepository.registerUserIfNotExist(userEntity);
 
     assertThat(userMessage, is("Registered is success"));
 
@@ -76,7 +76,7 @@ public class PersistentUserRepositoryTest {
 
     pretendThatUserAlreadyIsRegistered(name("ivan"), pass("ivanTest"));
 
-    String userMessage = userRepository.registerUserIfNotExist(userDTO);
+    String userMessage = userRepository.registerUserIfNotExist(userEntity);
 
     assertThat(userMessage, is("Registered is failed"));
 
@@ -104,7 +104,7 @@ public class PersistentUserRepositoryTest {
   }
 
   private void pretendThatUserAlreadyIsRegistered(String name, String pass) {
-    userDTO = new UserDTO(name, pass);
+    userEntity = new UserEntity(name, pass);
     bankUtil.registerUser(name, pass);
   }
 
@@ -126,7 +126,7 @@ public class PersistentUserRepositoryTest {
 
 
   private void pretendThatUserWantsRegister(String name, String pass) {
-    userDTO = new UserDTO(name, pass);
+    userEntity = new UserEntity(name, pass);
   }
 
   private String pass(String pass) {

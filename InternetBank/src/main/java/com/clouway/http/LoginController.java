@@ -2,6 +2,7 @@ package com.clouway.http;
 
 import com.clouway.core.SiteMap;
 import com.clouway.core.UserDTO;
+import com.clouway.core.UserEntity;
 import com.clouway.core.UserRepository;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -42,8 +43,10 @@ public class LoginController {
   @Post
   public String login() throws IOException {
 
+    UserEntity userEntity = new UserEntity(userDTO.getName(), userDTO.getPassword());
+
     //Check whether user data is valid and return sessionID or null if not.
-    String sid = userRepository.isUserExist(userDTO);
+    String sid = userRepository.isExist(userEntity);
 
     if (sid != null) {
 

@@ -1,6 +1,7 @@
 package com.clouway.http;
 
 import com.clouway.core.UserDTO;
+import com.clouway.core.UserEntity;
 import com.clouway.core.UserRepository;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -28,7 +29,9 @@ public class RegisteredController {
   @Post
   public void registered() {
 
-    registeredMessage = userRepository.registerUserIfNotExist(userDTO);
+    UserEntity userEntity = new UserEntity(userDTO.getName(), userDTO.getPassword());
+
+    registeredMessage = userRepository.registerUserIfNotExist(userEntity);
 
   }
 

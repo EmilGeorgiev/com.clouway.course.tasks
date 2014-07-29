@@ -1,6 +1,7 @@
 package com.clouway.http;
 
 import com.clouway.core.UserDTO;
+import com.clouway.core.UserEntity;
 import com.clouway.core.UserRepository;
 import org.jmock.Expectations;
 import org.jmock.auto.Mock;
@@ -15,7 +16,8 @@ import org.junit.Test;
 public class RegisteredControllerTest {
 
   private RegisteredController registeredController;
-  private UserDTO userDTO = new UserDTO();
+  private UserEntity userEntity = new UserEntity("ivan", "ivanPass");
+  private UserDTO userDTO = new UserDTO("ivan", "ivanPass");
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
@@ -26,6 +28,8 @@ public class RegisteredControllerTest {
   @Before
   public void setUp() {
     registeredController = new RegisteredController(userRepository);
+
+    registeredController.setUserDTO(userDTO);
   }
 
   @Test
@@ -33,7 +37,7 @@ public class RegisteredControllerTest {
 
     context.checking(new Expectations(){{
 
-      oneOf(userRepository).registerUserIfNotExist(userDTO);
+      oneOf(userRepository).registerUserIfNotExist(userEntity);
       will(returnValue("Registration is done."));
 
     }

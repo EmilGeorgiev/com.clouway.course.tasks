@@ -117,7 +117,7 @@ public class Sitebricks extends com.google.sitebricks.SitebricksModule {
     for (Cookie cookie : cookies) {
 
       if ("sid".equalsIgnoreCase(cookie.getName())) {
-        return userRepository.findUserBySessionID(cookie.getValue());
+        return userRepository.findBySessionID(cookie.getValue());
       }
     }
 

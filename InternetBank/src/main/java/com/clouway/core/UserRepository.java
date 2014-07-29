@@ -8,5 +8,5 @@ public interface UserRepository {
 
   String isExist(UserEntity userEntity);
 
-  User findUserBySessionID(String session);
+  User findBySessionID(String session);
 }

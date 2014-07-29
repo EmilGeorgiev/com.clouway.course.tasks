@@ -88,11 +88,11 @@ public class PersistentBankRepositoryTest {
     }
     });
 
-    persistentBankRepository.makeTransaction(transaction);
+    persistentBankRepository.executeTransaction(transaction);
 
     double currentAmount = persistentBankRepository.getCurrentAmount(userName("test"));
 
-    List<Transaction> transactionList = persistentBankRepository.getAllTransactionByUserName("test");
+    List<Transaction> transactionList = persistentBankRepository.getAllTransactionsBy("test");
 
     assertThat(currentAmount, is(40D));
 

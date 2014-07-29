@@ -40,7 +40,7 @@ public class PersistentBankRepository implements BankRepository, TransactionRepo
   }
 
   @Override
-  public String makeTransaction(Transaction transaction) {
+  public String executeTransaction(Transaction transaction) {
 
     BankTransaction bankTransaction = mapProvider.get().get(transaction.getTransactionType());
 
@@ -52,7 +52,7 @@ public class PersistentBankRepository implements BankRepository, TransactionRepo
   }
 
   @Override
-  public List<Transaction> getAllTransactionByUserName(String userName) {
+  public List<Transaction> getAllTransactionsBy(String userName) {
     List<Transaction> transactionList = new ArrayList<Transaction>();
 
     BasicDBObject query = new BasicDBObject("user_name", userName);

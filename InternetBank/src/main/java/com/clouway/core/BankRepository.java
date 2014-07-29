@@ -5,6 +5,6 @@ package com.clouway.core;
  */
 public interface BankRepository {
 
-  String makeTransaction(Transaction transaction);
+  String executeTransaction(Transaction transaction);
 
 }

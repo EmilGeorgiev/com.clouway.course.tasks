@@ -50,7 +50,7 @@ public class TransactionController {
                                               clock.now(),
                                               currentUser.get().getUserName());
 
-    message = bankRepository.makeTransaction(transaction);
+    message = bankRepository.executeTransaction(transaction);
 
     return siteMap.mainController() + "?userMessage=" + message;
 

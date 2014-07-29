@@ -50,7 +50,7 @@ public class MainControllerTest {
   public void configureMainPage() throws Exception {
 
     context.checking(new Expectations() {{
-      oneOf(transactionRepository).getAllTransactionByUserName(user.getUserName());
+      oneOf(transactionRepository).getAllTransactionsBy(user.getUserName());
       will(returnValue(transactionList));
     }
     });

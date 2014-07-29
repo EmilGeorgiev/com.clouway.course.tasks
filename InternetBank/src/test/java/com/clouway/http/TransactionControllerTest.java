@@ -57,7 +57,7 @@ public class TransactionControllerTest {
 
     context.checking(new Expectations() {{
 
-      oneOf(bankRepository).makeTransaction(with(capturingMatcher));
+      oneOf(bankRepository).executeTransaction(with(capturingMatcher));
     }
     });
 

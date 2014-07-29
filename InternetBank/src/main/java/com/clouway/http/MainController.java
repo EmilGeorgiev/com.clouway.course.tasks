@@ -34,7 +34,7 @@ public class MainController {
   public void configure() {
 
     user = userProvider.get();
-    list = transactionRepository.getAllTransactionByUserName(user.getUserName());
+    list = transactionRepository.getAllTransactionsBy(user.getUserName());
   }
 
   public List<Transaction> getList() {

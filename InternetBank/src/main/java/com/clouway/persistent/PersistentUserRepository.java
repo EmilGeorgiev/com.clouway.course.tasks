@@ -74,7 +74,7 @@ public class PersistentUserRepository implements UserRepository, SessionReposito
   }
 
   @Override
-  public User findUserBySessionID(String session) {
+  public User findBySessionID(String session) {
     BasicDBObject documentQuery = new BasicDBObject("sid", session);
 
     String userName = (String) sessions().findOne(documentQuery).get("user_name");

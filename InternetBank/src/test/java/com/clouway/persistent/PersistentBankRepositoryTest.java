@@ -27,9 +27,6 @@ import java.util.Map;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-/**
- * Created by clouway on 7/15/14.
- */
 public class PersistentBankRepositoryTest {
 
   private PersistentBankRepository persistentBankRepository;
@@ -64,12 +61,11 @@ public class PersistentBankRepositoryTest {
 
     bankUtil = new BankUtil(connection);
 
-    bankTransactionMap.put("deposit", new Deposit(connection));
-    bankTransactionMap.put("withdraw", new Withdraw(connection));
+    bankTransactionMap.put("deposit", new Deposit(connection, userMessage));
+    bankTransactionMap.put("withdraw", new Withdraw(connection, userMessage));
 
     persistentBankRepository = new PersistentBankRepository(Providers.of(connection),
-    userMessage,
-    Providers.of(bankTransactionMap));
+                                                            Providers.of(bankTransactionMap));
 
     bankUtil.registerUser(userName("test"));
 
@@ -83,8 +79,10 @@ public class PersistentBankRepositoryTest {
     pretendThatHasTransactions(deposit);
 
     context.checking(new Expectations() {{
-      oneOf(userMessage).success();
-      will(returnValue("success"));
+      oneOf(userMessage).successTransaction();
+      will(returnValue("Transaction is success"));
+
+
     }
     });
 

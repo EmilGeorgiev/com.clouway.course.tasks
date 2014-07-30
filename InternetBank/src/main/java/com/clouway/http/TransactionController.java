@@ -9,6 +9,7 @@ import com.clouway.core.User;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.sitebricks.At;
+import com.google.sitebricks.headless.Reply;
 import com.google.sitebricks.headless.Service;
 import com.google.sitebricks.http.Post;
 
@@ -28,7 +29,6 @@ public class TransactionController {
   private final Provider<User> currentUser;
   private final SiteMap siteMap;
 
-
   @Inject
   public TransactionController(BankRepository bankRepository,
                                Clock clock,
@@ -41,18 +41,22 @@ public class TransactionController {
     this.siteMap = siteMap;
   }
 
-
   @Post
-  public String transfer() throws IOException {
+  public Reply<?> transfer() throws IOException {
 
     Transaction transaction = new Transaction(transactionDTO.getTransactionType(),
                                               transactionDTO.getAmount(),
                                               clock.now(),
-                                              currentUser.get().getUserName());
+                                              currentUser.get().getName());
 
     message = bankRepository.executeTransaction(transaction);
 
-    return siteMap.mainController() + "?userMessage=" + message;
+    String currentAccount = String.valueOf(bankRepository.getAccountBy(currentUser.get().getName()));
+
+    String request = String.format("%s?userMessage=%s&currentAccount=%s&isShowUserMessage=true",
+            siteMap.mainController(), message, currentAccount);
+
+    return  Reply.saying().redirect(request);
 
   }
 

@@ -114,46 +114,50 @@
     </div>
 </div>
 
-<div class="mainFramework">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <h1>Internet Bank</h1>
+<div class="row">
+    <div class="col-md-offset-3 col-md-9">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h1>Internet Bank</h1>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-1">
-                <button class="btn btn-primary btn-lg"
+            <div class="row">
+                <button type="button"
+                        class="btn btn-primary btn-lg"
                         data-toggle="modal"
                         data-target="#depositModal">
                     Deposit
                 </button>
-            </div>
-            <div class="col-md-1">
-                <button class="btn btn-primary btn-lg"
+                <button type="button"
+                        class="btn btn-primary btn-lg"
                         data-toggle="modal"
                         data-target="#withdrawModal">
                     Withdraw
                 </button>
-            </div>
-            <div class="col-md-1">
                 <a href="/logoutController"
-                   class="btn btn-default">Logout</a>
+                   class="btn btn btn-primary btn-lg"
+                   role="button">Logout</a>
+                <button type="button" class="btn btn-primary btn-lg">
+                    Account: ${currentAccount}
+                </button>
             </div>
-        </div>
-        ${userMessage}
-        <div class="row">
-            <div class="col-md-7">
-                @Transaction(transactions = list)
+
+            <div class="row">
+                <div class="col-md-offset-2 col-md-3">
+                    @ShowIf(isShowUserMessage)
+                    <div class="alert alert-success" role="alert">${userMessage}</div>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-1">
-                <a href="/logoutController"
-                   class="btn btn-default">Logout</a>
-            </div>
+
+
+            @Transaction(transactions = list)
+
+            <div></div>
+
         </div>
     </div>
+
 </div>
 
 </body>

@@ -5,5 +5,5 @@ package com.clouway.core;
  */
 public interface BankTransaction {
 
-  void execute(Transaction transaction);
+  String execute(Transaction transaction);
 }

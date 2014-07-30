@@ -11,9 +11,6 @@ import com.clouway.persistent.PersistentUserRepositoryTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-/**
- * Created by clouway on 7/17/14.
- */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({AuthenticatedFilterTest.class,
         LoginControllerTest.class,

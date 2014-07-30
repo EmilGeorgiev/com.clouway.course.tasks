@@ -4,7 +4,6 @@ import com.clouway.core.BankRepository;
 import com.clouway.core.BankTransaction;
 import com.clouway.core.Transaction;
 import com.clouway.core.TransactionRepository;
-import com.clouway.core.UserMessage;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
@@ -24,18 +23,14 @@ import java.util.Map;
 public class PersistentBankRepository implements BankRepository, TransactionRepository {
 
   private final Provider<DB> connection;
-  private final UserMessage userMessage;
+  private String userMessage;
   private final Provider<Map<String, BankTransaction>> mapProvider;
 
   @Inject
   public PersistentBankRepository(Provider<DB> connection,
-                                  UserMessage userMessage,
                                   Provider<Map<String, BankTransaction>> mapProvider) {
 
     this.connection = connection;
-
-
-    this.userMessage = userMessage;
     this.mapProvider = mapProvider;
   }
 
@@ -44,11 +39,16 @@ public class PersistentBankRepository implements BankRepository, TransactionRepo
 
     BankTransaction bankTransaction = mapProvider.get().get(transaction.getTransactionType());
 
-    bankTransaction.execute(transaction);
+    userMessage = bankTransaction.execute(transaction);
 
-    addNewTransaction(transaction);
+    return userMessage;
+  }
 
-    return userMessage.success();
+  @Override
+  public double getAccountBy(String userName) {
+    BasicDBObject query = new BasicDBObject("name", userName);
+
+    return (Double) users().findOne(query).get("account");
   }
 
   @Override
@@ -88,14 +88,7 @@ public class PersistentBankRepository implements BankRepository, TransactionRepo
     return Float.valueOf(account);
   }
 
-  private void addNewTransaction(Transaction transaction) {
-    BasicDBObject newTransaction = new BasicDBObject("transaction_type", transaction.getTransactionType())
-                                .append("amount", transaction.getAmount())
-                                .append("date", transaction.getDate())
-                                .append("user_name", transaction.getUserName());
 
-    transactions().insert(newTransaction);
-  }
 
   private DBCollection users() {
     return connection.get().getCollection("users");

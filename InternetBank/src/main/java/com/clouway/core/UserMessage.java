@@ -7,4 +7,8 @@ public interface UserMessage {
   String failed();
 
   String success();
+
+  String successTransaction();
+
+  String failedTransaction();
 }

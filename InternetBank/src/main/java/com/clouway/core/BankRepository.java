@@ -7,4 +7,6 @@ public interface BankRepository {
 
   String executeTransaction(Transaction transaction);
 
+  double getAccountBy(String userName);
+
 }

@@ -43,11 +43,12 @@ public class PersistentUserRepository implements UserRepository, SessionReposito
   @Override
   public String registerUserIfNotExist(UserEntity user) {
 
-    BasicDBObject documentQuery = new BasicDBObject("name", user.getName());
+    BasicDBObject query = new BasicDBObject("name", user.getName())
+                                    .append("password", user.getPassword());
 
-    BasicDBObject documentUpdate = new BasicDBObject("$set", new BasicDBObject("account", 0));
+    BasicDBObject documentUpdate = new BasicDBObject("$set", new BasicDBObject("account", 0.0));
 
-    WriteResult writeResult = users().update(documentQuery, documentUpdate, true, false);
+    WriteResult writeResult = users().update(query, documentUpdate, true, false);
 
     if (writeResult.isUpdateOfExisting()) {
       return userMessage.get().failed();

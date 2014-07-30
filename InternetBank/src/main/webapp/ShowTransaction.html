@@ -1,15 +1,36 @@
 <html>
+<head>
 
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+
+</head>
 <body>
-<ul>
-    @Repeat(items=transactions, var="transaction" )
-    <li>
-        ${transaction.transactionType}&nbsp;&nbsp;&nbsp;
-        ${transaction.amount}&nbsp;&nbsp;&nbsp;
-        ${transaction.date}&nbsp;&nbsp;&nbsp;
-        ${transaction.userName}&nbsp;&nbsp;&nbsp;
-    </li>
-</ul>
+
+    <div class="row">
+        <div class="col-md-7">
+            <table class="table table-striped" border="groovy">
+                <caption>All transaction</caption>
+                <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>User name</th>
+                </tr>
+                </thead>
+                @Repeat(items=transactions, var="transaction" )
+                <thead>
+                <tr>
+                    <th>${transaction.transactionType}</th>
+                    <th>${transaction.amount}</th>
+                    <th>${transaction.date}</th>
+                    <th>${transaction.userName}</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
 
 </body>
 </html>

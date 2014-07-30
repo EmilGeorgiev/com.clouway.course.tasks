@@ -37,8 +37,8 @@ public class Sitebricks extends com.google.sitebricks.SitebricksModule {
 
     embed(ShowTransaction.class).as("Transaction");
 
-    bankTransactionMap.put("deposit", new Deposit(getConnection()));
-    bankTransactionMap.put("withdraw", new Withdraw(getConnection()));
+    bankTransactionMap.put("deposit", new Deposit(getConnection(), providerUserMessage()));
+    bankTransactionMap.put("withdraw", new Withdraw(getConnection(), providerUserMessage()));
 
   }
 
@@ -80,6 +80,16 @@ public class Sitebricks extends com.google.sitebricks.SitebricksModule {
       @Override
       public String success() {
         return "Registration is success.Now you can login.";
+      }
+
+      @Override
+      public String successTransaction() {
+        return "Transaction is success.";
+      }
+
+      @Override
+      public String failedTransaction() {
+        return "Transaction is failed.";
       }
     };
   }

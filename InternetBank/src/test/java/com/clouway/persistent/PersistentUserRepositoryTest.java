@@ -41,6 +41,16 @@ public class PersistentUserRepositoryTest {
     public String success() {
       return "Registered is success";
     }
+
+    @Override
+    public String successTransaction() {
+      return "transaction success";
+    }
+
+    @Override
+    public String failedTransaction() {
+      return "Transaction failed.";
+    }
   };
 
 

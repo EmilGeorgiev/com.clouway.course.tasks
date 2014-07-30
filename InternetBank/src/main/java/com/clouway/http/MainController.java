@@ -21,6 +21,8 @@ public class MainController {
   private List<Transaction> list;
   private User user;
   private String userMessage;
+  private String currentAccount;
+  private Boolean isShowUserMessage = false;
 
   @Inject
   public MainController(TransactionRepository transactionRepository,
@@ -38,13 +40,30 @@ public class MainController {
   @Get
   public String configure() {
 
-
     user = userProvider.get();
     if(user == null) {
       return siteMap.loginController();
     }
-    list = transactionRepository.getAllTransactionsBy(user.getUserName());
+    list = transactionRepository.getAllTransactionsBy(user.getName());
+
     return null;
+  }
+
+  public Boolean getIsShowUserMessage() {
+    return isShowUserMessage;
+  }
+
+  public void setIsShowUserMessage(String isShowUserMessage) {
+
+    this.isShowUserMessage = Boolean.valueOf(isShowUserMessage);
+  }
+
+  public String getCurrentAccount() {
+    return currentAccount;
+  }
+
+  public void setCurrentAccount(String currentAccount) {
+    this.currentAccount = currentAccount;
   }
 
   public List<Transaction> getList() {

@@ -14,7 +14,7 @@ public class User {
     this.sessionID = sessionID;
   }
 
-  public String getUserName() {
+  public String getName() {
     return userName;
   }
 

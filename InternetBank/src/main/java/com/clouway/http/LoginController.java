@@ -7,6 +7,7 @@ import com.clouway.core.UserRepository;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.sitebricks.At;
+import com.google.sitebricks.http.Get;
 import com.google.sitebricks.http.Post;
 
 import javax.servlet.http.Cookie;
@@ -50,8 +51,6 @@ public class LoginController {
 
     if (sid != null) {
 
-      isShowMessage = false;
-
       response.addCookie(new Cookie(siteMap.sid(), sid));
 
       return siteMap.mainController();
@@ -60,7 +59,12 @@ public class LoginController {
 
     userMessage = "Invalid user name or password";
     isShowMessage = true;
-    return siteMap.loginController();
+    return null;
+  }
+
+  @Get
+  public void setMessage() {
+    isShowMessage = false;
   }
 
   public UserDTO getUserDTO() {
@@ -81,5 +85,9 @@ public class LoginController {
 
   public boolean getIsShowMessage() {
     return isShowMessage;
+  }
+
+  public void setShowMessage(boolean isShowMessage) {
+    this.isShowMessage = isShowMessage;
   }
 }

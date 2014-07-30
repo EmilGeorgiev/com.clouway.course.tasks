@@ -76,8 +76,6 @@ public class LoginControllerTest {
       oneOf(userRepository).isExist(userEntity);
       will(returnValue(null));
 
-      oneOf(siteMap).loginController();
-      will(returnValue("/loginController"));
     }
     });
 

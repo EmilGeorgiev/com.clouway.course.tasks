@@ -38,7 +38,7 @@ public class LogoutControllerTest {
 
     context.checking(new Expectations() {{
 
-      oneOf(sessionRepository).deleteSessionByID("123");
+      oneOf(sessionRepository).deleteBy("123");
 
       oneOf(siteMap).loginController();
       will(returnValue("/loginController"));

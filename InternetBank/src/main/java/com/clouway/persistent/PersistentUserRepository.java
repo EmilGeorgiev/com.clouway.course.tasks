@@ -26,25 +26,25 @@ import java.util.Date;
 @Singleton
 public class PersistentUserRepository implements UserRepository, SessionRepository {
 
-  private final Provider<DB> connection;
+  private final Provider<DB> dbProvider;
   private final Clock clock;
   private final Provider<RegistrationMessages> registrationMessagesProvider;
 
   @Inject
-  public PersistentUserRepository(Provider<DB> connection,
+  public PersistentUserRepository(Provider<DB> dbProvider,
                                   Clock clock,
-                                  Provider<RegistrationMessages> registrationMessagesProvider) {
+                                  Provider<RegistrationMessages> messagesProvider) {
 
-    this.connection = connection;
+    this.dbProvider = dbProvider;
     this.clock = clock;
-    this.registrationMessagesProvider = registrationMessagesProvider;
+    this.registrationMessagesProvider = messagesProvider;
   }
 
   @Override
   public String registerUserIfNotExist(UserEntity user) {
 
     BasicDBObject query = new BasicDBObject("name", user.getName())
-                                    .append("password", user.getPassword());
+            .append("password", user.getPassword());
 
     BasicDBObject documentUpdate = new BasicDBObject("$set", new BasicDBObject("account", 0.0));
 
@@ -90,13 +90,13 @@ public class PersistentUserRepository implements UserRepository, SessionReposito
   }
 
   @Override
-  public User authenticateSession(String sessionID, Clock date) {
+  public User authenticate(String sessionID, Clock date) {
     BasicDBObject whereQuery = new BasicDBObject("sid", sessionID)
-                                         .append("expiration_date", new BasicDBObject("$gt", date.now()));
+            .append("expiration_date", new BasicDBObject("$gt", date.now()));
 
     DBObject user = sessions().findOne(whereQuery);
 
-    if(user != null) {
+    if (user != null) {
 
       updateSession(whereQuery);
 
@@ -111,7 +111,7 @@ public class PersistentUserRepository implements UserRepository, SessionReposito
   }
 
   @Override
-  public void deleteSessionByID(String sid) {
+  public void deleteBy(String sid) {
     BasicDBObject sessionDocument = new BasicDBObject("sid", sid);
 
     sessions().remove(sessionDocument);
@@ -155,11 +155,11 @@ public class PersistentUserRepository implements UserRepository, SessionReposito
   }
 
   private DBCollection users() {
-    return connection.get().getCollection("users");
+    return dbProvider.get().getCollection("users");
   }
 
   private DBCollection sessions() {
-    return connection.get().getCollection("sessions");
+    return dbProvider.get().getCollection("sessions");
   }
 
 }

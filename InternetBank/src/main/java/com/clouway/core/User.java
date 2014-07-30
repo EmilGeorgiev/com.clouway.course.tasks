@@ -18,7 +18,7 @@ public class User {
     return userName;
   }
 
-  public String getUserSession() {
+  public String getSession() {
     return sessionID;
   }
 }

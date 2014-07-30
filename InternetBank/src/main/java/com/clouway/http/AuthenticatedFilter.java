@@ -48,12 +48,12 @@ public class AuthenticatedFilter implements Filter{
    */
   @Override
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-    System.out.println("i am filter");
+
     HttpServletRequest servletRequest = (HttpServletRequest) request;
 
     HttpServletResponse servletResponse = (HttpServletResponse) response;
 
-    if (sessionRepository.authenticateSession(userProvider.get().getUserSession(), clock) == null) {
+    if (sessionRepository.authenticate(userProvider.get().getSession(), clock) == null) {
       servletResponse.sendRedirect(siteMap.loginController());
     }
 

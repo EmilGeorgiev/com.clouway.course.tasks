@@ -62,7 +62,7 @@ public class AuthenticatedFilterTest {
 
     context.checking(new Expectations() {{
 
-      oneOf(sessionRepository).authenticateSession(user.getUserSession(), clock);
+      oneOf(sessionRepository).authenticate(user.getSession(), clock);
       will(returnValue(user));
 
       oneOf(filterChain).doFilter(request, response);
@@ -79,7 +79,7 @@ public class AuthenticatedFilterTest {
 
     context.checking(new Expectations() {{
 
-      oneOf(sessionRepository).authenticateSession(user.getUserSession(), clock);
+      oneOf(sessionRepository).authenticate(user.getSession(), clock);
       will(returnValue(null));
 
       oneOf(siteMap).loginController();

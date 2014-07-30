@@ -85,7 +85,7 @@ public class PersistentUserRepositoryTest {
 
     pretendThatUserSessionIs(session("123"), userId("321"), expirationDate(new CalendarUtil(2014, 8, 28, 12, 55, 0)));
 
-    User user = userRepository.authenticateSession(session("123"), clock);
+    User user = userRepository.authenticate(session("123"), clock);
 
     assertNotNull(user);
 
@@ -95,7 +95,7 @@ public class PersistentUserRepositoryTest {
   public void userSessionIsExpiration() throws Exception {
     pretendThatUserSessionIs(session("456"), userId("654"), expirationDate(new CalendarUtil(2014, 7, 28, 10, 20, 0)));
 
-    User user = userRepository.authenticateSession(session("456"), clock);
+    User user = userRepository.authenticate(session("456"), clock);
 
     assertNull(user);
 

@@ -11,9 +11,6 @@ import com.google.sitebricks.headless.Reply;
 import com.google.sitebricks.headless.Service;
 import com.google.sitebricks.http.Get;
 
-/**
- * Created by clouway on 7/17/14.
- */
 @At("/logoutController")
 @Service
 @Singleton
@@ -39,7 +36,7 @@ public class LogoutController {
   @Get
   public Reply<?> logout() {
 
-    sessionRepository.deleteSessionByID(currentUser.get().getUserSession());
+    sessionRepository.deleteBy(currentUser.get().getSession());
 
     return Reply.saying().redirect(siteMap.loginController());
   }

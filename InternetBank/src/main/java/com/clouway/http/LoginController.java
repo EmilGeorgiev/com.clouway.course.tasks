@@ -35,6 +35,7 @@ public class LoginController {
                          HttpServletResponse response,
                          SiteMap siteMap,
                          LoginMessages loginMessages) {
+
     this.userRepository = userRepository;
     this.response = response;
     this.siteMap = siteMap;
@@ -43,6 +44,7 @@ public class LoginController {
 
   /**
    * login user and preserves user's session in <code>Cookie</code>
+   *
    * @throws IOException
    */
   @Post

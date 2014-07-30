@@ -22,26 +22,25 @@ import java.util.Map;
 @Singleton
 public class PersistentBankRepository implements BankRepository, TransactionRepository {
 
-  private final Provider<DB> connection;
-  private String userMessage;
+  private final Provider<DB> db;
   private final Provider<Map<String, BankTransaction>> mapProvider;
 
   @Inject
-  public PersistentBankRepository(Provider<DB> connection,
+  public PersistentBankRepository(Provider<DB> db,
                                   Provider<Map<String, BankTransaction>> mapProvider) {
 
-    this.connection = connection;
+    this.db = db;
     this.mapProvider = mapProvider;
   }
 
   @Override
   public String executeTransaction(Transaction transaction) {
 
-    BankTransaction bankTransaction = mapProvider.get().get(transaction.getTransactionType());
+    Map<String, BankTransaction> bankTransactionMap = mapProvider.get();
 
-    userMessage = bankTransaction.execute(transaction);
+    BankTransaction bankTransaction = bankTransactionMap.get(transaction.getType());
 
-    return userMessage;
+    return bankTransaction.execute(transaction);
   }
 
   @Override
@@ -75,7 +74,7 @@ public class PersistentBankRepository implements BankRepository, TransactionRepo
 
   public float getCurrentAmount(String userName) {
 
-    DB db = connection.get();
+    DB db = this.db.get();
 
     DBObject documentQuery = new BasicDBObject("name", userName);
 
@@ -89,12 +88,11 @@ public class PersistentBankRepository implements BankRepository, TransactionRepo
   }
 
 
-
   private DBCollection users() {
-    return connection.get().getCollection("users");
+    return db.get().getCollection("users");
   }
 
   private DBCollection transactions() {
-    return connection.get().getCollection("transactions");
+    return db.get().getCollection("transactions");
   }
 }

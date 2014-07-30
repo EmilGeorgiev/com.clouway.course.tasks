@@ -7,9 +7,6 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 
-/**
- * Created by clouway on 7/29/14.
- */
 public class Withdraw implements BankTransaction {
 
   private final DB connection;
@@ -32,7 +29,7 @@ public class Withdraw implements BankTransaction {
     }
 
     BasicDBObject updateCommand = new BasicDBObject("$inc",
-                         new BasicDBObject("account", -amount));
+            new BasicDBObject("account", -amount));
 
     users().update(updateQuery, updateCommand);
 
@@ -51,7 +48,7 @@ public class Withdraw implements BankTransaction {
   }
 
   private void addNewTransaction(Transaction transaction) {
-    BasicDBObject newTransaction = new BasicDBObject("transaction_type", transaction.getTransactionType())
+    BasicDBObject newTransaction = new BasicDBObject("transaction_type", transaction.getType())
             .append("amount", transaction.getAmount())
             .append("date", transaction.getDate())
             .append("user_name", transaction.getUserName());

@@ -21,22 +21,22 @@ public class Deposit implements BankTransaction {
   @Override
   public String execute(Transaction transaction) {
 
-    BasicDBObject updateQuery = new BasicDBObject("name", transaction.getUserName());
+    BasicDBObject query = new BasicDBObject("name", transaction.getUserName());
 
-    BasicDBObject updateCommand = new BasicDBObject("$inc",
+    BasicDBObject update = new BasicDBObject("$inc",
             new BasicDBObject("account", transaction.getAmount()));
 
-    users().update(updateQuery, updateCommand);
+    users().update(query, update);
 
-    addNewTransaction(transaction);
+    addNew(transaction);
 
     db.collectionExists("users");
 
     return transactionMessages.success();
   }
 
-  private void addNewTransaction(Transaction transaction) {
-    BasicDBObject newTransaction = new BasicDBObject("transaction_type", transaction.getTransactionType())
+  private void addNew(Transaction transaction) {
+    BasicDBObject newTransaction = new BasicDBObject("transaction_type", transaction.getType())
             .append("amount", transaction.getAmount())
             .append("date", transaction.getDate())
             .append("user_name", transaction.getUserName());

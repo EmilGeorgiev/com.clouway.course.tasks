@@ -45,9 +45,9 @@ public class TransactionController {
   public Reply<?> transfer() throws IOException {
 
     Transaction transaction = new Transaction(transactionDTO.getTransactionType(),
-                                              transactionDTO.getAmount(),
-                                              clock.now(),
-                                              currentUser.get().getName());
+            transactionDTO.getAmount(),
+            clock.now(),
+            currentUser.get().getName());
 
     message = bankRepository.executeTransaction(transaction);
 
@@ -56,7 +56,7 @@ public class TransactionController {
     String request = String.format("%s?userMessage=%s&currentAccount=%s&isShowUserMessage=true",
             siteMap.mainController(), message, currentAccount);
 
-    return  Reply.saying().redirect(request);
+    return Reply.saying().redirect(request);
 
   }
 

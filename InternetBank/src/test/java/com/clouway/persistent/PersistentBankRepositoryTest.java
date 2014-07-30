@@ -1,12 +1,6 @@
 package com.clouway.persistent;
 
-import com.clouway.core.BankTransaction;
-import com.clouway.core.Clock;
-import com.clouway.core.Time;
-import com.clouway.core.Transaction;
-import com.clouway.core.TransactionMessages;
-import com.clouway.http.Deposit;
-import com.clouway.http.Withdraw;
+import com.clouway.core.*;
 import com.clouway.util.BankUtil;
 import com.google.inject.util.Providers;
 import com.mongodb.DB;
@@ -31,7 +25,7 @@ public class PersistentBankRepositoryTest {
 
   private PersistentBankRepository persistentBankRepository;
 
-  private Transaction transaction;
+  private TransactionEntity transactionEntity;
 
   private DB connection;
 
@@ -39,7 +33,7 @@ public class PersistentBankRepositoryTest {
 
   private Clock clock = new Time();
 
-  private Map<String, BankTransaction> bankTransactionMap = new HashMap<String, BankTransaction>();
+  private Map<String, TransactionFactory> factoryHashMap = new HashMap<String, TransactionFactory>();
 
 
   @Rule
@@ -57,15 +51,15 @@ public class PersistentBankRepositoryTest {
 
     cleanDB();
 
-    transaction = new Transaction(type("deposit"), amount(10), clock.now(), userName("test"));
+    transactionEntity = new TransactionEntity(type("deposit"), userName("test"), amount(10), clock.now());
 
     bankUtil = new BankUtil(connection);
 
-    bankTransactionMap.put("deposit", new Deposit(connection, transactionMessages));
-    bankTransactionMap.put("withdraw", new Withdraw(connection, transactionMessages));
+    factoryHashMap.put("deposit", new DepositFactory());
+    factoryHashMap.put("withdraw", new WithdrawFactory());
 
     persistentBankRepository = new PersistentBankRepository(Providers.of(connection),
-                                                            Providers.of(bankTransactionMap));
+                                                            transactionMessages);
 
     bankUtil.registerUser(userName("test"));
 
@@ -74,7 +68,7 @@ public class PersistentBankRepositoryTest {
   @Test
   public void whenMakeTransferThenCreateAndNewTransaction() throws Exception {
 
-    Transaction deposit = new Transaction(type("deposit"), amount(30), clock.now(), userName("test"));
+    TransactionEntity deposit = new TransactionEntity(type("deposit"), userName("test"), amount(30), clock.now());
 
     pretendThatHasTransactions(deposit);
 
@@ -86,19 +80,19 @@ public class PersistentBankRepositoryTest {
     }
     });
 
-    persistentBankRepository.executeTransaction(transaction);
+    persistentBankRepository.updateBalance(transactionEntity);
 
     double currentAmount = persistentBankRepository.getCurrentAmount(userName("test"));
 
-    List<Transaction> transactionList = persistentBankRepository.getAllTransactionsBy("test");
+    List<TransactionEntity> transactionList = persistentBankRepository.getAllTransactionsBy("test");
 
     assertThat(currentAmount, is(40D));
 
-    assertThat(transactionList, is(Arrays.asList(deposit, transaction)));
+    assertThat(transactionList, is(Arrays.asList(deposit, transactionEntity)));
 
   }
 
-  private void pretendThatHasTransactions(Transaction deposit) {
+  private void pretendThatHasTransactions(TransactionEntity deposit) {
 
     bankUtil.makeTransaction(deposit);
 

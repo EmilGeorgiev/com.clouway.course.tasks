@@ -5,7 +5,7 @@ package com.clouway.core;
  */
 public interface BankRepository {
 
-  String executeTransaction(Transaction transaction);
+  String updateBalance(TransactionEntity transaction);
 
   double getAccountBy(String userName);
 

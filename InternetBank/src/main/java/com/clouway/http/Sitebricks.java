@@ -13,14 +13,11 @@ import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by clouway on 7/14/14.
- */
 public class Sitebricks extends com.google.sitebricks.SitebricksModule {
 
-  private Map<String, BankTransaction> bankTransactionMap = new HashMap<String, BankTransaction>();
+    private Map<String, TransactionFactory> transactionHandlerMap = new HashMap<String, TransactionFactory>();
 
-  @Override
+   @Override
   protected void configureSitebricks() {
 
     at("/loginController").show(LoginController.class);
@@ -32,18 +29,17 @@ public class Sitebricks extends com.google.sitebricks.SitebricksModule {
 
     embed(ShowTransaction.class).as("Transaction");
 
-    bankTransactionMap.put("deposit", new Deposit(getConnection(), providerTransactionMessage()));
-    bankTransactionMap.put("withdraw", new Withdraw(getConnection(), providerTransactionMessage()));
+    transactionHandlerMap.put("deposit", new DepositFactory());
+    transactionHandlerMap.put("withdraw", new WithdrawFactory());
 
   }
 
-  @Provides
-  public Map<String, BankTransaction> providesMap() {
-    return bankTransactionMap;
-  }
+    @Provides
+    public Map<String, TransactionFactory> providerMapTransactionHandler() {
+        return transactionHandlerMap;
+    }
 
-
-  @Provides
+    @Provides
   public SiteMap providesSiteMap() {
     return new SiteMap() {
 
@@ -105,17 +101,6 @@ public class Sitebricks extends com.google.sitebricks.SitebricksModule {
       }
     };
   }
-
-  @Provides
-  public BankMessage providerBankMessage() {
-    return new BankMessage() {
-      @Override
-      public String deposit() {
-        return "deposit";
-      }
-    };
-  }
-
 
   @Provides
   public DB getConnection() {

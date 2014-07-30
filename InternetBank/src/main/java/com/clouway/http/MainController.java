@@ -1,9 +1,6 @@
 package com.clouway.http;
 
-import com.clouway.core.SiteMap;
-import com.clouway.core.Transaction;
-import com.clouway.core.TransactionRepository;
-import com.clouway.core.User;
+import com.clouway.core.*;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
@@ -18,7 +15,7 @@ public class MainController {
   private final TransactionRepository transactionRepository;
   private final Provider<User> userProvider;
   private final SiteMap siteMap;
-  private List<Transaction> list;
+  private List<TransactionEntity> list;
   private User user;
   private String userMessage;
   private String currentAccount;
@@ -66,11 +63,11 @@ public class MainController {
     this.currentAccount = currentAccount;
   }
 
-  public List<Transaction> getList() {
+  public List<TransactionEntity> getList() {
     return list;
   }
 
-  public void setList(List<Transaction> list) {
+  public void setList(List<TransactionEntity> list) {
     this.list = list;
   }
 

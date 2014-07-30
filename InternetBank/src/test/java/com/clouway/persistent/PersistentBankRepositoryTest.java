@@ -4,7 +4,7 @@ import com.clouway.core.BankTransaction;
 import com.clouway.core.Clock;
 import com.clouway.core.Time;
 import com.clouway.core.Transaction;
-import com.clouway.core.UserMessage;
+import com.clouway.core.TransactionMessages;
 import com.clouway.http.Deposit;
 import com.clouway.http.Withdraw;
 import com.clouway.util.BankUtil;
@@ -46,7 +46,7 @@ public class PersistentBankRepositoryTest {
   public JUnitRuleMockery context = new JUnitRuleMockery();
 
   @Mock
-  private UserMessage userMessage = null;
+  private TransactionMessages transactionMessages = null;
 
   @Before
   public void setUp() throws UnknownHostException {
@@ -61,8 +61,8 @@ public class PersistentBankRepositoryTest {
 
     bankUtil = new BankUtil(connection);
 
-    bankTransactionMap.put("deposit", new Deposit(connection, userMessage));
-    bankTransactionMap.put("withdraw", new Withdraw(connection, userMessage));
+    bankTransactionMap.put("deposit", new Deposit(connection, transactionMessages));
+    bankTransactionMap.put("withdraw", new Withdraw(connection, transactionMessages));
 
     persistentBankRepository = new PersistentBankRepository(Providers.of(connection),
                                                             Providers.of(bankTransactionMap));
@@ -79,7 +79,7 @@ public class PersistentBankRepositoryTest {
     pretendThatHasTransactions(deposit);
 
     context.checking(new Expectations() {{
-      oneOf(userMessage).successTransaction();
+      oneOf(transactionMessages).success();
       will(returnValue("Transaction is success"));
 
 

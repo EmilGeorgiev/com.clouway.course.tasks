@@ -1,11 +1,6 @@
 package com.clouway.http;
 
-import com.clouway.core.BankMessage;
-import com.clouway.core.BankTransaction;
-import com.clouway.core.SiteMap;
-import com.clouway.core.User;
-import com.clouway.core.UserMessage;
-import com.clouway.core.UserRepository;
+import com.clouway.core.*;
 import com.google.inject.Provider;
 import com.google.inject.Provides;
 import com.google.inject.servlet.RequestScoped;
@@ -30,15 +25,15 @@ public class Sitebricks extends com.google.sitebricks.SitebricksModule {
 
     at("/loginController").show(LoginController.class);
     at("/mainController").show(MainController.class);
-    at("/registeredController").show(RegisteredController.class);
+    at("/registered").show(RegisteredController.class);
 
     at("/logoutController").serve(LogoutController.class);
     at("/transactionController").serve(TransactionController.class);
 
     embed(ShowTransaction.class).as("Transaction");
 
-    bankTransactionMap.put("deposit", new Deposit(getConnection(), providerUserMessage()));
-    bankTransactionMap.put("withdraw", new Withdraw(getConnection(), providerUserMessage()));
+    bankTransactionMap.put("deposit", new Deposit(getConnection(), providerTransactionMessage()));
+    bankTransactionMap.put("withdraw", new Withdraw(getConnection(), providerTransactionMessage()));
 
   }
 
@@ -70,25 +65,42 @@ public class Sitebricks extends com.google.sitebricks.SitebricksModule {
   }
 
   @Provides
-  public UserMessage providerUserMessage() {
-    return new UserMessage() {
+  public LoginMessages providerLoginMessages() {
+    return new LoginMessages() {
+
       @Override
       public String failed() {
-        return "User name or password already exist";
+        return "Login is failed.";
       }
+    };
+  }
+
+  @Provides
+  public RegistrationMessages providerRegistrationMessages() {
+    return new RegistrationMessages() {
+      @Override
+      public String success() {
+        return "Registration is success and already you can login.";
+      }
+
+      @Override
+      public String failed() {
+        return "Registration is failed";
+      }
+    };
+  }
+
+  @Provides
+  public TransactionMessages providerTransactionMessage() {
+    return new TransactionMessages() {
 
       @Override
       public String success() {
-        return "Registration is success.Now you can login.";
-      }
-
-      @Override
-      public String successTransaction() {
         return "Transaction is success.";
       }
 
       @Override
-      public String failedTransaction() {
+      public String failed() {
         return "Transaction is failed.";
       }
     };
@@ -118,7 +130,6 @@ public class Sitebricks extends com.google.sitebricks.SitebricksModule {
     return mongoClient.getDB("Bank");
 
   }
-
 
   @Provides
   @RequestScoped

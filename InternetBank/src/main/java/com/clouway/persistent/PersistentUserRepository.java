@@ -1,10 +1,10 @@
 package com.clouway.persistent;
 
 import com.clouway.core.Clock;
+import com.clouway.core.RegistrationMessages;
 import com.clouway.core.SessionRepository;
 import com.clouway.core.User;
 import com.clouway.core.UserEntity;
-import com.clouway.core.UserMessage;
 import com.clouway.core.UserRepository;
 import com.google.common.hash.HashFunction;
 import com.google.common.hash.Hashing;
@@ -28,16 +28,16 @@ public class PersistentUserRepository implements UserRepository, SessionReposito
 
   private final Provider<DB> connection;
   private final Clock clock;
-  private final Provider<UserMessage> userMessage;
+  private final Provider<RegistrationMessages> registrationMessagesProvider;
 
   @Inject
   public PersistentUserRepository(Provider<DB> connection,
                                   Clock clock,
-                                  Provider<UserMessage> userMessage) {
+                                  Provider<RegistrationMessages> registrationMessagesProvider) {
 
     this.connection = connection;
     this.clock = clock;
-    this.userMessage = userMessage;
+    this.registrationMessagesProvider = registrationMessagesProvider;
   }
 
   @Override
@@ -51,10 +51,10 @@ public class PersistentUserRepository implements UserRepository, SessionReposito
     WriteResult writeResult = users().update(query, documentUpdate, true, false);
 
     if (writeResult.isUpdateOfExisting()) {
-      return userMessage.get().failed();
+      return registrationMessagesProvider.get().failed();
     }
 
-    return userMessage.get().success();
+    return registrationMessagesProvider.get().success();
 
   }
 

@@ -1,5 +1,6 @@
 package com.clouway.http;
 
+import com.clouway.core.LoginMessages;
 import com.clouway.core.SiteMap;
 import com.clouway.core.UserDTO;
 import com.clouway.core.UserEntity;
@@ -36,9 +37,12 @@ public class LoginControllerTest {
   @Mock
   private UserRepository userRepository = null;
 
+  @Mock
+  private LoginMessages loginMessages = null;
+
   @Before
   public void setUp(){
-    loginController = new LoginController(userRepository, response, siteMap);
+    loginController = new LoginController(userRepository, response, siteMap, loginMessages);
 
     loginController.setUserDTO(userDTO);
   }
@@ -75,6 +79,9 @@ public class LoginControllerTest {
     context.checking(new Expectations() {{
       oneOf(userRepository).isExist(userEntity);
       will(returnValue(null));
+
+      oneOf(loginMessages).failed();
+      will(returnValue("Login is failed"));
 
     }
     });

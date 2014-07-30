@@ -1,9 +1,9 @@
 package com.clouway.persistent;
 
 import com.clouway.core.Clock;
+import com.clouway.core.RegistrationMessages;
 import com.clouway.core.User;
 import com.clouway.core.UserEntity;
-import com.clouway.core.UserMessage;
 import com.clouway.util.BankUtil;
 import com.clouway.util.CalendarUtil;
 import com.clouway.util.SessionUtil;
@@ -29,27 +29,15 @@ public class PersistentUserRepositoryTest {
   private BankUtil bankUtil;
   private SessionUtil sessionUtil;
 
-  private UserMessage userMessage = new UserMessage() {
-
+  RegistrationMessages registrationMessages = new RegistrationMessages() {
+    @Override
+    public String success() {
+      return "Registration is success";
+    }
 
     @Override
     public String failed() {
-      return "Registered is failed";
-    }
-
-    @Override
-    public String success() {
-      return "Registered is success";
-    }
-
-    @Override
-    public String successTransaction() {
-      return "transaction success";
-    }
-
-    @Override
-    public String failedTransaction() {
-      return "Transaction failed.";
+      return "Registration is failed";
     }
   };
 
@@ -62,7 +50,7 @@ public class PersistentUserRepositoryTest {
 
     userRepository = new PersistentUserRepository(Providers.of(connection),
                                                   clock,
-                                                  Providers.of(userMessage));
+                                                  Providers.of(registrationMessages));
 
     cleanDB();
 
@@ -77,7 +65,7 @@ public class PersistentUserRepositoryTest {
 
     String userMessage = userRepository.registerUserIfNotExist(userEntity);
 
-    assertThat(userMessage, is("Registered is success"));
+    assertThat(userMessage, is("Registration is success"));
 
   }
 
@@ -88,7 +76,7 @@ public class PersistentUserRepositoryTest {
 
     String userMessage = userRepository.registerUserIfNotExist(userEntity);
 
-    assertThat(userMessage, is("Registered is failed"));
+    assertThat(userMessage, is("Registration is failed"));
 
   }
 

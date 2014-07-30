@@ -1,5 +1,6 @@
 package com.clouway.http;
 
+import com.clouway.core.LoginMessages;
 import com.clouway.core.SiteMap;
 import com.clouway.core.UserDTO;
 import com.clouway.core.UserEntity;
@@ -25,16 +26,19 @@ public class LoginController {
   private final HttpServletResponse response;
   private final SiteMap siteMap;
   private UserDTO userDTO = new UserDTO();
+  private final LoginMessages loginMessages;
   private String userMessage;
   private boolean isShowMessage = false;
 
   @Inject
   public LoginController(UserRepository userRepository,
-                         HttpServletResponse response, SiteMap siteMap) {
+                         HttpServletResponse response,
+                         SiteMap siteMap,
+                         LoginMessages loginMessages) {
     this.userRepository = userRepository;
     this.response = response;
-
     this.siteMap = siteMap;
+    this.loginMessages = loginMessages;
   }
 
   /**
@@ -57,7 +61,7 @@ public class LoginController {
 
     }
 
-    userMessage = "Invalid user name or password";
+    userMessage = loginMessages.failed();
     isShowMessage = true;
     return null;
   }

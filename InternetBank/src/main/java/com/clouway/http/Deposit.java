@@ -2,7 +2,7 @@ package com.clouway.http;
 
 import com.clouway.core.BankTransaction;
 import com.clouway.core.Transaction;
-import com.clouway.core.UserMessage;
+import com.clouway.core.TransactionMessages;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -10,12 +10,12 @@ import com.mongodb.DBCollection;
 public class Deposit implements BankTransaction {
 
   private final DB db;
-  private final UserMessage userMessage;
+  private final TransactionMessages transactionMessages;
 
-  public Deposit(DB db, UserMessage userMessage) {
+  public Deposit(DB db, TransactionMessages transactionMessages) {
 
     this.db = db;
-    this.userMessage = userMessage;
+    this.transactionMessages = transactionMessages;
   }
 
   @Override
@@ -32,7 +32,7 @@ public class Deposit implements BankTransaction {
 
     db.collectionExists("users");
 
-    return userMessage.successTransaction();
+    return transactionMessages.success();
   }
 
   private void addNewTransaction(Transaction transaction) {

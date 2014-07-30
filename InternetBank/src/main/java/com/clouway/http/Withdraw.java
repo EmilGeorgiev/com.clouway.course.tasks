@@ -2,7 +2,7 @@ package com.clouway.http;
 
 import com.clouway.core.BankTransaction;
 import com.clouway.core.Transaction;
-import com.clouway.core.UserMessage;
+import com.clouway.core.TransactionMessages;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -13,11 +13,11 @@ import com.mongodb.DBCollection;
 public class Withdraw implements BankTransaction {
 
   private final DB connection;
-  private final UserMessage userMessage;
+  private final TransactionMessages transactionMessages;
 
-  public Withdraw(DB connection, UserMessage userMessage) {
+  public Withdraw(DB connection, TransactionMessages transactionMessages) {
     this.connection = connection;
-    this.userMessage = userMessage;
+    this.transactionMessages = transactionMessages;
   }
 
   @Override
@@ -28,7 +28,7 @@ public class Withdraw implements BankTransaction {
     double currentAmount = getUserAccountBy(transaction.getUserName());
 
     if (amount > currentAmount) {
-      return userMessage.failedTransaction();
+      return transactionMessages.failed();
     }
 
     BasicDBObject updateCommand = new BasicDBObject("$inc",
@@ -40,7 +40,7 @@ public class Withdraw implements BankTransaction {
 
     addNewTransaction(transaction);
 
-    return userMessage.successTransaction();
+    return transactionMessages.success();
   }
 
   private Double getUserAccountBy(String userName) {

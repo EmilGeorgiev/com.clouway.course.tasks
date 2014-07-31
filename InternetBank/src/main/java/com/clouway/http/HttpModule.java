@@ -3,7 +3,7 @@ package com.clouway.http;
 import com.clouway.core.BankRepository;
 import com.clouway.core.Clock;
 import com.clouway.core.SessionRepository;
-import com.clouway.core.Time;
+import com.clouway.core.SystemClock;
 import com.clouway.core.TransactionRepository;
 import com.clouway.core.UserRepository;
 import com.clouway.persistent.PersistentBankRepository;
@@ -20,7 +20,7 @@ public class HttpModule extends ServletModule {
     bind(UserRepository.class).to(PersistentUserRepository.class);
     bind(SessionRepository.class).to(PersistentUserRepository.class);
 
-    bind(Clock.class).to(Time.class);
+    bind(Clock.class).to(SystemClock.class);
 
     filter("/Controller$").through(AuthenticatedFilter.class);
   }

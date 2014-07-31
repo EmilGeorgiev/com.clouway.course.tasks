@@ -1,6 +1,5 @@
 package com.clouway.http;
 
-import com.clouway.core.UserDTO;
 import com.clouway.core.UserEntity;
 import com.clouway.core.UserRepository;
 import org.jmock.Expectations;

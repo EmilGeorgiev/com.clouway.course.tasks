@@ -28,45 +28,43 @@ public class PersistentBankRepository implements BankRepository, TransactionRepo
     this.transactionMessages = transactionMessages;
   }
 
+  /**
+   * {@see com.clouway.core.BankRepository}
+   */
   @Override
-  public String updateBalance(TransactionEntity transaction) {
+  public Result updateBalance(Transaction transaction) {
 
-    BasicDBObject query = new BasicDBObject("name", transaction.getUserName());
+    DBObject query = new BasicDBObject("name", transaction.getUserName());
 
-    BasicDBObject update = new BasicDBObject("$inc",
+    DBObject projection = new BasicDBObject("$inc",
               new BasicDBObject("amount", transaction.getAmount()));
 
-    users().update(query, update);
+    users().update(query, projection);
 
     addNew(transaction);
 
-    db.get().collectionExists("users");
-
-    return transactionMessages.success() + "&currentAmount="+getAccountBy(transaction.getUserName());
+    return new Result(transactionMessages.success(), getAccount(transaction.getUserName()));
   }
 
+  /**
+   * {@see com.clouway.core.TransactionRepository}
+   */
   @Override
-  public double getAccountBy(String userName) {
-    BasicDBObject query = new BasicDBObject("name", userName);
-
-    return (Double) users().findOne(query).get("amount");
-  }
-
-  @Override
-  public List<Transaction> getAllTransactionsBy(String userName) {
+  public List<Transaction> getAllTransactions(String userName) {
     List<Transaction> transactionList = new ArrayList<Transaction>();
 
-    BasicDBObject query = new BasicDBObject("user_name", userName);
+    DBObject query = new BasicDBObject("user_name", userName);
 
     DBCursor transactions = transactions().find(query);
 
     while (transactions.hasNext()) {
-      DBObject transaction = transactions.next();
 
-      String transactionType = (String) transaction.get("transaction_type");
-      Double amount = (Double) transaction.get("amount");
-      Date date = (Date) transaction.get("date");
-      String name = (String) transaction.get("user_name");
+      BasicDBObject transaction = (BasicDBObject) transactions.next();
+
+      String transactionType = transaction.getString("transaction_type");
+      Double amount = transaction.getDouble("amount");
+      Date date = transaction.getDate("date");
+      String name = transaction.getString("user_name");
 
       transactionList.add(new Transaction(transactionType, amount, date, name));
     }
@@ -74,24 +72,39 @@ public class PersistentBankRepository implements BankRepository, TransactionRepo
     return transactionList;
   }
 
-  public float getCurrentAmount(String userName) {
+//  public float getCurrentAmount(String userName) {
+//
+//    DB db = this.db.get();
+//
+//    DBObject documentQuery = new BasicDBObject("name", userName);
+//
+//    DBObject dbObject = users().findOne(documentQuery);
+//
+//    String account = String.valueOf(dbObject.get("amount"));
+//
+//    return Float.valueOf(account);
+//  }
 
-    DB db = this.db.get();
+  /**
+   * Get amount on user.
+   * @param userName user on who retrieve amount.
+   */
+  private double getAccount(String userName) {
 
-    DBObject documentQuery = new BasicDBObject("name", userName);
+    DBObject query = new BasicDBObject("name", userName);
 
-    DBObject dbObject = users().findOne(documentQuery);
+    BasicDBObject user = (BasicDBObject) users().findOne(query);
 
-    String account = String.valueOf(dbObject.get("amount"));
-
-    db.collectionExists("users");
-
-    return Float.valueOf(account);
+    return user.getDouble("amount");
   }
 
-  private void addNew(TransactionEntity transaction) {
+  /**
+   * Insert new transaction in database.
+   * @param transaction ne transaction.
+   */
+  private void addNew(Transaction transaction) {
 
-    BasicDBObject newTransaction = new BasicDBObject("transaction_type",
+    DBObject newTransaction = new BasicDBObject("transaction_type",
               transaction.getType())
               .append("amount", transaction.getAmount())
               .append("date", transaction.getDate())
@@ -99,7 +112,6 @@ public class PersistentBankRepository implements BankRepository, TransactionRepo
 
     transactions().insert(newTransaction);
   }
-
 
   private DBCollection users() {
     return db.get().getCollection("users");

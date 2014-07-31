@@ -30,7 +30,5 @@ public class JettyServer {
     server.start();
     server.join();
 
-
-
   }
 }

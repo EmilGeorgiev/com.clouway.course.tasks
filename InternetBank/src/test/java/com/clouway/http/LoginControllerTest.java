@@ -2,7 +2,6 @@ package com.clouway.http;
 
 import com.clouway.core.LoginMessages;
 import com.clouway.core.SiteMap;
-import com.clouway.core.UserDTO;
 import com.clouway.core.UserEntity;
 import com.clouway.core.UserRepository;
 import com.clouway.http.capture.CapturingMatcher;

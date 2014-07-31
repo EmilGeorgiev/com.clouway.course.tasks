@@ -1,4 +1,4 @@
-package com.clouway.core;
+package com.clouway.http;
 
 /**
  * Represent data transfer object who we use for retrieve and sent data to user.

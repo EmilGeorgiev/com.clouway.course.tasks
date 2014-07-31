@@ -1,7 +1,7 @@
 package com.clouway.persistent;
 
 import com.clouway.core.Clock;
-import com.clouway.core.Time;
+import com.clouway.core.SystemClock;
 import com.clouway.core.Transaction;
 import com.clouway.core.TransactionEntity;
 import com.clouway.core.TransactionMessages;
@@ -35,7 +35,7 @@ public class PersistentBankRepositoryTest {
 
   private BankUtil bankUtil;
 
-  private Clock clock = new Time();
+  private Clock clock = new SystemClock();
 
 
   @Rule
@@ -86,7 +86,7 @@ public class PersistentBankRepositoryTest {
 
     double currentAmount = persistentBankRepository.getCurrentAmount(userName("test"));
 
-    List<Transaction> transactionList = persistentBankRepository.getAllTransactionsBy("test");
+    List<Transaction> transactionList = persistentBankRepository.getAllTransactions("test");
 
     assertThat(currentAmount, is(40D));
 

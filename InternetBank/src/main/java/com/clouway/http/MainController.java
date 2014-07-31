@@ -41,7 +41,7 @@ public class MainController {
     if(user == null) {
       return siteMap.loginController();
     }
-    list = transactionRepository.getAllTransactionsBy(user.getName());
+    list = transactionRepository.getAllTransactions(user.getName());
 
     return null;
   }

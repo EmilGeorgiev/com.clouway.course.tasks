@@ -17,7 +17,7 @@ public class TransactionDTO {
     this.transactionType = transactionType;
   }
 
-  public String getTransactionType() {
+  public String getType() {
     return transactionType;
   }
 

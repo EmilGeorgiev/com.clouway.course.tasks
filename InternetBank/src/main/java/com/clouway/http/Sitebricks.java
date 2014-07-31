@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class Sitebricks extends com.google.sitebricks.SitebricksModule {
 
-    private Map<String, TransactionFactory> transactionHandlerMap = new HashMap<String, TransactionFactory>();
+    private Map<String, TransactionEntityFactory> transactionHandlerMap = new HashMap<String, TransactionEntityFactory>();
 
    @Override
   protected void configureSitebricks() {
@@ -29,13 +29,13 @@ public class Sitebricks extends com.google.sitebricks.SitebricksModule {
 
     embed(ShowTransaction.class).as("Transaction");
 
-    transactionHandlerMap.put("deposit", new DepositFactory());
-    transactionHandlerMap.put("withdraw", new WithdrawFactory());
+    transactionHandlerMap.put("deposit", new DepositCreator());
+    transactionHandlerMap.put("withdraw", new WithdrawEntityFactory());
 
   }
 
     @Provides
-    public Map<String, TransactionFactory> providerMapTransactionHandler() {
+    public Map<String, TransactionEntityFactory> providerMapTransactionHandler() {
         return transactionHandlerMap;
     }
 

@@ -33,7 +33,7 @@ public class PersistentBankRepositoryTest {
 
   private Clock clock = new Time();
 
-  private Map<String, TransactionFactory> factoryHashMap = new HashMap<String, TransactionFactory>();
+  private Map<String, TransactionEntityFactory> factoryHashMap = new HashMap<String, TransactionEntityFactory>();
 
 
   @Rule
@@ -55,8 +55,8 @@ public class PersistentBankRepositoryTest {
 
     bankUtil = new BankUtil(connection);
 
-    factoryHashMap.put("deposit", new DepositFactory());
-    factoryHashMap.put("withdraw", new WithdrawFactory());
+    factoryHashMap.put("deposit", new DepositCreator());
+    factoryHashMap.put("withdraw", new WithdrawEntityFactory());
 
     persistentBankRepository = new PersistentBankRepository(Providers.of(connection),
                                                             transactionMessages);

@@ -1,7 +1,7 @@
 package com.clouway.core;
 
 /**
- * Created by clouway on 7/30/14.
+ * Show messages on user. If registration is success or failed.
  */
 public interface RegistrationMessages {
 

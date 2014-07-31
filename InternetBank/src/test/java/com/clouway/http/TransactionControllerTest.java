@@ -21,7 +21,7 @@ public class TransactionControllerTest {
 
   private TransactionController transactionController;
 
-  private Map<String, TransactionFactory> factoryMap = new HashMap<String, TransactionFactory>();
+  private Map<String, TransactionEntityFactory> factoryMap = new HashMap<String, TransactionEntityFactory>();
 
   private CalendarUtil clock = new CalendarUtil(2014, 7, 14, 15, 46, 34);
 
@@ -41,8 +41,8 @@ public class TransactionControllerTest {
 
     TransactionDTO transactionDTO = new TransactionDTO("deposit", 50);
 
-    factoryMap.put("deposit", new DepositFactory());
-    factoryMap.put("withdraw", new WithdrawFactory());
+    factoryMap.put("deposit", new DepositCreator());
+    factoryMap.put("withdraw", new WithdrawEntityFactory());
 
     user = new User(userId("23"), userName("test"));
     transactionController = new TransactionController(Providers.of(factoryMap),

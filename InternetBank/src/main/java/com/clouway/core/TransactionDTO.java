@@ -1,7 +1,7 @@
 package com.clouway.core;
 
 /**
- * Created by clouway on 7/15/14.
+ * Represent data transfer object who we use for retrieve and sent data to user.
  */
 public class TransactionDTO {
 

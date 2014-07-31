@@ -2,6 +2,10 @@ package com.clouway.core;
 
 import java.util.Date;
 
+
+/**
+ * Ensure object who we use when retrieve or save data in database.
+ */
 public class TransactionEntity {
 
     private String type;

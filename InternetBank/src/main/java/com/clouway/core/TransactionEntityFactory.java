@@ -1,9 +1,9 @@
 package com.clouway.core;
 
 /**
- * Created by emil on 7/30/14.
+ * Created object who communicate with database.
  */
-public interface TransactionFactory {
+public interface TransactionEntityFactory {
 
     TransactionEntity create(Transaction transaction);
 }

@@ -1,6 +1,6 @@
 package com.clouway.core;
 
-public class WithdrawFactory implements TransactionFactory {
+public class WithdrawEntityFactory implements TransactionEntityFactory {
 
     @Override
     public TransactionEntity create(Transaction transaction) {

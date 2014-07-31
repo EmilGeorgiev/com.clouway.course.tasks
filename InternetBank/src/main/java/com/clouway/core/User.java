@@ -1,7 +1,7 @@
 package com.clouway.core;
 
 /**
- * Created by clouway on 7/15/14.
+ * Represent domain object.
  */
 public class User {
 

@@ -17,14 +17,14 @@ public class TransactionController {
 
   private TransactionDTO transactionDTO = new TransactionDTO();
   private String message;
-  private final Provider<Map<String, TransactionFactory>> provider;
+  private final Provider<Map<String, TransactionEntityFactory>> provider;
   private final Clock clock;
   private final Provider<User> currentUser;
   private final SiteMap siteMap;
     private final BankRepository bankRepository;
 
     @Inject
-  public TransactionController(Provider<Map<String, TransactionFactory>> provider,
+  public TransactionController(Provider<Map<String, TransactionEntityFactory>> provider,
                                Clock clock,
                                Provider<User> currentUser,
                                SiteMap siteMap,
@@ -40,12 +40,12 @@ public class TransactionController {
   @Post
   public Reply<?> transfer() throws IOException {
 
-    Transaction transaction = new Transaction(transactionDTO.getTransactionType(),
+    Transaction transaction = new Transaction(transactionDTO.getType(),
             transactionDTO.getAmount(),
             clock.now(),
             currentUser.get().getName());
 
-    TransactionFactory factory = provider.get().get(transactionDTO.getTransactionType());
+    TransactionEntityFactory factory = provider.get().get(transactionDTO.getType());
 
     TransactionEntity transactionEntity = factory.create(transaction);
 

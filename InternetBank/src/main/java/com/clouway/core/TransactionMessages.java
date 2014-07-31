@@ -1,7 +1,7 @@
 package com.clouway.core;
 
 /**
- * Created by clouway on 7/30/14.
+ * Show message on user whether bank transaction is success ot not.
  */
 public interface TransactionMessages {
 

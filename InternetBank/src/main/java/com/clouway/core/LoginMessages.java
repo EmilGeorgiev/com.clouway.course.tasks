@@ -1,7 +1,7 @@
 package com.clouway.core;
 
 /**
- * Created by clouway on 7/30/14.
+ * Show message for error, if user try login with nonexistent user name or password.
  */
 public interface LoginMessages {
 

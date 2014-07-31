@@ -2,8 +2,9 @@ package com.clouway.http;
 
 import com.clouway.core.LoginMessages;
 import com.clouway.core.SiteMap;
-import com.clouway.core.UserEntity;
+import com.clouway.core.User;
 import com.clouway.core.UserRepository;
+import com.google.common.base.Optional;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.sitebricks.At;
@@ -49,14 +50,14 @@ public class LoginController {
   @Post
   public String login() throws IOException {
 
-    UserEntity userEntity = new UserEntity(userDTO.getName(), userDTO.getPassword());
+    User user = new User(userDTO.getName(), userDTO.getPassword());
 
     //Check whether user data is valid and return sessionID or null if not.
-    String sid = userRepository.isExist(userEntity);
+    Optional<String> sid = userRepository.login(user);
 
-    if (sid != null) {
+    if (sid.isPresent()) {
 
-      response.addCookie(new Cookie(siteMap.sid(), sid));
+      response.addCookie(new Cookie(siteMap.sid(), sid.get()));
 
       return siteMap.mainController();
 

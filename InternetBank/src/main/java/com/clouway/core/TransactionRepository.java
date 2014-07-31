@@ -12,6 +12,6 @@ public interface TransactionRepository {
    * @param userName Name on the user.
    * @return List of transaction.
    */
-  List<Transaction> getAllTransactions(String userName);
+  List<Transaction> getUserTransactions(String userName);
 
 }

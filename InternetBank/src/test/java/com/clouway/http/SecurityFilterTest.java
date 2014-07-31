@@ -2,9 +2,8 @@ package com.clouway.http;
 
 import com.clouway.core.SessionRepository;
 import com.clouway.core.SiteMap;
-import com.clouway.core.User;
+import com.clouway.http.capture.CapturingMatcher;
 import com.clouway.util.CalendarUtil;
-import com.google.inject.util.Providers;
 import org.jmock.Expectations;
 import org.jmock.auto.Mock;
 import org.jmock.integration.junit4.JUnitRuleMockery;
@@ -13,16 +12,13 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import javax.servlet.FilterChain;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Created by clouway on 7/16/14.
- */
-public class AuthenticatedFilterTest {
+public class SecurityFilterTest {
 
-  private AuthenticatedFilter authenticatedFilter;
-  private User user;
+  private SecurityFilter securityFilter;
   private CalendarUtil clock;
 
 
@@ -49,38 +45,45 @@ public class AuthenticatedFilterTest {
 
     clock = new CalendarUtil(2014, 7, 23, 12, 45, 34);
 
-    user = new User(userId("24"), sessionID("45XQ"));
-
-    authenticatedFilter = new AuthenticatedFilter(sessionRepository,
-                                                  Providers.of(user),
-                                                  siteMap,
-                                                  clock);
+    securityFilter = new SecurityFilter(sessionRepository, siteMap, clock);
   }
 
   @Test
   public void authenticateUserWithValidSession() throws Exception {
 
+    final CapturingMatcher<Cookie[]> capturingMatcher =
+            new CapturingMatcher<Cookie[]>(Expectations.any(Cookie[].class));
+
     context.checking(new Expectations() {{
 
-      oneOf(sessionRepository).authenticate(user.getSession(), clock);
-      will(returnValue(user));
+      oneOf(request).getCookies();
+      will(returnValue(with(capturingMatcher)));
+
+      oneOf(sessionRepository).authenticate(sessionID("abc"), clock);
+      will(returnValue(true));
 
       oneOf(filterChain).doFilter(request, response);
 
     }
     });
 
-    authenticatedFilter.doFilter(request, response, filterChain);
+    securityFilter.doFilter(request, response, filterChain);
 
   }
 
   @Test
   public void authenticateUserWithExpireSession() throws Exception {
 
+    final CapturingMatcher<Cookie[]> capturingMatcher =
+            new CapturingMatcher<Cookie[]>(Expectations.any(Cookie[].class));
+
     context.checking(new Expectations() {{
 
-      oneOf(sessionRepository).authenticate(user.getSession(), clock);
-      will(returnValue(null));
+      oneOf(request).getCookies();
+      will(returnValue(with(capturingMatcher)));
+
+      oneOf(sessionRepository).authenticate(sessionID("123"), clock);
+      will(returnValue(false));
 
       oneOf(siteMap).loginController();
       will(returnValue("/loginController"));
@@ -92,15 +95,11 @@ public class AuthenticatedFilterTest {
     }
     });
 
-    authenticatedFilter.doFilter(request, response, filterChain);
+    securityFilter.doFilter(request, response, filterChain);
   }
 
-  private String sessionID(String sessionID) {
-    return sessionID;
-  }
-
-  private String userId(String userId) {
-    return userId;
+  private String sessionID(String session) {
+    return session;
   }
 
 }

@@ -2,9 +2,10 @@ package com.clouway.http;
 
 import com.clouway.core.LoginMessages;
 import com.clouway.core.SiteMap;
-import com.clouway.core.UserEntity;
+import com.clouway.core.User;
 import com.clouway.core.UserRepository;
 import com.clouway.http.capture.CapturingMatcher;
+import com.google.common.base.Optional;
 import org.jmock.Expectations;
 import org.jmock.auto.Mock;
 import org.jmock.integration.junit4.JUnitRuleMockery;
@@ -21,8 +22,9 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginControllerTest {
 
   private LoginController loginController;
-  private UserEntity userEntity = new UserEntity("test", "testPass");
+  private User user = new User("test", "testPass");
   private UserDTO userDTO = new UserDTO("test", "testPass");
+  private Optional<String> optionalSID = Optional.fromNullable("123");
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
@@ -54,8 +56,8 @@ public class LoginControllerTest {
 
     context.checking(new Expectations() {{
 
-      oneOf(userRepository).isExist(userEntity);
-      will(returnValue(sid("12345")));
+      oneOf(userRepository).login(user);
+      will(returnValue(optionalSID));
 
       oneOf(siteMap).sid();
       will(returnValue("sid"));
@@ -76,8 +78,8 @@ public class LoginControllerTest {
   public void loginUserWithInvalidData() throws Exception {
 
     context.checking(new Expectations() {{
-      oneOf(userRepository).isExist(userEntity);
-      will(returnValue(null));
+      oneOf(userRepository).login(user);
+      will(returnValue(Optional.absent()));
 
       oneOf(loginMessages).failed();
       will(returnValue("Login is failed"));
@@ -88,7 +90,5 @@ public class LoginControllerTest {
     loginController.login();
   }
 
-  private String sid(String sessionID) {
-    return sessionID;
-  }
+
 }

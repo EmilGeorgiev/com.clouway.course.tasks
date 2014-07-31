@@ -3,7 +3,6 @@ package com.clouway.persistent;
 import com.clouway.core.Clock;
 import com.clouway.core.SystemClock;
 import com.clouway.core.Transaction;
-import com.clouway.core.TransactionEntity;
 import com.clouway.core.TransactionMessages;
 import com.clouway.util.BankUtil;
 import com.google.inject.util.Providers;
@@ -29,8 +28,6 @@ public class PersistentBankRepositoryTest {
 
   private Transaction transaction;
 
-  private TransactionEntity transactionEntity;
-
   private DB connection;
 
   private BankUtil bankUtil;
@@ -54,9 +51,6 @@ public class PersistentBankRepositoryTest {
     cleanDB();
 
     transaction = new Transaction(type("deposit"), amount(10), clock.now(), userName("test"));
-
-    transactionEntity = new TransactionEntity(type("deposit"), userName("test"),
-            amount(10), clock.now());
 
     bankUtil = new BankUtil(connection);
 
@@ -82,13 +76,9 @@ public class PersistentBankRepositoryTest {
     }
     });
 
-    persistentBankRepository.updateBalance(transactionEntity);
+    persistentBankRepository.updateBalance(transaction);
 
-    double currentAmount = persistentBankRepository.getCurrentAmount(userName("test"));
-
-    List<Transaction> transactionList = persistentBankRepository.getAllTransactions("test");
-
-    assertThat(currentAmount, is(40D));
+    List<Transaction> transactionList = persistentBankRepository.getUserTransactions("test");
 
     assertThat(transactionList, is(Arrays.asList(deposit, transaction)));
 

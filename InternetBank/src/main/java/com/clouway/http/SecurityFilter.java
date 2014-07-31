@@ -3,9 +3,7 @@ package com.clouway.http;
 import com.clouway.core.Clock;
 import com.clouway.core.SessionRepository;
 import com.clouway.core.SiteMap;
-import com.clouway.core.User;
 import com.google.inject.Inject;
-import com.google.inject.Provider;
 import com.google.inject.Singleton;
 
 import javax.servlet.Filter;
@@ -14,26 +12,24 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Singleton
-public class AuthenticatedFilter implements Filter{
+public class SecurityFilter implements Filter{
 
   private final SessionRepository sessionRepository;
-  private final Provider<User> userProvider;
   private final SiteMap siteMap;
   private final Clock clock;
 
   @Inject
-  public AuthenticatedFilter(SessionRepository sessionRepository,
-                             Provider<User> userProvider,
-                             SiteMap siteMap,
-                             Clock clock) {
+  public SecurityFilter(SessionRepository sessionRepository,
+                        SiteMap siteMap,
+                        Clock clock) {
 
     this.sessionRepository = sessionRepository;
-    this.userProvider = userProvider;
     this.siteMap = siteMap;
     this.clock = clock;
   }
@@ -53,7 +49,19 @@ public class AuthenticatedFilter implements Filter{
 
     HttpServletResponse servletResponse = (HttpServletResponse) response;
 
-    if (sessionRepository.authenticate(userProvider.get().getSession(), clock) == null) {
+    String sessionID = null;
+
+    Cookie[] cookies = servletRequest.getCookies();
+
+    if (cookies != null) {
+      for(Cookie cookie : cookies) {
+        if("sid".equals(cookie.getName())) {
+          sessionID = cookie.getValue();
+        }
+      }
+    }
+
+    if (!sessionRepository.authenticate(sessionID, clock)) {
       servletResponse.sendRedirect(siteMap.loginController());
     }
 

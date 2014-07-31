@@ -1,11 +1,13 @@
 package com.clouway.persistent;
 
 import com.clouway.core.Clock;
+import com.clouway.core.CurrentUser;
 import com.clouway.core.RegistrationMessages;
+import com.clouway.core.ResultRegister;
 import com.clouway.core.SessionRepository;
 import com.clouway.core.User;
-import com.clouway.core.UserEntity;
 import com.clouway.core.UserRepository;
+import com.google.common.base.Optional;
 import com.google.common.hash.HashFunction;
 import com.google.common.hash.Hashing;
 import com.google.inject.Inject;
@@ -21,14 +23,14 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by clouway on 7/17/14.
+ *
  */
 @Singleton
 public class PersistentUserRepository implements UserRepository, SessionRepository {
 
   private final Provider<DB> dbProvider;
   private final Clock clock;
-  private final Provider<RegistrationMessages> registrationMessagesProvider;
+  private final Provider<RegistrationMessages> messagesProvider;
 
   @Inject
   public PersistentUserRepository(Provider<DB> dbProvider,
@@ -37,11 +39,11 @@ public class PersistentUserRepository implements UserRepository, SessionReposito
 
     this.dbProvider = dbProvider;
     this.clock = clock;
-    this.registrationMessagesProvider = messagesProvider;
+    this.messagesProvider = messagesProvider;
   }
 
   @Override
-  public String registerUserIfNotExist(UserEntity user) {
+  public ResultRegister register(User user) {
 
     BasicDBObject query = new BasicDBObject("name", user.getName())
             .append("password", user.getPassword());
@@ -51,15 +53,15 @@ public class PersistentUserRepository implements UserRepository, SessionReposito
     WriteResult writeResult = users().update(query, documentUpdate, true, false);
 
     if (writeResult.isUpdateOfExisting()) {
-      return registrationMessagesProvider.get().failed();
+      return new ResultRegister(messagesProvider.get().failed());
     }
 
-    return registrationMessagesProvider.get().success();
+    return new ResultRegister(messagesProvider.get().success());
 
   }
 
   @Override
-  public String isExist(UserEntity user) {
+  public Optional<String> login(User user) {
 
     DBObject documentUser = new BasicDBObject("name", user.getName())
             .append("password", user.getPassword());
@@ -67,30 +69,28 @@ public class PersistentUserRepository implements UserRepository, SessionReposito
     DBObject doc = users().findOne(documentUser);
 
     if (doc == null) {
-      return null;
+      return Optional.absent();
     }
 
-    return createUserSession(user.getName());
+    return  Optional.fromNullable(createUserSession(user.getName()));
 
   }
 
   @Override
-  public User findBySessionID(String session) {
-    BasicDBObject documentQuery = new BasicDBObject("sid", session);
+  public Optional<CurrentUser> findBySession(String session) {
 
-    String userName = (String) sessions().findOne(documentQuery).get("user_name");
+    BasicDBObject query = new BasicDBObject("sid", session);
 
-    documentQuery = new BasicDBObject("name", userName);
+    BasicDBObject doc = (BasicDBObject) sessions().findOne(query);
 
-    DBObject user = users().findOne(documentQuery);
+    String userName = doc.getString("user_name");
 
-    String userSession = (String) user.get("session");
-
-    return new User(userSession, userName);
+    return Optional.fromNullable(new CurrentUser(userName));
   }
 
   @Override
-  public User authenticate(String sessionID, Clock date) {
+  public boolean authenticate(String sessionID, Clock date) {
+
     BasicDBObject whereQuery = new BasicDBObject("sid", sessionID)
             .append("expiration_date", new BasicDBObject("$gt", date.now()));
 
@@ -100,18 +100,14 @@ public class PersistentUserRepository implements UserRepository, SessionReposito
 
       updateSession(whereQuery);
 
-      String userSession = (String) user.get("sid");
-
-      String userName = (String) user.get("name");
-
-      return new User(userSession, userName);
+      return true;
     }
 
-    return null;
+    return false;
   }
 
   @Override
-  public void deleteBy(String sid) {
+  public void delete(String sid) {
     BasicDBObject sessionDocument = new BasicDBObject("sid", sid);
 
     sessions().remove(sessionDocument);

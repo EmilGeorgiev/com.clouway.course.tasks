@@ -1,6 +1,12 @@
 package com.clouway.http;
 
-import com.clouway.core.*;
+import com.clouway.core.CurrentUser;
+import com.clouway.core.LoginMessages;
+import com.clouway.core.RegistrationMessages;
+import com.clouway.core.SiteMap;
+import com.clouway.core.TransactionMessages;
+import com.clouway.core.UserRepository;
+import com.google.common.base.Optional;
 import com.google.inject.Provider;
 import com.google.inject.Provides;
 import com.google.inject.servlet.RequestScoped;
@@ -10,14 +16,11 @@ import com.mongodb.MongoClient;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.net.UnknownHostException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Sitebricks extends com.google.sitebricks.SitebricksModule {
 
-    private Map<String, TransactionEntityFactory> transactionHandlerMap = new HashMap<String, TransactionEntityFactory>();
 
-   @Override
+  @Override
   protected void configureSitebricks() {
 
     at("/loginController").show(LoginController.class);
@@ -29,17 +32,9 @@ public class Sitebricks extends com.google.sitebricks.SitebricksModule {
 
     embed(ShowTransaction.class).as("Transaction");
 
-    transactionHandlerMap.put("deposit", new DepositCreator());
-    transactionHandlerMap.put("withdraw", new WithdrawEntityFactory());
-
   }
 
-    @Provides
-    public Map<String, TransactionEntityFactory> providerMapTransactionHandler() {
-        return transactionHandlerMap;
-    }
-
-    @Provides
+  @Provides
   public SiteMap providesSiteMap() {
     return new SiteMap() {
 
@@ -118,16 +113,19 @@ public class Sitebricks extends com.google.sitebricks.SitebricksModule {
 
   @Provides
   @RequestScoped
-  public User getCurrentUser(Provider<HttpServletRequest> requestProvider,
+  public Optional<CurrentUser> getCurrentUser(Provider<HttpServletRequest> requestProvider,
                                     UserRepository userRepository) {
     Cookie[] cookies = requestProvider.get().getCookies();
-    for (Cookie cookie : cookies) {
 
-      if ("sid".equalsIgnoreCase(cookie.getName())) {
-        return userRepository.findBySessionID(cookie.getValue());
+    if (cookies != null) {
+      for (Cookie cookie : cookies) {
+
+        if ("sid".equalsIgnoreCase(cookie.getName())) {
+          return userRepository.findBySession(cookie.getValue());
+        }
       }
     }
 
-    return null;
+    return Optional.absent();
   }
 }

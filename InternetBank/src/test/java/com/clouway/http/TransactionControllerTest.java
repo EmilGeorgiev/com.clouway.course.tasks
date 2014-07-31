@@ -1,6 +1,10 @@
 package com.clouway.http;
 
-import com.clouway.core.*;
+import com.clouway.core.BankRepository;
+import com.clouway.core.Result;
+import com.clouway.core.SiteMap;
+import com.clouway.core.Transaction;
+import com.clouway.core.User;
 import com.clouway.http.capture.CapturingMatcher;
 import com.clouway.util.CalendarUtil;
 import com.google.inject.util.Providers;
@@ -11,9 +15,6 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Created by clouway on 7/14/14.
  */
@@ -21,11 +22,11 @@ public class TransactionControllerTest {
 
   private TransactionController transactionController;
 
-  private Map<String, TransactionEntityFactory> factoryMap = new HashMap<String, TransactionEntityFactory>();
-
   private CalendarUtil clock = new CalendarUtil(2014, 7, 14, 15, 46, 34);
 
-  User user;
+  private User user;
+
+  private Result result;
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
@@ -41,24 +42,27 @@ public class TransactionControllerTest {
 
     TransactionDTO transactionDTO = new TransactionDTO("deposit", 50);
 
-    factoryMap.put("deposit", new DepositCreator());
-    factoryMap.put("withdraw", new WithdrawEntityFactory());
 
     user = new User(userId("23"), userName("test"));
-    transactionController = new TransactionController(Providers.of(factoryMap),
-                                                      clock,
+    transactionController = new TransactionController(clock,
                                                       Providers.of(user),
                                                       siteMap,
                                                       bankRepository);
 
     transactionController.setTransactionDTO(transactionDTO);
+
+    result = new Result(userName("test"), amount(23.0));
+  }
+
+  private Double amount(double amount) {
+    return amount;
   }
 
   @Test
   public void transactionSomeValue() throws Exception {
 
-    final CapturingMatcher<TransactionEntity> capturingMatcher =
-            new CapturingMatcher<TransactionEntity>(Expectations.any(TransactionEntity.class));
+    final CapturingMatcher<Transaction> capturingMatcher =
+            new CapturingMatcher<Transaction>(Expectations.any(Transaction.class));
 
     context.checking(new Expectations() {{
 
@@ -66,7 +70,7 @@ public class TransactionControllerTest {
       will(returnValue("/mainController"));
 
       oneOf(bankRepository).updateBalance(with(capturingMatcher));
-      will(returnValue("success&currentAmount=45"));
+      will(returnValue(result));
 
     }
     });

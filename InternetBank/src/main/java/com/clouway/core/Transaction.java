@@ -7,6 +7,7 @@ import java.util.Date;
  */
 public class Transaction {
 
+  private enum Type {DEPOSIT, WITHDRAW}
   private String type;
   private double amount;
   private Date date;

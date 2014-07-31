@@ -1,6 +1,7 @@
 package com.clouway.http;
 
 import com.clouway.core.*;
+import com.google.common.base.Optional;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
@@ -12,23 +13,20 @@ import java.util.List;
 @At("/mainController")
 @Singleton
 public class MainController {
+
   private final TransactionRepository transactionRepository;
-  private final Provider<User> userProvider;
-  private final SiteMap siteMap;
+  private final Provider<Optional<CurrentUser>> currentUserProvider;
   private List<Transaction> list;
-  private User user;
   private String userMessage;
-  private String currentAccount;
+  private String currentAmount;
   private Boolean isShowUserMessage = false;
 
   @Inject
   public MainController(TransactionRepository transactionRepository,
-                        Provider<User> userProvider,
-                        SiteMap siteMap) {
+                        Provider<Optional<CurrentUser>> currentUserProvider) {
 
     this.transactionRepository = transactionRepository;
-    this.userProvider = userProvider;
-    this.siteMap = siteMap;
+    this.currentUserProvider = currentUserProvider;
   }
 
   /**
@@ -37,11 +35,13 @@ public class MainController {
   @Get
   public String configure() {
 
-    user = userProvider.get();
-    if(user == null) {
-      return siteMap.loginController();
+    Optional<CurrentUser> optional = currentUserProvider.get();
+
+    if (optional.isPresent()) {
+
+      list = transactionRepository.getUserTransactions(optional.get().getName());
     }
-    list = transactionRepository.getAllTransactions(user.getName());
+
 
     return null;
   }
@@ -55,12 +55,12 @@ public class MainController {
     this.isShowUserMessage = Boolean.valueOf(isShowUserMessage);
   }
 
-  public String getCurrentAccount() {
-    return currentAccount;
+  public String getCurrentAmount() {
+    return currentAmount;
   }
 
-  public void setCurrentAccount(String currentAccount) {
-    this.currentAccount = currentAccount;
+  public void setCurrentAmount(String currentAmount) {
+    this.currentAmount = currentAmount;
   }
 
   public List<Transaction> getList() {
@@ -69,14 +69,6 @@ public class MainController {
 
   public void setList(List<Transaction> list) {
     this.list = list;
-  }
-
-  public User getUser() {
-    return user;
-  }
-
-  public void setUser(User user) {
-    this.user = user;
   }
 
   public String getUserMessage() {

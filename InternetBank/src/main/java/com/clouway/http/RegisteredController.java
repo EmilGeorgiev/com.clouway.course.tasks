@@ -1,6 +1,7 @@
 package com.clouway.http;
 
-import com.clouway.core.UserEntity;
+import com.clouway.core.ResultRegister;
+import com.clouway.core.User;
 import com.clouway.core.UserRepository;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -13,7 +14,7 @@ public class RegisteredController {
 
   private UserDTO userDTO = new UserDTO();
   private final UserRepository userRepository;
-  private String registeredMessage = null;
+  private ResultRegister registeredMessage = null;
 
   @Inject
   public RegisteredController(UserRepository userRepository) {
@@ -28,18 +29,14 @@ public class RegisteredController {
   @Post
   public void registered() {
 
-    UserEntity userEntity = new UserEntity(userDTO.getName(), userDTO.getPassword());
+    User user = new User(userDTO.getName(), userDTO.getPassword());
 
-    registeredMessage = userRepository.registerUserIfNotExist(userEntity);
+    registeredMessage = userRepository.register(user);
 
   }
 
-  public String getRegisteredMessage() {
+  public ResultRegister getRegisteredMessage() {
     return registeredMessage;
-  }
-
-  public void setRegisteredMessage(String registeredMessage) {
-    this.registeredMessage = registeredMessage;
   }
 
   public UserDTO getUserDTO() {

@@ -1,15 +1,16 @@
 package com.clouway.http;
 
-import com.clouway.core.SessionRepository;
 import com.clouway.core.SiteMap;
-import com.clouway.core.User;
-import com.google.inject.util.Providers;
+import com.clouway.http.capture.CapturingMatcher;
 import org.jmock.Expectations;
 import org.jmock.auto.Mock;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 
 
 public class LogoutControllerTest {
@@ -20,7 +21,7 @@ public class LogoutControllerTest {
   public JUnitRuleMockery context = new JUnitRuleMockery();
 
   @Mock
-  private SessionRepository sessionRepository = null;
+  private HttpServletRequest request = null;
 
   @Mock
   private SiteMap siteMap = null;
@@ -28,17 +29,19 @@ public class LogoutControllerTest {
   @Before
   public void setUp() {
 
-    User currentUser = new User(session("123"), name("test"));
-
-    logoutController = new LogoutController(sessionRepository, Providers.of(currentUser), siteMap);
+    logoutController = new LogoutController(request, siteMap);
   }
 
   @Test
   public void logoutUser() throws Exception {
 
+    final CapturingMatcher<Cookie[]> capturingMatcher =
+            new CapturingMatcher<Cookie[]>(Expectations.any(Cookie[].class));
+
     context.checking(new Expectations() {{
 
-      oneOf(sessionRepository).deleteBy("123");
+      oneOf(request).getCookies();
+      will(returnValue(with(capturingMatcher)));
 
       oneOf(siteMap).loginController();
       will(returnValue("/loginController"));

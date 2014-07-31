@@ -1,5 +1,7 @@
 package com.clouway.core;
 
+import com.google.common.base.Optional;
+
 /**
  *
  */
@@ -7,22 +9,22 @@ public interface UserRepository {
 
   /**
    * Register user in database if not exist.
-   * @param userEntity user object who saved.
+   * @param user user object who saved.
    * @return message whether registration is success or not.
    */
-  String registerUserIfNotExist(UserEntity userEntity);
+  ResultRegister register(User user);
 
   /**
    * Check whether user is exist in database.
-   * @param userEntity user object who checked.
+   * @param user user object who checked.
    * @return session id if user exist
    */
-  String isExist(UserEntity userEntity);
+  Optional<String> login(User user);
 
   /**
    * Find user.
    * @param session on user.
    * @return User if it is exist.
    */
-  User findBySessionID(String session);
+  Optional<CurrentUser> findBySession(String session);
 }

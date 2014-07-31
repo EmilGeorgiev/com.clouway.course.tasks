@@ -6,7 +6,7 @@ package com.clouway.core;
 public interface SessionRepository {
 
   //SMELL repository object must contains operation related with CRUD.
-  User authenticate(String sessionID, Clock clock);
+  boolean authenticate(String sessionID, Clock clock);
 
-  void deleteBy(String sid);
+  void delete(String sid);
 }

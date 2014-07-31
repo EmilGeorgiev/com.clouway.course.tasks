@@ -2,8 +2,8 @@ package com.clouway.persistent;
 
 import com.clouway.core.Clock;
 import com.clouway.core.RegistrationMessages;
+import com.clouway.core.ResultRegister;
 import com.clouway.core.User;
-import com.clouway.core.UserEntity;
 import com.clouway.util.BankUtil;
 import com.clouway.util.CalendarUtil;
 import com.clouway.util.SessionUtil;
@@ -17,15 +17,15 @@ import java.net.UnknownHostException;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class PersistentUserRepositoryTest {
 
   private PersistentUserRepository userRepository;
   private DB connection;
   private CalendarUtil clock = new CalendarUtil(2014, 7, 28, 12, 20, 45 );
-  private UserEntity userEntity;
+  private User user;
   private BankUtil bankUtil;
   private SessionUtil sessionUtil;
 
@@ -63,9 +63,9 @@ public class PersistentUserRepositoryTest {
 
     pretendThatUserWantsRegister(name("test"), pass("userPass"));
 
-    String userMessage = userRepository.registerUserIfNotExist(userEntity);
+    ResultRegister register = userRepository.register(user);
 
-    assertThat(userMessage, is("Registration is success"));
+    assertThat(register.getMessage(), is("Registration is success"));
 
   }
 
@@ -74,9 +74,9 @@ public class PersistentUserRepositoryTest {
 
     pretendThatUserAlreadyIsRegistered(name("ivan"), pass("ivanTest"));
 
-    String userMessage = userRepository.registerUserIfNotExist(userEntity);
+    ResultRegister resultRegister = userRepository.register(user);
 
-    assertThat(userMessage, is("Registration is failed"));
+    assertThat(resultRegister.getMessage(), is("Registration is failed"));
 
   }
 
@@ -85,24 +85,23 @@ public class PersistentUserRepositoryTest {
 
     pretendThatUserSessionIs(session("123"), userId("321"), expirationDate(new CalendarUtil(2014, 8, 28, 12, 55, 0)));
 
-    User user = userRepository.authenticate(session("123"), clock);
-
-    assertNotNull(user);
+    assertTrue(userRepository.authenticate(session("123"), clock));
 
   }
 
   @Test
   public void userSessionIsExpiration() throws Exception {
-    pretendThatUserSessionIs(session("456"), userId("654"), expirationDate(new CalendarUtil(2014, 7, 28, 10, 20, 0)));
 
-    User user = userRepository.authenticate(session("456"), clock);
+    pretendThatUserSessionIs(session("456"), userId("654"),
+            expirationDate(new CalendarUtil(2014, 7, 28, 10, 20, 0)));
 
-    assertNull(user);
+    assertFalse(userRepository.authenticate(session("456"), clock));
 
   }
 
   private void pretendThatUserAlreadyIsRegistered(String name, String pass) {
-    userEntity = new UserEntity(name, pass);
+
+    user = new User(name, pass);
     bankUtil.registerUser(name, pass);
   }
 
@@ -122,9 +121,8 @@ public class PersistentUserRepositoryTest {
     return session;
   }
 
-
   private void pretendThatUserWantsRegister(String name, String pass) {
-    userEntity = new UserEntity(name, pass);
+    user = new User(name, pass);
   }
 
   private String pass(String pass) {
@@ -136,6 +134,7 @@ public class PersistentUserRepositoryTest {
   }
 
   private void cleanDB() {
+
     connection.getCollection("users").drop();
     connection.getCollection("sessions").drop();
   }

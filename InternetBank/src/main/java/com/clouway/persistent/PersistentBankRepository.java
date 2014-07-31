@@ -50,40 +50,27 @@ public class PersistentBankRepository implements BankRepository, TransactionRepo
    * {@see com.clouway.core.TransactionRepository}
    */
   @Override
-  public List<Transaction> getAllTransactions(String userName) {
-    List<Transaction> transactionList = new ArrayList<Transaction>();
+  public List<Transaction> getUserTransactions(String userName) {
+    List<Transaction> transactions = new ArrayList<Transaction>();
 
     DBObject query = new BasicDBObject("user_name", userName);
 
-    DBCursor transactions = transactions().find(query);
+    DBCursor transactionsCursor = transactions().find(query);
 
-    while (transactions.hasNext()) {
+    while (transactionsCursor.hasNext()) {
 
-      BasicDBObject transaction = (BasicDBObject) transactions.next();
+      BasicDBObject transaction = (BasicDBObject) transactionsCursor.next();
 
       String transactionType = transaction.getString("transaction_type");
       Double amount = transaction.getDouble("amount");
       Date date = transaction.getDate("date");
       String name = transaction.getString("user_name");
 
-      transactionList.add(new Transaction(transactionType, amount, date, name));
+      transactions.add(new Transaction(transactionType, amount, date, name));
     }
 
-    return transactionList;
+    return transactions;
   }
-
-//  public float getCurrentAmount(String userName) {
-//
-//    DB db = this.db.get();
-//
-//    DBObject documentQuery = new BasicDBObject("name", userName);
-//
-//    DBObject dbObject = users().findOne(documentQuery);
-//
-//    String account = String.valueOf(dbObject.get("amount"));
-//
-//    return Float.valueOf(account);
-//  }
 
   /**
    * Get amount on user.

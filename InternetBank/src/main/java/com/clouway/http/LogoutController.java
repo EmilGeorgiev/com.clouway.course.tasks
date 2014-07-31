@@ -1,32 +1,29 @@
 package com.clouway.http;
 
-import com.clouway.core.SessionRepository;
 import com.clouway.core.SiteMap;
-import com.clouway.core.User;
 import com.google.inject.Inject;
-import com.google.inject.Provider;
 import com.google.inject.Singleton;
 import com.google.sitebricks.At;
 import com.google.sitebricks.headless.Reply;
 import com.google.sitebricks.headless.Service;
 import com.google.sitebricks.http.Get;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
 @At("/logoutController")
 @Service
 @Singleton
 public class LogoutController {
 
-  private final SessionRepository sessionRepository;
-  private final Provider<User> currentUser;
+  private final HttpServletRequest request;
   private final SiteMap siteMap;
 
   @Inject
-  public LogoutController(SessionRepository sessionRepository,
-                          Provider<User> currentUser,
+  public LogoutController(HttpServletRequest request,
                           SiteMap siteMap) {
 
-    this.sessionRepository = sessionRepository;
-    this.currentUser = currentUser;
+    this.request = request;
     this.siteMap = siteMap;
   }
 
@@ -36,7 +33,12 @@ public class LogoutController {
   @Get
   public Reply<?> logout() {
 
-    sessionRepository.deleteBy(currentUser.get().getSession());
+    Cookie[] cookies = request.getCookies();
+    if (cookies != null) {
+      for (Cookie cookie : cookies) {
+        cookie.setMaxAge(0);
+      }
+    }
 
     return Reply.saying().redirect(siteMap.loginController());
   }

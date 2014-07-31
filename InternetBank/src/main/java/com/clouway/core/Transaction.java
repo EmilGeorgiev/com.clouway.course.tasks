@@ -7,21 +7,21 @@ import java.util.Date;
  */
 public class Transaction {
 
-  private String transactionType;
+  private String type;
   private double amount;
   private Date date;
   private String userName;
 
-  public Transaction(String transactionType, double amount, Date date, String userName) {
+  public Transaction(String type, double amount, Date date, String userName) {
 
-    this.transactionType = transactionType;
+    this.type = type;
     this.amount = amount;
     this.date = date;
     this.userName = userName;
   }
 
   public String getType() {
-    return transactionType;
+    return type;
   }
 
   public double getAmount() {
@@ -40,8 +40,8 @@ public class Transaction {
     return userName;
   }
 
-  public void setTransactionType(String transactionType) {
-    this.transactionType = transactionType;
+  public void setType(String transactionType) {
+    this.type = transactionType;
   }
 
   public void setDate(Date date) {
@@ -61,7 +61,7 @@ public class Transaction {
 
     if (Double.compare(that.amount, amount) != 0) return false;
     if (date != null ? !date.equals(that.date) : that.date != null) return false;
-    if (transactionType != null ? !transactionType.equals(that.transactionType) : that.transactionType != null)
+    if (type != null ? !type.equals(that.type) : that.type != null)
       return false;
     if (userName != null ? !userName.equals(that.userName) : that.userName != null) return false;
 
@@ -72,7 +72,7 @@ public class Transaction {
   public int hashCode() {
     int result;
     long temp;
-    result = transactionType != null ? transactionType.hashCode() : 0;
+    result = type != null ? type.hashCode() : 0;
     temp = Double.doubleToLongBits(amount);
     result = 31 * result + (int) (temp ^ (temp >>> 32));
     result = 31 * result + (date != null ? date.hashCode() : 0);

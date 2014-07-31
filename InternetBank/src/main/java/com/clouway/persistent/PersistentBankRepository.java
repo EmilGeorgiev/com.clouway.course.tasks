@@ -53,8 +53,8 @@ public class PersistentBankRepository implements BankRepository, TransactionRepo
   }
 
   @Override
-  public List<TransactionEntity> getAllTransactionsBy(String userName) {
-    List<TransactionEntity> transactionList = new ArrayList<TransactionEntity>();
+  public List<Transaction> getAllTransactionsBy(String userName) {
+    List<Transaction> transactionList = new ArrayList<Transaction>();
 
     BasicDBObject query = new BasicDBObject("user_name", userName);
 
@@ -68,7 +68,7 @@ public class PersistentBankRepository implements BankRepository, TransactionRepo
       Date date = (Date) transaction.get("date");
       String name = (String) transaction.get("user_name");
 
-      transactionList.add(new TransactionEntity(transactionType, name, amount, date));
+      transactionList.add(new Transaction(transactionType, amount, date, name));
     }
 
     return transactionList;

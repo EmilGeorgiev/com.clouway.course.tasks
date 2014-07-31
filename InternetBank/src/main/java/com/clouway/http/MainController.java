@@ -15,7 +15,7 @@ public class MainController {
   private final TransactionRepository transactionRepository;
   private final Provider<User> userProvider;
   private final SiteMap siteMap;
-  private List<TransactionEntity> list;
+  private List<Transaction> list;
   private User user;
   private String userMessage;
   private String currentAccount;
@@ -63,11 +63,11 @@ public class MainController {
     this.currentAccount = currentAccount;
   }
 
-  public List<TransactionEntity> getList() {
+  public List<Transaction> getList() {
     return list;
   }
 
-  public void setList(List<TransactionEntity> list) {
+  public void setList(List<Transaction> list) {
     this.list = list;
   }
 

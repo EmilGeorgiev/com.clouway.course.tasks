@@ -1,7 +1,6 @@
 package com.clouway.util;
 
 import com.clouway.core.Transaction;
-import com.clouway.core.TransactionEntity;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -17,7 +16,7 @@ public class BankUtil {
     this.connection = connection;
   }
 
-  public void makeTransaction(TransactionEntity transaction) {
+  public void makeTransaction(Transaction transaction) {
 
     BasicDBObject updateQuery = new BasicDBObject("name", transaction.getUserName());
 
@@ -43,7 +42,7 @@ public class BankUtil {
     connection.getCollection("users").save(user);
   }
 
-  private void addNew(TransactionEntity transaction) {
+  private void addNew(Transaction transaction) {
     BasicDBObject newTransaction = new BasicDBObject("transaction_type", transaction.getType())
             .append("amount", transaction.getAmount())
             .append("date", transaction.getDate())

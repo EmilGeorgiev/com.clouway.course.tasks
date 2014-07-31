@@ -5,11 +5,12 @@ import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceServletContextListener;
 
 /**
- * Created by clouway on 7/14/14.
+ *
  */
 public class AppInjector extends GuiceServletContextListener {
   @Override
   protected Injector getInjector() {
-    return Guice.createInjector(new Sitebricks(), new HttpModule());
+    return Guice.createInjector(new Sitebricks(),
+            new HttpModule());
   }
 }

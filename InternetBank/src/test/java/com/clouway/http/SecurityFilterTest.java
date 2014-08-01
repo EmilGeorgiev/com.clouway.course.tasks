@@ -20,7 +20,7 @@ public class SecurityFilterTest {
 
   private SecurityFilter securityFilter;
   private CalendarUtil clock;
-
+  private Cookie[] cookies;
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
@@ -46,18 +46,18 @@ public class SecurityFilterTest {
     clock = new CalendarUtil(2014, 7, 23, 12, 45, 34);
 
     securityFilter = new SecurityFilter(sessionRepository, siteMap, clock);
+
+    cookies = new Cookie[]{new Cookie("sid", "abc")};
+
   }
 
   @Test
   public void authenticateUserWithValidSession() throws Exception {
 
-    final CapturingMatcher<Cookie[]> capturingMatcher =
-            new CapturingMatcher<Cookie[]>(Expectations.any(Cookie[].class));
-
     context.checking(new Expectations() {{
 
       oneOf(request).getCookies();
-      will(returnValue(with(capturingMatcher)));
+      will(returnValue(with(cookies)));
 
       oneOf(sessionRepository).authenticate(sessionID("abc"), clock);
       will(returnValue(true));
@@ -77,12 +77,13 @@ public class SecurityFilterTest {
     final CapturingMatcher<Cookie[]> capturingMatcher =
             new CapturingMatcher<Cookie[]>(Expectations.any(Cookie[].class));
 
+
     context.checking(new Expectations() {{
 
       oneOf(request).getCookies();
-      will(returnValue(with(capturingMatcher)));
+      will(returnValue(with(cookies)));
 
-      oneOf(sessionRepository).authenticate(sessionID("123"), clock);
+      oneOf(sessionRepository).authenticate(sessionID("abc"), clock);
       will(returnValue(false));
 
       oneOf(siteMap).loginController();
@@ -96,6 +97,7 @@ public class SecurityFilterTest {
     });
 
     securityFilter.doFilter(request, response, filterChain);
+
   }
 
   private String sessionID(String session) {

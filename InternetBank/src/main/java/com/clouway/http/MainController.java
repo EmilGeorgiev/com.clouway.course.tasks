@@ -14,9 +14,9 @@ import java.util.List;
 @Singleton
 public class MainController {
 
-  private final TransactionRepository transactionRepository;
-  private final Provider<Optional<CurrentUser>> currentUserProvider;
-  private List<Transaction> list;
+  public final TransactionRepository transactionRepository;
+  public final Provider<Optional<CurrentUser>> currentUserProvider;
+  private List<TransactionEntity> list;
   private String userMessage;
   private String currentAmount;
   private Boolean isShowUserMessage = false;
@@ -39,7 +39,7 @@ public class MainController {
 
     if (optional.isPresent()) {
 
-      list = transactionRepository.getUserTransactions(optional.get().getName());
+      list = transactionRepository.getUserTransactions();
     }
 
 
@@ -63,11 +63,11 @@ public class MainController {
     this.currentAmount = currentAmount;
   }
 
-  public List<Transaction> getList() {
+  public List<TransactionEntity> getList() {
     return list;
   }
 
-  public void setList(List<Transaction> list) {
+  public void setList(List<TransactionEntity> list) {
     this.list = list;
   }
 

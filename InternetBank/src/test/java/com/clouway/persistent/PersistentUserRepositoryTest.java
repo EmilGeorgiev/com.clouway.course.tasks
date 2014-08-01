@@ -1,8 +1,8 @@
 package com.clouway.persistent;
 
 import com.clouway.core.Clock;
+import com.clouway.core.RegistrationInfo;
 import com.clouway.core.RegistrationMessages;
-import com.clouway.core.ResultRegister;
 import com.clouway.core.User;
 import com.clouway.util.BankUtil;
 import com.clouway.util.CalendarUtil;
@@ -63,7 +63,7 @@ public class PersistentUserRepositoryTest {
 
     pretendThatUserWantsRegister(name("test"), pass("userPass"));
 
-    ResultRegister register = userRepository.register(user);
+    RegistrationInfo register = userRepository.register(user);
 
     assertThat(register.getMessage(), is("Registration is success"));
 
@@ -74,9 +74,9 @@ public class PersistentUserRepositoryTest {
 
     pretendThatUserAlreadyIsRegistered(name("ivan"), pass("ivanTest"));
 
-    ResultRegister resultRegister = userRepository.register(user);
+    RegistrationInfo registrationInfo = userRepository.register(user);
 
-    assertThat(resultRegister.getMessage(), is("Registration is failed"));
+    assertThat(registrationInfo.getMessage(), is("Registration is failed"));
 
   }
 
@@ -85,7 +85,7 @@ public class PersistentUserRepositoryTest {
 
     pretendThatUserSessionIs(session("123"), userId("321"), expirationDate(new CalendarUtil(2014, 8, 28, 12, 55, 0)));
 
-    assertTrue(userRepository.authenticate(session("123"), clock));
+    assertTrue(userRepository.authenticate(session("123")));
 
   }
 
@@ -95,7 +95,7 @@ public class PersistentUserRepositoryTest {
     pretendThatUserSessionIs(session("456"), userId("654"),
             expirationDate(new CalendarUtil(2014, 7, 28, 10, 20, 0)));
 
-    assertFalse(userRepository.authenticate(session("456"), clock));
+    assertFalse(userRepository.authenticate(session("456")));
 
   }
 

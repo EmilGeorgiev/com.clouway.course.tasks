@@ -2,8 +2,8 @@ package com.clouway.persistent;
 
 import com.clouway.core.Clock;
 import com.clouway.core.CurrentUser;
+import com.clouway.core.RegistrationInfo;
 import com.clouway.core.RegistrationMessages;
-import com.clouway.core.ResultRegister;
 import com.clouway.core.SessionRepository;
 import com.clouway.core.User;
 import com.clouway.core.UserRepository;
@@ -43,7 +43,7 @@ public class PersistentUserRepository implements UserRepository, SessionReposito
   }
 
   @Override
-  public ResultRegister register(User user) {
+  public RegistrationInfo register(User user) {
 
     BasicDBObject query = new BasicDBObject("name", user.getName())
             .append("password", user.getPassword());
@@ -53,10 +53,10 @@ public class PersistentUserRepository implements UserRepository, SessionReposito
     WriteResult writeResult = users().update(query, documentUpdate, true, false);
 
     if (writeResult.isUpdateOfExisting()) {
-      return new ResultRegister(messagesProvider.get().failed());
+      return new RegistrationInfo(messagesProvider.get().failed());
     }
 
-    return new ResultRegister(messagesProvider.get().success());
+    return new RegistrationInfo(messagesProvider.get().success());
 
   }
 
@@ -72,7 +72,7 @@ public class PersistentUserRepository implements UserRepository, SessionReposito
       return Optional.absent();
     }
 
-    return  Optional.fromNullable(createUserSession(user.getName()));
+    return  Optional.of(createUserSession(user.getName()));
 
   }
 
@@ -89,10 +89,10 @@ public class PersistentUserRepository implements UserRepository, SessionReposito
   }
 
   @Override
-  public boolean authenticate(String sessionID, Clock date) {
+  public boolean authenticate(String sessionID) {
 
     BasicDBObject whereQuery = new BasicDBObject("sid", sessionID)
-            .append("expiration_date", new BasicDBObject("$gt", date.now()));
+            .append("expiration_date", new BasicDBObject("$gt", clock.now()));
 
     DBObject user = sessions().findOne(whereQuery);
 
@@ -106,12 +106,12 @@ public class PersistentUserRepository implements UserRepository, SessionReposito
     return false;
   }
 
-  @Override
-  public void delete(String sid) {
-    BasicDBObject sessionDocument = new BasicDBObject("sid", sid);
-
-    sessions().remove(sessionDocument);
-  }
+//  @Override
+//  public void delete(String sid) {
+//    BasicDBObject sessionDocument = new BasicDBObject("sid", sid);
+//
+//    sessions().remove(sessionDocument);
+//  }
 
   private void updateSession(BasicDBObject whereQuery) {
 

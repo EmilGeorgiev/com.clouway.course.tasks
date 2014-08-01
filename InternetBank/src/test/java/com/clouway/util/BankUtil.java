@@ -1,33 +1,42 @@
 package com.clouway.util;
 
-import com.clouway.core.Transaction;
+import com.clouway.core.Clock;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
+import com.mongodb.DBObject;
 
 /**
  * Created by clouway on 7/16/14.
  */
 public class BankUtil {
   private final DB connection;
+  private final String userName;
+  private final Clock clock;
 
-  public BankUtil(DB connection) {
+  public BankUtil(DB connection, String userName, Clock clock) {
 
     this.connection = connection;
+    this.userName = userName;
+    this.clock = clock;
   }
 
-  public void makeTransaction(Transaction transaction) {
+  public void deposit(Double amount) {
 
-    BasicDBObject updateQuery = new BasicDBObject("name", transaction.getUserName());
+    DBObject query = new BasicDBObject("name", userName);
 
-    BasicDBObject updateDocument = new BasicDBObject("$inc", new BasicDBObject("amount", transaction.getAmount()));
+    DBObject fields = new BasicDBObject("amount", 1);
 
-    connection.getCollection("users").update(updateQuery, updateDocument);
+    DBObject update = new BasicDBObject("$inc", new BasicDBObject("amount", amount));
 
-    addNew(transaction);
+    DBObject object = users().findAndModify(query, fields, null, false, update, true, true);
+
+    Double currentAmount = (Double) object.get("amount");
+
+    addNewTransaction("deposit", currentAmount);
   }
 
-  public void registerUser(String userName) {
+  public void register(String userName) {
 
     BasicDBObject user = new BasicDBObject("name", userName)
             .append("amount", 0.0);
@@ -36,22 +45,28 @@ public class BankUtil {
   }
 
   public void registerUser(String name, String pass) {
+
     BasicDBObject user = new BasicDBObject("name", name)
             .append("password", pass);
 
     connection.getCollection("users").save(user);
   }
 
-  private void addNew(Transaction transaction) {
-    BasicDBObject newTransaction = new BasicDBObject("transaction_type", transaction.getType())
-            .append("amount", transaction.getAmount())
-            .append("date", transaction.getDate())
-            .append("user_name", transaction.getUserName());
+  private void addNewTransaction(String type, Double amount) {
+
+    BasicDBObject newTransaction = new BasicDBObject("transaction_type", type)
+            .append("amount", amount)
+            .append("date", clock.now())
+            .append("user_name", userName);
 
     DBCollection collection = connection.getCollection("transactions");
 
     collection.save(newTransaction);
 
+  }
+
+  private DBCollection users() {
+    return connection.getCollection("users");
   }
 
 

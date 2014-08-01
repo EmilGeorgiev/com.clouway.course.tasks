@@ -3,12 +3,12 @@ package com.clouway.core;
 /**
  * Contains result of executed transaction.
  */
-public class Result {
+public class TransactionInfo {
 
   private final String message;
   private final Double currentAmount;
 
-  public Result(String message, Double currentAmount) {
+  public TransactionInfo(String message, Double currentAmount) {
     this.message = message;
     this.currentAmount = currentAmount;
   }

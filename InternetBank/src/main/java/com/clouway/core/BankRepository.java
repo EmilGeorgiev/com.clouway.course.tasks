@@ -6,11 +6,22 @@ package com.clouway.core;
 public interface BankRepository {
 
   /**
-   * Increment or decrement account on user.
-   * @param transaction contains information about transaction
+   * Increment account on user with same value.
+   *
    * @return Result who contains message whether transaction is success or not.
    * Also contains current amount on user after update.
    */
-  Result updateBalance(Transaction transaction);
+  TransactionInfo deposit(Double amount);
+
+
+  /**
+   * Decrement account on user with same value.
+   *
+   * @return Result who contains message whether transaction is success or not.
+   * Also contains current amount on user after update.
+   */
+  TransactionInfo withdraw(Double amount);
+
+
 
 }

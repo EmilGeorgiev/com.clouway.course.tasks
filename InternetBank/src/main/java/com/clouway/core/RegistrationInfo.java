@@ -3,11 +3,11 @@ package com.clouway.core;
 /**
  * Created by clouway on 7/31/14.
  */
-public class ResultRegister {
+public class RegistrationInfo {
 
   private final String message;
 
-  public ResultRegister(String message) {
+  public RegistrationInfo(String message) {
     this.message = message;
   }
 

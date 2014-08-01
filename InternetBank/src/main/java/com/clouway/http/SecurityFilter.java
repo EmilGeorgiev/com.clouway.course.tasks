@@ -61,7 +61,7 @@ public class SecurityFilter implements Filter{
       }
     }
 
-    if (!sessionRepository.authenticate(sessionID, clock)) {
+    if (!sessionRepository.authenticate(sessionID)) {
       servletResponse.sendRedirect(siteMap.loginController());
     }
 

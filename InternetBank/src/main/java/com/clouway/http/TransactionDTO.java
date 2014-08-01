@@ -5,31 +5,21 @@ package com.clouway.http;
  */
 public class TransactionDTO {
 
-  private String transactionType = null;
   private Double amount = null;
 
   public TransactionDTO() {
 
   }
 
-  public TransactionDTO(String transactionType, double amount) {
+  public TransactionDTO(double amount) {
     this.amount = amount;
-    this.transactionType = transactionType;
-  }
-
-  public String getType() {
-    return transactionType;
-  }
-
-  public void setTransactionType(String transactionType) {
-    this.transactionType = transactionType;
   }
 
   public Double getAmount() {
     return amount;
   }
 
-  public void setAmount(Double amount) {
-    this.amount = amount;
+  public void setAmount(String amount) {
+    this.amount = Double.valueOf(amount);
   }
 }

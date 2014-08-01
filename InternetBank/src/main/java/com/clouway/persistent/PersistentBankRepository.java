@@ -17,87 +17,101 @@ import java.util.List;
 @Singleton
 public class PersistentBankRepository implements BankRepository, TransactionRepository {
 
-  private final Provider<DB> db;
-  private final TransactionMessages transactionMessages;
+  public final Provider<DB> db;
+  public final TransactionMessages transactionMessages;
+  public final Provider<CurrentUser> currentUser;
+  public final Clock clock;
 
   @Inject
-  public PersistentBankRepository(Provider<DB> db, TransactionMessages transactionMessages) {
+  public PersistentBankRepository(Provider<DB> db,
+                                  TransactionMessages transactionMessages,
+                                  Provider<CurrentUser> currentUser,
+                                  Clock clock) {
 
     this.db = db;
-
     this.transactionMessages = transactionMessages;
+    this.currentUser = currentUser;
+    this.clock = clock;
   }
 
   /**
    * {@see com.clouway.core.BankRepository}
    */
   @Override
-  public Result updateBalance(Transaction transaction) {
+  public TransactionInfo deposit(Double amount) {
 
-    DBObject query = new BasicDBObject("name", transaction.getUserName());
+    DBObject query = new BasicDBObject("name", currentUser.get().getName());
 
-    DBObject projection = new BasicDBObject("$inc",
-              new BasicDBObject("amount", transaction.getAmount()));
+    DBObject fields = new BasicDBObject("amount", 1);
 
-    users().update(query, projection);
+    DBObject update = new BasicDBObject("$inc", new BasicDBObject("amount", amount));
 
-    addNew(transaction);
+    DBObject object = users().findAndModify(query, fields, null, false, update, true, true);
 
-    return new Result(transactionMessages.success(), getAccount(transaction.getUserName()));
+    Double currentAmount = (Double) object.get("amount");
+
+    addNew("deposit", currentAmount);
+
+    return new TransactionInfo(transactionMessages.success(), currentAmount);
+  }
+
+  /**
+   * {@see com.clouway.core.BankRepository}
+   */
+  @Override
+  public TransactionInfo withdraw(Double amount) {
+
+    DBObject query = new BasicDBObject("name", currentUser.get().getName());
+
+    DBObject fields = new BasicDBObject("amount", 1);
+
+    DBObject update = new BasicDBObject("$inc", new BasicDBObject("amount", -amount));
+
+    DBObject object = users().findAndModify(query, fields, null, false, update, true, true);
+
+    Double currentAmount = (Double) object.get("amount");
+
+    addNew("deposit", currentAmount);
+
+    return new TransactionInfo(transactionMessages.success(), currentAmount);
   }
 
   /**
    * {@see com.clouway.core.TransactionRepository}
    */
   @Override
-  public List<Transaction> getUserTransactions(String userName) {
-    List<Transaction> transactions = new ArrayList<Transaction>();
+  public List<TransactionEntity> getUserTransactions() {
+    List<TransactionEntity> transactions = new ArrayList<TransactionEntity>();
 
-    DBObject query = new BasicDBObject("user_name", userName);
+    DBObject query = new BasicDBObject("user_name", currentUser.get().getName());
 
     DBCursor transactionsCursor = transactions().find(query);
 
     while (transactionsCursor.hasNext()) {
-
       BasicDBObject transaction = (BasicDBObject) transactionsCursor.next();
 
       String transactionType = transaction.getString("transaction_type");
+
       Double amount = transaction.getDouble("amount");
       Date date = transaction.getDate("date");
-      String name = transaction.getString("user_name");
 
-      transactions.add(new Transaction(transactionType, amount, date, name));
+      transactions.add(new TransactionEntity(transactionType, amount, date));
     }
 
     return transactions;
   }
 
   /**
-   * Get amount on user.
-   * @param userName user on who retrieve amount.
-   */
-  private double getAccount(String userName) {
-
-    DBObject query = new BasicDBObject("name", userName);
-
-    BasicDBObject user = (BasicDBObject) users().findOne(query);
-
-    return user.getDouble("amount");
-  }
-
-  /**
    * Insert new transaction in database.
-   * @param transaction ne transaction.
    */
-  private void addNew(Transaction transaction) {
+  private void addNew(String type, Double currentAmount) {
 
-    DBObject newTransaction = new BasicDBObject("transaction_type",
-              transaction.getType())
-              .append("amount", transaction.getAmount())
-              .append("date", transaction.getDate())
-              .append("user_name", transaction.getUserName());
+    DBObject transactionEntity = new BasicDBObject("transaction_type", type)
+              .append("amount", currentAmount)
+              .append("date", clock.now())
+              .append("user_name", currentUser.get().getName());
 
-    transactions().insert(newTransaction);
+    transactions().insert(transactionEntity);
   }
 
   private DBCollection users() {

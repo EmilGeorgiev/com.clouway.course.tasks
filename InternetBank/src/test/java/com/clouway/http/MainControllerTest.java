@@ -41,7 +41,7 @@ public class MainControllerTest {
   public void configureMainPage() throws Exception {
 
     context.checking(new Expectations() {{
-      oneOf(transactionRepository).getUserTransactions(currentUser.get().getName());
+      oneOf(transactionRepository).getUserTransactions();
       will(returnValue(transactionList));
     }
     });

@@ -1,6 +1,6 @@
 package com.clouway.http;
 
-import com.clouway.core.ResultRegister;
+import com.clouway.core.RegistrationInfo;
 import com.clouway.core.User;
 import com.clouway.core.UserRepository;
 import com.google.inject.Inject;
@@ -14,7 +14,7 @@ public class RegisteredController {
 
   private UserDTO userDTO = new UserDTO();
   private final UserRepository userRepository;
-  private ResultRegister registeredMessage = null;
+  private RegistrationInfo registeredMessage = null;
 
   @Inject
   public RegisteredController(UserRepository userRepository) {
@@ -35,7 +35,7 @@ public class RegisteredController {
 
   }
 
-  public ResultRegister getRegisteredMessage() {
+  public RegistrationInfo getRegisteredMessage() {
     return registeredMessage;
   }
 

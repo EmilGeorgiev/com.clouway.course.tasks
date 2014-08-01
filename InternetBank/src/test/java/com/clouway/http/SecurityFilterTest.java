@@ -59,7 +59,7 @@ public class SecurityFilterTest {
       oneOf(request).getCookies();
       will(returnValue(with(cookies)));
 
-      oneOf(sessionRepository).authenticate(sessionID("abc"), clock);
+      oneOf(sessionRepository).authenticate(sessionID("abc"));
       will(returnValue(true));
 
       oneOf(filterChain).doFilter(request, response);
@@ -83,7 +83,7 @@ public class SecurityFilterTest {
       oneOf(request).getCookies();
       will(returnValue(with(cookies)));
 
-      oneOf(sessionRepository).authenticate(sessionID("abc"), clock);
+      oneOf(sessionRepository).authenticate(sessionID("abc"));
       will(returnValue(false));
 
       oneOf(siteMap).loginController();

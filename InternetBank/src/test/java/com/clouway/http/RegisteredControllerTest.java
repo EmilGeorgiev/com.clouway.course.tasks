@@ -1,6 +1,6 @@
 package com.clouway.http;
 
-import com.clouway.core.ResultRegister;
+import com.clouway.core.RegistrationInfo;
 import com.clouway.core.User;
 import com.clouway.core.UserRepository;
 import org.jmock.Expectations;
@@ -18,7 +18,7 @@ public class RegisteredControllerTest {
   private RegisteredController registeredController;
   private User user = new User("ivan", "ivanPass");
   private UserDTO userDTO = new UserDTO("ivan", "ivanPass");
-  private ResultRegister resultRegister;
+  private RegistrationInfo registrationInfo;
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
@@ -32,7 +32,7 @@ public class RegisteredControllerTest {
 
     registeredController.setUserDTO(userDTO);
 
-    resultRegister = new ResultRegister("Registration is done.");
+    registrationInfo = new RegistrationInfo("Registration is done.");
   }
 
   @Test
@@ -41,7 +41,7 @@ public class RegisteredControllerTest {
     context.checking(new Expectations(){{
 
       oneOf(userRepository).register(user);
-      will(returnValue(resultRegister));
+      will(returnValue(registrationInfo));
 
     }
     });

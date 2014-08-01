@@ -1,8 +1,10 @@
 package com.clouway.persistent;
 
 import com.clouway.core.Clock;
+import com.clouway.core.CurrentUser;
 import com.clouway.core.SystemClock;
-import com.clouway.core.Transaction;
+import com.clouway.core.TransactionEntity;
+import com.clouway.core.TransactionInfo;
 import com.clouway.core.TransactionMessages;
 import com.clouway.util.BankUtil;
 import com.google.inject.util.Providers;
@@ -16,7 +18,6 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import java.net.UnknownHostException;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -25,8 +26,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class PersistentBankRepositoryTest {
 
   private PersistentBankRepository persistentBankRepository;
-
-  private Transaction transaction;
 
   private DB connection;
 
@@ -50,48 +49,55 @@ public class PersistentBankRepositoryTest {
 
     cleanDB();
 
-    transaction = new Transaction(type("deposit"), amount(10), clock.now(), userName("test"));
+    CurrentUser currentUser = new CurrentUser(userName("test"));
 
-    bankUtil = new BankUtil(connection);
+    bankUtil = new BankUtil(connection, userName("test"), clock);
+
+    bankUtil.register(userName("test"));
 
     persistentBankRepository = new PersistentBankRepository(Providers.of(connection),
-                                                            transactionMessages);
-
-    bankUtil.registerUser(userName("test"));
+            transactionMessages,
+            Providers.of(currentUser),
+            clock);
 
   }
 
   @Test
   public void whenMakeTransferThenCreateAndNewTransaction() throws Exception {
 
-    Transaction deposit = new Transaction(type("deposit"), amount(30), clock.now(), userName("test"));
+    pretendThatHasDepositTransactions(amount(50));
 
-    pretendThatHasTransactions(deposit);
+    pretendThatHasWithdrawTransaction(amount(30));
 
-    context.checking(new Expectations() {{
-      oneOf(transactionMessages).success();
-      will(returnValue("Transaction is success"));
+    context.checking(new Expectations() {
+      {
+        oneOf(transactionMessages).success();
+        will(returnValue("Transaction is success"));
 
 
-    }
+      }
     });
 
-    persistentBankRepository.updateBalance(transaction);
+    TransactionInfo info = persistentBankRepository.deposit(30.0);
 
-    List<Transaction> transactionList = persistentBankRepository.getUserTransactions("test");
+    List<TransactionEntity> transactions = persistentBankRepository.getUserTransactions();
 
-    assertThat(transactionList, is(Arrays.asList(deposit, transaction)));
+    assertThat(info.getCurrentAmount(), is(80.0));
 
-  }
+    assertThat(info.getMessage(), is("Transaction is success."));
 
-  private void pretendThatHasTransactions(Transaction deposit) {
-
-    bankUtil.makeTransaction(deposit);
+    assertThat(transactions.size(), is(2));
 
   }
 
-  private String type(String transferType) {
-    return transferType;
+  private void pretendThatHasWithdrawTransaction(double amount) {
+    bankUtil.withdraw(amount);
+  }
+
+  private void pretendThatHasDepositTransactions(Double amount) {
+
+    bankUtil.deposit(amount);
+
   }
 
   private double amount(double amount) {

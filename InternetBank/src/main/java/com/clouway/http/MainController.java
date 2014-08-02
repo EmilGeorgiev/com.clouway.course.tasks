@@ -15,35 +15,31 @@ import java.util.List;
 public class MainController {
 
   public final TransactionRepository transactionRepository;
-  public final Provider<Optional<CurrentUser>> currentUserProvider;
+  private final BankRepository bankRepository;
+
   private List<TransactionEntity> list;
   private String userMessage;
-  private String currentAmount;
+  private Double currentAmount;
   private Boolean isShowUserMessage = false;
 
   @Inject
   public MainController(TransactionRepository transactionRepository,
-                        Provider<Optional<CurrentUser>> currentUserProvider) {
+                        BankRepository bankRepository) {
 
     this.transactionRepository = transactionRepository;
-    this.currentUserProvider = currentUserProvider;
+
+      this.bankRepository = bankRepository;
   }
 
   /**
    * Retrieve all transaction on current user.
    */
   @Get
-  public String configure() {
+  public void configure() {
 
-    Optional<CurrentUser> optional = currentUserProvider.get();
+    currentAmount = bankRepository.getCurrentAmount();
+    list = transactionRepository.getUserTransactions();
 
-    if (optional.isPresent()) {
-
-      list = transactionRepository.getUserTransactions();
-    }
-
-
-    return null;
   }
 
   public Boolean getIsShowUserMessage() {
@@ -55,12 +51,8 @@ public class MainController {
     this.isShowUserMessage = Boolean.valueOf(isShowUserMessage);
   }
 
-  public String getCurrentAmount() {
-    return currentAmount;
-  }
-
-  public void setCurrentAmount(String currentAmount) {
-    this.currentAmount = currentAmount;
+  public Double getCurrentAmount() {
+      return currentAmount;
   }
 
   public List<TransactionEntity> getList() {

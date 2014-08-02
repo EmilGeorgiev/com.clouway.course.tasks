@@ -23,5 +23,9 @@ public interface BankRepository {
   TransactionInfo withdraw(Double amount);
 
 
-
+    /**
+     * Retrieve current amount on user.
+      * @return amount on user.
+     */
+  Double getCurrentAmount();
 }

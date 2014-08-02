@@ -76,7 +76,17 @@ public class PersistentBankRepository implements BankRepository, TransactionRepo
     return new TransactionInfo(transactionMessages.success(), currentAmount);
   }
 
-  /**
+  @Override
+  public Double getCurrentAmount() {
+
+    DBObject query = new BasicDBObject("name", currentUser.get().getName());
+
+    DBObject projection = new BasicDBObject("amount", 1);
+
+    return (Double) users().findOne(query, projection).get("amount");
+  }
+
+    /**
    * {@see com.clouway.core.TransactionRepository}
    */
   @Override

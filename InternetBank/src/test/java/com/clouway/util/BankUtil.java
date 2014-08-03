@@ -25,15 +25,12 @@ public class BankUtil {
 
     DBObject query = new BasicDBObject("name", userName);
 
-    DBObject fields = new BasicDBObject("amount", 1);
-
     DBObject update = new BasicDBObject("$inc", new BasicDBObject("amount", amount));
 
-    DBObject object = users().findAndModify(query, fields, null, false, update, true, true);
+    users().update(query, update);
 
-    Double currentAmount = (Double) object.get("amount");
 
-    addNewTransaction("deposit", currentAmount);
+    addNewTransaction("deposit", amount);
   }
 
   public void register(String userName) {
@@ -70,4 +67,13 @@ public class BankUtil {
   }
 
 
+  public void withdraw(double amount) {
+    DBObject query = new BasicDBObject("name", userName);
+
+    DBObject update = new BasicDBObject("$inc", new BasicDBObject("amount", -amount));
+
+    users().update(query, update);
+
+    addNewTransaction("deposit", amount);
+  }
 }

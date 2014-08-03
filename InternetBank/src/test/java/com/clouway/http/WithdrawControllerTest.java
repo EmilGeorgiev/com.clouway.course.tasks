@@ -34,6 +34,8 @@ public class WithdrawControllerTest {
 
         transactionInfo = new TransactionInfo("success", 20.0);
 
+        withdrawController.setAmount(20.0);
+
     }
 
     @Test

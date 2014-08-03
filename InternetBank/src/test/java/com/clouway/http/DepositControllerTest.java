@@ -34,6 +34,8 @@ public class DepositControllerTest {
 
     transactionInfo = new TransactionInfo("success", 20.0);
 
+    depositController.setAmount(20.0);
+
   }
 
   @Test

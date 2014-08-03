@@ -72,21 +72,21 @@ public class PersistentBankRepositoryTest {
     context.checking(new Expectations() {
       {
         oneOf(transactionMessages).success();
-        will(returnValue("Transaction is success"));
+        will(returnValue("Transaction is success."));
 
 
       }
     });
 
-    TransactionInfo info = persistentBankRepository.deposit(30.0);
+    TransactionInfo info = persistentBankRepository.deposit(20.0);
 
     List<TransactionEntity> transactions = persistentBankRepository.getUserTransactions();
 
-    assertThat(info.getCurrentAmount(), is(80.0));
+    assertThat(info.getCurrentAmount(), is(40.0));
 
     assertThat(info.getMessage(), is("Transaction is success."));
 
-    assertThat(transactions.size(), is(2));
+    assertThat(transactions.size(), is(3));
 
   }
 

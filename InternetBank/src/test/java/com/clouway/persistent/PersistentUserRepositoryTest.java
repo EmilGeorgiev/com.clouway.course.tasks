@@ -54,7 +54,7 @@ public class PersistentUserRepositoryTest {
 
     cleanDB();
 
-    bankUtil = new BankUtil(connection);
+    bankUtil = new BankUtil(connection, name("test"), clock);
     sessionUtil = new SessionUtil(connection);
   }
 

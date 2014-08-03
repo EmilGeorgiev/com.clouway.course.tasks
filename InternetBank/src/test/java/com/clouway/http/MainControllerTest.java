@@ -1,5 +1,6 @@
 package com.clouway.http;
 
+import com.clouway.core.BankRepository;
 import com.clouway.core.CurrentUser;
 import com.clouway.core.Transaction;
 import com.clouway.core.TransactionRepository;
@@ -30,17 +31,24 @@ public class MainControllerTest {
   @Mock
   private TransactionRepository transactionRepository = null;
 
+  @Mock
+  private BankRepository bankRepository = null;
+
   @Before
   public void setUp() {
     currentUser = Optional.fromNullable(new CurrentUser(name("ivan")));
 
-    mainController = new MainController(transactionRepository, Providers.of(currentUser));
+    mainController = new MainController(transactionRepository, bankRepository);
   }
 
   @Test
   public void configureMainPage() throws Exception {
 
     context.checking(new Expectations() {{
+
+      oneOf(bankRepository).getCurrentAmount();
+      will(returnValue(45.0));
+
       oneOf(transactionRepository).getUserTransactions();
       will(returnValue(transactionList));
     }

@@ -9,7 +9,9 @@ import org.eclipse.jetty.webapp.WebAppContext;
  * Created by clouway on 6/16/14.
  */
 public class JettyServer {
+
   public static void main(String[] args) throws Exception {
+
     Server server = new Server(8090);
 
     ServletHolder jspSH = new ServletHolder(JspServlet.class);

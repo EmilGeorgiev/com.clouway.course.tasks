@@ -22,6 +22,6 @@ public class HttpModule extends ServletModule {
 
     bind(Clock.class).to(SystemClock.class);
 
-    filter("/Controller$").through(SecurityFilter.class);
+    filter("/re").through(SecurityFilter.class);
   }
 }

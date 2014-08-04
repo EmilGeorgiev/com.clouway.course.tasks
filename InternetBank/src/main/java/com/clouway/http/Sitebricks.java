@@ -6,7 +6,6 @@ import com.clouway.core.RegistrationMessages;
 import com.clouway.core.SiteMap;
 import com.clouway.core.TransactionMessages;
 import com.clouway.core.UserRepository;
-import com.google.common.base.Optional;
 import com.google.inject.Provider;
 import com.google.inject.Provides;
 import com.google.inject.servlet.RequestScoped;
@@ -107,14 +106,18 @@ public class Sitebricks extends com.google.sitebricks.SitebricksModule {
       e.printStackTrace();
     }
 
-    assert mongoClient != null;
-    return mongoClient.getDB("Bank");
+
+    if (mongoClient != null) {
+      return mongoClient.getDB("Bank");
+    }
+
+    return null;
 
   }
 
   @Provides
   @RequestScoped
-  public Optional<CurrentUser> getCurrentUser(Provider<HttpServletRequest> requestProvider,
+  public CurrentUser getCurrentUser(Provider<HttpServletRequest> requestProvider,
                                     UserRepository userRepository) {
     Cookie[] cookies = requestProvider.get().getCookies();
 
@@ -122,11 +125,11 @@ public class Sitebricks extends com.google.sitebricks.SitebricksModule {
       for (Cookie cookie : cookies) {
 
         if ("sid".equalsIgnoreCase(cookie.getName())) {
-          return userRepository.findBySession(cookie.getValue());
+          return userRepository.findBySession(cookie.getValue()).get();
         }
       }
     }
 
-    return Optional.absent();
+    return null;
   }
 }

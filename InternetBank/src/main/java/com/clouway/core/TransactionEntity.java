@@ -16,4 +16,16 @@ public class TransactionEntity {
     this.amount = amount;
     this.date = date;
   }
+
+    public String getType() {
+        return type;
+    }
+
+    public Double getAmount() {
+        return amount;
+    }
+
+    public Date getDate() {
+        return date;
+    }
 }

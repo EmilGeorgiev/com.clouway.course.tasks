@@ -19,16 +19,19 @@ public class MainController {
 
   private List<TransactionEntity> list;
   private String userMessage;
-  private Double currentAmount;
+  private Double currentAmount = 0.0;
   private Boolean isShowUserMessage = false;
+  private String userName;
 
   @Inject
   public MainController(TransactionRepository transactionRepository,
-                        BankRepository bankRepository) {
+                        BankRepository bankRepository,
+                        Provider<CurrentUser> currentUser) {
 
     this.transactionRepository = transactionRepository;
 
-      this.bankRepository = bankRepository;
+    this.bankRepository = bankRepository;
+    this.userName = currentUser.get().getName();
   }
 
   /**
@@ -42,7 +45,16 @@ public class MainController {
 
   }
 
-  public Boolean getIsShowUserMessage() {
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public Boolean getIsShowUserMessage() {
     return isShowUserMessage;
   }
 
@@ -55,7 +67,13 @@ public class MainController {
       return currentAmount;
   }
 
-  public List<TransactionEntity> getList() {
+
+
+  public void setCurrentAmount(Double currentAmount) {
+      this.currentAmount = currentAmount;
+  }
+
+    public List<TransactionEntity> getList() {
     return list;
   }
 

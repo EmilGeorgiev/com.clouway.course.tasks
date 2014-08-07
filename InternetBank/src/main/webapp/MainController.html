@@ -17,8 +17,7 @@
 <body>
 
 <!--Deposit modal-->
-<div class="modal fade"new TransactionEntity(transaction.getType(), transaction.getUserName(),
-                                    -transaction.getAmount(), transaction.getDate())
+<div class="modal fade"
      id="depositModal"
      tabindex="-1"
      role="dialog"
@@ -43,12 +42,9 @@
                         <div class="col-md-10">
                             <input type="text"
                                    id="amount"
-                                   name="transactionDTO.amount"
+                                   name="amount"
                                    class="form-control"
                                    placeholder="deposit amount">
-                            <input type="hidden"
-                                   name="transactionDTO.type"
-                                   value="DEPOSIT">
                         </div>
                     </div>
                     <div class="form-group">
@@ -92,12 +88,9 @@
                         <div class="col-md-10">
                             <input type="text"
                                    id="withdrawAmount"
-                                   name="transactionDTO.amount"
+                                   name="amount"
                                    class="form-control"
                                    placeholder="withdraw amount">
-                            <input type="hidden"
-                                   name="transactionDTO.type"
-                                   value="WITHDRAW">
                         </div>
                     </div>
                     <div class="form-group">
@@ -139,6 +132,7 @@
                 <a href="/logoutController"
                    class="btn btn btn-primary btn-lg"
                    role="button">Logout</a>
+                <button type="button" class="btn btn-primary btn-lg">user: ${userName}</button>
                 <button type="button" class="btn btn-primary btn-lg">
                     Account: ${currentAmount}
                 </button>
@@ -157,8 +151,6 @@
 
         </div>
     </div>
-
 </div>
-
 </body>
 </html>

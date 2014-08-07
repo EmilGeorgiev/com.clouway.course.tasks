@@ -42,17 +42,13 @@ public class PersistentBankRepository implements BankRepository, TransactionRepo
 
     DBObject query = new BasicDBObject("name", currentUser.get().getName());
 
-    DBObject fields = new BasicDBObject("amount", 1);
-
     DBObject update = new BasicDBObject("$inc", new BasicDBObject("amount", amount));
 
-    DBObject object = users().findAndModify(query, fields, null, false, update, true, true);
+    users().update(query, update);
 
-    Double currentAmount = (Double) object.get("amount");
+    addNewTransaction("deposit", amount);
 
-    addNew("deposit", currentAmount);
-
-    return new TransactionInfo(transactionMessages.success(), currentAmount);
+    return new TransactionInfo(transactionMessages.success());
   }
 
   /**
@@ -61,22 +57,24 @@ public class PersistentBankRepository implements BankRepository, TransactionRepo
   @Override
   public TransactionInfo withdraw(Double amount) {
 
-    DBObject query = new BasicDBObject("name", currentUser.get().getName());
+    if (isInsufficientAmount(amount)) {
+        return new TransactionInfo("Insufficient amount");
+    }
 
-    DBObject fields = new BasicDBObject("amount", 1);
+    DBObject query = new BasicDBObject("name", currentUser.get().getName());
 
     DBObject update = new BasicDBObject("$inc", new BasicDBObject("amount", -amount));
 
-    DBObject object = users().findAndModify(query, fields, null, false, update, true, true);
+    users().update(query, update);
 
-    Double currentAmount = (Double) object.get("amount");
+    addNewTransaction("deposit", amount);
 
-    addNew("deposit", currentAmount);
-
-    return new TransactionInfo(transactionMessages.success(), currentAmount);
+    return new TransactionInfo(transactionMessages.success());
   }
 
-  @Override
+
+
+    @Override
   public Double getCurrentAmount() {
 
     DBObject query = new BasicDBObject("name", currentUser.get().getName());
@@ -114,7 +112,7 @@ public class PersistentBankRepository implements BankRepository, TransactionRepo
   /**
    * Insert new transaction in database.
    */
-  private void addNew(String type, Double currentAmount) {
+  private void addNewTransaction(String type, Double currentAmount) {
 
     DBObject transactionEntity = new BasicDBObject("transaction_type", type)
               .append("amount", currentAmount)
@@ -122,6 +120,13 @@ public class PersistentBankRepository implements BankRepository, TransactionRepo
               .append("user_name", currentUser.get().getName());
 
     transactions().insert(transactionEntity);
+  }
+
+  private boolean isInsufficientAmount(Double amount) {
+      if (amount > getCurrentAmount()) {
+          return true;
+      }
+      return false;
   }
 
   private DBCollection users() {

@@ -21,7 +21,7 @@ public class MainControllerTest {
 
   private MainController mainController;
 
-  private Optional<CurrentUser> currentUser;
+  private CurrentUser currentUser;
 
   private List<Transaction> transactionList = new ArrayList<Transaction>();
 
@@ -36,9 +36,11 @@ public class MainControllerTest {
 
   @Before
   public void setUp() {
-    currentUser = Optional.fromNullable(new CurrentUser(name("ivan")));
+    currentUser = new CurrentUser(name("ivan"));
 
-    mainController = new MainController(transactionRepository, bankRepository);
+
+
+    mainController = new MainController(transactionRepository, bankRepository, Providers.of(currentUser));
   }
 
   @Test

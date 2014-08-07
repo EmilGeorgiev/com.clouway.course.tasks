@@ -1,6 +1,6 @@
 package com.clouway.http;
 
-import com.clouway.core.Transaction;
+import com.clouway.core.TransactionEntity;
 import com.google.sitebricks.rendering.EmbedAs;
 
 import java.util.List;
@@ -11,13 +11,13 @@ import java.util.List;
 @EmbedAs("Transaction")
 public class ShowTransaction {
 
-  private List<Transaction> transactions;
+  private List<TransactionEntity> transactions;
 
-  public List<Transaction> getTransactions() {
+  public List<TransactionEntity> getTransactions() {
     return transactions;
   }
 
-  public void setTransactions(List<Transaction> transactions) {
+  public void setTransactions(List<TransactionEntity> transactions) {
     this.transactions = transactions;
   }
 }

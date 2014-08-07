@@ -32,7 +32,7 @@ public class DepositControllerTest {
   public void setUp() {
     depositController = new DepositController(bankRepository, siteMap);
 
-    transactionInfo = new TransactionInfo("success", 20.0);
+    transactionInfo = new TransactionInfo("success");
 
     depositController.setAmount(20.0);
 

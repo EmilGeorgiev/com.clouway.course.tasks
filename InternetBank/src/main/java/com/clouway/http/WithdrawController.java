@@ -4,6 +4,7 @@ import com.clouway.core.BankRepository;
 import com.clouway.core.SiteMap;
 import com.clouway.core.TransactionInfo;
 import com.clouway.core.TransactionRepository;
+import com.google.inject.Inject;
 import com.google.sitebricks.At;
 import com.google.sitebricks.headless.Reply;
 import com.google.sitebricks.headless.Service;
@@ -21,6 +22,7 @@ public class WithdrawController {
 
     private Double amount;
 
+    @Inject
     public WithdrawController(BankRepository bankRepository,
                               SiteMap siteMap) {
 

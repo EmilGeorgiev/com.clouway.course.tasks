@@ -15,7 +15,6 @@
                     <th>Type</th>
                     <th>Amount</th>
                     <th>Date</th>
-                    <th>User name</th>
                 </tr>
                 </thead>
                 @Repeat(items=transactions, var="transaction" )
@@ -24,7 +23,6 @@
                     <th>${transaction.type}</th>
                     <th>${transaction.amount}</th>
                     <th>${transaction.date}</th>
-                    <th>${transaction.userName}</th>
                 </tr>
                 </thead>
             </table>

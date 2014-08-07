@@ -48,7 +48,7 @@ public class PersistentUserRepository implements UserRepository, SessionReposito
     BasicDBObject query = new BasicDBObject("name", user.getName())
             .append("password", user.getPassword());
 
-    BasicDBObject documentUpdate = new BasicDBObject("$set", new BasicDBObject("account", 0.0));
+    BasicDBObject documentUpdate = new BasicDBObject("$set", new BasicDBObject("amount", 0.0));
 
     WriteResult writeResult = users().update(query, documentUpdate, true, false);
 

@@ -82,7 +82,9 @@ public class PersistentBankRepositoryTest {
 
     List<TransactionEntity> transactions = persistentBankRepository.getUserTransactions();
 
-    assertThat(info.getCurrentAmount(), is(40.0));
+    Double currentAmount = persistentBankRepository.getCurrentAmount();
+
+    assertThat(currentAmount, is(40.0));
 
     assertThat(info.getMessage(), is("Transaction is success."));
 

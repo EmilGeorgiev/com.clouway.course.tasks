@@ -1,4 +1,4 @@
-<configuration debug="true">
+<configuration>
 
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
     <layout class="ch.qos.logback.classic.PatternLayout">
@@ -6,11 +6,11 @@
     </layout>
   </appender>
 
-  <logger name="com.clouway" level="DEBUG">
+  <logger name="com.clouway" level="warning">
     <appender-ref ref="STDOUT"/>
   </logger>
 
-  <logger name="org.eclipse" level="DEBUG">
+  <logger name="org.eclipse" level="warning">
     <appender-ref ref="STDOUT"/>
   </logger>
 

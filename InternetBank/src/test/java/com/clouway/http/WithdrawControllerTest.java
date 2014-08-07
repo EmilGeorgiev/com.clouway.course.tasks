@@ -32,7 +32,7 @@ public class WithdrawControllerTest {
     public void setUp() {
         withdrawController = new WithdrawController(bankRepository, siteMap);
 
-        transactionInfo = new TransactionInfo("success", 20.0);
+        transactionInfo = new TransactionInfo("success");
 
         withdrawController.setAmount(20.0);
 
